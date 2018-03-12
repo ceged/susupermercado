@@ -31,8 +31,8 @@ public interface SousCategorieFacadeLocal {
 
     int count();
     
-    public void CreerSousCategorie(Categorie categorie,String libelleSousCategorie);
+    void CreerSousCategorie(String libelleSousCategorie, Categorie categorie);
     
-    public SousCategorie RechercherSousCategorie(String libelleSousCategorieRecherche);
+    SousCategorie RechercherCategorie(String libelleSousCategorieRecherche);
     
 }

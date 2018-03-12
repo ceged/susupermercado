@@ -5,7 +5,9 @@
  */
 package facades.gestionMagasin;
 
+import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,8 +33,9 @@ public class MagasinFacade extends AbstractFacade<Magasin> implements MagasinFac
         super(Magasin.class);
     }
     @Override
-    public void CreerMagasin(String adresse, String codePostal) {
+    public void CreerMagasin(String nomMagasin,String adresse, String codePostal) {
     Magasin m = new Magasin();
+    m.setNomMagasin(nomMagasin);
     m.setAdresse(adresse);
     m.setCodePostal(codePostal);
     em.persist(m);
@@ -45,13 +48,17 @@ public class MagasinFacade extends AbstractFacade<Magasin> implements MagasinFac
     }
     
     @Override
-    public List<Magasin> RechercherMagasinParId(int id)
+    public Magasin RechercherMagasinParNom(String nomMagasinRecherche)
     {
-       List<Magasin> listeMagasinsRecherche=null;
-        Query req=getEntityManager().createQuery("SELECT m from Magasin as m where m.id=:id");
-        req.setParameter("id",id);
-        listeMagasinsRecherche=req.getResultList();
-        return listeMagasinsRecherche;
+       Magasin magasinsRecherche=null;
+        Query req=getEntityManager().createQuery("SELECT m from Magasin as m where m.nomMagasin=:nomMagasinRecherche");
+        req.setParameter("nomMagasinRecherche",nomMagasinRecherche);
+            Collection<Magasin>col=req.getResultList();
+            for(Magasin m:col)
+    {
+        magasinsRecherche=m;
+    }
+        return magasinsRecherche;
         
     }
     

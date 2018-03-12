@@ -10,6 +10,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionVenteEnLigne.RetraitMagasin;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -106,6 +107,27 @@ public class Magasin implements Serializable {
 
     public List<Secteur> getListeSecteurs() {
         return listeSecteurs;
+    }
+
+    @Column (unique=true)
+    private String nomMagasin;
+
+    /**
+     * Get the value of nomMagasin
+     *
+     * @return the value of nomMagasin
+     */
+    public String getNomMagasin() {
+        return nomMagasin;
+    }
+
+    /**
+     * Set the value of nomMagasin
+     *
+     * @param nomMagasin new value of nomMagasin
+     */
+    public void setNomMagasin(String nomMagasin) {
+        this.nomMagasin = nomMagasin;
     }
 
 
