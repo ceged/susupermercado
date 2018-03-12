@@ -32,6 +32,20 @@ public class Menu extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
+        if ((act == null)||(act.equals("null")))
+            {
+            jspChoix="/Accueil.jsp";
+            }
+        //Méthode de connexion
+        else if (act.equals("connexionUser"))
+            {
+            int i=0;
+            String login = request.getParameter("loginUser");
+            String mp = request.getParameter("mdpUser");
+            if(i==1){
+                jspChoix="/Admin.jsp";
+                    }
+            }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
