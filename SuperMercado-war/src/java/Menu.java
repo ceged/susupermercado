@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+import Session.SessionChefDeRayonLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author tangu_000
  */
 public class Menu extends HttpServlet {
+
+    @EJB
+    private SessionChefDeRayonLocal sessionChefDeRayon;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +47,7 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
-            if(i==1){
+            if(){
                 jspChoix="/Admin.jsp";
                     }
             }
