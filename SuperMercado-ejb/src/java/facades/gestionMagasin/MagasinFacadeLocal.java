@@ -30,9 +30,9 @@ public interface MagasinFacadeLocal {
 
     int count();
     
-    void CreerMagasin(String adresse, String codepostale);
+    void CreerMagasin(String nomMagasin,String adresse, String codePostal);
     
     void SupprimerMagasin(Magasin magasinasupprimer);
     
-    List<Magasin> RechercherMagasinParId(int id);
+    Magasin RechercherMagasinParNom(String nomMagasinRecherche);
 }
