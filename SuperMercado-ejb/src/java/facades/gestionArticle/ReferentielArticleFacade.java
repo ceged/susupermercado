@@ -8,9 +8,11 @@ package facades.gestionArticle;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,6 +33,7 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         super(ReferentielArticle.class);
     }
     
+    @Override
     public void CreerReferentielArticle (String libelleArticle, Magasin magasin, String marque, float prixVente, SousCategorie sousCategorie ){
         ReferentielArticle referentielArticleCree = new ReferentielArticle();
         referentielArticleCree.setLibelleArticle(libelleArticle);
@@ -39,6 +42,30 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         referentielArticleCree.setPrixVenteMagasin(prixVente);
         referentielArticleCree.setSousCategorie(sousCategorie);
         em.persist(referentielArticleCree);   
+    }
+    
+    @Override
+    public ReferentielArticle RechercheReferentielArticleParCodeBarre(Long codeBarreRecherche){
+        ReferentielArticle referentielArticleRecherche = null;
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.codeBarre=:codeBarreRecherche ");
+        req.setParameter("codeBarreRecherche", codeBarreRecherche);
+        Collection<ReferentielArticle>col=req.getResultList();
+            for(ReferentielArticle r:col)
+    {
+        referentielArticleRecherche=r;
+    }
+        return referentielArticleRecherche;
+    }
+    
+    @Override
+    public void ModifierPrixReferentielArticle (ReferentielArticle referentielArticleModifie,float newPrixVente){
+        referentielArticleModifie.setPrixVenteMagasin(newPrixVente);
+        em.merge(referentielArticleModifie);
+    }
+    
+    @Override
+    public void SupprimerReferentielArticle (ReferentielArticle referentielArticleSupprime){
+        em.remove(referentielArticleSupprime);
     }
     
 }
