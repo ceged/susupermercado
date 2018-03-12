@@ -30,10 +30,4 @@ public interface PersonneFacadeLocal {
 
     int count();
     
-    List RechercherPersonneParNom(String nom);
-    Personne RechercherPersonneParId(String id);
-    void ModifierMdp(long id, String mdpActuel, String mdpNouveau);
-    Personne SeConnecter(String login, String mdp);
-    
-    
 }
