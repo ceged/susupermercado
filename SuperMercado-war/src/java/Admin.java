@@ -52,9 +52,22 @@ public class Admin extends HttpServlet {
         }
         else if (act.equals("insererDirecteur"))
         {
-            doActionInserDirecteur(request,response);
+            doActionInsererDirecteur(request,response);
             jspChoix="/MenuAdmin.jsp";
         }  
+       
+        else if (act.equals("insererSousCategorie"))
+        {
+            doActionInsererSousCategorie(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
+         
+        else if (act.equals("insererCategorie"))
+        {
+            doActionInsererCategorie(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        } 
+        
          
          
      RequestDispatcher Rd;
@@ -92,7 +105,7 @@ public class Admin extends HttpServlet {
 request.setAttribute( "message", message );
 }
     
- protected void doActionInserDirecteur(HttpServletRequest request, HttpServletResponse response)
+ protected void doActionInsererDirecteur(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String nomPersonne= request.getParameter( "nom" );
     String prenomPersonne= request.getParameter( "prenom" );
@@ -111,6 +124,37 @@ request.setAttribute( "message", message );
     Date dob=Date.valueOf(dobPersonne);
     sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
     message = "Directeur crée";
+}
+   
+request.setAttribute( "message", message );
+}
+ 
+protected void doActionInsererCategorie(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelle= request.getParameter( "libelleCategorie" );
+    String message;
+    if ( libelle.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{
+    sessionAdmin.CreerCategorie(libelle);
+    message = "Categorie crée";
+}
+   
+request.setAttribute( "message", message );
+}
+
+protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleCategorie= request.getParameter( "libelleCategorie" );
+    String libelleSousCategorie= request.getParameter( "libelleSousCategorie" );
+    String message;
+    if ( libelleCategorie.trim().isEmpty()&&libelleSousCategorie.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{
+    sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+    message = "Sous-Categorie crée";
 }
    
 request.setAttribute( "message", message );

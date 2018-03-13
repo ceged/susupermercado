@@ -40,15 +40,15 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
     
     @Override
     public Categorie RechercherCategorie(String libelleCategorieRecherche){
-        Categorie CategorieRecherche = null;
-        Query req = getEntityManager().createQuery("Select s from SousCategorie as s where s.libelleCategorie=:libelleCategorieRecherche ");
+        Categorie categorieRecherche = null;
+        Query req = getEntityManager().createQuery("Select categorieRecherche from Categorie as categorieRecherche where categorieRecherche.libelleCategorie=:libelleCategorieRecherche ");
         req.setParameter("libelleCategorieRecherche", libelleCategorieRecherche);
         List<Categorie>list=req.getResultList();
             for(Categorie s:list)
     {
-        CategorieRecherche=s;
+        categorieRecherche=s;
     }
-        return CategorieRecherche;
+        return categorieRecherche;
     }
     
 }
