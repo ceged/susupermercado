@@ -5,6 +5,7 @@
  */
 package Session;
 
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -14,4 +15,5 @@ import javax.ejb.Local;
 @Local
 public interface SessionDirecteurMagasinLocal {
     
+    void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
 }

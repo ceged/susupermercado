@@ -17,4 +17,6 @@ public interface SessionAdminLocal {
     int SeConnecter(String login, String mp );
     
     void CreerPersonneAdmin ();
+    
+    void CreerMagasin(String nomMagasin, String adresse, String codePostal);
 }

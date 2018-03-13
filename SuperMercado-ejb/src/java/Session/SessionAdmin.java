@@ -7,6 +7,7 @@ package Session;
 
 import entités.gestionMagasin.Personne;
 import facades.gestionMagasin.AdminFacadeLocal;
+import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,6 +18,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private MagasinFacadeLocal magasinFacade;
 
     @EJB
     private AdminFacadeLocal adminFacade;
@@ -43,5 +47,10 @@ public class SessionAdmin implements SessionAdminLocal {
         String login = "admin";
         String mdp="admin";
         adminFacade.CreerAdmin(login, mdp);
+    }
+    
+    @Override
+    public void CreerMagasin(String nomMagasin, String adresse, String codePostal){
+        magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
     }
 }
