@@ -77,6 +77,10 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
 
         secteur.setLibelleSecteur(libelle);
         em.merge(secteur);
-    }}
-    
+    }
 
+    @Override
+    public void SupprimerSecteur(Secteur secteur) {
+        em.remove(secteur);
+    }
+    }

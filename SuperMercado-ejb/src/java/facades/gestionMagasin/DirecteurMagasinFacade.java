@@ -6,6 +6,8 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Magasin;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +31,22 @@ public class DirecteurMagasinFacade extends AbstractFacade<DirecteurMagasin> imp
         super(DirecteurMagasin.class);
     }
     
-}
+    
+    @Override
+    public void CreerDirecteurMagasin(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, Magasin magasin) {
+        
+        DirecteurMagasin directeur = new DirecteurMagasin();
+        
+        directeur.setPrenom(prenom);
+        directeur.setNom(nom);
+        directeur.setLogin(login);
+        directeur.setMdp(mdp);
+        directeur.setDob(dob);
+        directeur.setSexe(sexe);
+        directeur.setAdresse(adresse);
+        directeur.setCodePostal(codePostal);
+        directeur.setMagasin(magasin);
+
+        em.persist(directeur);
+        
+    }}

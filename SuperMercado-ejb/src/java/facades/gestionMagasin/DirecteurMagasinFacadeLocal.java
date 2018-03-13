@@ -6,6 +6,8 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Magasin;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +32,5 @@ public interface DirecteurMagasinFacadeLocal {
 
     int count();
     
+    void CreerDirecteurMagasin(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, Magasin magasin);
 }

@@ -5,6 +5,8 @@
  */
 package Session;
 
+import entités.gestionMagasin.Magasin;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface SessionAdminLocal {
+    
+    int SeConnecter(String login, String mp );
+    
+    void CreerPersonneAdmin ();
+    
+    void CreerMagasin(String nomMagasin, String adresse, String codePostal);
+    
+    void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
+    
+    Magasin ChercherMagasin(String nomMagasinRecherche);
     
 }

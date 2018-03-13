@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentNational;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,15 @@ public class AgentNationalFacade extends AbstractFacade<AgentNational> implement
         super(AgentNational.class);
     }
     
+     @Override
+    public void CreerAgentNational(String nom, String prenom, String login, String mdp) {
+        AgentNational agent = new AgentNational();
+        
+        agent.setPrenom(prenom);
+        agent.setNom(nom);
+        agent.setLogin(login);
+        agent.setMdp(mdp);
+
+        em.persist(agent);
+    }
 }

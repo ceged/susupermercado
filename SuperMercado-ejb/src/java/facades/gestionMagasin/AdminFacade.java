@@ -6,7 +6,10 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.Admin;
+import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Rayon;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,5 +33,17 @@ public class AdminFacade extends AbstractFacade<Admin> implements AdminFacadeLoc
         super(Admin.class);
     }
     
+    @Override
+    public void CreerAdmin( String login, String mdp) {
+        
+        Admin admin = new Admin();
+        
+        admin.setLogin(login);
+        admin.setMdp(mdp);
+
+        em.persist(admin);
+        
+        
+    }
     
 }

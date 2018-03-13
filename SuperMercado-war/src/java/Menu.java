@@ -6,9 +6,12 @@
  * and open the template in the editor.
  */
 
+import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
+import entités.gestionMagasin.Magasin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author tangu_000
  */
 public class Menu extends HttpServlet {
+
+    @EJB
+    private SessionAdminLocal sessionAdmin;
 
     @EJB
     private SessionChefDeRayonLocal sessionChefDeRayon;
@@ -49,10 +55,27 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
-            if(act.equals("connexionAdmin")){
-                jspChoix="/Admin.jsp";
+            i=sessionAdmin.SeConnecter(login, mp);
+            if(i==1){
+                jspChoix="/MenuAdmin.jsp";
                     }
+            else if(i==2){
+                jspChoix="/MenuChefdeRayon.jsp";
             }
+            else if(i==3){
+                jspChoix="/MenuDirecteur.jsp";
+            }
+            }
+        else if (act.equals("insererMagasin"))
+        {
+            doActionInsererMagasin(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
+        else if (act.equals("insererDirecteur"))
+        {
+            doActionInserDirecteur(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -71,6 +94,47 @@ public class Menu extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    protected void doActionInsererMagasin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelle= request.getParameter( "libelleMagasin" );
+    String adresseMagasin= request.getParameter( "adresse" );
+    String codePostalMagasin= request.getParameter( "codePostal" );
+    String message;
+    if ( libelle.trim().isEmpty()&&adresseMagasin.trim().isEmpty()&&codePostalMagasin.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{
+    sessionAdmin.CreerMagasin(libelle, adresseMagasin, codePostalMagasin);
+    message = "Magasin crée";
+}
+   
+request.setAttribute( "message", message );
+}
+    
+ protected void doActionInserDirecteur(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String nomPersonne= request.getParameter( "nom" );
+    String prenomPersonne= request.getParameter( "prenom" );
+    String loginPersonne= request.getParameter( "login" );
+    String mdpPersonne= request.getParameter( "mdp" );
+    String sexePersonne= request.getParameter( "sexe" );
+    String dobPersonne= request.getParameter( "dob" );
+    String adressePersonne= request.getParameter( "adresse" );
+    String codePostalPersonne= request.getParameter( "codePostal" );
+    String magasinPersonne= request.getParameter( "magasin" );
+    String message;
+    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerDirecteur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un directeur.";
+} else
+{
+    Date dob=Date.valueOf(dobPersonne);
+    sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
+    message = "Directeur crée";
+}
+   
+request.setAttribute( "message", message );
+}   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

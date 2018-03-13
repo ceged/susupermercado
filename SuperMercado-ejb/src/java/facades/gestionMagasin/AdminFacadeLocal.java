@@ -30,4 +30,6 @@ public interface AdminFacadeLocal {
 
     int count();
     
+    void CreerAdmin( String login, String mdp);
+    
 }

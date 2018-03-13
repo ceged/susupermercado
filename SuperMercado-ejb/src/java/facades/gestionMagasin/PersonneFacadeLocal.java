@@ -38,6 +38,6 @@ public interface PersonneFacadeLocal {
 
     List RechercherPersonneParNom(String nom);
 
-    void SupprimerPersonne(long idPersonne);
+    void SupprimerPersonne(Personne personne);
     
 }

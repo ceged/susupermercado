@@ -6,6 +6,8 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentRayon;
+import entités.gestionMagasin.Rayon;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,7 @@ public interface AgentRayonFacadeLocal {
     List<AgentRayon> findRange(int[] range);
 
     int count();
+    
+    void CreerAgentRayon(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Rayon rayon);
     
 }

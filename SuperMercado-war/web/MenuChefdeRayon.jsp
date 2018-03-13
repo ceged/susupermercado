@@ -18,5 +18,7 @@
         Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
         Modifier prix article</A><br/><br/>
+        <A HREF="Accueil.jsp">
+        Sortir menu principal</A><br/><br/>
     </body>
 </html>
