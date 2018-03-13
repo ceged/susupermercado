@@ -39,13 +39,10 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     @Override 
     public void CreerReferentielArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche){
         Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
-        SousCategorie sousCategorieRecherche= sousCategorieFacade.RechercherCategorie(libelleSousCategorieRecherche);
+        SousCategorie sousCategorieRecherche= sousCategorieFacade.RechercherSousCategorie(libelleSousCategorieRecherche);
         referentielArticleFacade.CreerReferentielArticle(libelleArticle, magasinRecherche, marque, 0, sousCategorieRecherche);
     }
     
-    @Override
-    public void CreerCategorie (String categorie){
-        categorieFacade.CreerCategorie(categorie);
-    }
+    
     
 }

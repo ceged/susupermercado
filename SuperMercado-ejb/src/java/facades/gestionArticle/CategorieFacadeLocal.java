@@ -32,4 +32,6 @@ public interface CategorieFacadeLocal {
     
     void CreerCategorie (String libelleCategorie);
     
+    Categorie RechercherCategorie(String libelleCategorieRecherche);
+    
 }
