@@ -54,7 +54,7 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     }
 
     @Override
-    public Personne RechercherPersonneParId(String id) {
+    public Personne RechercherPersonneParId(Long id) {
         Personne p;
         Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p.id=:id");
         req.setParameter("id", id);

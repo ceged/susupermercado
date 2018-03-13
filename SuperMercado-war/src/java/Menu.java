@@ -49,7 +49,7 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
-            if(){
+            if(act.equals("connexionAdmin")){
                 jspChoix="/Admin.jsp";
                     }
             }

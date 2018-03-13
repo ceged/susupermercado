@@ -9,6 +9,7 @@ import entités.gestionArticle.LotArticle;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -60,6 +61,19 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
      
         
     }
+
+    @Override
+    public LotArticle RechercherLotArticleParId(long id) {
+        
+        LotArticle la;
+        Query req = getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.id=:id");
+        req.setParameter("id", id);
+        la = (LotArticle) req.getSingleResult();
+        return la;
+        
+    }
+    
+    
     
     
     

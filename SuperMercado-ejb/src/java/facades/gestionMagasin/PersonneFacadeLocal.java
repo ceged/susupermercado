@@ -34,7 +34,7 @@ public interface PersonneFacadeLocal {
 
     void ModifierMdp(long id, String mdpActuel, String mdpNouveau);
 
-    Personne RechercherPersonneParId(String id);
+    Personne RechercherPersonneParId(Long id);
 
     List RechercherPersonneParNom(String nom);
 
