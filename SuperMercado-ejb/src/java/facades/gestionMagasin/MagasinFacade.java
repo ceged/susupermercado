@@ -61,5 +61,11 @@ public class MagasinFacade extends AbstractFacade<Magasin> implements MagasinFac
         return magasinsRecherche;
         
     }
-    
+
+    @Override
+    public Collection ConsulterListeMagasins() {
+        Query req=getEntityManager().createQuery("SELECT m from Magasin");
+        Collection result = req.getResultList();
+        return result;
+    }
 }

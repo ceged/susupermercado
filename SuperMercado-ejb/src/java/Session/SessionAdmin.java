@@ -11,6 +11,7 @@ import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,6 +24,9 @@ import javax.ejb.Stateless;
 public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
+    private SecteurFacadeLocal secteurFacade;
+
+    @EJB
     private DirecteurMagasinFacadeLocal directeurMagasinFacade;
 
     @EJB
@@ -33,6 +37,7 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -73,5 +78,5 @@ public class SessionAdmin implements SessionAdminLocal {
     public Magasin ChercherMagasin(String nomMagasinRecherche){
         Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(nomMagasinRecherche);
         return magasinRecherche;
-    }
+    }    
 }

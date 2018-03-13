@@ -24,6 +24,4 @@ public interface SessionAdminLocal {
     
     void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
     
-    Magasin ChercherMagasin(String nomMagasinRecherche);
-    
-}
+    Magasin ChercherMagasin(String nomMagasinRecherche);}
