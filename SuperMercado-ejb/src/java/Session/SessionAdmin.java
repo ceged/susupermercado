@@ -45,6 +45,9 @@ public class SessionAdmin implements SessionAdminLocal {
         if(adminFacade.findAll().contains(personneConnecte)){
             i=1;
         }
+        else if (directeurMagasinFacade.findAll().contains(personneConnecte)){
+            i=3;
+        }
         return i;
     }
     
@@ -64,5 +67,11 @@ public class SessionAdmin implements SessionAdminLocal {
     public void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
+    }
+    
+    @Override
+    public Magasin ChercherMagasin(String nomMagasinRecherche){
+        Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(nomMagasinRecherche);
+        return magasinRecherche;
     }
 }
