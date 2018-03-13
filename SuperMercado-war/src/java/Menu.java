@@ -88,7 +88,7 @@ public class Menu extends HttpServlet {
             doActionSupprimerMagasin(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
-        
+
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);

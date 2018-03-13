@@ -29,12 +29,14 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     @EJB
     private SecteurFacadeLocal secteurFacade;
 
-    
+
     @EJB
     private MagasinFacadeLocal magasinFacade;
 
     @EJB
     private DirecteurMagasinFacadeLocal directeurMagasinFacade;
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -43,7 +45,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
     }
-    
-
-    
-}
+@Override
+    public void CreerSecteur(String libelleSecteur, String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        secteurFacade.CreerSecteur(libelleSecteur, magasin);
+    }  }
