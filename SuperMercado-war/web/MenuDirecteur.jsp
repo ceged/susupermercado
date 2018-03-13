@@ -28,6 +28,8 @@
 <body>  
     <A HREF="GestionMagasinJSP/CreerSecteur.jsp">Créer un Secteur</A>
         <br/><br/>
+    <A HREF="GestionMagasinJSP/CreerRayon.jsp">Créer un Rayon</A>
+        <br/><br/>
     <A HREF="Accueil.jsp">Sortir menu principal</A>
         <br/><br/>
     

@@ -34,4 +34,6 @@ public interface SecteurFacadeLocal {
     public void CreerSecteur(String libelle, Magasin magasin);
     public void ModifierSecteur(Secteur secteur, String libelle);
     void SupprimerSecteur(Secteur secteur);
+    Secteur RechercherSecteurParLibelle (String libelleSecteur);
+    Secteur RechercherSecteurParId (int id);
 }

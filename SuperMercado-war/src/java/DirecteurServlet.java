@@ -49,6 +49,11 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererSecteur(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+        else if (act.equals("insererRayon"))
+        {
+            doActionInsererRayon(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -78,6 +83,22 @@ public class DirecteurServlet extends HttpServlet {
 {
     sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
     message = "Secteur créé";
+}
+   
+request.setAttribute( "message", message );
+}
+    protected void doActionInsererRayon(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleSecteur= request.getParameter( "libelleRayon" );
+    String magasinSecteur= request.getParameter( "Secteur" );
+    String ChefRayon= request.getParameter( "ChefRayon" );
+    String message;
+    if ( libelleSecteur.trim().isEmpty()&&magasinSecteur.trim().isEmpty()&&ChefRayon.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un rayon.";
+} else
+{
+    sessionDirecteurMagasin.CreerRayon(libelleSecteur, magasinSecteur,ChefRayon);
+    message = "Rayon créé";
 }
    
 request.setAttribute( "message", message );
