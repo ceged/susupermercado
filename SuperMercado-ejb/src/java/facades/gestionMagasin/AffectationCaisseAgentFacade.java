@@ -32,14 +32,4 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
     public AffectationCaisseAgentFacade() {
         super(AffectationCaisseAgent.class);
     }
-
-    @Override
-    public void CreerAffectation(AgentCaisse agent, Caisse caisse, Date dateDebut, final Date dateFin) {
-        AffectationCaisseAgent affectation = new AffectationCaisseAgent();
-        
-        affectation.setAgentCaisse(agent);
-        affectation.setCaisse(caisse);
-        affectation.setDateDebut(dateDebut);
-        affectation.setDateFin(dateFin);
-        em.persist(agent);
-    }}
+}
