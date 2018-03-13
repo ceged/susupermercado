@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 
+import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author tangu_000
  */
 public class Menu extends HttpServlet {
+
+    @EJB
+    private SessionAdminLocal sessionAdmin;
 
     @EJB
     private SessionChefDeRayonLocal sessionChefDeRayon;
@@ -49,9 +53,13 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
-            if(){
-                jspChoix="/Admin.jsp";
+            i=sessionAdmin.SeConnecter(login, mp);
+            if(i==1){
+                jspChoix="/MenuAdmin.jsp";
                     }
+            else if(i==2){
+                jspChoix="/MenuChefdeRayon.jsp";
+            }
             }
         
         RequestDispatcher Rd;

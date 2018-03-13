@@ -5,6 +5,10 @@
  */
 package Session;
 
+import entités.gestionMagasin.Personne;
+import facades.gestionMagasin.AdminFacadeLocal;
+import facades.gestionMagasin.PersonneFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,8 +18,28 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
 
+    @EJB
+    private AdminFacadeLocal adminFacade;
+
+    @EJB
+    private PersonneFacadeLocal personneFacade;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
     @Override
-    public void SeConnecter(String login, String )
+    public int  SeConnecter(String login, String mp){
+        int i = 0;
+        Personne personneConnecte =null;
+        personneConnecte=personneFacade.SeConnecter(login, mp);
+        if(adminFacade.findAll().contains(personneConnecte)){
+            i=1;
+        }
+        return i;
+    }
+    
+    @Override
+    public void CreerPersonne (){
+        personneFacade.
+    }
 }

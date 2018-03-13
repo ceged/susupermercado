@@ -14,4 +14,5 @@ import javax.ejb.Local;
 @Local
 public interface SessionAdminLocal {
     
+    int SeConnecter(String login, String mp );
 }
