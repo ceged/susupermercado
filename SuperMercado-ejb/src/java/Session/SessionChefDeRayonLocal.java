@@ -14,5 +14,8 @@ import javax.ejb.Local;
 @Local
 public interface SessionChefDeRayonLocal {
     
-    void CreerArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche);
+    void CreerReferentielArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche);
+    
+    void CreerCategorie (String categorie);
+    
 }
