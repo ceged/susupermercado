@@ -28,5 +28,9 @@ public interface SessionAdminLocal {
     Magasin ChercherMagasin(String nomMagasinRecherche);
     
     Personne PersonneConnecte(String login,String mp);
-    
+
+    void CreerCategorie (String categorie);
+
+    void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+  
 }

@@ -41,7 +41,7 @@ public class SousCategorieFacade extends AbstractFacade<SousCategorie> implement
     }
     
     @Override
-    public SousCategorie RechercherCategorie(String libelleSousCategorieRecherche){
+    public SousCategorie RechercherSousCategorie(String libelleSousCategorieRecherche){
         SousCategorie sousCategorieRecherche = null;
         Query req = getEntityManager().createQuery("Select s from SousCategorie as s where s.libelleSousCategorie=:libelleSousCategorieRecherche ");
         req.setParameter("libelleSousCategorieRecherche", libelleSousCategorieRecherche);
@@ -52,6 +52,7 @@ public class SousCategorieFacade extends AbstractFacade<SousCategorie> implement
     }
         return sousCategorieRecherche;
     }
+    
         
     
 }
