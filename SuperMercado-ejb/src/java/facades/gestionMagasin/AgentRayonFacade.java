@@ -6,6 +6,8 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentRayon;
+import entités.gestionMagasin.Rayon;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,24 @@ public class AgentRayonFacade extends AbstractFacade<AgentRayon> implements Agen
     public AgentRayonFacade() {
         super(AgentRayon.class);
     }
-    //test commit 12 03 20h41
+ 
+    
+    @Override
+    public void CreerAgentRayon(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Rayon rayon) {
+        
+        AgentRayon agent = new AgentRayon();
+        
+        agent.setPrenom(prenom);
+        agent.setNom(nom);
+        agent.setLogin(login);
+        agent.setMdp(mdp);
+        agent.setDob(dob);
+        agent.setSexe(sexe);
+        agent.setAdresse(adresse);
+        agent.setCodePostal(codePostal);
+        agent.setRayon(rayon);
+
+        em.persist(agent);
+        
+    }
 }
