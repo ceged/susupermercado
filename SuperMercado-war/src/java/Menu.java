@@ -9,6 +9,7 @@
 import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Personne;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -18,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -55,6 +57,7 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
+            Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
             i=sessionAdmin.SeConnecter(login, mp);
             if(i==1){
                 jspChoix="/MenuAdmin.jsp";
@@ -65,6 +68,8 @@ public class Menu extends HttpServlet {
             else if(i==3){
                 jspChoix="/MenuDirecteur.jsp";
             }
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("personneConnecte",personneConnecte);
             }
         else if (act.equals("insererMagasin"))
         {

@@ -29,5 +29,9 @@ public interface LotArticleFacadeLocal {
     List<LotArticle> findRange(int[] range);
 
     int count();
+
+    void ModifierQteLotArticle(int qteAModifier, boolean signe, LotArticle LotArticle);
+
+    LotArticle RechercherLotArticleParId(long IdLotArticle);
     
 }

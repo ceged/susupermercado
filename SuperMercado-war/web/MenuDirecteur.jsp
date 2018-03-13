@@ -4,15 +4,21 @@
     Author     : Soldat
 --%>
 
+<%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
         <title>JSP Page</title>
     </head>
-    <body>
-<body>  
+<body> 
+    <% Personne p= personneConnecte;{%>
+    <tr> 
+        <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
+    </tr><%}%>
+    <br/><br/>
     <A HREF="GestionMagasinJSP/CreerSecteur.jsp">Créer un Secteur</A>
         <br/><br/>
     <A HREF="Accueil.jsp">Sortir menu principal</A>
@@ -26,6 +32,6 @@
         else{
         out.println( attribut );}
         %> </p>
-      
+
     </body>
 </html>

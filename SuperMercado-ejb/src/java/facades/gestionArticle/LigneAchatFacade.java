@@ -5,7 +5,9 @@
  */
 package facades.gestionArticle;
 
+import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
+import entités.gestionArticle.LotArticle;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,17 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
     public LigneAchatFacade() {
         super(LigneAchat.class);
     }
+
+    @Override
+    public void CreerLigneAchat(int qteAchetees, LotArticle lotArticle, Achat achat) {
+        
+        LigneAchat ligneAchat = new LigneAchat () ;
+        ligneAchat.setQuantiteAchetee(qteAchetees);
+        ligneAchat.setLotArticle(lotArticle);
+        ligneAchat.setAchat(achat);
+        em.persist(ligneAchat);
+    }
+    
+    
     
 }

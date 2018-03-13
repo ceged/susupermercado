@@ -57,6 +57,13 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
+    public Personne PersonneConnecte(String login,String mp){
+        Personne personneConnecte =null;
+        personneConnecte=personneFacade.SeConnecter(login, mp);
+        return personneConnecte;
+    }
+    
+    @Override
     public void CreerPersonneAdmin (){
         String login = "admin";
         String mdp="admin";
