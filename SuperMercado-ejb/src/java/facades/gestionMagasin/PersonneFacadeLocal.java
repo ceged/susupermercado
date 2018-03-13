@@ -37,5 +37,7 @@ public interface PersonneFacadeLocal {
     Personne RechercherPersonneParId(String id);
 
     List RechercherPersonneParNom(String nom);
+
+    void SupprimerPersonne(long idPersonne);
     
 }

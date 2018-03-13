@@ -5,6 +5,7 @@
  */
 package facades.gestionMagasin;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Secteur;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,8 @@ public interface SecteurFacadeLocal {
     List<Secteur> findRange(int[] range);
 
     int count();
+    
+    public void CreerSecteur(String libelle, Magasin magasin);
+    public void ModifierSecteur(Secteur secteur, String libelle);
     
 }
