@@ -5,8 +5,11 @@
  */
 package Session;
 
+import entités.gestionArticle.Categorie;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
+import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
@@ -25,6 +28,10 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private SecteurFacadeLocal secteurFacade;
+    private SousCategorieFacadeLocal sousCategorieFacade;
+
+    @EJB
+    private CategorieFacadeLocal categorieFacade;
 
     @EJB
     private DirecteurMagasinFacadeLocal directeurMagasinFacade;
@@ -37,11 +44,15 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
-    
+
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+
+  
     
+  
     @Override
     public int  SeConnecter(String login, String mp){
         int i = 0;
@@ -88,10 +99,37 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
+
     public void SupprimerMagasin(String magasin,Magasin magasinasupprimer) {
     Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin);
     magasinFacade.SupprimerMagasin(magasinasupprimer);
             }
+
+    public void CreerCategorie (String categorie){
+        categorieFacade.CreerCategorie(categorie);
+    }
+
+    @Override
+    public void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+        Categorie c = null ;
+        
+        c=categorieFacade.RechercherCategorie(libelleCategorie);
+        
+        if (c!=null){
+            sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
+        } else { System.out.println("la catégorie n'a pas été trouvé");
+        
+        
+            
+        
+                
+        
+       
+       
+    }
     
+    
+
+    }
 
 }

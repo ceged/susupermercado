@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Formulaire de création directeur</h1>
-        <form method="get" action="/SuperMercado-war/Menu">
+        <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Directeur (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>

@@ -9,6 +9,7 @@
 import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import java.io.IOException;
@@ -72,19 +73,12 @@ public class Menu extends HttpServlet {
                 jspChoix="/MenuChefdeRayon.jsp";
             }
             else if(i==3){
+                DirecteurMagasin directeurConnecte = (DirecteurMagasin)personneConnecte;
+                sess.setAttribute("directeurConnecte",directeurConnecte);
                 jspChoix="/MenuDirecteur.jsp";
             }
             }
-        else if (act.equals("insererMagasin"))
-        {
-            doActionInsererMagasin(request,response);
-            jspChoix="/MenuAdmin.jsp";
-        }
-        else if (act.equals("insererDirecteur"))
-        {
-            doActionInserDirecteur(request,response);
-            jspChoix="/MenuAdmin.jsp";
-        }
+       
         
         else if (act.equals("supprimerMagasin"))
         {

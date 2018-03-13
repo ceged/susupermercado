@@ -31,4 +31,9 @@ public interface SessionAdminLocal {
     
     void SupprimerMagasin(String magasin,Magasin magasinasupprimer);
     
+
+    void CreerCategorie (String categorie);
+
+    void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+  
 }

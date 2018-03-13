@@ -6,9 +6,11 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Categorie;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -34,6 +36,19 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
         Categorie categorieCree = new Categorie();
         categorieCree.setLibelleCategorie(libelleCategorie);
         em.persist(categorieCree);
+    }
+    
+    @Override
+    public Categorie RechercherCategorie(String libelleCategorieRecherche){
+        Categorie categorieRecherche = null;
+        Query req = getEntityManager().createQuery("Select categorieRecherche from Categorie as categorieRecherche where categorieRecherche.libelleCategorie=:libelleCategorieRecherche ");
+        req.setParameter("libelleCategorieRecherche", libelleCategorieRecherche);
+        List<Categorie>list=req.getResultList();
+            for(Categorie s:list)
+    {
+        categorieRecherche=s;
+    }
+        return categorieRecherche;
     }
     
 }
