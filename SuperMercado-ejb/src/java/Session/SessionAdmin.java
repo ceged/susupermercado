@@ -81,4 +81,11 @@ public class SessionAdmin implements SessionAdminLocal {
         Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(nomMagasinRecherche);
         return magasinRecherche;
     }
+    
+     @Override
+    public void SupprimerMagasin(String magasin,Magasin magasinasupprimer) {
+    Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin);
+    magasinFacade.SupprimerMagasin(magasinasupprimer);
+            }
+
 }

@@ -29,4 +29,6 @@ public interface SessionAdminLocal {
     
     Personne PersonneConnecte(String login,String mp);
     
+    void SupprimerMagasin(String magasin,Magasin magasinasupprimer);
+    
 }
