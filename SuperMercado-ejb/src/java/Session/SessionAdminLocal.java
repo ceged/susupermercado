@@ -15,4 +15,6 @@ import javax.ejb.Local;
 public interface SessionAdminLocal {
     
     int SeConnecter(String login, String mp );
+    
+    void CreerPersonneAdmin ();
 }

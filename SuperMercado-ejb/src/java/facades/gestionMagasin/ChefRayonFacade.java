@@ -6,6 +6,8 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Rayon;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,23 @@ public class ChefRayonFacade extends AbstractFacade<ChefRayon> implements ChefRa
     public ChefRayonFacade() {
         super(ChefRayon.class);
     }
-    
+    @Override
+    public void CreerChefRayon(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Rayon rayon) {
+        
+        ChefRayon chef = new ChefRayon();
+        
+        chef.setPrenom(prenom);
+        chef.setNom(nom);
+        chef.setLogin(login);
+        chef.setMdp(mdp);
+        chef.setDob(dob);
+        chef.setSexe(sexe);
+        chef.setAdresse(adresse);
+        chef.setCodePostal(codePostal);
+        chef.setRayon(rayon);
+
+        em.persist(chef);
+        
+        
+    }
 }

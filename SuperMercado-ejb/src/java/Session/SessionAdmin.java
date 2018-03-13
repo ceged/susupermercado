@@ -39,7 +39,9 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
-    public void CreerPersonne (){
-        personneFacade.
+    public void CreerPersonneAdmin (){
+        String login = "admin";
+        String mdp="admin";
+        adminFacade.CreerAdmin(login, mdp);
     }
 }
