@@ -29,4 +29,38 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         super(LotArticle.class);
     }
     
+    
+
+    @Override
+    public void ModifierQteLotArticle(int qteAModifier, boolean signe, LotArticle LotArticle) {
+        //règle signe : true = +, False = -
+        int nouvelleQte = 0;    
+        int ancienneQte = 0;
+                
+                if (signe = true) {
+                
+                ancienneQte = LotArticle.getQuantiteLot();
+                
+                nouvelleQte = ancienneQte + qteAModifier;
+               
+        }
+                else if (signe = false) {
+              
+                ancienneQte = LotArticle.getQuantiteLot();
+                
+                nouvelleQte = ancienneQte - qteAModifier;
+               
+                }
+                
+     LotArticle.setQuantiteLot(nouvelleQte);
+     em.merge(LotArticle);
+    
+             
+                
+     
+        
+    }
+    
+    
+    
 }
