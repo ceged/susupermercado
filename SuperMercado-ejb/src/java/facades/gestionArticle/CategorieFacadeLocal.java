@@ -30,4 +30,6 @@ public interface CategorieFacadeLocal {
 
     int count();
     
+    void CreerCategorie (String libelleCategorie);
+    
 }

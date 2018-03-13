@@ -29,4 +29,11 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
         super(Categorie.class);
     }
     
+    @Override
+    public void CreerCategorie (String libelleCategorie){
+        Categorie categorieCree = new Categorie();
+        categorieCree.setLibelleCategorie(libelleCategorie);
+        em.persist(categorieCree);
+    }
+    
 }
