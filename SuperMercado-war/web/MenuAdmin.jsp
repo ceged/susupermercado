@@ -13,9 +13,18 @@
     </head>
     <body>
         <h1>Bienvenue sur le menu Admin !</h1>
-        <A HREF="GestionArticleJSP/CreerArticle.jsp">
-        Créer un article</A><br/><br/>
+        <A HREF="GestionMagasinJSP/CreerMagasin.jsp">
+        Créer un magasin</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
-        Modifier prix article</A><br/><br/>
+        Créer un directeur</A><br/><br/>
+        
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
     </body>
 </html>

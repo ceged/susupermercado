@@ -61,6 +61,11 @@ public class Menu extends HttpServlet {
                 jspChoix="/MenuChefdeRayon.jsp";
             }
             }
+        else if (act.equals("insererMagasin"))
+        {
+            doActionInsererMagasin(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -79,6 +84,23 @@ public class Menu extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    protected void doActionInsererMagasin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelle= request.getParameter( "libelleMagasin" );
+    String adresseMagasin= request.getParameter( "adresse" );
+    String codePostalMagasin= request.getParameter( "codePostal" );
+    String message;
+    if ( libelle.trim().isEmpty()&&adresseMagasin.trim().isEmpty()&&codePostalMagasin.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{
+    sessionAdmin.CreerMagasin(libelle, adresseMagasin, codePostalMagasin);
+    message = "Magasin crée";
+}
+   
+request.setAttribute( "message", message );
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
