@@ -16,4 +16,6 @@ public class SessionAdmin implements SessionAdminLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    @Override
+    public void SeConnecter(String login, String )
 }
