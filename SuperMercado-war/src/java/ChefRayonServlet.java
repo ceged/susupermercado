@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */
 
+import Session.SessionChefDeRayonLocal;
+import entités.gestionArticle.SousCategorie;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,6 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/ChefRayonServlet"})
 public class ChefRayonServlet extends HttpServlet {
+
+    @EJB
+    private SessionChefDeRayonLocal sessionChefDeRayon;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +41,27 @@ public class ChefRayonServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String jspChoix ="/MenuChefdeRayon.jsp";
+        String act=request.getParameter("action");
+        if ((act == null)||(act.equals("null")))
+            {
+            jspChoix="/MenuChefdeRayon.jsp";
+            }
+        else if (act.equals("creerArticle"))
+        {
+            List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("listeSousCategorie",listeSousCategorie); 
+            jspChoix="GestionArticleJSP/CreerArticle.jsp";
+        }
+        else if (act.equals("insererReferentielArticle")){
+            doActionInserReferentielArticle(request,response);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
+        
+        RequestDispatcher Rd;
+        Rd= getServletContext().getRequestDispatcher(jspChoix);
+        Rd.forward(request,response);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -44,6 +75,26 @@ public class ChefRayonServlet extends HttpServlet {
             out.println("</html>");
         }
     }
+    
+    protected void doActionInserReferentielArticle(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleArticleCree= request.getParameter( "libelleArticle" );
+    String magasinCree= request.getParameter( "magasin" );
+    String marqueCree= request.getParameter( "marque" );
+    String prixCree= request.getParameter( "prix" );
+    String souscateogireCree= request.getParameter( "souscateogire" );
+    String message;
+    if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()&&marqueCree.trim().isEmpty()&&prixCree.trim().isEmpty()&&souscateogireCree.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/CreerArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un article.";
+} else
+{
+    Float prixVente=Float.parseFloat(prixCree);
+    sessionChefDeRayon.CreerReferentielArticle(libelleArticleCree, magasinCree, marqueCree, prixVente, souscateogireCree);
+    message = "Article crée";
+}
+   
+request.setAttribute( "message", message );
+}   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

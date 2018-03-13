@@ -5,6 +5,8 @@
  */
 package Session;
 
+import entités.gestionArticle.SousCategorie;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -17,5 +19,7 @@ public interface SessionChefDeRayonLocal {
     void CreerReferentielArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche);
     
     void CreerCategorie (String categorie);
+    
+    List<SousCategorie> ListerSousCategorie();
     
 }

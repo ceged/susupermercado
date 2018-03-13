@@ -14,11 +14,20 @@
     </head>
     <body>
         <h1>Bienvenue sur le menu Chef de rayon !</h1>
-        <A HREF="GestionArticleJSP/CreerArticle.jsp">
+        <A HREF="ChefRayonServlet?action=creerArticle">
         Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
         Modifier prix article</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
+        
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
     </body>
 </html>
