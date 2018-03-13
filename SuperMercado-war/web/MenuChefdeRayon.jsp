@@ -14,8 +14,8 @@
     </head>
     <body>
         <h1>Bienvenue sur le menu Chef de rayon !</h1>
-        <A HREF="Package JSP/Package Gestion Article/CreerArticle.jsp">
-        Créer article</A><br/><br/>
+        <A HREF="GestionArticleJSP/CreerArticle.jsp">
+        Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
         Modifier prix article</A><br/><br/>
     </body>
