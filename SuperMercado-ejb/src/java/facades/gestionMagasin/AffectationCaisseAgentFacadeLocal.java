@@ -6,6 +6,9 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AffectationCaisseAgent;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Caisse;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +32,7 @@ public interface AffectationCaisseAgentFacadeLocal {
     List<AffectationCaisseAgent> findRange(int[] range);
 
     int count();
+
+    void CreerAffectation(AgentCaisse agent, Caisse caisse, Date dateDebut, final Date dateFin);
     
 }

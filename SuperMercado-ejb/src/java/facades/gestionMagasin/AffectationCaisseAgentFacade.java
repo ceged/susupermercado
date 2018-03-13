@@ -6,9 +6,13 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AffectationCaisseAgent;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Caisse;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +32,14 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
     public AffectationCaisseAgentFacade() {
         super(AffectationCaisseAgent.class);
     }
-    
-}
+
+    @Override
+    public void CreerAffectation(AgentCaisse agent, Caisse caisse, Date dateDebut, final Date dateFin) {
+        AffectationCaisseAgent affectation = new AffectationCaisseAgent();
+        
+        affectation.setAgentCaisse(agent);
+        affectation.setCaisse(caisse);
+        affectation.setDateDebut(dateDebut);
+        affectation.setDateFin(dateFin);
+        em.persist(agent);
+    }}

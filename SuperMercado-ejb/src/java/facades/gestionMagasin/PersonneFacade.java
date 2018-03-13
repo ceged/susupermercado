@@ -72,10 +72,6 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     }
     
     @Override
-    public void SupprimerPersonne(long idPersonne) {
-        Personne p;
-        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p.id=:id");
-        req.setParameter("id", idPersonne);
-        p = (Personne) req.getSingleResult();
-        em.remove(p);
+    public void SupprimerPersonne(Personne personne) {
+        em.remove(personne);
     }}
