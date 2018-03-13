@@ -20,6 +20,8 @@
 <tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Directeur !</h1>
+        <A HREF="ChefRayonServlet?action=creerArticle">
+        Créer un article</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerArticle.jsp">
         Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
