@@ -4,37 +4,45 @@
     Author     : PC Tim
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="entités.gestionArticle.SousCategorie"%>
+<%@page import="entités.gestionMagasin.ChefRayon"%>
+<%@page import="entités.gestionMagasin.Personne"%>
+<%@page import="Session.SessionChefDeRayon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
+        <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
+        <% ChefRayon c= chefRayonConnecte;%>
         <h1>Formulaire de création d'article</h1>
-        <form method="get" action="Menu">
+        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations Ouvrage (majuscules et accents interdits)</legend>
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
         <input type="text" name="libelleArticle" value="" size="20" maxlength="20" />
         <br />
-        <label for="magasin">Magasin <span class="requis">*</span></label>
-        <input type="text" name="magasin" value="" size="20" maxlength="20" />
+        <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin()%> size="20" maxlength="20" />
         <br />
-        <label for="marque">Auteur <span class="requis">*</span></label>
-        <input type="text" name="auteurOuvrage" value="" size="20" maxlength="20" />
+        <label for="marque">Marque <span class="requis">*</span></label>
+        <input type="text" name="marque" value="" size="20" maxlength="20" />
         <br />
-        <label for="editeurOuvrage">Éditeur <span class="requis">*</span></label>
-        <input type="text" name="editeurOuvrage" value="" size="20" maxlength="20" />
+        <label for="prix">Prix de vente <span class="requis">*</span></label>
+        <input type="text" name="prix" value="" size="20" maxlength="20" />
         <br />
-        <label for="motCle">Mots clés<span class="requis">*</span></label><br />
-        <input type="checkbox" name="histoire" value="histoire" size="20"/>Histoire
-        <input type="checkbox" name="drame" value="drame" size="20"/>Drame
-        <input type="checkbox" name="fantastique" value="fantastique" size="20"/>Fantastique
-        <input type="checkbox" name="roman" value="roman" size="20"/>Roman
+        <label for="souscategorie">Sous catégorie <span class="requis">*</span></label>
+        <SELECT name="souscateogire" size="1">
+            <% List<SousCategorie> lesSous= listeSousCategorie;
+            for(SousCategorie s:lesSous){ %>
+            <OPTION><%=s.getLibelleSousCategorie()%>
+        </SELECT>
         <br />
-        <input type="hidden" name="action" value="insererOuvrage">
+        <input type="hidden" name="action" value="insererReferentielArticle">
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
