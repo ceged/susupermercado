@@ -66,7 +66,7 @@ public class Menu extends HttpServlet {
             doActionInsererMagasin(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
-        
+
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
