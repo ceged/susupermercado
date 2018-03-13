@@ -16,13 +16,13 @@
         <form method="get" action="Menu">
         <fieldset>
         <legend>Informations Ouvrage (majuscules et accents interdits)</legend>
-        <label for="">Numéro <span class="requis">*</span></label>
-        <input type="number" name="numeroOuvrage" value="" size="20" maxlength="20" />
+        <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
+        <input type="text" name="libelleArticle" value="" size="20" maxlength="20" />
         <br />
-        <label for="titreOuvrage">Titre <span class="requis">*</span></label>
-        <input type="text" name="titreOuvrage" value="" size="20" maxlength="20" />
+        <label for="magasin">Magasin <span class="requis">*</span></label>
+        <input type="text" name="magasin" value="" size="20" maxlength="20" />
         <br />
-        <label for="auteurOuvrage">Auteur <span class="requis">*</span></label>
+        <label for="marque">Auteur <span class="requis">*</span></label>
         <input type="text" name="auteurOuvrage" value="" size="20" maxlength="20" />
         <br />
         <label for="editeurOuvrage">Éditeur <span class="requis">*</span></label>
