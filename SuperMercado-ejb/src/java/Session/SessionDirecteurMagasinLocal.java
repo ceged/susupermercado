@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionMagasin.Magasin;
 import java.util.Date;
 import javax.ejb.Local;
 
@@ -15,5 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface SessionDirecteurMagasinLocal {
     
-    void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
+    void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon);
+    
+    void CreerSecteur(String libelleSecteur, String magasin);
 }

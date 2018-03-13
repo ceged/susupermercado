@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.Magasin;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -35,4 +36,6 @@ public interface MagasinFacadeLocal {
     void SupprimerMagasin(Magasin magasinasupprimer);
     
     Magasin RechercherMagasinParNom(String nomMagasinRecherche);
+
+    Collection ConsulterListeMagasins();
 }

@@ -18,7 +18,7 @@
         <input type="text" name="loginUser" value="" size="20" maxlength="20" />
         <br />
         <label for="mdpUser">Mot de passe <span class="requis">*</span></label>
-        <input type="text" name="mdpUser" value="" size="20" maxlength="20" />
+        <input type="password" name="mdpUser" value="" size="20" maxlength="20" />
         <br />
         <input type="hidden" name="action" value="connexionUser">
         <input type="submit" value="Valider" />

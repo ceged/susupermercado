@@ -14,6 +14,7 @@ import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -42,8 +43,6 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
-    
-  
     
 
     // Add business logic below. (Right-click in editor and choose
@@ -112,17 +111,6 @@ public class SessionAdmin implements SessionAdminLocal {
         if (c!=null){
             sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
         } else { System.out.println("la catégorie n'a pas été trouvé");
-        
-        
-            
-        
-                
-        
-       
-       
     }
-    
-    
-
     }
 }

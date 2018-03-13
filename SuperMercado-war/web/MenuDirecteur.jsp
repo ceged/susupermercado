@@ -20,13 +20,22 @@
 <tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Directeur !</h1>
-        <A HREF="ChefRayonServlet?action=creerArticle">
-        Créer un article</A><br/><br/>
+        <A HREF="GestionMagasinJSP/CreerSecteur.jsp">
+        Créer un secteur</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerArticle.jsp">
-        Créer un article</A><br/><br/>
+        Créer un chef de rayon</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
-        Modifier prix article</A><br/><br/>
+        Créer un rayon</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
+        
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
     </body>
 </html>
