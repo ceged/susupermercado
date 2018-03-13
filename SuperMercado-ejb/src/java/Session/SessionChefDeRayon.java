@@ -11,6 +11,7 @@ import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -46,6 +47,12 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     @Override
     public void CreerCategorie (String categorie){
         categorieFacade.CreerCategorie(categorie);
+    }
+    
+    @Override
+    public List<SousCategorie> ListerSousCategorie(){
+        List<SousCategorie> listeSousCategorie=sousCategorieFacade.findAll();
+        return listeSousCategorie;
     }
     
 }
