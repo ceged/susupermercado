@@ -15,8 +15,10 @@
         <h1>Bienvenue sur le menu Admin !</h1>
         <A HREF="GestionMagasinJSP/CreerMagasin.jsp">
         Créer un magasin</A><br/><br/>
-        <A HREF="bibliothecairelogin.jsp">
+        <A HREF="GestionMagasinJSP/CreerDirecteur.jsp">
         Créer un directeur</A><br/><br/>
+        <A HREF="Accueil.jsp">
+        Sortir menu principal</A><br/><br/>
         
         <p> <%
         String attribut = (String) request.getAttribute("message");

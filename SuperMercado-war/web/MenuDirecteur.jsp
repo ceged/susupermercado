@@ -1,19 +1,19 @@
 <%-- 
-    Document   : MenuChefdeRayonJSP
-    Created on : 12 mars 2018, 09:36:22
-    Author     : PC Tim
+    Document   : MenuDirecteur
+    Created on : 13 mars 2018, 13:50:24
+    Author     : Soldat
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="essai.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Accueil</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenue sur le menu Chef de rayon !</h1>
+<body>
+        <h1>Bienvenue sur le menu Directeur !</h1>
         <A HREF="GestionArticleJSP/CreerArticle.jsp">
         Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
