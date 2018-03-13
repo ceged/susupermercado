@@ -15,7 +15,5 @@
         <h1>Page d'accueil du site</h1>
         <A HREF="Gestion/PageConnexion.jsp">
         Se connecter</A><br/><br/>
-        <A HREF="GestionArticleJSP/CreerArticle.jsp">
-        Créer un article</A><br/><br/>
     </body>
 </html>
