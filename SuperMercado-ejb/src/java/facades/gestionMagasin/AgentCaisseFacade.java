@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentCaisse;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,4 +29,22 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
     public AgentCaisseFacade() {
         super(AgentCaisse.class);
     }
+    
+    @Override
+    public void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal) {
+        AgentCaisse agent = new AgentCaisse();
+        
+        agent.setPrenom(prenom);
+        agent.setNom(nom);
+        agent.setLogin(login);
+        agent.setMdp(mdp);
+        agent.setDob(dob);
+        agent.setSexe(sexe);
+        agent.setAdresse(adresse);
+        agent.setCodePostal(codePostal);
+
+        em.persist(agent);
+        
+    }
+    
 }

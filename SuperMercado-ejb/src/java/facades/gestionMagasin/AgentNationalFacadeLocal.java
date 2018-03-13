@@ -30,4 +30,6 @@ public interface AgentNationalFacadeLocal {
 
     int count();
     
+    public void CreerAgentNational(String nom, String prenom, String login, String mdp);
+    
 }
