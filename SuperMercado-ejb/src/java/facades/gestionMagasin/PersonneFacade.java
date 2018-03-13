@@ -35,7 +35,7 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     public Personne SeConnecter(String login, String mdp) {
         Personne p=null;
         Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.mdp=:mdp AND p.login=:login");
-        req.setParameter("password", mdp);
+        req.setParameter("mdp", mdp);
         req.setParameter("login", login);
         p = (Personne) req.getSingleResult();
         return p;
