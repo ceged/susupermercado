@@ -56,7 +56,7 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     @Override
     public Personne RechercherPersonneParId(String id) {
         Personne p;
-        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p.id=:id");
+        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.id=:id");
         req.setParameter("id", id);
         p = (Personne) req.getSingleResult();
         return p;
@@ -65,7 +65,7 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     @Override
     public List RechercherPersonneParNom(String nom) {
         List<Personne> result = null;
-        Query req = em.createQuery("SELECT p FROM Personne AS p.nom=:nom");   
+        Query req = em.createQuery("SELECT p FROM Personne AS P WHERE p.nom=:nom");   
         req.setParameter("nom", nom);
         result = req.getResultList();
         return result;
