@@ -32,10 +32,12 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
     }
     
     @Override
-    public void CreerRayon(Secteur secteur, ChefRayon chefRayon) {
+    public void CreerRayon(Secteur secteur, String libelleRayon,ChefRayon chefRayon) {
     Rayon r = new Rayon();
     r.setSecteur(secteur);
+    r.setLibelleRayon(libelleRayon);
     r.setChefRayon(chefRayon);
+    
     em.persist(r);
     }
 
@@ -46,8 +48,8 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
     }
 
     @Override // modification du chef de rayon, utile? 
-    public void ModifierRayon(Rayon rayon, ChefRayon chefRayon) {
-        rayon.setChefRayon(chefRayon);
+    public void ModifierRayon(Rayon rayon, String libelleamodifier) {
+        rayon.setLibelleRayon(libelleamodifier);
         em.merge(rayon);
     }
     

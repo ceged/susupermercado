@@ -5,9 +5,13 @@
  */
 package Session;
 
+import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Secteur;
+import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,6 +23,13 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
+    @EJB
+    private ChefRayonFacadeLocal chefRayonFacade;
+
+    @EJB
+    private SecteurFacadeLocal secteurFacade;
+
+    
     @EJB
     private MagasinFacadeLocal magasinFacade;
 
@@ -32,4 +43,7 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
     }
+    
+
+    
 }

@@ -17,6 +17,8 @@
         Créer un magasin</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerDirecteur.jsp">
         Créer un directeur</A><br/><br/>
+        <A HREF="GestionMagasinJSP/SupprimerMagasin.jsp">
+        Supprimer un magasin</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         
