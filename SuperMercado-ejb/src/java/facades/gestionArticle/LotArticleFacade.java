@@ -55,11 +55,7 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
                 
      LotArticle.setQuantiteLot(nouvelleQte);
      em.merge(LotArticle);
-    
-             
-                
      
-        
     }
 
     @Override
@@ -72,6 +68,8 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         return la;
         
     }
+    
+    
     
     
     

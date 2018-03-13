@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,15 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
     public AchatFacade() {
         super(Achat.class);
     }
+
+    @Override
+    public void CreerAchat(Date dateAchat) {
+        Achat achat = new Achat ();
+        achat.setDateAchat(dateAchat);
+        
+        em.persist(achat);
+    }
+    
+    
     
 }

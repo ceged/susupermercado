@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface AchatFacadeLocal {
     List<Achat> findRange(int[] range);
 
     int count();
+
+    void CreerAchat(Date dateAchat);
     
 }
