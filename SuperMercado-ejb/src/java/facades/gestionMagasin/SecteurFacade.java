@@ -5,6 +5,7 @@
  */
 package facades.gestionMagasin;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Secteur;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -60,6 +61,22 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         return result ;
         
     }
-}
+
+ @Override
+    public void CreerSecteur(String libelle, Magasin magasin) {
+        
+        Secteur secteur = new Secteur();
+        secteur.setLibelleSecteur(libelle);
+        secteur.setMagasin(magasin);
+        
+        em.persist(secteur);
+    }
+
+    @Override
+    public void ModifierSecteur(Secteur secteur, String libelle) {
+
+        secteur.setLibelleSecteur(libelle);
+        em.merge(secteur);
+    }}
     
 

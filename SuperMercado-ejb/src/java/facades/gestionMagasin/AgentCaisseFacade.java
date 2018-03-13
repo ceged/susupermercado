@@ -28,5 +28,4 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
     public AgentCaisseFacade() {
         super(AgentCaisse.class);
     }
-    
 }

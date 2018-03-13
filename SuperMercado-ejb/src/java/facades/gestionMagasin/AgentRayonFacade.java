@@ -28,5 +28,5 @@ public class AgentRayonFacade extends AbstractFacade<AgentRayon> implements Agen
     public AgentRayonFacade() {
         super(AgentRayon.class);
     }
-    
+    //test commit 12 03 20h41
 }
