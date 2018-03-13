@@ -5,10 +5,13 @@
  */
 package Session;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionMagasin.AdminFacadeLocal;
+import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -18,6 +21,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private DirecteurMagasinFacadeLocal directeurMagasinFacade;
 
     @EJB
     private MagasinFacadeLocal magasinFacade;
@@ -52,5 +58,11 @@ public class SessionAdmin implements SessionAdminLocal {
     @Override
     public void CreerMagasin(String nomMagasin, String adresse, String codePostal){
         magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
+    }
+    
+        @Override 
+    public void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
+        directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
     }
 }

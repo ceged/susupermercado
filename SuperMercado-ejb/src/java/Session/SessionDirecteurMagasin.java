@@ -27,8 +27,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @Override 
-    public void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+@Override 
+    public void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
     }

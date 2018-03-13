@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CreerMagasin
-    Created on : 13 mars 2018, 12:00:11
+    Document   : CreerDirecteur
+    Created on : 13 mars 2018, 13:25:44
     Author     : Soldat
 --%>
 
@@ -12,11 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Formulaire de création magasin</h1>
+        <h1>Formulaire de création directeur</h1>
         <form method="get" action="/SuperMercado-war/Menu">
         <fieldset>
-        <legend>Informations Magasin (majuscules et accents interdits)</legend>
-        <label for="libelleMagasin">Libéllé Magasin <span class="requis">*</span></label>
+        <legend>Informations Directeur (majuscules et accents interdits)</legend>
+        <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" />
         <br />
         <label for="adresse"> Adresse <span class="requis">*</span></label>
