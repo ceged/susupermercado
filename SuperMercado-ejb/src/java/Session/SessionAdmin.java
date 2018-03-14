@@ -103,14 +103,16 @@ public class SessionAdmin implements SessionAdminLocal {
     }
 
     @Override
-    public void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+    public String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+        String message = "Catégorie incconnu";
         Categorie c = null ;
         
         c=categorieFacade.RechercherCategorie(libelleCategorie);
         
         if (c!=null){
             sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
-        } else { System.out.println("la catégorie n'a pas été trouvé");
-    }
+            message = "Sous catégorie créé";
+        } 
+        return message;
     }
 }
