@@ -60,7 +60,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
 @Override 
 public void CreerRayon (String secteur, String libelleRayon){
-    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(sec);
+    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);
+}
 }
 
