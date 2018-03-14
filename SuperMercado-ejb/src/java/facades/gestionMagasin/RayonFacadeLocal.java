@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import java.util.List;
@@ -37,5 +38,8 @@ public interface RayonFacadeLocal {
     void SupprimerRayon(Rayon rayonasupprimer);
     
     void ModifierRayon(Rayon rayon, ChefRayon chefRayon);
-    
+   
+    List <Rayon> ConsulterListeRayonsParMagasin(Magasin magasin);
+
+    Rayon RechercherRayonParNom(String nomRayon, Magasin magasin);
 }

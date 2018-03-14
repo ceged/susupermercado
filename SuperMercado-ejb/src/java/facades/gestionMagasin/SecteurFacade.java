@@ -83,4 +83,13 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
     public void SupprimerSecteur(Secteur secteur) {
         em.remove(secteur);
     }
+
+    @Override
+    public List ConsulterSecteursParMagasin(Magasin magasin) {
+         
+        Query req=getEntityManager().createQuery("SELECT s from Secteur AS s WHERE s.magasin=:magasin");
+        req.setParameter("magasin",magasin);
+        List result = req.getResultList();
+        return result;
+    }
     }
