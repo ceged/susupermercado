@@ -94,8 +94,8 @@ public class DirecteurServlet extends HttpServlet {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
-    sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
-    message = "Secteur créé";
+    message = sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
+    
 }
    
 request.setAttribute( "message", message );
@@ -111,8 +111,8 @@ request.setAttribute( "message", message );
 } else
 {
     
-    sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
-    message = "Rayon créé";
+    message = sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
+
 }
    
 request.setAttribute( "message", message );

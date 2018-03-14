@@ -6,6 +6,8 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Promotion;
+import entités.gestionArticle.ReferentielArticle;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,21 @@ public class PromotionFacade extends AbstractFacade<Promotion> implements Promot
     public PromotionFacade() {
         super(Promotion.class);
     }
+
+    @Override
+    public void CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, ReferentielArticle article) {
+        Promotion P = new Promotion () ;
+        
+        P.setDateDebut(dateDeb);
+        P.setDateFin(dateFin);
+        P.setPrixPromotion(prixPromo);
+        P.setArticle(article);
+        
+        em.persist(P);
+    }
+    
+    
+    
+    
     
 }
