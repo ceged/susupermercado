@@ -25,22 +25,11 @@
         Créer un article</A><br/><br/>
         <A HREF="bibliothecairelogin.jsp">
         Modifier prix article</A><br/><br/>
+        <A HREF="GestionMagasinJSP/CreerRayon.jsp">Créer un Rayon</A>
+        <br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
-<body>  
-<body> 
-    <% Personne p= personneConnecte;{%>
-    <tr> 
-        <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
-    </tr><%}%>
-    <br/><br/>
-    <A HREF="GestionMagasinJSP/CreerSecteur.jsp">Créer un Secteur</A>
-        <br/><br/>
-    <A HREF="GestionMagasinJSP/CreerRayon.jsp">Créer un Rayon</A>
-        <br/><br/>
-    <A HREF="Accueil.jsp">Sortir menu principal</A>
-        <br/><br/>
-    
+
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
