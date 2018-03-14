@@ -49,9 +49,9 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 @Override 
-    public void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon){
-        //Faire methode recherche rayon
-        Rayon rayonRecherche=null;
+    public void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
         chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
     }
 @Override
@@ -80,6 +80,23 @@ public String CreerRayon (String secteur, String libelleRayon){
      return message ;
 }
 
+    @Override
+    public List ConsultationListeRayonsParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return rayonFacade.ConsulterListeRayonsParMagasin(magasin);
+    }
+    @Override
+    public List ConsultationListeSecteurParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return secteurFacade.ConsulterSecteursParMagasin(magasin);
+ 
+    }  
+
+    @Override
+    public Rayon RechercherRayonParNomRayon(String nomRayon, String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
+    }
 @Override
     public String CreerCaisse(Long id, String nomMagasin) {
         String message = "magasin inconnu";
@@ -105,5 +122,4 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     DirecteurMagasin directeurCherche =directeurMagasinFacade.RechercherDirecteurParId(id);
     return directeurCherche;
 }
-
 }

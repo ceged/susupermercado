@@ -6,11 +6,15 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
+import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -50,5 +54,27 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
         rayon.setChefRayon(chefRayon);
         em.merge(rayon);
     }
-    
-}
+
+    @Override
+    public List <Rayon> ConsulterListeRayonsParMagasin(Magasin magasin) {
+        
+        Query req=getEntityManager().createQuery("SELECT r from Rayon AS r WHERE r.secteur.magasin=:magasin ");
+        req.setParameter("magasin",magasin);
+        List result = req.getResultList();
+        return result;
+    }
+
+    @Override
+    public Rayon RechercherRayonParNom(String nomRayon, Magasin magasin) {
+        
+        Rayon result = null ;
+        Query req=getEntityManager().createQuery("SELECT r from Rayon as r where r.libelleRayon=:nomRayon AND r.secteur.magasin=:magasin");
+        req.setParameter("nomRayon",nomRayon);
+        req.setParameter("magasin",magasin);
+        List<Rayon>l=req.getResultList();
+        for(Rayon r:l){
+            result = r;
+    }
+        return result ;
+    }   
+}   
