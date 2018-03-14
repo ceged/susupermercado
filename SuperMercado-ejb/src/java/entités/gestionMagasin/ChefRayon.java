@@ -25,7 +25,7 @@ public class ChefRayon extends Personne implements Serializable {
     @OneToMany(mappedBy = "chefRayon")
     private List<Commande> listeCommandes;
 
-    @OneToOne(mappedBy = "chefRayon")
+    @OneToOne
     private Rayon rayon;
 
     private static final long serialVersionUID = 1L;
