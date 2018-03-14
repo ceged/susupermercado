@@ -40,4 +40,6 @@ public interface SecteurFacadeLocal {
     Secteur RechercherSecteurParId (int id);
     
     Secteur RechercherSecteurParLibelle (String libelleSecteur);
+
+    List ConsulterSecteursParMagasin(Magasin magasin);
 }
