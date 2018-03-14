@@ -32,6 +32,7 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         super(Secteur.class);
     }
     
+    @Override
     public Secteur RechercherSecteurParId (int id)
     {
         Secteur result = null ;
@@ -47,6 +48,7 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         
     }
     
+    @Override
     public Secteur RechercherSecteurParLibelle (String libelleSecteur)
     {
         Secteur result = null ;

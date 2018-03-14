@@ -19,4 +19,6 @@ public interface SessionDirecteurMagasinLocal {
     void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon);
     
     void CreerSecteur(String libelleSecteur, String magasin);
+    
+    void CreerRayon (String secteur, String libelleRayon);
 }
