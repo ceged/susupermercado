@@ -26,7 +26,7 @@
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Rayon (majuscules et accents interdits)</legend>
-                <label for="libellesecteur">Secteur <span class="requis">*</span></label>
+        <label for="libellesecteur">Secteur <span class="requis">*</span></label>
         <SELECT name="libellesecteur" size="1">
             <%
             for(Secteur s: listeSecteur2){ %>

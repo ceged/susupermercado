@@ -59,7 +59,7 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
-        else if (act.equals("creerRayon"))
+        else if (act.equals("transferListeSecteur"))
         {
             String directeurCherche= request.getParameter( "directeur" );
             DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);

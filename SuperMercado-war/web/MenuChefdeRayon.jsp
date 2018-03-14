@@ -4,20 +4,23 @@
     Author     : PC Tim
 --%>
 
+<%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="essai.css" type="text/css">
+        <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
     </head>
     <body>
+        <% ChefRayon c= chefRayonConnecte;{%>
+<tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
+</tr><%}%>
         <h1>Bienvenue sur le menu Chef de rayon !</h1>
-        <A HREF="ChefRayonServlet?action=creerArticle">
+        <A HREF="ChefRayonServlet?action=passageListeSousCategorie">
         Créer un article</A><br/><br/>
-        <A HREF="bibliothecairelogin.jsp">
-        Modifier prix article</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         
