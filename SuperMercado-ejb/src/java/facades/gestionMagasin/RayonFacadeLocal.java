@@ -32,10 +32,10 @@ public interface RayonFacadeLocal {
 
     int count();
     
-    void CreerRayon(Secteur secteur, String libelleRayon,ChefRayon chefRayon);
+    void CreerRayon(Secteur secteur, String libelleRayon);
     
     void SupprimerRayon(Rayon rayonasupprimer);
     
-    void ModifierRayon(Rayon rayon, String libelleamodifier);
+    void ModifierRayon(Rayon rayon, ChefRayon chefRayon);
     
 }

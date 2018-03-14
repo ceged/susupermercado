@@ -28,9 +28,6 @@ public interface SessionAdminLocal {
     Magasin ChercherMagasin(String nomMagasinRecherche);
     
     Personne PersonneConnecte(String login,String mp);
-    
-    void SupprimerMagasin(String magasin,Magasin magasinasupprimer);
-    
 
     void CreerCategorie (String categorie);
 

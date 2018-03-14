@@ -8,24 +8,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="text.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Page de connexion</title>
     </head>
     <body>
         <h1>Identifiants de connexion</h1>
         <form method="get" action="Menu">
-            
         <label for="loginUser">Login <span class="requis">*</span></label>
         <input type="text" name="loginUser" value="" size="20" maxlength="20" />
         <br />
-        <label for="mdpUser">Mot de passe <span class="requis">*</span></label><br />
-        <input type="text" name="mdpUser" value="" size="20" maxlength="20" />
-        <br /><br />
+        <label for="mdpUser">Mot de passe <span class="requis">*</span></label>
+        <input type="password" name="mdpUser" value="" size="20" maxlength="20" />
+        <br />
         <input type="hidden" name="action" value="connexionUser">
         <input type="submit" value="Valider" />
         </form>
     </body>
-    
-    
 </html>

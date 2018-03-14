@@ -27,7 +27,6 @@ import javax.ejb.Stateless;
 public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
-    private SecteurFacadeLocal secteurFacade;
     private SousCategorieFacadeLocal sousCategorieFacade;
 
     @EJB
@@ -44,7 +43,7 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
-
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -99,12 +98,6 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
-
-    public void SupprimerMagasin(String magasin,Magasin magasinasupprimer) {
-    Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin);
-    magasinFacade.SupprimerMagasin(magasinasupprimer);
-            }
-
     public void CreerCategorie (String categorie){
         categorieFacade.CreerCategorie(categorie);
     }
@@ -118,18 +111,6 @@ public class SessionAdmin implements SessionAdminLocal {
         if (c!=null){
             sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
         } else { System.out.println("la catégorie n'a pas été trouvé");
-        
-        
-            
-        
-                
-        
-       
-       
     }
-    
-    
-
     }
-
 }

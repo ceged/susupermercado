@@ -47,7 +47,6 @@ public class Menu extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
         if ((act == null)||(act.equals("null")))
@@ -79,7 +78,7 @@ public class Menu extends HttpServlet {
             }
             }
        
-      
+        
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -98,48 +97,7 @@ public class Menu extends HttpServlet {
         }
     }
     
-    protected void doActionInsererMagasin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    String libelle= request.getParameter( "libelleMagasin" );
-    String adresseMagasin= request.getParameter( "adresse" );
-    String codePostalMagasin= request.getParameter( "codePostal" );
-    String message;
-    if ( libelle.trim().isEmpty()&&adresseMagasin.trim().isEmpty()&&codePostalMagasin.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
-} else
-{
-    sessionAdmin.CreerMagasin(libelle, adresseMagasin, codePostalMagasin);
-    message = "Magasin crée";
-}
-   
-request.setAttribute( "message", message );
-}
-    
- protected void doActionInserDirecteur(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    String nomPersonne= request.getParameter( "nom" );
-    String prenomPersonne= request.getParameter( "prenom" );
-    String loginPersonne= request.getParameter( "login" );
-    String mdpPersonne= request.getParameter( "mdp" );
-    String sexePersonne= request.getParameter( "sexe" );
-    String dobPersonne= request.getParameter( "dob" );
-    String adressePersonne= request.getParameter( "adresse" );
-    String codePostalPersonne= request.getParameter( "codePostal" );
-    String magasinPersonne= request.getParameter( "magasin" );
-    String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerDirecteur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un directeur.";
-} else
-{
-    Date dob=Date.valueOf(dobPersonne);
-    sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
-    message = "Directeur crée";
-}
-   
-request.setAttribute( "message", message );
-}   
- 
- 
+      
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
