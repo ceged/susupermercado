@@ -31,6 +31,6 @@ public interface SessionAdminLocal {
 
     void CreerCategorie (String categorie);
 
-    void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+    String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
   
 }
