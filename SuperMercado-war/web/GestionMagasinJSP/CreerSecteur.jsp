@@ -4,15 +4,18 @@
     Author     : Sophia
 --%>
 
+<%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
  <head>
         <link rel="stylesheet" href="test.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
+        <% Personne p= personneConnecte;%>
         <h1>Formulaire de création de secteur</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
@@ -21,7 +24,7 @@
         <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" />
         <br />
         <label for="magasinSecteur">Magasin <span class="requis">*</span></label>
-        <input type="text" name="magasinSecteur" value="" size="20" maxlength="20" />
+        <input type="hidden" name="magasinSecteur" value=<()%> size="20" maxlength="20" />
         <br />
         <input type="hidden" name="action" value="insererSecteur">
         </fieldset>
