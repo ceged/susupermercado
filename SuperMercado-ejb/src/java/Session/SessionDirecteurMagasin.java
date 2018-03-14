@@ -9,6 +9,7 @@ import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
+import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
@@ -26,6 +27,10 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
+    @EJB
+    private CaisseFacadeLocal caisseFacade;
+
+    
     @EJB
     private RayonFacadeLocal rayonFacade;
 
@@ -74,6 +79,20 @@ public String CreerRayon (String secteur, String libelleRayon){
 }
      return message ;
 }
+
+@Override
+    public String CreerCaisse(Long id, String nomMagasin) {
+        String message = "magasin inconnu";
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if (magasinRecherche != null ){
+        caisseFacade.CreerCaisse(id, magasinRecherche);
+        message = "Caisse Créée";
+    }
+        return message ;
+    }
+
+
+
 
 @Override
 public List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin){

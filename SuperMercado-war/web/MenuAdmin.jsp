@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="text.css" type="text/css">
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +20,7 @@
         Créer un directeur</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerCategorie.jsp">
         Créer une Catégorie</A><br/><br/>
-        <A HREF="Admin?action=TransfererListeCategorie">
+        <A HREF="GestionArticleJSP/CreerCategorie.jsp">
         Créer une sous-catégorie </A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>

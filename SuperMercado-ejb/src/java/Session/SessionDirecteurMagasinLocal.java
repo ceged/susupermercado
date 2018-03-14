@@ -25,6 +25,8 @@ public interface SessionDirecteurMagasinLocal {
     
     String CreerRayon (String secteur, String libelleRayon);
     
+    String CreerCaisse(Long id, String nomMagasin);
+    
     List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin);
     
     DirecteurMagasin ChercherDirecteurParId(String id);
