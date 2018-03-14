@@ -59,19 +59,26 @@ public class Menu extends HttpServlet {
             int i=0;
             String login = request.getParameter("loginUser");
             String mp = request.getParameter("mdpUser");
-            Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
             i=sessionAdmin.SeConnecter(login, mp);
             HttpSession sess=request.getSession(true);
+            if (i==0){
+                String message="Identifiants incorrects";
+                request.setAttribute( "message", message );
+                jspChoix="/Accueil.jsp";
+            }
             if(i==1){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
                 jspChoix="/MenuAdmin.jsp";
                 sess.setAttribute("personneConnecte",personneConnecte);
                     }
             else if(i==2){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
                 ChefRayon chefRayonConnecte = (ChefRayon)personneConnecte;
                 sess.setAttribute("chefRayonConnecte",chefRayonConnecte);
                 jspChoix="/MenuChefdeRayon.jsp";
             }
             else if(i==3){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
                 DirecteurMagasin directeurConnecte = (DirecteurMagasin)personneConnecte;
                 sess.setAttribute("directeurConnecte",directeurConnecte);
                 jspChoix="/MenuDirecteur.jsp";

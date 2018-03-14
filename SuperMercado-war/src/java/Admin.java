@@ -122,8 +122,8 @@ request.setAttribute( "message", message );
 } else
 {
     Date dob=Date.valueOf(dobPersonne);
-    sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
-    message = "Directeur crée";
+    message=sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
+    
 }
    
 request.setAttribute( "message", message );

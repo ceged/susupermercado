@@ -11,6 +11,7 @@ import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
+import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
@@ -25,6 +26,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private ChefRayonFacadeLocal chefRayonFacade;
 
     @EJB
     private SousCategorieFacadeLocal sousCategorieFacade;
@@ -60,6 +64,9 @@ public class SessionAdmin implements SessionAdminLocal {
         if(adminFacade.findAll().contains(personneConnecte)){
             i=1;
         }
+        else if (chefRayonFacade.findAll().contains(personneConnecte)){
+            i=2;
+        }
         else if (directeurMagasinFacade.findAll().contains(personneConnecte)){
             i=3;
         }
@@ -86,9 +93,14 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
         @Override 
-    public void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+    public String CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+        String message ="Magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
+        if(magasinRecherche!=null){
+            message="Directeur créé";
+        }
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
+        return message;
     }
     
     @Override
