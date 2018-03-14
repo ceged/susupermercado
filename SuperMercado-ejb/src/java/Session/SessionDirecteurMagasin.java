@@ -66,6 +66,13 @@ public void CreerRayon (String secteur, String libelleRayon){
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);
 }
 
+@Override
+    public void CreerCaisse(Long id, String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        caisseFacade.CreerCaisse(id, magasin);
+    }
+
+
 
 @Override
 public List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin){
