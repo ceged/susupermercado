@@ -88,7 +88,7 @@ public class Rayon implements Serializable {
         this.secteur = secteur;
     }
 
-    @OneToOne (mappedBy = "rayon")
+    @OneToOne(mappedBy = "rayon")
     private ChefRayon chefRayon;
 
     public ChefRayon getChefRayon() {

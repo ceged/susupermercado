@@ -6,9 +6,13 @@
 
 import Session.SessionDirecteurMagasinLocal;
 import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,12 +56,29 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererSecteur(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+
         else if (act.equals("insererChefRayon"))
         {
             doActionInsererChefRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
         
+
+        else if (act.equals("insererRayon"))
+        {
+            doActionInsererRayon(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
+        else if (act.equals("transferListeSecteur"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
+            sess.setAttribute("listeSecteur",listeSecteur); 
+            jspChoix="/GestionMagasinJSP/CreerRayon.jsp";
+        }
+
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -115,6 +137,24 @@ String nomPersonne= request.getParameter( "nom" );
    
 request.setAttribute( "message", message );
 }
+
+    protected void doActionInsererRayon(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libellesecteurCherche= request.getParameter( "libellesecteur" );
+    String rayon= request.getParameter( "libelleRayon" );
+    String message;
+    if ( libellesecteurCherche.trim().isEmpty()&&rayon.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création de rayon.";
+} else
+{
+    
+    sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
+    message = "Rayon créé";
+}
+   
+request.setAttribute( "message", message );
+}
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

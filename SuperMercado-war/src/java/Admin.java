@@ -122,8 +122,8 @@ request.setAttribute( "message", message );
 } else
 {
     Date dob=Date.valueOf(dobPersonne);
-    sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
-    message = "Directeur crée";
+    message=sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
+    
 }
    
 request.setAttribute( "message", message );
@@ -153,8 +153,8 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
-    sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
-    message = "Sous-Categorie crée";
+    message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+
 }
    
 request.setAttribute( "message", message );

@@ -15,7 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-<body>
     <% DirecteurMagasin p= directeurConnecte;{%>
 <tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
 </tr><%}%>
@@ -24,7 +23,7 @@
         Créer un secteur</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerChefRayon.jsp">
         Créer un chef de rayon</A><br/><br/>
-        <A HREF="bibliothecairelogin.jsp">
+        <A HREF="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>

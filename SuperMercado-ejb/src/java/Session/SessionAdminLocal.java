@@ -23,7 +23,7 @@ public interface SessionAdminLocal {
     
     void CreerMagasin(String nomMagasin, String adresse, String codePostal);
     
-    void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
+    String CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
     
     Magasin ChercherMagasin(String nomMagasinRecherche);
     
@@ -31,6 +31,6 @@ public interface SessionAdminLocal {
 
     void CreerCategorie (String categorie);
 
-    void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+    String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
   
 }
