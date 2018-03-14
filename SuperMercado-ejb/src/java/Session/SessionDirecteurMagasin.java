@@ -50,15 +50,29 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
     }
 @Override
-    public void CreerSecteur(String libelleSecteur, String nomMagasin) {
+    public String CreerSecteur(String libelleSecteur, String nomMagasin) {
+        String message = "magasin inconnu";
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if (magasin != null){
         secteurFacade.CreerSecteur(libelleSecteur, magasin);
+        message = "Secteur créé";
+        }
+    
+        return message;
     }
 
 @Override 
-public void CreerRayon (String secteur, String libelleRayon){
-    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
+public String CreerRayon (String secteur, String libelleRayon){
+     String message = "secteur inconnu";
+     
+     Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
+     if (secteurCherche != null ){
+   
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);
+    message = "Rayon Créé";
+    
+}
+     return message ;
 }
 
 @Override
