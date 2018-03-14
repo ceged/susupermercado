@@ -31,7 +31,7 @@ public interface CaisseFacadeLocal {
 
     int count();
     
-    void CreerCaisse(Magasin magasin);
+    void CreerCaisse(Long id,Magasin magasin) ;
     
     void SupprimerCaisse(Caisse caisseasupprimer);
     
