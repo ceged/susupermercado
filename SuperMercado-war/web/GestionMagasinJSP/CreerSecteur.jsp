@@ -11,6 +11,7 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="test.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <title>JSP Page</title>
     </head>
