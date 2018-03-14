@@ -5,6 +5,7 @@
  */
 
 import Session.SessionDirecteurMagasinLocal;
+import entités.gestionMagasin.DirecteurMagasin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;

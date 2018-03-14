@@ -10,12 +10,11 @@
 <!DOCTYPE html>
 <html>
  <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
+<jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
+<%DirecteurMagasin d = directeurConnecte;%>
         <title>JSP Page</title>
     </head>
     <body>
-        <% DirecteurMagasin p= directeurConnecte;%>
         <h1>Formulaire de création de secteur</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
@@ -23,7 +22,7 @@
         <label for="libelleSecteur">Nom du Secteur <span class="requis">*</span></label>
         <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" />
         <br />
-        <input type="hidden" name="magasinSecteur" value=<%=p.getMagasin()%> size="20" maxlength="20" />
+        <input type="hidden" name="magasinSecteur" value="<%d.getMagasin().getNomMagasin();%>"/>
         <br />
         <input type="hidden" name="action" value="insererSecteur">
         </fieldset>
