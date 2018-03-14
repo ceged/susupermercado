@@ -58,12 +58,9 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         secteurFacade.CreerSecteur(libelleSecteur, magasin);
     }
 
-
-
 @Override 
-public void CreerCaisse (Magasin magasin,Long id, String libelleMagasin){
-    Magasin magasinCherche = magasinFacade.RechercherMagasinParNom(libelleMagasin);
-    caisseFacade.CreerCaisse(magasinCherche, id);
+public void CreerRayon (String secteur, String libelleRayon){
+    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(sec);
+    rayonFacade.CreerRayon(secteurCherche, libelleRayon);
 }
 
-}
