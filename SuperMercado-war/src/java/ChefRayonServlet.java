@@ -52,7 +52,7 @@ public class ChefRayonServlet extends HttpServlet {
             List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             HttpSession sess=request.getSession(true);
             sess.setAttribute("listeSousCategorie",listeSousCategorie); 
-            jspChoix="GestionArticleJSP/CreerArticle.jsp";
+            jspChoix="/GestionArticleJSP/CreerArticle.jsp";
         }
         else if (act.equals("insererReferentielArticle")){
             doActionInserReferentielArticle(request,response);

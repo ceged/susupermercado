@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Formulaire de création magasin</h1>
-        <form method="get" action="/SuperMercado-war/Menu">
+        <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Magasin (majuscules et accents interdits)</legend>
         <label for="libelleMagasin">Libéllé Magasin <span class="requis">*</span></label>

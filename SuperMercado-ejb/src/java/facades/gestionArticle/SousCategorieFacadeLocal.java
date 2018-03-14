@@ -33,6 +33,6 @@ public interface SousCategorieFacadeLocal {
     
     void CreerSousCategorie(String libelleSousCategorie, Categorie categorie);
     
-    SousCategorie RechercherCategorie(String libelleSousCategorieRecherche);
+    SousCategorie RechercherSousCategorie(String libelleSousCategorieRecherche);
     
 }
