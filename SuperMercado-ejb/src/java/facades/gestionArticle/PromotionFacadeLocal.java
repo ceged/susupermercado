@@ -6,6 +6,8 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Promotion;
+import entités.gestionArticle.ReferentielArticle;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,7 @@ public interface PromotionFacadeLocal {
     List<Promotion> findRange(int[] range);
 
     int count();
+
+    void CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, ReferentielArticle article);
     
 }
