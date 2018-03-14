@@ -8,6 +8,7 @@ package Session;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
+import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
@@ -24,6 +25,10 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
+    @EJB
+    private CaisseFacadeLocal caisseFacade;
+
+    
     @EJB
     private RayonFacadeLocal rayonFacade;
 
@@ -53,10 +58,12 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         secteurFacade.CreerSecteur(libelleSecteur, magasin);
     }
 
+
+
 @Override 
-public void CreerRayon (String secteur, String libelleRayon){
-    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(libelleRayon);
-    rayonFacade.CreerRayon(secteurCherche, libelleRayon);
+public void CreerCaisse (Magasin magasin,Long id, String libelleMagasin){
+    Magasin magasinCherche = magasinFacade.RechercherMagasinParNom(libelleMagasin);
+    caisseFacade.CreerCaisse(magasinCherche, id);
 }
 
 }
