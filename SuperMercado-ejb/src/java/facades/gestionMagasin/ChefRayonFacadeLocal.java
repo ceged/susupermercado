@@ -33,5 +33,4 @@ public interface ChefRayonFacadeLocal {
     int count();
     
     void CreerChefRayon(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Rayon rayon);
-    ChefRayon RechercherChefRayonParNom (String nom);
 }

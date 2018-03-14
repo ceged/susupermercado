@@ -5,9 +5,11 @@
  */
 package Session;
 
+import entités.gestionArticle.Categorie;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -23,17 +25,16 @@ public interface SessionAdminLocal {
     
     void CreerMagasin(String nomMagasin, String adresse, String codePostal);
     
-    void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
+    String CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
     
     Magasin ChercherMagasin(String nomMagasinRecherche);
     
     Personne PersonneConnecte(String login,String mp);
-    
-    void SupprimerMagasin(String magasin,Magasin magasinasupprimer);
-    
 
     void CreerCategorie (String categorie);
 
-    void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+    String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
+
+    List<Categorie> ListerCategorie();
   
 }

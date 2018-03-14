@@ -13,14 +13,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="text.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-        <% ChefRayon c= chefRayonConnecte;%>
+        <% ChefRayon c= chefRayonConnecte;
+    List<SousCategorie> listeSousCategorie2 =listeSousCategorie;{%>
+<tr> <td Width=15%>Bienvenue <%=c.getNom()%></td>
+</tr><%}%>
         <h1>Formulaire de création d'article</h1>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
@@ -37,10 +39,11 @@
         <input type="text" name="prix" value="" size="20" maxlength="20" />
         <br />
         <label for="souscategorie">Sous catégorie <span class="requis">*</span></label>
-        <SELECT name="souscateogire" size="1">
-            <% List<SousCategorie> lesSous= listeSousCategorie;
-            for(SousCategorie s:lesSous){ %>
+        <SELECT name="souscategorie" size="1">
+            <%
+            for(SousCategorie s: listeSousCategorie2){ %>
             <OPTION><%=s.getLibelleSousCategorie()%>
+                <%}%>
         </SELECT>
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">

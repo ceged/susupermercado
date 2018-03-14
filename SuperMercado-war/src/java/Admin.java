@@ -5,16 +5,18 @@
  */
 
 import Session.SessionAdminLocal;
-import entités.gestionMagasin.Magasin;
+import entités.gestionArticle.Categorie;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,22 +59,26 @@ public class Admin extends HttpServlet {
             jspChoix="/MenuAdmin.jsp";
         }  
        
+        else if (act.equals("insererCategorie"))
+        {
+            doActionInsererCategorie(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
+        else if (act.equals("TransfererListeCategorie"))
+        {
+            HttpSession sess=request.getSession(true);
+            List<Categorie> listeCategorie = sessionAdmin.ListerCategorie();
+            sess.setAttribute("listeCategorie",listeCategorie); 
+            jspChoix="/GestionArticleJSP/CreerSousCategorie.jsp";
+            
+        } 
         else if (act.equals("insererSousCategorie"))
         {
             doActionInsererSousCategorie(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
          
-        else if (act.equals("insererCategorie"))
-        {
-            doActionInsererCategorie(request,response);
-            jspChoix="/MenuAdmin.jsp";
-        } 
-        else if (act.equals("supprimerMagasin"))
-        {
-            doActionSupprimerMagasin(request,response);
-            jspChoix="/MenuAdmin.jsp";
-        } 
+        
         
          
          
@@ -128,8 +134,8 @@ request.setAttribute( "message", message );
 } else
 {
     Date dob=Date.valueOf(dobPersonne);
-    sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
-    message = "Directeur crée";
+    message=sessionAdmin.CreerDirecteur(nomPersonne, prenomPersonne,loginPersonne,mdpPersonne,sexePersonne,dob,adressePersonne, codePostalPersonne, magasinPersonne);
+    
 }
    
 request.setAttribute( "message", message );
@@ -159,34 +165,12 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
-    sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
-    message = "Sous-Categorie crée";
+    message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+
 }
    
 request.setAttribute( "message", message );
 }
-protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException{
-     
-                    Magasin Magasin=null;
-                    String magasinasupprimer= request.getParameter ("libelleMagasin");
-                   
-                    
-                    String message;
-                    if ( magasinasupprimer.trim().isEmpty())
-                    {
-                        
-                        
-                        message = "Vueillez remplir l'ensemble des champs obligatoires"+"<br /> <a href=\"GestionMagasin/SupprimerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression Magasin .";
-                    }
-                    else
-                    {  
-                        sessionAdmin.SupprimerMagasin(magasinasupprimer,Magasin);
-                        
-                        message= "Magasin supprimé";
-                    }
-                    request.setAttribute ("message", message);
-                 }
  
  
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

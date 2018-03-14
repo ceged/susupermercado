@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="text.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -18,8 +17,10 @@
         Créer un magasin</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerDirecteur.jsp">
         Créer un directeur</A><br/><br/>
-        <A HREF="GestionMagasinJSP/SupprimerMagasin.jsp">
-        Supprimer un magasin</A><br/><br/>
+        <A HREF="GestionArticleJSP/CreerCategorie.jsp">
+        Créer une Catégorie</A><br/><br/>
+        <A HREF="Admin?action=TransfererListeCategorie">
+        Créer une sous-catégorie </A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

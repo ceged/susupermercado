@@ -5,8 +5,11 @@
  */
 package Session;
 
+import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Secteur;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -16,9 +19,14 @@ import javax.ejb.Local;
 @Local
 public interface SessionDirecteurMagasinLocal {
     
-    void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin);
+    void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon);
     
-    void CreerSecteur(String libelleSecteur, String magasin);
+    String CreerSecteur(String libelleSecteur, String magasin);
     
-    void CreerRayon(String libelleRayon, String secteur, String chefRayon);
+    String CreerRayon (String secteur, String libelleRayon);
+    
+    List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin);
+    
+    DirecteurMagasin ChercherDirecteurParId(String id);
+    
 }

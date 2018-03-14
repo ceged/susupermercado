@@ -7,6 +7,7 @@ package facades.gestionMagasin;
 
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Secteur;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,6 +33,7 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         super(Secteur.class);
     }
     
+    @Override
     public Secteur RechercherSecteurParId (int id)
     {
         Secteur result = null ;
@@ -47,19 +49,18 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         
     }
     
+    @Override
     public Secteur RechercherSecteurParLibelle (String libelleSecteur)
     {
         Secteur result = null ;
         Query req=getEntityManager().createQuery("SELECT s from Secteur as s where s.libelleSecteur=:libelleSecteur");
         req.setParameter("libelleSecteur",libelleSecteur);
-        List<Secteur>l=req.getResultList();
-        for(Secteur s:l){
-            result = s;
+        Collection<Secteur>col=req.getResultList();
+            for(Secteur s:col)
+    {
+        result=s;
     }
-         
-        
-        return result ;
-        
+        return result;
     }
 
  @Override
@@ -68,7 +69,6 @@ public class SecteurFacade extends AbstractFacade<Secteur> implements SecteurFac
         Secteur secteur = new Secteur();
         secteur.setLibelleSecteur(libelle);
         secteur.setMagasin(magasin);
-        
         em.persist(secteur);
     }
 

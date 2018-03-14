@@ -5,8 +5,12 @@
  */
 
 import Session.SessionDirecteurMagasinLocal;
+import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,7 +59,15 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
-        
+        else if (act.equals("transferListeSecteur"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
+            sess.setAttribute("listeSecteur",listeSecteur); 
+            jspChoix="/GestionMagasinJSP/CreerRayon.jsp";
+        }
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -81,28 +94,30 @@ public class DirecteurServlet extends HttpServlet {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
-    sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
-    message = "Secteur créé";
+    message = sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
+    
 }
    
 request.setAttribute( "message", message );
 }
+
     protected void doActionInsererRayon(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    String libelleSecteur= request.getParameter( "libelleRayon" );
-    String magasinSecteur= request.getParameter( "Secteur" );
-    String ChefRayon= request.getParameter( "ChefRayon" );
+    String libellesecteurCherche= request.getParameter( "libellesecteur" );
+    String rayon= request.getParameter( "libelleRayon" );
     String message;
-    if ( libelleSecteur.trim().isEmpty()&&magasinSecteur.trim().isEmpty()&&ChefRayon.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un rayon.";
+    if ( libellesecteurCherche.trim().isEmpty()&&rayon.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création de rayon.";
 } else
 {
-    sessionDirecteurMagasin.CreerRayon(libelleSecteur, magasinSecteur,ChefRayon);
-    message = "Rayon créé";
+    
+    message = sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
+
 }
    
 request.setAttribute( "message", message );
 }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

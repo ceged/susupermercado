@@ -11,11 +11,13 @@ import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
+import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -27,7 +29,9 @@ import javax.ejb.Stateless;
 public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
-    private SecteurFacadeLocal secteurFacade;
+    private ChefRayonFacadeLocal chefRayonFacade;
+
+    @EJB
     private SousCategorieFacadeLocal sousCategorieFacade;
 
     @EJB
@@ -44,7 +48,7 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
-
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -60,6 +64,9 @@ public class SessionAdmin implements SessionAdminLocal {
         personneConnecte=personneFacade.SeConnecter(login, mp);
         if(adminFacade.findAll().contains(personneConnecte)){
             i=1;
+        }
+        else if (chefRayonFacade.findAll().contains(personneConnecte)){
+            i=2;
         }
         else if (directeurMagasinFacade.findAll().contains(personneConnecte)){
             i=3;
@@ -87,9 +94,14 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
         @Override 
-    public void CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+    public String CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
+        String message ="Magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
+        if(magasinRecherche!=null){
+            message="Directeur créé";
+        }
         directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
+        return message;
     }
     
     @Override
@@ -99,37 +111,30 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
-
-    public void SupprimerMagasin(String magasin,Magasin magasinasupprimer) {
-    Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin);
-    magasinFacade.SupprimerMagasin(magasinasupprimer);
-            }
-
     public void CreerCategorie (String categorie){
         categorieFacade.CreerCategorie(categorie);
     }
 
     @Override
-    public void CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+    public String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+        String message = "Catégorie incconnu";
         Categorie c = null ;
         
         c=categorieFacade.RechercherCategorie(libelleCategorie);
         
         if (c!=null){
             sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
-        } else { System.out.println("la catégorie n'a pas été trouvé");
-        
-        
-            
-        
-                
-        
-       
-       
+            message = "Sous catégorie créé";
+        } 
+        return message;
+    }
+
+    @Override
+    public List<Categorie> ListerCategorie() {
+        List<Categorie> listeCategorie = categorieFacade.findAll();
+        return listeCategorie;
     }
     
     
-
-    }
-
+    
 }

@@ -33,33 +33,40 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     
       @Override
     public Personne SeConnecter(String login, String mdp) {
-        Personne p=null;
+        Personne result =null;
         Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.mdp=:mdp AND p.login=:login");
         req.setParameter("mdp", mdp);
         req.setParameter("login", login);
-        p = (Personne) req.getSingleResult();
-        return p;
+        List <Personne> l=req.getResultList();
+        for(Personne p : l){
+            result=p;
+        }
+        return result;
     }
 
     @Override
     public void ModifierMdp(long id, String mdpActuel, String mdpNouveau) {
         
-        Personne p;
         Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.mdp=:mdpActuel AND p.id=:id");
         req.setParameter("id", id);
         req.setParameter("mdpActuel", mdpActuel);
-        p = (Personne) req.getSingleResult();
-        p.setMdp(mdpNouveau);
-        em.merge(p);
+        List <Personne> l=req.getResultList();
+        for(Personne p : l){
+            p.setLogin(mdpNouveau);
+            em.merge(p);
+        }
     }
 
     @Override
     public Personne RechercherPersonneParId(Long id) {
-        Personne p;
+        Personne result=null;
         Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.id=:id");
         req.setParameter("id", id);
-        p = (Personne) req.getSingleResult();
-        return p;
+        List <Personne> l=req.getResultList();
+        for(Personne p : l){
+            result=p;
+        }
+        return result;
     }
 
     @Override
@@ -67,7 +74,10 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
         List<Personne> result = null;
         Query req = em.createQuery("SELECT p FROM Personne AS P WHERE p.nom=:nom");   
         req.setParameter("nom", nom);
-        result = req.getResultList();
+        List <Personne> l=req.getResultList();
+        for(Personne p : l){
+            result.add(p);
+        }
         return result;
     }
     

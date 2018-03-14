@@ -8,11 +8,9 @@ package facades.gestionMagasin;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.Rayon;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -49,21 +47,6 @@ public class ChefRayonFacade extends AbstractFacade<ChefRayon> implements ChefRa
 
         em.persist(chef);
         
-        
-    }
-    @Override
-    public ChefRayon RechercherChefRayonParNom (String nom)
-    {
-        ChefRayon result = null ;
-        Query req=getEntityManager().createQuery("SELECT c from ChefRayon as c where c.nom=:nom");
-        req.setParameter("nom",nom);
-        List<ChefRayon>l=req.getResultList();
-        for(ChefRayon c:l){
-            result = c;
-    }
-         
-        
-        return result ;
         
     }
 }

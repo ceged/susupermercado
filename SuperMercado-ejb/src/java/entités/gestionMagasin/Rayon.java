@@ -66,15 +66,17 @@ public class Rayon implements Serializable {
     public String toString() {
         return "entit\u00e9s.gestionMagasin.Rayon[ id=" + id + " ]";
     }
- private String libelleRayon;
+    
+    private String libelleRayon;
 
     public String getLibelleRayon() {
         return libelleRayon;
     }
+
     public void setLibelleRayon(String libelleRayon) {
         this.libelleRayon = libelleRayon;
     }
-    
+ 
     @ManyToOne
     private Secteur secteur;
 
@@ -85,9 +87,8 @@ public class Rayon implements Serializable {
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
     }
-    
 
-    @OneToOne
+    @OneToOne(mappedBy = "rayon")
     private ChefRayon chefRayon;
 
     public ChefRayon getChefRayon() {

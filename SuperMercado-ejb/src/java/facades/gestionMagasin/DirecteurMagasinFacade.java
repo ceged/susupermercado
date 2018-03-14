@@ -7,10 +7,12 @@ package facades.gestionMagasin;
 
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
+import java.util.Collection;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -49,4 +51,22 @@ public class DirecteurMagasinFacade extends AbstractFacade<DirecteurMagasin> imp
 
         em.persist(directeur);
         
-    }}
+    }
+    
+    @Override
+    public DirecteurMagasin RechercherDirecteurParId(String idDirecteur)
+    {
+       Long id=Long.parseLong(idDirecteur);
+        DirecteurMagasin directeurRecherche=null;
+        Query req=getEntityManager().createQuery("SELECT d from DirecteurMagasin as d where d.id=:idDirecteur");
+        req.setParameter("idDirecteur",id);
+            Collection<DirecteurMagasin>col=req.getResultList();
+            for(DirecteurMagasin d:col)
+    {
+        directeurRecherche=d;
+    }
+        return directeurRecherche;
+        
+    }
+    
+}

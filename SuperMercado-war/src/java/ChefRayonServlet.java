@@ -62,6 +62,7 @@ public class ChefRayonServlet extends HttpServlet {
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -82,7 +83,7 @@ public class ChefRayonServlet extends HttpServlet {
     String magasinCree= request.getParameter( "magasin" );
     String marqueCree= request.getParameter( "marque" );
     String prixCree= request.getParameter( "prix" );
-    String souscateogireCree= request.getParameter( "souscateogire" );
+    String souscateogireCree= request.getParameter( "souscategorie" );
     String message;
     if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()&&marqueCree.trim().isEmpty()&&prixCree.trim().isEmpty()&&souscateogireCree.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/CreerArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un article.";
