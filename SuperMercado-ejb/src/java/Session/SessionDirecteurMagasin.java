@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
@@ -14,6 +15,7 @@ import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -55,8 +57,20 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
 @Override 
 public void CreerRayon (String secteur, String libelleRayon){
-    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(libelleRayon);
+    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);
+}
+
+@Override
+public List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin){
+    List<Secteur> listeSecteur= directeurMagasin.getMagasin().getListeSecteurs();
+    return listeSecteur;
+}
+
+@Override
+public DirecteurMagasin ChercherDirecteurParId(String id){
+    DirecteurMagasin directeurCherche =directeurMagasinFacade.RechercherDirecteurParId(id);
+    return directeurCherche;
 }
 
 }

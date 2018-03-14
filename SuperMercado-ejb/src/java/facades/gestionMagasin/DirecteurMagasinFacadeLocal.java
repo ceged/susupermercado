@@ -33,4 +33,7 @@ public interface DirecteurMagasinFacadeLocal {
     int count();
     
     void CreerDirecteurMagasin(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, Magasin magasin);
+    
+    DirecteurMagasin RechercherDirecteurParId(String idDirecteur);
+    
 }

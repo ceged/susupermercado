@@ -24,7 +24,7 @@
         Créer un secteur</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerArticle.jsp">
         Créer un chef de rayon</A><br/><br/>
-        <A HREF="bibliothecairelogin.jsp">
+        <A HREF="DirecteurServlet?action=creerRayon&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
