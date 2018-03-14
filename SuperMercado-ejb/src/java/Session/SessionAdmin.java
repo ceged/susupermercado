@@ -16,6 +16,7 @@ import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -115,4 +116,13 @@ public class SessionAdmin implements SessionAdminLocal {
         } 
         return message;
     }
+
+    @Override
+    public List<Categorie> ListerCategorie() {
+        List<Categorie> listeCategorie = categorieFacade.findAll();
+        return listeCategorie;
+    }
+    
+    
+    
 }
