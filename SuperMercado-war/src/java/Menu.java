@@ -79,13 +79,7 @@ public class Menu extends HttpServlet {
             }
             }
        
-        
-        else if (act.equals("supprimerMagasin"))
-        {
-            doActionSupprimerMagasin(request,response);
-            jspChoix="/MenuAdmin.jsp";
-        }
-
+      
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -145,28 +139,7 @@ request.setAttribute( "message", message );
 request.setAttribute( "message", message );
 }   
  
- protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException{
-     
-                    Magasin Magasin=null;
-                    String magasinasupprimer= request.getParameter ("libelleMagasin");
-                   
-                    
-                    String message;
-                    if ( magasinasupprimer.trim().isEmpty())
-                    {
-                        
-                        
-                        message = "Vueillez remplir l'ensemble des champs obligatoires"+"<br /> <a href=\"GestionMagasin/SupprimerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression Magasin .";
-                    }
-                    else
-                    {  
-                        sessionAdmin.SupprimerMagasin(magasinasupprimer,Magasin);
-                        
-                        message= "Magasin supprimé";
-                    }
-                    request.setAttribute ("message", message);
-                 }
+ 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
