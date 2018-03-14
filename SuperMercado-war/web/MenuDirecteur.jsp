@@ -7,11 +7,11 @@
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="text.css" type="text/css">
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <title>JSP Page</title>
     </head>

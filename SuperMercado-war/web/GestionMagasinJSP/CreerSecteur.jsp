@@ -16,7 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% DirecteurMagasin p= directeurConnecte;%>
+<% DirecteurMagasin a= directeurConnecte;{%>
+<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
+</tr><%}%>
         <h1>Formulaire de création de secteur</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
@@ -24,7 +26,7 @@
         <label for="libelleSecteur">Nom du Secteur <span class="requis">*</span></label>
         <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" />
         <br />
-        <input type="hidden" name="magasinSecteur" value=<%=p.getMagasin()%> size="20" maxlength="20" />
+        <input type="hidden" name="magasinSecteur" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="insererSecteur">
         </fieldset>
@@ -33,4 +35,6 @@
         </form>
     </body>
 </html>
+        
+
         
