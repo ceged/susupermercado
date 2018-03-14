@@ -81,10 +81,16 @@ public String CreerRayon (String secteur, String libelleRayon){
 }
 
 @Override
-    public void CreerCaisse(Long id, String nomMagasin) {
-        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
-        caisseFacade.CreerCaisse(id, magasin);
+    public String CreerCaisse(Long id, String nomMagasin) {
+        String message = "magasin inconnu";
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if (magasinRecherche != null ){
+        caisseFacade.CreerCaisse(id, magasinRecherche);
+        message = "Caisse Créée";
     }
+        return message ;
+    }
+
 
 
 
