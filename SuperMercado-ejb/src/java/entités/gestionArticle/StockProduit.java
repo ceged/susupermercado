@@ -74,4 +74,12 @@ public class StockProduit implements Serializable {
         this.rayon = rayon;
     }
 
+    public List<LotArticle> getListeLotArticles() {
+        return listeLotArticles;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 }

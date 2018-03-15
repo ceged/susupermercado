@@ -69,4 +69,19 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         em.remove(referentielArticleSupprime);
     }
     
+    @Override
+    public ReferentielArticle RechercherReferentielArticleParRayon(Rayon rayonRecherche, String referentielArticle){
+        ReferentielArticle referentielArticleRecherche = null;
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:codeBarreRecherche AND r.rayon=:rayonRecherche");
+        req.setParameter("referentielArticle", referentielArticle);
+        req.setParameter("rayonRecherche",rayonRecherche);
+        Collection<ReferentielArticle>col=req.getResultList();
+            for(ReferentielArticle r:col)
+    {
+        referentielArticleRecherche=r;
+    }
+        return referentielArticleRecherche;
+        
+    }
+    
 }

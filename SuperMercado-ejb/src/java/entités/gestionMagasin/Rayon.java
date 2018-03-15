@@ -27,6 +27,7 @@ public class Rayon implements Serializable {
     @OneToMany(mappedBy = "rayon")
     private List<ReferentielArticle> listeReferentielArticles;
     
+    
     @OneToMany(mappedBy = "rayon")
     private List<StockProduit> listeStockProduits;
 
@@ -101,6 +102,10 @@ public class Rayon implements Serializable {
 
     public void setChefRayon(ChefRayon chefRayon) {
         this.chefRayon = chefRayon;
+    }
+    
+    public List<ReferentielArticle> getListeReferentielArticles() {
+        return listeReferentielArticles;
     }
 
 }
