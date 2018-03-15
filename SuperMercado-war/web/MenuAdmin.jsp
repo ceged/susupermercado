@@ -20,7 +20,7 @@
         Créer un directeur</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerCategorie.jsp">
         Créer une Catégorie</A><br/><br/>
-        <A HREF="GestionArticleJSP/CreerCategorie.jsp">
+        <A HREF="Admin?action=TransfererListeCategorie">
         Créer une sous-catégorie </A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
