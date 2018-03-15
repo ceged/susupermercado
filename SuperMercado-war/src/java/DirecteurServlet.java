@@ -143,13 +143,12 @@ String nomPersonne= request.getParameter( "nom" );
     if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerChefRayonJSP.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
 } else
-{
-    Date dob=Date.valueOf(dobPersonne);
-    sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, rayon, magasin);
-    message = "Chef de Rayon créé";
-}
+    {
+        Date dob=Date.valueOf(dobPersonne);
+        message = sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, rayon, magasin);
+    }
    
-request.setAttribute( "message", message );
+        request.setAttribute( "message", message );
 }
 
     protected void doActionInsererRayon(HttpServletRequest request, HttpServletResponse response)

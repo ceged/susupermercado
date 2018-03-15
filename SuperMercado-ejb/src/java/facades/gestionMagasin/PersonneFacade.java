@@ -5,6 +5,7 @@
  */
 package facades.gestionMagasin;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import entités.gestionMagasin.Personne;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -84,4 +85,24 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     @Override
     public void SupprimerPersonne(Personne personne) {
         em.remove(personne);
-    }}
+    }
+
+    @Override
+    public Personne GetPersonneParLogin(String login) {
+        Personne result=null;
+        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.login=:login");
+        req.setParameter("login", login);
+        List <Personne> l=req.getResultList();
+        for(Personne p : l){
+            result=p;
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean LoginEstUnique(String login) {
+        Personne personne=this.GetPersonneParLogin(login);
+        return personne==null;
+    }
+    
+}

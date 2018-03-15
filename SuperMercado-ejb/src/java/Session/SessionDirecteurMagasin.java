@@ -7,12 +7,14 @@ package Session;
 
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Personne;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
 import java.util.Date;
@@ -26,6 +28,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private PersonneFacadeLocal personneFacade;
 
     @EJB
     private CaisseFacadeLocal caisseFacade;
@@ -44,14 +49,26 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
     @EJB
     private DirecteurMagasinFacadeLocal directeurMagasinFacade;
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 @Override 
-    public void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
-        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
-        Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-        chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+    public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
+            chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            message="Chef de Rayon créé";
+            }
+        return message; 
     }
 @Override
     public String CreerSecteur(String libelleSecteur, String nomMagasin) {
@@ -121,4 +138,8 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     return directeurCherche;
 }
 
-}
+    @Override
+    public Boolean LoginEstUnique(String login) {
+        Personne personneTrouve = personneFacade.GetPersonneParLogin(login);
+        return personneTrouve == null;
+    }}
