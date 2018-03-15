@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <title>Page de connexion</title>
     </head>
     <body>
@@ -19,7 +20,7 @@
         <br />
         <label for="mdpUser">Mot de passe <span class="requis">*</span></label>
         <input type="password" name="mdpUser" value="" size="20" maxlength="20" />
-        <br />
+        <br /><br />
         <input type="hidden" name="action" value="connexionUser">
         <input type="submit" value="Valider" />
         </form>

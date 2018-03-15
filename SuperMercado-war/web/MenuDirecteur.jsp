@@ -7,6 +7,7 @@
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="text.css" type="text/css">
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,6 +26,8 @@
         Créer un chef de rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
+        <A HREF="GestionMagasinJSP/CreerCaisse.jsp">
+        Créer une caisse</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

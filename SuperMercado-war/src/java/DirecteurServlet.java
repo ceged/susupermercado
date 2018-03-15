@@ -78,7 +78,12 @@ public class DirecteurServlet extends HttpServlet {
             sess.setAttribute("listeSecteur",listeSecteur); 
             jspChoix="/GestionMagasinJSP/CreerRayon.jsp";
         }
-
+        else if (act.equals("insererCaisse"))
+        {
+            doActionInsererCaisse(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
+        
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -105,8 +110,8 @@ public class DirecteurServlet extends HttpServlet {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
-    sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
-    message = "Secteur créé";
+    message = sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
+    
 }
    
 request.setAttribute( "message", message );
@@ -148,12 +153,32 @@ request.setAttribute( "message", message );
 } else
 {
     
-    sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
-    message = "Rayon créé";
+    message = sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
+
 }
    
 request.setAttribute( "message", message );
 }
+    protected void doActionInsererCaisse (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleMagasinCherche= request.getParameter( "magasinCaisse" );
+    String caisse= request.getParameter( "id" );
+    Long Idcaisse = Long.valueOf(caisse);
+                    String message;
+ 
+    if ( libelleMagasinCherche.trim().isEmpty()&&caisse.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création de caisse.";
+} else
+{
+    
+    message = sessionDirecteurMagasin.CreerCaisse(Idcaisse,libelleMagasinCherche);
+
+}
+   
+request.setAttribute( "message", message );
+}
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

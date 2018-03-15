@@ -29,11 +29,13 @@ public class CaisseFacade extends AbstractFacade<Caisse> implements CaisseFacade
     public CaisseFacade() {
         super(Caisse.class);
     }
+    
     @Override
-    public void CreerCaisse(Magasin magasin) {
-    Caisse c = new Caisse();
-    c.setMagasin(magasin);
-    em.persist(c);
+    public void CreerCaisse(Long id,Magasin magasin) {
+    Caisse caisseCree = new Caisse();
+    caisseCree.setId (id);
+    caisseCree.setMagasin(magasin);
+    em.persist(caisseCree);
     }
     
     @Override

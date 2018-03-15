@@ -9,6 +9,7 @@ import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
+import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
@@ -25,6 +26,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private CaisseFacadeLocal caisseFacade;
 
     @EJB
     private RayonFacadeLocal rayonFacade;
@@ -50,15 +54,29 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
     }
 @Override
-    public void CreerSecteur(String libelleSecteur, String nomMagasin) {
+    public String CreerSecteur(String libelleSecteur, String nomMagasin) {
+        String message = "magasin inconnu";
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if (magasin != null){
         secteurFacade.CreerSecteur(libelleSecteur, magasin);
+        message = "Secteur créé";
+        }
+    
+        return message;
     }
 
 @Override 
-public void CreerRayon (String secteur, String libelleRayon){
-    Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
+public String CreerRayon (String secteur, String libelleRayon){
+     String message = "secteur inconnu";
+     
+     Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
+     if (secteurCherche != null ){
+   
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);
+    message = "Rayon Créé";
+    
+}
+     return message ;
 }
 
     @Override
@@ -79,6 +97,19 @@ public void CreerRayon (String secteur, String libelleRayon){
         return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
     }
 @Override
+    public String CreerCaisse(Long id, String nomMagasin) {
+        String message = "magasin inconnu";
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if (magasinRecherche != null ){
+        caisseFacade.CreerCaisse(id, magasinRecherche);
+        message = "Caisse Créée";
+    }
+        return message ;
+    }
+
+
+
+@Override
 public List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin){
     List<Secteur> listeSecteur= directeurMagasin.getMagasin().getListeSecteurs();
     return listeSecteur;
@@ -89,4 +120,5 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     DirecteurMagasin directeurCherche =directeurMagasinFacade.RechercherDirecteurParId(id);
     return directeurCherche;
 }
+
 }

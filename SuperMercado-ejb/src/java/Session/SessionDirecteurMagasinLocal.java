@@ -22,9 +22,8 @@ public interface SessionDirecteurMagasinLocal {
     
     void CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String magasin);
     
-    void CreerSecteur(String libelleSecteur, String magasin);
-    
-    void CreerRayon (String secteur, String libelleRayon);
+    String CreerSecteur(String libelleSecteur, String magasin);
+ 
 
     List ConsultationListeRayonsParMagasin(String nomMagasin);
 
@@ -32,6 +31,9 @@ public interface SessionDirecteurMagasinLocal {
 
     Rayon RechercherRayonParNomRayon(String nomRayon, String nomMagasin);
 
+    String CreerRayon (String secteur, String libelleRayon);
+    
+    String CreerCaisse(Long id, String nomMagasin);
     
     List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin);
     

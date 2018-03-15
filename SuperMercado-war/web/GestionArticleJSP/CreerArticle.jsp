@@ -14,6 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
