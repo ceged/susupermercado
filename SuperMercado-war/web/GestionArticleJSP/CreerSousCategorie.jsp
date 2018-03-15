@@ -23,7 +23,7 @@
         <fieldset>
             
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
-        <label for="libelleCategorie">Secteur <span class="requis">*</span></label>
+        <label for="libelleCategorie">Catégorie <span class="requis">*</span></label>
         <SELECT name="libelleCategorie" size="1">
             <%
             for(Categorie s: listeCategorie){ %>

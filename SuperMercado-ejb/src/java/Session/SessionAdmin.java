@@ -6,9 +6,12 @@
 package Session;
 
 import entités.gestionArticle.Categorie;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.PromotionFacadeLocal;
+import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
@@ -27,6 +30,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private PromotionFacadeLocal promotionFacade;
+
+    @EJB
+    private ReferentielArticleFacadeLocal referentielArticleFacade;
 
     @EJB
     private ChefRayonFacadeLocal chefRayonFacade;
@@ -48,6 +57,10 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
+    
+    
+    
+    
     
 
     // Add business logic below. (Right-click in editor and choose
@@ -117,7 +130,7 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @Override
     public String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
-        String message = "Catégorie incconnu";
+        String message = "Catégorie inconnu";
         Categorie c = null ;
         
         c=categorieFacade.RechercherCategorie(libelleCategorie);
@@ -135,6 +148,56 @@ public class SessionAdmin implements SessionAdminLocal {
         return listeCategorie;
     }
     
+
+    @Override
+    public String SupprimerMagasin(String nomMagasin) {
+        String message = "Magasin inconnu";
+        Magasin magasinRechercher = null ;
+        
+        magasinRechercher=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        
+        if (magasinRechercher!=null){
+            magasinFacade.SupprimerMagasin(magasinRechercher);
+            message = "magasin supprimé avec succès";
+        } 
+        return message;
+    }
+    @Override
+    public List<Magasin> ListerMagasin() {
+        List<Magasin> listeMagasin = magasinFacade.findAll();
+        return listeMagasin;
+    }
+
     
+
+    @Override
+    public String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, long codebarre) {
+        String message = "Réferentiel Article inconnu";
+        ReferentielArticle ref = referentielArticleFacade.RechercheReferentielArticleParCodeBarre(codebarre);
+        
+        if (ref != null) 
+        {
+           promotionFacade.CreerPromotion(dateDeb, dateFin, prixPromo, ref);
+           message = "promotion créée";
+        }
+        
+        
+        
+        
+        return message;
+    }
+
+    @Override
+    public List<ReferentielArticle> ListerReferentielArticle() {
+        
+        List<ReferentielArticle> listeArticle = referentielArticleFacade.findAll();
+        return listeArticle;
+        
+    }
+    
+    
+    
+    
+
     
 }

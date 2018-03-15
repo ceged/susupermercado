@@ -16,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface SessionChefDeRayonLocal {
     
-    void CreerReferentielArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche);
+    String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche);
     
     
     List<SousCategorie> ListerSousCategorie();

@@ -47,7 +47,7 @@ public class ChefRayonServlet extends HttpServlet {
             {
             jspChoix="/MenuChefdeRayon.jsp";
             }
-        else if (act.equals("creerArticle"))
+        else if (act.equals("passageListeSousCategorie"))
         {
             List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             HttpSession sess=request.getSession(true);
@@ -81,6 +81,7 @@ public class ChefRayonServlet extends HttpServlet {
             throws ServletException, IOException {
     String libelleArticleCree= request.getParameter( "libelleArticle" );
     String magasinCree= request.getParameter( "magasin" );
+    String rayonCree= request.getParameter( "rayon" );
     String marqueCree= request.getParameter( "marque" );
     String prixCree= request.getParameter( "prix" );
     String souscateogireCree= request.getParameter( "souscategorie" );
@@ -90,8 +91,7 @@ public class ChefRayonServlet extends HttpServlet {
 } else
 {
     Float prixVente=Float.parseFloat(prixCree);
-    sessionChefDeRayon.CreerReferentielArticle(libelleArticleCree, magasinCree, marqueCree, prixVente, souscateogireCree);
-    message = "Article crée";
+    message=sessionChefDeRayon.CreerReferentielArticle(libelleArticleCree, magasinCree, rayonCree, marqueCree, prixVente, souscateogireCree);
 }
    
 request.setAttribute( "message", message );
