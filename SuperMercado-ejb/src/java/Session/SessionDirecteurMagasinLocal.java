@@ -40,6 +40,7 @@ public interface SessionDirecteurMagasinLocal {
     DirecteurMagasin ChercherDirecteurParId(String id);
 
     Boolean LoginEstUnique(String login);
-    
 
+    List<Rayon> ConsultationRayonsSansChef(String magasin);
+    
 }

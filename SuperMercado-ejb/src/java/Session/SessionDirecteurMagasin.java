@@ -142,4 +142,12 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     public Boolean LoginEstUnique(String login) {
         Personne personneTrouve = personneFacade.GetPersonneParLogin(login);
         return personneTrouve == null;
-    }}
+    }
+
+    @Override
+    public List<Rayon> ConsultationRayonsSansChef(String nomMagasin) {
+        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        List<Rayon> liste=rayonFacade.ConsulterRayonsSansChef(magasinRecherche);
+        return liste;
+    }
+}
