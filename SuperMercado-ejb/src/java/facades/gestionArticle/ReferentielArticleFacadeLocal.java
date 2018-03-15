@@ -43,4 +43,6 @@ public interface ReferentielArticleFacadeLocal {
     
     ReferentielArticle RechercherReferentielArticleParRayon(Rayon rayonRecherche, String referentielArticle);
     
+    List<ReferentielArticle> RechercherListeArticleParRayon(Rayon rayon);
+    
 }

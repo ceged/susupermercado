@@ -26,8 +26,7 @@ public class Rayon implements Serializable {
 
     @OneToMany(mappedBy = "rayon")
     private List<ReferentielArticle> listeReferentielArticles;
-    
-    
+
     @OneToMany(mappedBy = "rayon")
     private List<StockProduit> listeStockProduits;
 

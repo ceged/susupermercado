@@ -23,6 +23,8 @@
         Créer un article</A><br/><br/>
         <A HREF="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">
         Modifier prix article</A><br/><br/>
+        <A HREF="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=c.getId()%>">
+        Supprimer article</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

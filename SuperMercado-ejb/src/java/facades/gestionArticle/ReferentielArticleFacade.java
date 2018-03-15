@@ -10,6 +10,7 @@ import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -81,6 +82,15 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         referentielArticleRecherche=r;
     }
         return referentielArticleRecherche;
+        
+    }
+    
+    @Override
+    public List<ReferentielArticle> RechercherListeArticleParRayon(Rayon rayon){
+        Query req=getEntityManager().createQuery("SELECT r from ReferentielArticle AS r WHERE r.rayon=:rayon ");
+        req.setParameter("rayon",rayon);
+        List result = req.getResultList();
+        return result;
         
     }
     
