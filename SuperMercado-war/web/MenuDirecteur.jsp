@@ -22,7 +22,7 @@
         <h1>Bienvenue sur le menu Directeur !</h1>
         <A HREF="GestionMagasinJSP/CreerSecteur.jsp">
         Créer un secteur</A><br/><br/>
-        <A HREF="GestionMagasinJSP/CreerChefRayon.jsp">
+        <A HREF="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">
         Créer un chef de rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
