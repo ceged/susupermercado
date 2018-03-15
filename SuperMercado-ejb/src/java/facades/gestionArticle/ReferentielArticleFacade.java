@@ -10,6 +10,7 @@ import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -70,9 +71,10 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
     }
     
     @Override
-    public ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche){
+    public ReferentielArticle RechercheReferentielArticleParLibelleParRayon(Rayon rayon,String libelleRecherche){
         ReferentielArticle referentielArticleRecherche = null;
-        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:libelleRecherche ");
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:libelleRecherche AND r.rayon=:rayon ");
+        req.setParameter("rayon", rayon);
         req.setParameter("libelleRecherche", libelleRecherche);
         Collection<ReferentielArticle>col=req.getResultList();
             for(ReferentielArticle r:col)
@@ -80,6 +82,28 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         referentielArticleRecherche=r;
     }
         return referentielArticleRecherche;
+    }
+    
+    @Override
+    public ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche){
+        ReferentielArticle referentielArticleRecherche = null;
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:libelleRecherche");
+        req.setParameter("libelleRecherche", libelleRecherche);
+        Collection<ReferentielArticle>col=req.getResultList();
+            for(ReferentielArticle r:col)
+    {
+        referentielArticleRecherche=r;
+    }
+        return referentielArticleRecherche;
+    }
+    
+    @Override
+    public List<ReferentielArticle> RechercherListeArticleParRayon(Rayon rayon){
+        Query req=getEntityManager().createQuery("SELECT r from ReferentielArticle AS r WHERE r.rayon=:rayon ");
+        req.setParameter("rayon",rayon);
+        List result = req.getResultList();
+        return result;
+        
     }
     
 }

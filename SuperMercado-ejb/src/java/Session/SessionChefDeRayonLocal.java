@@ -26,6 +26,8 @@ public interface SessionChefDeRayonLocal {
     
     ChefRayon ChercherChefRayonParId(String id);
     
-    List<ReferentielArticle> ListerArticleDuChefRayon(ChefRayon chefRayon);
+    String SupprimerReferentielArticle(String libelleArticle, String rayon,String magasin);
+    
+    List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chefRayon);
     
 }

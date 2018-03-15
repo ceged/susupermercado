@@ -41,6 +41,10 @@ public interface ReferentielArticleFacadeLocal {
     
     public void SupprimerReferentielArticle (ReferentielArticle referentielArticleSupprime);
     
+    ReferentielArticle RechercheReferentielArticleParLibelleParRayon(Rayon rayon,String libelleRecherche);
+    
+    List<ReferentielArticle> RechercherListeArticleParRayon(Rayon rayon);
+    
     ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche);
     
 }

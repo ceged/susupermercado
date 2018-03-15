@@ -88,11 +88,30 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(rayonRecherche==null){
             message="rayon inconnu";
         }
-        ReferentielArticle referentielArticle=referentielArticleFacade.RechercherReferentielArticleParRayon(rayonRecherche, libelleArticle);
+        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParLibelleParRayon(rayonRecherche, libelleArticle);
         if(referentielArticle==null){
             message="article inconnu";
         }
         referentielArticleFacade.ModifierPrixReferentielArticle(referentielArticle,newPrix);
+        return message;
+    }
+    
+    @Override
+    public String SupprimerReferentielArticle(String libelleArticle, String rayon,String magasin){
+        String message ="Article supprimé";
+        Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(magasin);
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }
+        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParLibelleParRayon(rayonRecherche, libelleArticle);
+        if(referentielArticle==null){
+            message="article inconnu";
+        }
+        referentielArticleFacade.SupprimerReferentielArticle(referentielArticle);
         return message;
     }
     
@@ -102,9 +121,11 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     return chefCherche;
 }
 
-    @Override
-public List<ReferentielArticle> ListerArticleDuChefRayon(ChefRayon chefRayon){
-    List<ReferentielArticle> listeArticle= chefRayon.getRayon().getListeReferentielArticles();
+
+@Override
+public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chefRayon){
+    List<ReferentielArticle> listeArticle =null;
+    listeArticle=referentielArticleFacade.RechercherListeArticleParRayon(chefRayon.getRayon());
     return listeArticle;
 }
     

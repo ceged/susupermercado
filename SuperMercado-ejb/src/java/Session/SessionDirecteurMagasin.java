@@ -92,7 +92,7 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         return message;
     }
 
-@Override 
+@Override
 public String CreerRayon (String secteur, String libelleRayon){
      String message = "secteur inconnu";
      
