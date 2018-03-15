@@ -8,6 +8,7 @@ package facades.gestionArticle;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Rayon;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,10 +35,10 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
     }
     
     @Override
-    public void CreerReferentielArticle (String libelleArticle, Magasin magasin, String marque, float prixVente, SousCategorie sousCategorie ){
+    public void CreerReferentielArticle (String libelleArticle, Rayon rayon, String marque, float prixVente, SousCategorie sousCategorie ){
         ReferentielArticle referentielArticleCree = new ReferentielArticle();
         referentielArticleCree.setLibelleArticle(libelleArticle);
-        referentielArticleCree.setMagasin(magasin);
+        referentielArticleCree.setRayon(rayon);
         referentielArticleCree.setMarque(marque);
         referentielArticleCree.setPrixVenteMagasin(prixVente);
         referentielArticleCree.setSousCategorie(sousCategorie);

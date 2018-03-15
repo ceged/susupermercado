@@ -7,10 +7,12 @@ package Session;
 
 import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Rayon;
 import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import facades.gestionMagasin.RayonFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,6 +23,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+    @EJB
+    private RayonFacadeLocal rayonFacade;
 
     @EJB
     private CategorieFacadeLocal categorieFacade;
@@ -38,10 +43,22 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override 
-    public void CreerReferentielArticle(String libelleArticle, String magasin, String marque, Float prixVente, String libelleSousCategorieRecherche){
+    public String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche){
+        String message="Article créé";
         Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+            Rayon rayonRecherche =rayonFacade.RechercherRayonParNom(rayon, magasinRecherche) ;
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }
         SousCategorie sousCategorieRecherche= sousCategorieFacade.RechercherSousCategorie(libelleSousCategorieRecherche);
-        referentielArticleFacade.CreerReferentielArticle(libelleArticle, magasinRecherche, marque, 0, sousCategorieRecherche);
+        if(sousCategorieRecherche==null){
+            message="Sous catégorie inconnu";
+        }
+        referentielArticleFacade.CreerReferentielArticle(libelleArticle, rayonRecherche, marque, prixVente, sousCategorieRecherche);
+        return message;
     }
     
     

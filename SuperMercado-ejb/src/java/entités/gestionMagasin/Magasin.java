@@ -25,8 +25,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Magasin implements Serializable {
 
-    @OneToMany(mappedBy = "magasin")
-    private List<ReferentielArticle> listeReferentielArticles;
+    
 
     @OneToMany(mappedBy = "magasin")
     private List<RetraitMagasin> listeRetraitMagasins;

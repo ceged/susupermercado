@@ -11,6 +11,7 @@ import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Rayon;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -135,14 +136,14 @@ public class ReferentielArticle implements Serializable {
     }
 
     @ManyToOne
-        private Magasin magasin;
+        private Rayon rayon;
 
-    public Magasin getMagasin() {
-        return magasin;
+    public Rayon getRayon() {
+        return rayon;
     }
 
-    public void setMagasin(Magasin magasin) {
-        this.magasin = magasin;
+    public void setRayon(Rayon rayon) {
+        this.rayon = rayon;
     }
 
 

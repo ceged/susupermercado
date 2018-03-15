@@ -5,6 +5,7 @@
  */
 package entités.gestionMagasin;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.StockProduit;
 import java.io.Serializable;
 import java.util.List;
@@ -23,6 +24,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class Rayon implements Serializable {
 
+    @OneToMany(mappedBy = "rayon")
+    private List<ReferentielArticle> listeReferentielArticles;
+    
     @OneToMany(mappedBy = "rayon")
     private List<StockProduit> listeStockProduits;
 
