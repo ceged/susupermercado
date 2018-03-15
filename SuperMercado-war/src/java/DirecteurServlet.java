@@ -8,6 +8,7 @@ import Session.SessionDirecteurMagasinLocal;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,7 +63,15 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererChefRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
-        
+        else if (act.equals("transferListeRayon"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Rayon> listeRayon = sessionDirecteurMagasin.ConsultationListeRayonsParMagasin(d.getMagasin().getNomMagasin());
+            sess.setAttribute("listeRayon",listeRayon); 
+            jspChoix="/GestionMagasinJSP/CreerChefRayon.jsp";
+        }
 
         else if (act.equals("insererRayon"))
         {
@@ -127,7 +136,7 @@ String nomPersonne= request.getParameter( "nom" );
     String dobPersonne= request.getParameter( "dob" );
     String adressePersonne= request.getParameter( "adresse" );
     String codePostalPersonne= request.getParameter( "codePostal" );
-    String rayon= request.getParameter( "rayon" );
+    String rayon= request.getParameter( "libelleRayon" );
     String magasin = request.getParameter("magasin");
 
     String message;
