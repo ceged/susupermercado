@@ -34,5 +34,9 @@ public interface CaisseFacadeLocal {
     void CreerCaisse(Long id,Magasin magasin) ;
     
     void SupprimerCaisse(Caisse caisseasupprimer);
+
+    List<Caisse> ConsulterListeCaisseParMagasin(Magasin magasin);
+
+    Caisse RechercherCaisseParId(Long idCaisse, Magasin magasin);
     
 }

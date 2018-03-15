@@ -5,11 +5,14 @@
  */
 package Session;
 
+import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
+import facades.gestionArticle.AchatCaisseFacadeLocal;
+import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
@@ -28,6 +31,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private AgentCaisseFacadeLocal agentCaisseFacade;
 
     @EJB
     private PersonneFacadeLocal personneFacade;
@@ -51,10 +57,12 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     private DirecteurMagasinFacadeLocal directeurMagasinFacade;
     
     
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-@Override 
+    @Override 
     public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
@@ -70,6 +78,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
             }
         return message; 
     }
+    
+    
 @Override
     public String CreerSecteur(String libelleSecteur, String nomMagasin) {
         String message = "magasin inconnu";
@@ -150,4 +160,26 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         List<Rayon> liste=rayonFacade.ConsulterRayonsSansChef(magasinRecherche);
         return liste;
     }
-}
+
+    @Override
+    public List<Caisse> ConsultationCaisseParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return caisseFacade.ConsulterListeCaisseParMagasin(magasin);
+    }
+
+    @Override
+    public String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal) {
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+            agentCaisseFacade.CreerAgentCaisse(prenom, nom, login, mdp, dob, sexe, adresse, codePostal);
+            message="Agent de caisse créé";
+            }
+        return message; 
+    }
+    }
+    

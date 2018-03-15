@@ -7,9 +7,11 @@ package facades.gestionMagasin;
 
 import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.Magasin;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -44,5 +46,26 @@ public class CaisseFacade extends AbstractFacade<Caisse> implements CaisseFacade
         em.remove(caisseasupprimer);
     }
 
-   
+    @Override
+    public List<Caisse> ConsulterListeCaisseParMagasin(Magasin magasin) {
+        
+      Query req=getEntityManager().createQuery("SELECT c from Caisse AS c WHERE c.magasin=:magasin ");
+      req.setParameter("magasin",magasin);
+      List result = req.getResultList();
+      return result;
+    }
+
+    @Override
+    public Caisse RechercherCaisseParId(Long idCaisse, Magasin magasin) {
+        Caisse result = null ;
+        Query req=getEntityManager().createQuery("SELECT c from Caisse as c where c.id=:idCaisse AND c.magasin=:magasin");
+        req.setParameter("idCaisse",idCaisse);
+        req.setParameter("magasin",magasin);
+        List<Caisse>l=req.getResultList();
+        for(Caisse c:l){
+            result = c;
+    }
+        return result ;
+    }
+    
 }
