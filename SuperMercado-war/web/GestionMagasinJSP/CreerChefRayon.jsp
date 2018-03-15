@@ -4,6 +4,8 @@
     Author     : Sophia
 --%>
 
+<%@page import="entités.gestionMagasin.Rayon"%>
+<%@page import="java.util.List"%>
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,10 +14,12 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
+        <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-<% DirecteurMagasin a= directeurConnecte;{%>
+<% DirecteurMagasin a= directeurConnecte;
+List<Rayon> listeRayon2 =listeRayon;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
          <h1>Formulaire de création Chef de Rayon</h1>
@@ -49,8 +53,13 @@
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
         <input type="text" name="codePostal" value="" size="20" maxlength="20" />
         <br />
-        <label for="rayon">Rayon <span class="requis">*</span></label>
-        <input type="text" name="rayon" value="" size="20" maxlength="20" />
+        <label for="libelleRayon">Rayon<span class="requis">*</span></label>
+        <SELECT name="libelleRayon" size="1">
+            <%
+            for(Rayon r: listeRayon2){ %>
+            <OPTION><%=r.getLibelleRayon()%>
+                <%}%>    
+        </SELECT>
         <br />
         <input type="hidden" name="magasin" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
