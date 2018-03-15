@@ -92,7 +92,7 @@ public class Admin extends HttpServlet {
         } 
          else if (act.equals("insererPromotion"))
         {
-            doActionInsererSousCategorie(request,response);
+            doActionInsererPromotion(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
         else if (act.equals("TransfererListeMagasin"))
@@ -216,6 +216,8 @@ protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletR
     message =sessionAdmin.SupprimerMagasin(nomMagasinSupprimer);
     
 }
+    request.setAttribute( "message", message );
+
 }
 
 
@@ -224,19 +226,17 @@ protected void doActionInsererPromotion(HttpServletRequest request, HttpServletR
     String dateDeb= request.getParameter( "dateDeb" );
     String dateFin= request.getParameter( "dateFin" );
     String prixPromo= request.getParameter( "prixPromo" );
-    String codeBarre= request.getParameter( "codeBarre" );
+    String libelle= request.getParameter( "libelle" );
     String message;
-    if ( dateDeb.trim().isEmpty()&&dateFin.trim().isEmpty()&&prixPromo.trim().isEmpty()&&codeBarre.trim().isEmpty()){
+    if ( dateDeb.trim().isEmpty()&&dateFin.trim().isEmpty()&&prixPromo.trim().isEmpty()&&libelle.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {   
     Date deb=Date.valueOf(dateDeb);
     Date fin=Date.valueOf(dateFin);
     float promo = Float.valueOf(prixPromo);
-    long idRef = Long.valueOf(codeBarre);
     
-    
-    message =sessionAdmin.CreerPromotion(deb,fin,promo,idRef);
+    message =sessionAdmin.CreerPromotion(deb,fin,promo,libelle);
 
 
 }

@@ -70,18 +70,16 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
     }
     
     @Override
-    public ReferentielArticle RechercherReferentielArticleParRayon(Rayon rayonRecherche, String referentielArticle){
+    public ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche){
         ReferentielArticle referentielArticleRecherche = null;
-        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:referentielArticle AND r.rayon=:rayonRecherche");
-        req.setParameter("referentielArticle", referentielArticle);
-        req.setParameter("rayonRecherche",rayonRecherche);
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:libelleRecherche ");
+        req.setParameter("libelleRecherche", libelleRecherche);
         Collection<ReferentielArticle>col=req.getResultList();
             for(ReferentielArticle r:col)
     {
         referentielArticleRecherche=r;
     }
         return referentielArticleRecherche;
-        
     }
     
 }
