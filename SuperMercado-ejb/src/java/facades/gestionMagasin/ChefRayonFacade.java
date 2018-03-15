@@ -58,8 +58,8 @@ public class ChefRayonFacade extends AbstractFacade<ChefRayon> implements ChefRa
     {
        Long id=Long.parseLong(idChefRayon);
         ChefRayon chefRayonRecherche=null;
-        Query req=getEntityManager().createQuery("SELECT c from ChefRayon as c where c.id=:idChefRayon");
-        req.setParameter("idChefRayon",idChefRayon);
+        Query req=getEntityManager().createQuery("SELECT c from ChefRayon as c where c.id=:id");
+        req.setParameter("id",id);
             Collection<ChefRayon>col=req.getResultList();
             for(ChefRayon c:col)
     {

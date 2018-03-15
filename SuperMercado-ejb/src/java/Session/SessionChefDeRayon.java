@@ -15,6 +15,7 @@ import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
 import java.util.List;
@@ -27,6 +28,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+    @EJB
+    private ChefRayonFacadeLocal chefRayonFacade;
 
     @EJB
     private RayonFacadeLocal rayonFacade;
@@ -93,8 +97,8 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     }
     
     @Override
-public ChefRayon ChercherChefRayonParId(String id){
-    ChefRayon chefCherche =ChercherChefRayonParId(id);
+    public ChefRayon ChercherChefRayonParId(String id){
+    ChefRayon chefCherche = chefRayonFacade.RechercherChefRayonParId(id);
     return chefCherche;
 }
 
