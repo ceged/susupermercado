@@ -83,7 +83,7 @@ public class Admin extends HttpServlet {
             HttpSession sess=request.getSession(true);
             List<ReferentielArticle> listeRefArticle = sessionAdmin.ListerReferentielArticle();
             sess.setAttribute("listeRefArticle",listeRefArticle); 
-            jspChoix="/GestionArticleJSP/CreerSousCategorie.jsp";
+            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";
             
         } 
          
@@ -175,6 +175,30 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
 } else
 {
     message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+
+}
+   
+request.setAttribute( "message", message );
+}
+
+protected void doActionInsererPromotion(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String dateDeb= request.getParameter( "dateDeb" );
+    String dateFin= request.getParameter( "dateFin" );
+    String prixPromo= request.getParameter( "prixPromo" );
+    String codeBarre= request.getParameter( "codeBarre" );
+    String message;
+    if ( dateDeb.trim().isEmpty()&&dateFin.trim().isEmpty()&&prixPromo.trim().isEmpty()&&codeBarre.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{   
+    Date deb=Date.valueOf(dateDeb);
+    Date fin=Date.valueOf(dateFin);
+    float promo = Float.valueOf(prixPromo);
+    long idRef = Long.valueOf(codeBarre);
+    
+    
+    message =sessionAdmin.CreerPromotion(deb,fin,promo,idRef);
 
 }
    
