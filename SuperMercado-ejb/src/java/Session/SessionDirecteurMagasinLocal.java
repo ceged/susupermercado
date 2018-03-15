@@ -36,8 +36,6 @@ public interface SessionDirecteurMagasinLocal {
     
     String CreerCaisse(Long id, String nomMagasin);
     
-    List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin);
-    
     DirecteurMagasin ChercherDirecteurParId(String id);
 
     Boolean LoginEstUnique(String login);
@@ -47,4 +45,6 @@ public interface SessionDirecteurMagasinLocal {
     List<Caisse> ConsultationCaisseParMagasin(String nomMagasin);
     
     String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin);
+    
+    List <Secteur> ConsultationListeSecteursParMagasin(String nomMagasin);
 }

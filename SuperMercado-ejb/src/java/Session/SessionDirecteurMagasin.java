@@ -134,13 +134,11 @@ public String CreerRayon (String secteur, String libelleRayon){
         return message ;
     }
 
-
-
 @Override
-public List<Secteur> ListerSecteur(DirecteurMagasin directeurMagasin){
-    List<Secteur> listeSecteur= directeurMagasin.getMagasin().getListeSecteurs();
-    return listeSecteur;
-}
+    public List <Secteur> ConsultationListeSecteursParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return secteurFacade.ConsulterSecteursParMagasin(magasin);
+    }
 
 @Override
 public DirecteurMagasin ChercherDirecteurParId(String id){

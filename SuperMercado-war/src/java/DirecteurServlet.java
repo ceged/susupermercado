@@ -89,7 +89,7 @@ public class DirecteurServlet extends HttpServlet {
             String directeurCherche= request.getParameter( "directeur" );
             DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
             HttpSession sess=request.getSession(true);
-            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
+            List<Secteur> listeSecteur = sessionDirecteurMagasin.ConsultationListeSecteurParMagasin(d.getMagasin().getNomMagasin());
             sess.setAttribute("listeSecteur",listeSecteur); 
             jspChoix="/GestionMagasinJSP/CreerRayon.jsp";
         }
