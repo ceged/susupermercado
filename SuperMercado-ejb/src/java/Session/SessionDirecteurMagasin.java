@@ -168,7 +168,7 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     }
 
     @Override
-    public String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal) {
+    public String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin) {
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
         {
@@ -176,7 +176,8 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         }
         else
         {
-            agentCaisseFacade.CreerAgentCaisse(prenom, nom, login, mdp, dob, sexe, adresse, codePostal);
+            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+            agentCaisseFacade.CreerAgentCaisse(prenom, nom, login, mdp, dob, sexe, adresse, codePostal, magasinRecherche);
             message="Agent de caisse créé";
             }
         return message; 

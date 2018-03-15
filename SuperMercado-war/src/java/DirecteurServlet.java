@@ -211,6 +211,7 @@ String nomPersonne= request.getParameter( "nom" );
     String dobPersonne= request.getParameter( "dob" );
     String adressePersonne= request.getParameter( "adresse" );
     String codePostalPersonne= request.getParameter( "codePostal" );
+    String magasin = request.getParameter("magasin");
 
 
     String message;
@@ -219,7 +220,7 @@ String nomPersonne= request.getParameter( "nom" );
 } else
     {
         Date dob=Date.valueOf(dobPersonne);
-        message = sessionDirecteurMagasin.CreerAgentCaisse(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, dob, sexePersonne,adressePersonne, codePostalPersonne);
+        message = sessionDirecteurMagasin.CreerAgentCaisse(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, dob, sexePersonne,adressePersonne, codePostalPersonne, magasin);
     }
    
         request.setAttribute( "message", message );

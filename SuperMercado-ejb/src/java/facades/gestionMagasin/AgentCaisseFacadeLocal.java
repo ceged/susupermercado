@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Magasin;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,6 +32,6 @@ public interface AgentCaisseFacadeLocal {
 
     int count();
     
-    void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal);
+    void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Magasin magasin);
     
 }

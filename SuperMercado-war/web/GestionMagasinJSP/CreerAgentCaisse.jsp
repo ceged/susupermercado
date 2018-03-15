@@ -20,7 +20,7 @@
 <% DirecteurMagasin a= directeurConnecte;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
-         <h1>Formulaire de création Chef de Rayon</h1>
+         <h1>Formulaire de création Agent de Caisse</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations  (majuscules et accents interdits)</legend>

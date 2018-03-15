@@ -46,5 +46,5 @@ public interface SessionDirecteurMagasinLocal {
 
     List<Caisse> ConsultationCaisseParMagasin(String nomMagasin);
     
-    String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal);
+    String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin);
 }

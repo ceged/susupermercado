@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -61,4 +62,15 @@ public class AgentCaisse extends Personne implements Serializable {
         return "entit\u00e9s.gestionMagasin.AgentCaisse[ id=" + id + " ]";
     }
     
+    @ManyToOne
+        private Magasin magasin;
+
+    public Magasin getMagasin() {
+        return magasin;
+    }
+
+    public void setMagasin(Magasin magasin) {
+        this.magasin = magasin;
+    }
+
 }
