@@ -77,6 +77,13 @@ public class Admin extends HttpServlet {
             doActionInsererSousCategorie(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
+        
+         else if (act.equals("supprimerMagasin"))
+        {
+            doActionSupprimerMagasin(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
+       
          
         
         
@@ -166,6 +173,21 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
 } else
 {
     message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+
+}
+   
+request.setAttribute( "message", message );
+}
+protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String nomMagasinSupprimer= request.getParameter( "nomMagasin" );
+    String message;
+    if ( nomMagasinSupprimer.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{
+   
+    message =sessionAdmin.SupprimerMagasin(nomMagasinSupprimer);
 
 }
    

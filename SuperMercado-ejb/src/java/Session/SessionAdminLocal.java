@@ -36,5 +36,7 @@ public interface SessionAdminLocal {
     String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
 
     List<Categorie> ListerCategorie();
+    
+    String SupprimerMagasin(String nomMagasin);
   
 }

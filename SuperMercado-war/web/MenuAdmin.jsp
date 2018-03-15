@@ -22,6 +22,8 @@
         Créer une Catégorie</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerCategorie.jsp">
         Créer une sous-catégorie </A><br/><br/>
+        <A HREF="GestionMagasinJSP/SupprimerMagasin.jsp">
+        Supprimer un magasin</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         
