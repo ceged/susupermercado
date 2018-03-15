@@ -80,12 +80,12 @@ public String CreerRayon (String secteur, String libelleRayon){
 }
 
     @Override
-    public List ConsultationListeRayonsParMagasin(String nomMagasin) {
+    public List <Rayon> ConsultationListeRayonsParMagasin(String nomMagasin) {
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
         return rayonFacade.ConsulterListeRayonsParMagasin(magasin);
     }
     @Override
-    public List ConsultationListeSecteurParMagasin(String nomMagasin) {
+    public List <Rayon> ConsultationListeSecteurParMagasin(String nomMagasin) {
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
         return secteurFacade.ConsulterSecteursParMagasin(magasin);
  
@@ -96,7 +96,7 @@ public String CreerRayon (String secteur, String libelleRayon){
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
         return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
     }
-@Override
+    @Override
     public String CreerCaisse(Long id, String nomMagasin) {
         String message = "magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
