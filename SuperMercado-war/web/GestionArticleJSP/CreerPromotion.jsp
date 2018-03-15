@@ -17,7 +17,7 @@
     </head>
     <body>
         
-       <h1>Créer une sous-catégorie</h1>
+       <h1>Créer une Promotion</h1>
         
         <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
@@ -30,7 +30,7 @@
         <input type="date" name="dateFin" value="" size="20" maxlength="20" />
         <br />  
         
-        <label for="prixPromo">promotion <span class="requis">*</span></label>
+        <label for="prixPromo">Prix de la promotion <span class="requis">*</span></label>
         <input type="text" name="prixPromo" value="" size="20" maxlength="20" />
         <br />
             
