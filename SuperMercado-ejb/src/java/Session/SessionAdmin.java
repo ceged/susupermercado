@@ -176,11 +176,15 @@ public class SessionAdmin implements SessionAdminLocal {
         ReferentielArticle ref = referentielArticleFacade.RechercheReferentielArticleParLibelle(libelle);
         
         if (ref != null) 
-        {
+        { if(dateDeb.before(dateFin)) {
            promotionFacade.CreerPromotion(dateDeb, dateFin, prixPromo, ref);
            message = "promotion créée";
+        } else { 
+            
+        message = "date de début supérieure à la date de fin" ;
+                
+                }
         }
-        
         
         
         
