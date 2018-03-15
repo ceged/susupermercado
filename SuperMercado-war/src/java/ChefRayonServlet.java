@@ -47,7 +47,7 @@ public class ChefRayonServlet extends HttpServlet {
             {
             jspChoix="/MenuChefdeRayon.jsp";
             }
-        else if (act.equals("creerArticle"))
+        else if (act.equals("passageListeSousCategorie"))
         {
             List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             HttpSession sess=request.getSession(true);
