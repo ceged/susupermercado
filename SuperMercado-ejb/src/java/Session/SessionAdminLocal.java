@@ -6,6 +6,7 @@
 package Session;
 
 import entités.gestionArticle.Categorie;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import java.util.Date;
@@ -36,9 +37,16 @@ public interface SessionAdminLocal {
     String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
 
     List<Categorie> ListerCategorie();
+
     
     String SupprimerMagasin(String nomMagasin);
     
     List<Magasin> ListerMagasin();
+
+
+    String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, long codebarre);
+
+    List<ReferentielArticle>  ListerReferentielArticle();
+
   
 }
