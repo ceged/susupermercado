@@ -6,6 +6,7 @@
 
 import Session.SessionAdminLocal;
 import entités.gestionArticle.Categorie;
+import entités.gestionArticle.ReferentielArticle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -76,6 +77,15 @@ public class Admin extends HttpServlet {
             doActionInsererSousCategorie(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
+         
+        else if (act.equals("TransfererListeRefArticle"))
+        {
+            HttpSession sess=request.getSession(true);
+            List<ReferentielArticle> listeRefArticle = sessionAdmin.ListerReferentielArticle();
+            sess.setAttribute("listeRefArticle",listeRefArticle); 
+            jspChoix="/GestionArticleJSP/CreerSousCategorie.jsp";
+            
+        } 
          
         
         
