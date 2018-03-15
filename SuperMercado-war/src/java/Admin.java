@@ -86,6 +86,11 @@ public class Admin extends HttpServlet {
             jspChoix="/GestionArticleJSP/CreerPromotion.jsp";
             
         } 
+         else if (act.equals("insererPromotion"))
+        {
+            doActionInsererSousCategorie(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
          
         
         
