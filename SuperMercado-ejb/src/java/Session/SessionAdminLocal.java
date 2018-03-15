@@ -38,5 +38,7 @@ public interface SessionAdminLocal {
     List<Categorie> ListerCategorie();
     
     String SupprimerMagasin(String nomMagasin);
+    
+    List<Magasin> ListerMagasin();
   
 }

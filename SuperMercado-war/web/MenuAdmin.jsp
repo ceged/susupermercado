@@ -22,7 +22,7 @@
         Créer une Catégorie</A><br/><br/>
         <A HREF="Admin?action=TransfererListeCategorie">
         Créer une sous-catégorie </A><br/><br/>
-        <A HREF="GestionMagasinJSP/SupprimerMagasin.jsp">
+        <A HREF="Admin?action=TransfererListeMagasin">
         Supprimer un magasin</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>

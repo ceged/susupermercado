@@ -148,5 +148,10 @@ public class SessionAdmin implements SessionAdminLocal {
         } 
         return message;
     }
+    @Override
+    public List<Magasin> ListerMagasin() {
+        List<Magasin> listeMagasin = magasinFacade.findAll();
+        return listeMagasin;
+    }
     
 }
