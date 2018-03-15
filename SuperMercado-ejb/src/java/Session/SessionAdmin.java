@@ -171,16 +171,20 @@ public class SessionAdmin implements SessionAdminLocal {
     
 
     @Override
-    public String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, long codebarre) {
+    public String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, String libelle) {
         String message = "Réferentiel Article inconnu";
-        ReferentielArticle ref = referentielArticleFacade.RechercheReferentielArticleParCodeBarre(codebarre);
+        ReferentielArticle ref = referentielArticleFacade.RechercheReferentielArticleParLibelle(libelle);
         
         if (ref != null) 
-        {
+        { if(dateDeb.before(dateFin)) {
            promotionFacade.CreerPromotion(dateDeb, dateFin, prixPromo, ref);
            message = "promotion créée";
+        } else { 
+            
+        message = "date de début supérieure à la date de fin" ;
+                
+                }
         }
-        
         
         
         

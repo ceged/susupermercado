@@ -44,9 +44,11 @@ public interface SessionAdminLocal {
     List<Magasin> ListerMagasin();
 
 
-    String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, long codebarre);
+    String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, String libelle);
 
     List<ReferentielArticle>  ListerReferentielArticle();
+    
+    
 
   
 }

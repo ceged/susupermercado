@@ -31,16 +31,18 @@
         <br />  
         
         <label for="prixPromo">Prix de la promotion <span class="requis">*</span></label>
-        <input type="text" name="prixPromo" value="" size="20" maxlength="20" />
+        <input type="number" name="prixPromo" min="0" max="100" step="0.01" />
         <br />
             
-        <label for="codeBarre"> codeBarre <span class="requis">*</span></label>
-        <SELECT name="codeBarre" size="1">
+        <label for="libelle"> Libellé Article <span class="requis">*</span></label>
+        <SELECT name="libelle" size="1">
             <%
             for(ReferentielArticle a: listeRefArticle){ %>
-            <OPTION><%=a.getCodeBarre()%>
+            <OPTION><%=a.getLibelleArticle()%>
                 <%}%>
         </SELECT>
+        
+        <input type="hidden" name="action" value="insererPromotion">
         
         
         </fieldset>

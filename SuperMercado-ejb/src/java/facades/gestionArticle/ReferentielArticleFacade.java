@@ -69,4 +69,17 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         em.remove(referentielArticleSupprime);
     }
     
+    @Override
+    public ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche){
+        ReferentielArticle referentielArticleRecherche = null;
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.libelleArticle=:libelleRecherche ");
+        req.setParameter("libelleRecherche", libelleRecherche);
+        Collection<ReferentielArticle>col=req.getResultList();
+            for(ReferentielArticle r:col)
+    {
+        referentielArticleRecherche=r;
+    }
+        return referentielArticleRecherche;
+    }
+    
 }
