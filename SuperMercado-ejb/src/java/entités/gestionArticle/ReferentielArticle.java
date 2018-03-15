@@ -146,6 +146,30 @@ public class ReferentielArticle implements Serializable {
         this.rayon = rayon;
     }
 
+    public List<LigneLivraison> getListeLigneLivraisons() {
+        return listeLigneLivraisons;
+    }
+
+    public List<LotArticle> getListeLotArticles() {
+        return listeLotArticles;
+    }
+
+    public List<LigneCommande> getListeLigneCommandes() {
+        return listeLigneCommandes;
+    }
+
+    public List<Promotion> getListePromotions() {
+        return listePromotions;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public List<Fournisseur> getListeFournisseurs() {
+        return listeFournisseurs;
+    }
+
 
 
 }

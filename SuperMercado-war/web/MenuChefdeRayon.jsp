@@ -21,6 +21,8 @@
         <h1>Bienvenue sur le menu Chef de rayon !</h1>
         <A HREF="ChefRayonServlet?action=passageListeSousCategorie">
         Créer un article</A><br/><br/>
+        <A HREF="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">
+        Modifier prix article</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

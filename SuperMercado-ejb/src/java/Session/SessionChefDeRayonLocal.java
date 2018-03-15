@@ -5,7 +5,9 @@
  */
 package Session;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.ChefRayon;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,7 +20,12 @@ public interface SessionChefDeRayonLocal {
     
     String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche);
     
-    
     List<SousCategorie> ListerSousCategorie();
+    
+    String ModifierPrixReferentielArticle(String libelleArticle, String rayon,String magasin, float newPrix);
+    
+    ChefRayon ChercherChefRayonParId(String id);
+    
+    List<ReferentielArticle> ListerArticleDuChefRayon(ChefRayon chefRayon);
     
 }

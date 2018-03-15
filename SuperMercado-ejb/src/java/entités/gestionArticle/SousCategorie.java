@@ -86,5 +86,13 @@ public class SousCategorie implements Serializable {
         this.categorie = categorie;
     }
 
+    public List<ReferentielArticle> getListeReferentielArticles() {
+        return listeReferentielArticles;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 
 }

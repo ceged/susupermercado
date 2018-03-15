@@ -76,4 +76,12 @@ public class Achat implements Serializable {
         this.dateAchat = dateAchat;
     }
 
+    public List<LigneAchat> getListeLigneAchats() {
+        return listeLigneAchats;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 }

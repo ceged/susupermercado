@@ -75,4 +75,12 @@ public class Categorie implements Serializable {
         this.libelleCategorie = libelleCategorie;
     }
 
+    public List<SousCategorie> getListeSousCategories() {
+        return listeSousCategories;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 }
