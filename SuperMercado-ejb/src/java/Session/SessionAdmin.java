@@ -117,7 +117,7 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @Override
     public String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
-        String message = "Catégorie incconnu";
+        String message = "Catégorie inconnu";
         Categorie c = null ;
         
         c=categorieFacade.RechercherCategorie(libelleCategorie);
@@ -135,6 +135,23 @@ public class SessionAdmin implements SessionAdminLocal {
         return listeCategorie;
     }
     
-    
+    @Override
+    public String SupprimerMagasin(String nomMagasin) {
+        String message = "Magasin inconnu";
+        Magasin magasinRechercher = null ;
+        
+        magasinRechercher=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        
+        if (magasinRechercher!=null){
+            magasinFacade.SupprimerMagasin(magasinRechercher);
+            message = "magasin supprimé avec succès";
+        } 
+        return message;
+    }
+    @Override
+    public List<Magasin> ListerMagasin() {
+        List<Magasin> listeMagasin = magasinFacade.findAll();
+        return listeMagasin;
+    }
     
 }
