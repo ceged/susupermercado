@@ -178,7 +178,6 @@ public class SessionAdmin implements SessionAdminLocal {
         if (ref != null) 
         {
            promotionFacade.CreerPromotion(dateDeb, dateFin, prixPromo, ref);
-           referentielArticleFacade.ModifierPrixReferentielArticle(ref, prixPromo);
            message = "promotion créée";
         }
         
