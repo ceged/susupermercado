@@ -6,6 +6,7 @@
 
 import Session.SessionAdminLocal;
 import entités.gestionArticle.Categorie;
+import entités.gestionMagasin.Magasin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -77,7 +78,14 @@ public class Admin extends HttpServlet {
             doActionInsererSousCategorie(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
-        
+        else if (act.equals("TransfererListeMagasin"))
+        {
+            HttpSession sess=request.getSession(true);
+            List<Magasin> listeMagasin = sessionAdmin.ListerMagasin();
+            sess.setAttribute("listeMagasin",listeMagasin); 
+            jspChoix="/GestionMagasinJSP/SupprimerMagasin.jsp";
+            
+        } 
          else if (act.equals("supprimerMagasin"))
         {
             doActionSupprimerMagasin(request,response);
