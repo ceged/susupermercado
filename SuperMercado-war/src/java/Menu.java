@@ -8,6 +8,7 @@
 
 import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
+import Session.SessionPersonneLocal;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
@@ -31,10 +32,16 @@ import javax.servlet.http.HttpSession;
 public class Menu extends HttpServlet {
 
     @EJB
+    private SessionPersonneLocal sessionPersonne;
+
+    @EJB
     private SessionAdminLocal sessionAdmin;
 
     @EJB
     private SessionChefDeRayonLocal sessionChefDeRayon;
+    
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -95,6 +102,21 @@ public class Menu extends HttpServlet {
                 jspChoix="/MenuAgentCaisse.jsp";
             }
             }
+        else if (act.equals("CasterEnPersonne"))
+        {
+            String personneCherche= request.getParameter( "idPersonneSession");
+            Personne p = sessionPersonne.RechercherPersonneParId(personneCherche);
+            HttpSession sess=request.getSession(false);
+            sess.setAttribute("personneConnecte",p);
+        
+            jspChoix="/GestionMagasinJSP/ModifierMdp.jsp";
+        }
+        else if (act.equals("modifierMdp"))
+        {
+            doActionModifierMdp(request,response);
+            jspChoix="/Accueil.jsp";
+        }
+        
        
         
         RequestDispatcher Rd;
@@ -115,9 +137,27 @@ public class Menu extends HttpServlet {
         }
     }
     
-      
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+      protected void doActionModifierMdp (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+          
+    String ancienMdp = request.getParameter("ancienMdp");
+    String nouveauMdp = request.getParameter("nouveauMdp");
+    String idPersonne = request.getParameter("id");
+    
+    String message;
+    if(!(ancienMdp.trim().isEmpty() && nouveauMdp.trim().isEmpty()))
+    {
+        sessionPersonne.ModificationMdp(ancienMdp, nouveauMdp, idPersonne);
+        message = "Votre mot de passe a été modifié avec succès";
+        request.setAttribute("message", message);
+    } 
+    else
+    {
+        message = "Les champs ancien mot de passe et nouveau mot de passe sont obligatoires";
+        request.setAttribute("message", message);
+    }
+   }
+   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -30,6 +30,8 @@
         Créer une caisse</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerAgentCaisse.jsp">
         Créer un AgentCaisse</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         
