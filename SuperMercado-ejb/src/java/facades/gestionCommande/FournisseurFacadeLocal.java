@@ -37,4 +37,6 @@ public interface FournisseurFacadeLocal {
     
     Fournisseur RechercheFournisseurParId(Long idFournisseur);
     
+    Fournisseur RechercheFournisseurParNom(String nomFournisseur);
+    
 }

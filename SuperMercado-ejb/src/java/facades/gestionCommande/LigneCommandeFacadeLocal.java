@@ -5,6 +5,8 @@
  */
 package facades.gestionCommande;
 
+import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.Commande;
 import entités.gestionCommande.LigneCommande;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +31,11 @@ public interface LigneCommandeFacadeLocal {
     List<LigneCommande> findRange(int[] range);
 
     int count();
+    
+    void SupprimerLigneCommande(LigneCommande ligneCommandeSupp);
+    
+    void CreerLigneCommandeParBonCommande(ReferentielArticle articleAchat, Commande commandeEnCours, Float prix, int quantite );
+    
+    List<LigneCommande> RechercherListeLigneCommandeParCommande(Commande commande);
     
 }

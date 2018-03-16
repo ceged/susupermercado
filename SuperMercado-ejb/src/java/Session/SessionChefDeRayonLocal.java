@@ -7,7 +7,9 @@ package Session;
 
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionMagasin.ChefRayon;
 import java.util.Date;
 import java.util.List;
@@ -37,5 +39,15 @@ public interface SessionChefDeRayonLocal {
     String CreerFournisseur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal);
     
     Fournisseur ChercherFournisseurParId(Long idFournisseur);
+    
+    String CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur);
+    
+    Commande ChercherDernierCommande();
+    
+    void CreerLigneBonCommande(String article, Long idCommande, float Prix, int Quantite );
+    
+    Commande RechercherCommandeParId(Long id);
+    
+    List<LigneCommande> RechercherListLigneCommandeParCommande(Commande commande);
     
 }
