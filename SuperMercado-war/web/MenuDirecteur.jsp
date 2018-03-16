@@ -31,6 +31,8 @@
 
         <A HREF="GestionMagasinJSP/CreerCaisse.jsp">
         Créer une caisse</A><br/><br/>
+        <A HREF="DirecteurServlet?action=TransfererListeCaisse&directeur=<%=p.getId()%>">
+        Supprimer une caisse</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerAgentCaisse.jsp">
         Créer un AgentCaisse</A><br/><br/>
         

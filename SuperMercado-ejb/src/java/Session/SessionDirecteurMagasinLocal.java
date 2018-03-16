@@ -31,6 +31,8 @@ public interface SessionDirecteurMagasinLocal {
     List ConsultationListeSecteurParMagasin(String nomMagasin);
 
     Rayon RechercherRayonParNomRayon(String nomRayon, String nomMagasin);
+    
+    Caisse RechercherCaisseParIdCaisse(Long idCaisse, String nomMagasin);
 
     String CreerRayon (String secteur, String libelleRayon);
     
@@ -50,5 +52,11 @@ public interface SessionDirecteurMagasinLocal {
     
     List<Rayon> ListerRayon();
     
+    List<Caisse> ListerCaisse();
+    
     String SupprimerRayon(String magasin, String rayon);
+    
+    String SupprimerCaisse(Long caisse,String magasin);
+    
+    
 }

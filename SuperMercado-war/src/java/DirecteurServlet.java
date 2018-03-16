@@ -118,11 +118,27 @@ public class DirecteurServlet extends HttpServlet {
             jspChoix="/GestionMagasinJSP/SupprimerRayon.jsp";
             
         } 
+        else if (act.equals("TransfererListeCaisse"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Caisse> listeCaisse = sessionDirecteurMagasin.ListerCaisse();
+            sess.setAttribute("listeCaisse",listeCaisse); 
+            jspChoix="/GestionMagasinJSP/SupprimerCaisse.jsp";
+        }
+
          else if (act.equals("supprimerRayon"))
         {
             doActionSupprimerRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+         else if (act.equals("supprimerCaisse"))
+        {
+            doActionSupprimerCaisse(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
+
 
         
         RequestDispatcher Rd;
@@ -229,6 +245,24 @@ request.setAttribute( "message", message );
 {
    
     message =sessionDirecteurMagasin.SupprimerRayon(nomRayonSupprimer,magasin);
+    
+}
+   
+request.setAttribute( "message", message );
+}
+        protected void doActionSupprimerCaisse(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String CaisseASupprimer= request.getParameter( "id" );
+    String magasin= request.getParameter( "nomMagasin" );
+    Long idCaisse = Long.valueOf(CaisseASupprimer);
+    String message;
+    if ( magasin.trim().isEmpty()&&CaisseASupprimer.trim().isEmpty())
+    {
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/SupprimerCaisse.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression de caisse.";
+} else
+{
+   
+    message =sessionDirecteurMagasin.SupprimerCaisse(idCaisse,magasin);
     
 }
    

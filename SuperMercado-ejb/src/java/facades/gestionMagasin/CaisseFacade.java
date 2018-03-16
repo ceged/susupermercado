@@ -58,8 +58,8 @@ public class CaisseFacade extends AbstractFacade<Caisse> implements CaisseFacade
     @Override
     public Caisse RechercherCaisseParId(Long idCaisse, Magasin magasin) {
         Caisse result = null ;
-        Query req=getEntityManager().createQuery("SELECT c from Caisse as c where c.id=:idCaisse AND c.magasin=:magasin");
-        req.setParameter("idCaisse",idCaisse);
+        Query req=getEntityManager().createQuery("SELECT c from Caisse as c where c.id=:id AND c.magasin=:magasin");
+        req.setParameter("id",idCaisse);
         req.setParameter("magasin",magasin);
         List<Caisse>l=req.getResultList();
         for(Caisse c:l){

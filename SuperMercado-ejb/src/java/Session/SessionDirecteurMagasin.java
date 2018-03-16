@@ -124,6 +124,11 @@ public String CreerRayon (String secteur, String libelleRayon){
         return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
     }
     @Override
+    public Caisse RechercherCaisseParIdCaisse(Long id, String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return caisseFacade.RechercherCaisseParId(id, magasin);
+    }
+    @Override
     public String CreerCaisse(Long id, String nomMagasin) {
         String message = "magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
@@ -188,6 +193,13 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         return listeRayon;
         
     }
+     @Override
+    public List<Caisse> ListerCaisse() {
+        
+        List<Caisse> listeCaisse= caisseFacade.findAll();
+        return listeCaisse;
+        
+    }
     @Override
     public String SupprimerRayon(String magasin, String rayon) {
         String message="SOS problem";
@@ -206,6 +218,28 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
        if (rayonRecherche!=null){
         rayonFacade.SupprimerRayon(rayonRecherche);
         message = "rayon supprimé avec succès";
+        
+    }
+        return message;
+    }
+     @Override
+    public String SupprimerCaisse(Long caisse,String magasin) {
+        String message="problem";
+        
+        /*Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Caisse caisseRecherche =caisseFacade.RechercherCaisseParNom(caisse, magasinRecherche) ;
+        if(caisseRecherche==null){
+            message="caisse inconnu";
+        }*/
+        
+        Caisse caisseRecherche= this.RechercherCaisseParIdCaisse(caisse,magasin);
+        
+       if (caisseRecherche!=null){
+        caisseFacade.SupprimerCaisse(caisseRecherche);
+        message = "caisse supprimé avec succès";
         
     }
         return message;
