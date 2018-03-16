@@ -92,6 +92,25 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererCaisse(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+        else if (act.equals("TransfererListeRayon"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
+            sess.setAttribute("listeSecteur",listeSecteur); 
+            List<Rayon> listeRayon = sessionDirecteurMagasin.ListerRayon();
+            sess.setAttribute("listeRayon",listeRayon); 
+            
+            jspChoix="/GestionMagasinJSP/SupprimerRayon.jsp";
+            
+        } 
+         else if (act.equals("supprimerRayon"))
+        {
+            doActionSupprimerRayon(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
+
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -141,7 +160,7 @@ String nomPersonne= request.getParameter( "nom" );
 
     String message;
     if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerChefRayonJSP.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerChefRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
 } else
 {
     Date dob=Date.valueOf(dobPersonne);
@@ -158,12 +177,12 @@ request.setAttribute( "message", message );
     String rayon= request.getParameter( "libelleRayon" );
     String message;
     if ( libellesecteurCherche.trim().isEmpty()&&rayon.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création de rayon.";
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création de rayon.";
 } else
 {
     
     message = sessionDirecteurMagasin.CreerRayon(libellesecteurCherche, rayon);
-
+    message = "Rayon créé";
 }
    
 request.setAttribute( "message", message );
@@ -176,16 +195,35 @@ request.setAttribute( "message", message );
                     String message;
  
     if ( libelleMagasinCherche.trim().isEmpty()&&caisse.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création de caisse.";
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création de caisse.";
 } else
 {
     
     message = sessionDirecteurMagasin.CreerCaisse(Idcaisse,libelleMagasinCherche);
-
+    message = "Caisse créée";
 }
    
 request.setAttribute( "message", message );
 }
+    protected void doActionSupprimerRayon(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String nomRayonSupprimer= request.getParameter( "libelleRayon" );
+    String secteur= request.getParameter( "libelleSecteur" );
+    String magasin= request.getParameter( "nomMagasin" );
+    String message;
+    if ( magasin.trim().isEmpty()&&secteur.trim().isEmpty()&&nomRayonSupprimer.trim().isEmpty())
+    {
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/SupprimerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression de rayon.";
+} else
+{
+   
+    message =sessionDirecteurMagasin.SupprimerRayon(magasin,secteur,nomRayonSupprimer);
+    message = "Rayon supprimé";
+}
+   
+request.setAttribute( "message", message );
+}
+
 
 
 

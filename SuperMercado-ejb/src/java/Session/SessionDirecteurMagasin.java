@@ -121,4 +121,28 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     return directeurCherche;
 }
 
+
+@Override
+    public List<Rayon> ListerRayon() {
+        List<Rayon> listeRayon = rayonFacade.findAll();
+        return listeRayon;
+    }
+    @Override
+    public String SupprimerRayon(String magasin, String libelleSecteur,String rayon) {
+        String message="Rayon supprimer";
+        
+        Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(libelleSecteur) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Rayon rayonRecherche =rayonFacade.RechercherRayonParNom(rayon, magasinRecherche) ;
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }
+       
+        rayonFacade.SupprimerRayon(rayonRecherche);
+        return message;
+    }
+
+
 }

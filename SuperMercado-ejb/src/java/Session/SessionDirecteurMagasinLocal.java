@@ -39,5 +39,9 @@ public interface SessionDirecteurMagasinLocal {
     
     DirecteurMagasin ChercherDirecteurParId(String id);
     
+    List<Rayon> ListerRayon();
+    
+    String SupprimerRayon(String magasin, String libelleSecteur,String rayon);
+    
 
 }

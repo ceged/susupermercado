@@ -6,6 +6,7 @@
 package Session;
 
 import entités.gestionArticle.Categorie;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import java.util.Date;
@@ -40,5 +41,7 @@ public interface SessionAdminLocal {
     String SupprimerMagasin(String nomMagasin);
     
     List<Magasin> ListerMagasin();
+    
+    List<ReferentielArticle> ListerReferentielArticle();
   
 }
