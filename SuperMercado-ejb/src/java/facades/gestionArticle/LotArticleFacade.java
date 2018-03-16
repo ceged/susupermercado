@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
+import entités.gestionArticle.ReferentielArticle;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -68,6 +69,20 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         return la;
         
     }
+
+    @Override
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
+        
+        LotArticle la = new LotArticle ();
+        
+        la.setQuantiteLot(qteLotArticle);
+        la.setArticle(refLotArticle);
+        
+        em.persist(la);
+        
+    }
+    
+    
     
     
     

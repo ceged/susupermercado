@@ -6,6 +6,7 @@
 package facades.gestionCommande;
 
 import entités.gestionCommande.Fournisseur;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,11 @@ public interface FournisseurFacadeLocal {
     List<Fournisseur> findRange(int[] range);
 
     int count();
+    
+    void CreerFournisseur(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal);
+    
+    List<Fournisseur>ConsulterListeFournisseur();
+    
+    Fournisseur RechercheFournisseurParId(Long idFournisseur);
     
 }

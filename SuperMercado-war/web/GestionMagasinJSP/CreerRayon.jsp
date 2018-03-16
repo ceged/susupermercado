@@ -13,6 +13,7 @@
  <head>
         <link rel="stylesheet" href="test.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
 <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
 <jsp:useBean id="listeSecteur" scope="session" class="List<Secteur>"></jsp:useBean>
         <title>JSP Page</title>

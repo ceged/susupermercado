@@ -5,19 +5,26 @@
  */
 package Session;
 
+import entités.gestionArticle.Promotion;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.FournisseurFacade;
+import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -28,6 +35,15 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+    @EJB
+    private FournisseurFacadeLocal fournisseurFacade;
+
+    @EJB
+    private PersonneFacadeLocal personneFacade;
+
+    @EJB
+    private PromotionFacadeLocal promotionFacade;
 
     @EJB
     private ChefRayonFacadeLocal chefRayonFacade;
@@ -51,7 +67,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override 
-    public String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche){
+    public String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche, List<Fournisseur> listeFournisseur){
         String message="Article créé";
         Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
         if(magasinRecherche==null){
@@ -65,7 +81,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(sousCategorieRecherche==null){
             message="Sous catégorie inconnu";
         }
-        referentielArticleFacade.CreerReferentielArticle(libelleArticle, rayonRecherche, marque, prixVente, sousCategorieRecherche);
+        referentielArticleFacade.CreerReferentielArticle(libelleArticle, rayonRecherche, marque, prixVente, sousCategorieRecherche,listeFournisseur);
         return message;
     }
     
@@ -75,6 +91,12 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     public List<SousCategorie> ListerSousCategorie(){
         List<SousCategorie> listeSousCategorie=sousCategorieFacade.findAll();
         return listeSousCategorie;
+    }
+    
+    @Override
+    public List<Fournisseur> ListerFournisseur(){
+        List<Fournisseur> listeFournisseur=fournisseurFacade.ConsulterListeFournisseur();
+        return listeFournisseur;
     }
     
     @Override
@@ -92,7 +114,14 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(referentielArticle==null){
             message="article inconnu";
         }
-        referentielArticleFacade.ModifierPrixReferentielArticle(referentielArticle,newPrix);
+        Promotion p= promotionFacade.RechercherPromotionEnCoursParArticle(referentielArticle);
+        if(p!=null){
+            message="promotion en cours";
+        }
+        else{
+            referentielArticleFacade.ModifierPrixReferentielArticle(referentielArticle,newPrix);
+        }
+        
         return message;
     }
     
@@ -128,5 +157,26 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     listeArticle=referentielArticleFacade.RechercherListeArticleParRayon(chefRayon.getRayon());
     return listeArticle;
 }
+
+    @Override 
+    public String CreerFournisseur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal){
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+            fournisseurFacade.CreerFournisseur(prenom, nom, login, mdp, dob, sexe, adresse, codePostal);
+            message="Fournisseur créé";
+            }
+        return message; 
+    }
+    
+    @Override
+    public Fournisseur ChercherFournisseurParId(Long idFournisseur){
+        Fournisseur f=fournisseurFacade.RechercheFournisseurParId(idFournisseur);
+        return f;
+    }
     
 }

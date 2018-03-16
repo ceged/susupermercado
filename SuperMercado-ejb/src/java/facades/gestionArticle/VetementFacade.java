@@ -5,6 +5,7 @@
  */
 package facades.gestionArticle;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.Vetement;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,6 +28,20 @@ public class VetementFacade extends AbstractFacade<Vetement> implements Vetement
 
     public VetementFacade() {
         super(Vetement.class);
+    }
+    
+    @Override
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int taille, String couleur) {
+        
+        Vetement v = new Vetement();
+        
+        v.setQuantiteLot(qteLotArticle);
+        v.setArticle(refLotArticle);
+        v.setTaille(qteLotArticle);
+        v.setCouleur(couleur);
+        
+        em.persist(v);
+        
     }
     
 }

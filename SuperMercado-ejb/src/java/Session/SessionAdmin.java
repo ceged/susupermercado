@@ -10,6 +10,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
@@ -30,6 +31,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private LotArticleFacadeLocal lotArticleFacade;
 
     @EJB
     private PromotionFacadeLocal promotionFacade;
@@ -57,6 +61,8 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private PersonneFacadeLocal personneFacade;
+    
+    
     
     
     
@@ -198,6 +204,11 @@ public class SessionAdmin implements SessionAdminLocal {
         return listeArticle;
         
     }
+
+   
+    
+    
+   
     
     
     

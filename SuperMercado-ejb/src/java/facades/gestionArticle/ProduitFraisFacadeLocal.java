@@ -6,6 +6,8 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.ProduitFrais;
+import entités.gestionArticle.ReferentielArticle;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,6 +29,8 @@ public interface ProduitFraisFacadeLocal {
     List<ProduitFrais> findAll();
 
     List<ProduitFrais> findRange(int[] range);
+    
+    void CreerLotArticle(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption);
 
     int count();
     
