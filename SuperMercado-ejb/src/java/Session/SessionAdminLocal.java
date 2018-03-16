@@ -47,6 +47,7 @@ public interface SessionAdminLocal {
     String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, String libelle);
 
     List<ReferentielArticle>  ListerReferentielArticle();
+
     
     
 

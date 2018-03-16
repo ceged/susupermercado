@@ -180,5 +180,35 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
             }
         return message; 
     }
+    
+     @Override
+    public List<Rayon> ListerRayon() {
+        
+        List<Rayon> listeRayon = rayonFacade.findAll();
+        return listeRayon;
+        
     }
+    @Override
+    public String SupprimerRayon(String magasin, String rayon) {
+        String message="SOS problem";
+        
+        /*Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Rayon rayonRecherche =rayonFacade.RechercherRayonParNom(rayon, magasinRecherche) ;
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }*/
+        
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(magasin,rayon);
+        
+       if (rayonRecherche!=null){
+        rayonFacade.SupprimerRayon(rayonRecherche);
+        message = "rayon supprimé avec succès";
+        
+    }
+        return message;
+    }
+}
     

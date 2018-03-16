@@ -5,6 +5,7 @@
  */
 package facades.gestionArticle;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.Vetement;
 import java.util.List;
 import javax.ejb.Local;
@@ -27,6 +28,8 @@ public interface VetementFacadeLocal {
     List<Vetement> findAll();
 
     List<Vetement> findRange(int[] range);
+    
+    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int taille, String couleur);
 
     int count();
     

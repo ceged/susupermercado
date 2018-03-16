@@ -44,6 +44,7 @@ public class Admin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         String jspChoix ="/MenuAdmin.jsp";
         String act=request.getParameter("action");
         
@@ -86,8 +87,7 @@ public class Admin extends HttpServlet {
             HttpSession sess=request.getSession(true);
             List<ReferentielArticle> listeRefArticle = sessionAdmin.ListerReferentielArticle();
             sess.setAttribute("listeRefArticle",listeRefArticle); 
-            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";
-            
+            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";   
         } 
          else if (act.equals("insererPromotion"))
         {
@@ -107,6 +107,8 @@ public class Admin extends HttpServlet {
             doActionSupprimerMagasin(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
+         
+       
        
          
         

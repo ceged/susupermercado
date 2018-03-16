@@ -67,8 +67,8 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
     @Override
     public Rayon RechercherRayonParNom(String nomRayon, Magasin magasin) {
         Rayon result = null ;
-        Query req=getEntityManager().createQuery("SELECT r from Rayon as r where r.libelleRayon=:nomRayon AND r.secteur.magasin=:magasin");
-        req.setParameter("nomRayon",nomRayon);
+        Query req=getEntityManager().createQuery("SELECT r from Rayon as r where r.libelleRayon=:libelleRayon AND r.secteur.magasin=:magasin");
+        req.setParameter("libelleRayon",nomRayon);
         req.setParameter("magasin",magasin);
         List<Rayon>l=req.getResultList();
         for(Rayon r:l){
