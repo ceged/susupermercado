@@ -41,7 +41,5 @@ public interface SessionAdminLocal {
     String SupprimerMagasin(String nomMagasin);
     
     List<Magasin> ListerMagasin();
-    
-    List<ReferentielArticle> ListerReferentielArticle();
   
 }

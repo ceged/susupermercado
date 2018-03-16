@@ -6,6 +6,7 @@
 package Session;
 
 import entités.gestionArticle.Categorie;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
@@ -153,5 +154,7 @@ public class SessionAdmin implements SessionAdminLocal {
         List<Magasin> listeMagasin = magasinFacade.findAll();
         return listeMagasin;
     }
+
+
     
 }
