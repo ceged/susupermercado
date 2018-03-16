@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Electromenager;
+import entités.gestionArticle.ReferentielArticle;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,19 @@ public class ElectromenagerFacade extends AbstractFacade<Electromenager> impleme
 
     public ElectromenagerFacade() {
         super(Electromenager.class);
+    }
+    
+    @Override
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int garantie) {
+        
+        Electromenager e = new Electromenager ();
+        
+        e.setQuantiteLot(qteLotArticle);
+        e.setArticle(refLotArticle);
+        e.setGarantie(garantie);
+        
+        em.persist(e);
+        
     }
     
 }
