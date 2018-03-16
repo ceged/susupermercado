@@ -42,6 +42,8 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
                 ancienneQte = LotArticle.getQuantiteLot();
                 
                 nouvelleQte = ancienneQte - qteAModifier;
+                
+                
           
      LotArticle.setQuantiteLot(nouvelleQte);
      em.merge(LotArticle);

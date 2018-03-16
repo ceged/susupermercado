@@ -32,4 +32,6 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
     public AffectationCaisseAgentFacade() {
         super(AffectationCaisseAgent.class);
     }
+    
+    
 }

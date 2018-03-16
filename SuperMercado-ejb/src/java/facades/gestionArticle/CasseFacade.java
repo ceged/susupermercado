@@ -6,6 +6,9 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Casse;
+import entités.gestionArticle.LotArticle;
+import entités.gestionMagasin.AgentRayon;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +31,20 @@ public class CasseFacade extends AbstractFacade<Casse> implements CasseFacadeLoc
     public CasseFacade() {
         super(Casse.class);
     }
+
+    @Override
+    public void CreerCasse(Date dateCasse, int qteCasse, String motifCasse, AgentRayon agentRayon, LotArticle lotArticle ) {
+        
+        Casse ca = new Casse ();
+        ca.setDateCasse(dateCasse);
+        ca.setQuantiteCasse(qteCasse);
+        ca.setMotifCasse(motifCasse);
+        ca.setAgentRayon(agentRayon);
+        ca.setLotArticleCasse(lotArticle);
+        
+        em.persist(ca);
+    }
+    
+    
     
 }
