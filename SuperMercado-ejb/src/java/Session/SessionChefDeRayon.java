@@ -8,6 +8,7 @@ package Session;
 import entités.gestionArticle.Promotion;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -66,7 +67,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override 
-    public String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche){
+    public String CreerReferentielArticle(String libelleArticle,String magasin, String rayon, String marque, Float prixVente, String libelleSousCategorieRecherche, List<Fournisseur> listeFournisseur){
         String message="Article créé";
         Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
         if(magasinRecherche==null){
@@ -80,7 +81,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(sousCategorieRecherche==null){
             message="Sous catégorie inconnu";
         }
-        referentielArticleFacade.CreerReferentielArticle(libelleArticle, rayonRecherche, marque, prixVente, sousCategorieRecherche);
+        referentielArticleFacade.CreerReferentielArticle(libelleArticle, rayonRecherche, marque, prixVente, sousCategorieRecherche,listeFournisseur);
         return message;
     }
     
@@ -90,6 +91,12 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     public List<SousCategorie> ListerSousCategorie(){
         List<SousCategorie> listeSousCategorie=sousCategorieFacade.findAll();
         return listeSousCategorie;
+    }
+    
+    @Override
+    public List<Fournisseur> ListerFournisseur(){
+        List<Fournisseur> listeFournisseur=fournisseurFacade.ConsulterListeFournisseur();
+        return listeFournisseur;
     }
     
     @Override
@@ -165,6 +172,11 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
             }
         return message; 
     }
-
+    
+    @Override
+    public Fournisseur ChercherFournisseurParId(Long idFournisseur){
+        Fournisseur f=fournisseurFacade.RechercheFournisseurParId(idFournisseur);
+        return f;
+    }
     
 }

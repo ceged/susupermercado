@@ -170,6 +170,9 @@ public class ReferentielArticle implements Serializable {
     public List<Fournisseur> getListeFournisseurs() {
         return listeFournisseurs;
     }
+    public void setListeFournisseurs(List<Fournisseur> listeFournisseur) {
+        this.listeFournisseurs = listeFournisseur;
+    }
 
 
 

@@ -33,4 +33,8 @@ public interface FournisseurFacadeLocal {
     
     void CreerFournisseur(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal);
     
+    List<Fournisseur>ConsulterListeFournisseur();
+    
+    Fournisseur RechercheFournisseurParId(Long idFournisseur);
+    
 }

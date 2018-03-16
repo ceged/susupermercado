@@ -7,12 +7,14 @@
 import Session.SessionChefDeRayonLocal;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -55,6 +57,8 @@ public class ChefRayonServlet extends HttpServlet {
         {
             HttpSession sess=request.getSession(true);
             List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
+            List<Fournisseur> listeFournisseur=sessionChefDeRayon.ListerFournisseur();
+            sess.setAttribute("listeFournisseur",listeFournisseur);
             sess.setAttribute("listeSousCategorie",listeSousCategorie); 
             jspChoix="/GestionArticleJSP/CreerArticle.jsp";
         }
@@ -133,13 +137,25 @@ public class ChefRayonServlet extends HttpServlet {
     String marqueCree= request.getParameter( "marque" );
     String prixCree= request.getParameter( "prix" );
     String souscateogireCree= request.getParameter( "souscategorie" );
+    List<Fournisseur>listeFournisseurRecuperer=sessionChefDeRayon.ListerFournisseur();
+    List<Fournisseur>listeFournisseurAssocie= new ArrayList();
+    int j=0;
+    for(Fournisseur f:listeFournisseurRecuperer){
+        j++;
+        String h=String.valueOf(j);
+            if(request.getParameter(h)!=null){
+            Long h2=Long.valueOf(request.getParameter (h));
+            Fournisseur f2=sessionChefDeRayon.ChercherFournisseurParId(h2);
+            listeFournisseurAssocie.add(f2);
+            }
+    }
     String message;
     if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()&&marqueCree.trim().isEmpty()&&prixCree.trim().isEmpty()&&souscateogireCree.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/CreerArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un article.";
 } else
 {
     Float prixVente=Float.parseFloat(prixCree);
-    message=sessionChefDeRayon.CreerReferentielArticle(libelleArticleCree, magasinCree, rayonCree, marqueCree, prixVente, souscateogireCree);
+    message=sessionChefDeRayon.CreerReferentielArticle(libelleArticleCree, magasinCree, rayonCree, marqueCree, prixVente, souscateogireCree,listeFournisseurAssocie);
 }
    
 request.setAttribute( "message", message );

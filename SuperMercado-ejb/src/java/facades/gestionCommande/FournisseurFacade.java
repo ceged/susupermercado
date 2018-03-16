@@ -5,13 +5,17 @@
  */
 package facades.gestionCommande;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Magasin;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -47,6 +51,24 @@ public class FournisseurFacade extends AbstractFacade<Fournisseur> implements Fo
 
         em.persist(fournisseur);
         
+    }
+    @Override
+    public List<Fournisseur>ConsulterListeFournisseur(){
+        List<Fournisseur> listeFournisseur=findAll();
+        return listeFournisseur;
+    }
+    
+    @Override
+    public Fournisseur RechercheFournisseurParId(Long idFournisseur){
+        Fournisseur fournisseurCherche = null;
+        Query req = getEntityManager().createQuery("Select f from Fournisseur as f where f.id=:idFournisseur");
+        req.setParameter("idFournisseur", idFournisseur);
+        Collection<Fournisseur>col=req.getResultList();
+            for(Fournisseur f:col)
+    {
+        fournisseurCherche=f;
+    }
+        return fournisseurCherche;
     }
     
 }
