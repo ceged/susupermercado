@@ -119,9 +119,9 @@ public String CreerRayon (String secteur, String libelleRayon){
     }  
 
     @Override
-    public Rayon RechercherRayonParNomRayon(String nomRayon, String nomMagasin) {
+    public Rayon RechercherRayonParNomRayon(String libelleRayon, String nomMagasin) {
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
-        return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
+        return rayonFacade.RechercherRayonParNom(libelleRayon, magasin);
     }
     @Override
     public Caisse RechercherCaisseParIdCaisse(Long id, String nomMagasin) {
@@ -244,5 +244,27 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     }
         return message;
     }
-}
     
+     @Override
+    public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
+        String message ="Rayon modifié";
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(nomMagasin,LibelleRayon);
+       
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }
+       
+        else{
+            rayonFacade.ModifierRayon(newLibelleRayon,rayonRecherche);
+        }
+        
+        return message;
+    }
+    @Override
+public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
+    List<Rayon> listeRayon =null;
+    listeRayon=rayonFacade.ConsulterListeRayonsParMagasin(directeur.getMagasin());
+    return listeRayon;
+}
+  
+}

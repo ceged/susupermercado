@@ -58,5 +58,9 @@ public interface SessionDirecteurMagasinLocal {
     
     String SupprimerCaisse(Long caisse,String magasin);
     
+    String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String magasin);
+    
+    List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur);
+    
     
 }

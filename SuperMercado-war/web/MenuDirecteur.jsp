@@ -27,6 +27,8 @@
         Créer un chef de rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
+        <A HREF="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">
+        Modifier un rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=TransfererListeRayon&directeur=<%=p.getId()%>">
         Supprimer un rayon</A><br/><br/>
 

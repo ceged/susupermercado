@@ -138,6 +138,26 @@ public class DirecteurServlet extends HttpServlet {
             doActionSupprimerCaisse(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+        else if (act.equals("passageInfospourModifierRayon"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<Rayon> listeRayonModifie = sessionDirecteurMagasin.ConsulterListeRayonParDirecteur(d);
+            sess.setAttribute("listeRayonModifie",listeRayonModifie);
+            if(listeRayonModifie==null){
+                String message="aucun rayon existant";
+                request.setAttribute( "message", message );
+                jspChoix="/MenuDirecteur.jsp";
+            }else{
+                jspChoix="/GestionMagasinJSP/ModifierRayon.jsp";
+            }
+        }
+         else if (act.equals("modifierRayon"))
+        {
+            doActionModifierRayon(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
 
 
         
@@ -294,6 +314,23 @@ String nomPersonne= request.getParameter( "nom" );
    
         request.setAttribute( "message", message );
 }
+ protected void doActionModifierRayon(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+    String magasin= request.getParameter( "magasin" );
+    String Rayon= request.getParameter( "libelleRayon" );
+    String newRayon= request.getParameter( "newLibelleRayon" );
+    String message;
+    if (newRayon.trim().isEmpty()&& magasin.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/ModifierRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de rayon.";
+} else
+{
+    
+    message=sessionDirecteurMagasin.ModifierLibelleRayon(Rayon,newRayon,magasin);
+}
+   
+request.setAttribute( "message", message );
+}   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
