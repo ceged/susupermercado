@@ -50,7 +50,6 @@ public class Menu extends HttpServlet {
         // sessionAdmin.CreerPersonneAdmin();
         response.setContentType("text/html;charset=UTF-8");
 
-        
 
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
