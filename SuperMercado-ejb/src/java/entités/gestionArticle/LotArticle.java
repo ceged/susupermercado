@@ -5,7 +5,6 @@
  */
 package entités.gestionArticle;
 
-import entités.gestionArticle.StockProduit;
 import entités.gestionArticle.Casse;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.LigneAchat;
@@ -91,16 +90,7 @@ public class LotArticle implements Serializable {
         this.article = article;
     }
     
-    @ManyToOne
-    private StockProduit stockProduit;
-
-    public StockProduit getStockProduit() {
-        return stockProduit;
-    }
-
-    public void setStockProduit(StockProduit stockProduit) {
-        this.stockProduit = stockProduit;
-    }
+   
 
 
 }
