@@ -8,7 +8,9 @@ package Session;
 import entités.gestionArticle.Promotion;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -18,6 +20,7 @@ import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.CommandeFacadeLocal;
 import facades.gestionCommande.FournisseurFacade;
 import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionCommande.LigneCommandeFacadeLocal;
@@ -37,6 +40,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+    @EJB
+    private LigneCommandeFacadeLocal ligneCommandeFacade;
+
+    @EJB
+    private CommandeFacadeLocal commandeFacade;
 
     @EJB
     private FournisseurFacadeLocal fournisseurFacade;
@@ -179,6 +188,59 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     public Fournisseur ChercherFournisseurParId(Long idFournisseur){
         Fournisseur f=fournisseurFacade.RechercheFournisseurParId(idFournisseur);
         return f;
+    }
+    
+    @Override
+    public String CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur){
+        String message;
+        ChefRayon c=chefRayonFacade.RechercherChefRayonParId(idChefRayon);
+        Fournisseur f=fournisseurFacade.RechercheFournisseurParNom(fournisseur);
+        commandeFacade.CreerBonCommande(c, dateCommande, f);
+        message="Bon de commande créé";
+        return message;
+        
+    }
+    
+    @Override
+    public Commande ChercherDernierCommande(){
+        Commande commande=commandeFacade.RechercherDernierCommandeCree();
+        return commande;
+    }
+    
+    @Override
+    public void CreerLigneBonCommande(String article, Long idCommande, float Prix, int Quantite ){
+        ReferentielArticle r= referentielArticleFacade.RechercheReferentielArticleParLibelle(article);
+        Commande commande= commandeFacade.RechercherCommandeParId(idCommande);
+        ligneCommandeFacade.CreerLigneCommandeParBonCommande(r, commande, Prix, Quantite);
+    }
+    
+    @Override
+    public void SupprimerLigneCommande(LigneCommande ligneCommande){
+        ligneCommandeFacade.SupprimerLigneCommande(ligneCommande);
+    }
+    
+    @Override
+    public LigneCommande ChercherLigneCommandeParId(Long id){
+        LigneCommande l=ligneCommandeFacade.ChercherLigneCommandeParId(id);
+        return l;
+    }
+    
+    @Override
+    public Commande RechercherCommandeParId(Long id){
+        Commande commande=commandeFacade.RechercherCommandeParId(id);
+        return commande;
+    }
+    
+    @Override
+    public List<LigneCommande> RechercherListLigneCommandeParCommande(Commande commande){
+        List<LigneCommande>liste=ligneCommandeFacade.RechercherListeLigneCommandeParCommande(commande);
+        return liste;
+    }
+    
+    @Override
+    public void ValiderBonCommande(Commande commande){
+        String statut="valider";
+        commandeFacade.ChangerStatutCommande(commande, statut);
     }
     
 }

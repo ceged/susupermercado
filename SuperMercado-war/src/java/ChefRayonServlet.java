@@ -7,7 +7,9 @@
 import Session.SessionChefDeRayonLocal;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Secteur;
@@ -77,6 +79,12 @@ public class ChefRayonServlet extends HttpServlet {
                 jspChoix="/GestionArticleJSP/ModifierPrixArticle.jsp";
             }
         }
+        else if(act.equals("passageInfosCreerBonCommande")){
+            HttpSession sess=request.getSession(true);
+            List<Fournisseur> listeFournisseur=sessionChefDeRayon.ListerFournisseur();
+            sess.setAttribute("listeFournisseur",listeFournisseur);
+            jspChoix="/GestionCommandeJSP/CreerBonCommande.jsp";
+        }
         else if (act.equals("passageInfospourSupprimerArticle"))
         {
             String chefRayonCherche= request.getParameter( "chefRayon" );
@@ -97,6 +105,46 @@ public class ChefRayonServlet extends HttpServlet {
         {
             doActionModifierPrixArticle(request,response);
             jspChoix="/MenuChefdeRayon.jsp";
+        }
+        else if(act.equals("insererLigneCommande")){
+            doActioninsererLigneCommande(request,response);
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            HttpSession sess=request.getSession(true);
+            List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(c);
+            sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
+        }
+        else if(act.equals("SupprimerLigneAchat")){
+            doActionsupprimerLigneCommande(request,response);
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            HttpSession sess=request.getSession(true);
+            List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(c);
+            sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
+            
+        }
+        else if(act.equals("validerBonCommande")){
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            sessionChefDeRayon.ValiderBonCommande(c);
+            String message="Bon de commande validé";
+            request.setAttribute("message", message);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
+        else if(act.equals("insererBonCommande"))
+        {
+            doActioninsererBonCommande(request,response);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
+            Commande commande = sessionChefDeRayon.ChercherDernierCommande();
+            List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(commande);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("commande",commande);
+            sess.setAttribute("listeLigneCommande",listeLigneCommande);
         }
         else if (act.equals("insererReferentielArticle")){
             doActionInserReferentielArticle(request,response);
@@ -160,6 +208,44 @@ public class ChefRayonServlet extends HttpServlet {
    
 request.setAttribute( "message", message );
 }   
+    
+    protected void doActionsupprimerLigneCommande(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String idLigne= request.getParameter( "ligneId" );
+    String message;
+    if (idLigne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
+} else
+{
+    Long id=Long.parseLong(idLigne);
+    LigneCommande l=sessionChefDeRayon.ChercherLigneCommandeParId(id);
+    sessionChefDeRayon.SupprimerLigneCommande(l);
+    message="Article supprimé";
+}
+   
+request.setAttribute( "message", message );
+}
+            
+            protected void doActioninsererLigneCommande(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String quantite= request.getParameter( "quantite" );
+    String prix= request.getParameter( "prix" );
+    String commandeId= request.getParameter( "commandeId" );
+    String article= request.getParameter( "article" );
+    String message;
+    if ( quantite.trim().isEmpty()&&prix.trim().isEmpty()&&article.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
+} else
+{
+    Float prixAchat=Float.parseFloat(prix);
+    Long id=Long.parseLong(commandeId);
+    int q=Integer.parseInt(quantite);
+    sessionChefDeRayon.CreerLigneBonCommande(article, id, prixAchat, q);
+    message="Article ajouté";
+}
+   
+request.setAttribute( "message", message );
+}   
 
     protected void doActionModifierPrixArticle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -179,6 +265,22 @@ request.setAttribute( "message", message );
 request.setAttribute( "message", message );
 }   
     
+    protected void doActioninsererBonCommande(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String fournisseur= request.getParameter( "fournisseur" );
+    String date= request.getParameter( "date" );
+    String idChef= request.getParameter( "chefRayon" );
+    String message;
+    if ( fournisseur.trim().isEmpty()&&date.trim().isEmpty()&&idChef.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommandeJSP/CreerBonCommande.jsp\">Cliquez ici</a> pour accéder au formulaire de création bon de commande.";
+} else
+{
+    Date date2=Date.valueOf(date);
+    message = sessionChefDeRayon.CreerBonCommande(idChef, date2, fournisseur);
+}
+   
+request.setAttribute( "message", message );
+}   
     protected void doActionSupprimerArticle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String libelleArticleCree= request.getParameter( "libelleArticle" );

@@ -26,6 +26,22 @@ public class Fournisseur extends Personne implements Serializable {
     @OneToMany(mappedBy = "fournisseur")
     private List<Commande> listeCommandes;
 
+    public List<Commande> getListeCommandes() {
+        return listeCommandes;
+    }
+
+    public void setListeCommandes(List<Commande> listeCommandes) {
+        this.listeCommandes = listeCommandes;
+    }
+
+    public List<ReferentielArticle> getListeReferentielArticles() {
+        return listeReferentielArticles;
+    }
+
+    public void setListeReferentielArticles(List<ReferentielArticle> listeReferentielArticles) {
+        this.listeReferentielArticles = listeReferentielArticles;
+    }
+
     @ManyToMany(mappedBy = "listeFournisseurs")
     private List<ReferentielArticle> listeReferentielArticles;
 

@@ -71,4 +71,17 @@ public class FournisseurFacade extends AbstractFacade<Fournisseur> implements Fo
         return fournisseurCherche;
     }
     
+    @Override
+    public Fournisseur RechercheFournisseurParNom(String nomFournisseur){
+        Fournisseur fournisseurCherche = null;
+        Query req = getEntityManager().createQuery("Select f from Fournisseur as f where f.nom=:nomFournisseur");
+        req.setParameter("nomFournisseur", nomFournisseur);
+        Collection<Fournisseur>col=req.getResultList();
+            for(Fournisseur f:col)
+    {
+        fournisseurCherche=f;
+    }
+        return fournisseurCherche;
+    }
+    
 }
