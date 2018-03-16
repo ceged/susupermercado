@@ -37,7 +37,7 @@ public interface RayonFacadeLocal {
     
     void SupprimerRayon(Rayon rayonasupprimer);
     
-    void ModifierRayon(Rayon rayon, ChefRayon chefRayon);
+    void ModifierRayon(String newLibelleRayon, Rayon rayonModifie);
    
     List <Rayon> ConsulterListeRayonsParMagasin(Magasin magasin);
 

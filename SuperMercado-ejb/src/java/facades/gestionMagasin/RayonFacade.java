@@ -5,7 +5,7 @@
  */
 package facades.gestionMagasin;
 
-import entités.gestionMagasin.ChefRayon;
+
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
@@ -48,12 +48,13 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
         em.remove(rayonasupprimer);
     }
 
-    @Override // modification du chef de rayon, utile? 
-    public void ModifierRayon(Rayon rayon, ChefRayon chefRayon) {
-        rayon.setChefRayon(chefRayon);
-        em.merge(rayon);
+    @Override // modification du libelle Rayon
+    public void ModifierRayon(String newLibelleRayon, Rayon rayonModifie) {
+        
+        rayonModifie.setLibelleRayon(newLibelleRayon);
+        em.merge(rayonModifie);
     }
-
+  
     @Override
     public List <Rayon> ConsulterListeRayonsParMagasin(Magasin magasin) {
         
@@ -63,7 +64,7 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
         return result;
     }
 
-    
+
     @Override
     public Rayon RechercherRayonParNom(String nomRayon, Magasin magasin) {
         Rayon result = null ;
