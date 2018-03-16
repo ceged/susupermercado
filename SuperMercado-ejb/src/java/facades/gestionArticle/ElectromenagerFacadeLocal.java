@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Electromenager;
+import entités.gestionArticle.ReferentielArticle;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,7 +28,9 @@ public interface ElectromenagerFacadeLocal {
     List<Electromenager> findAll();
 
     List<Electromenager> findRange(int[] range);
-
+    
+    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int garantie);
+   
     int count();
     
 }

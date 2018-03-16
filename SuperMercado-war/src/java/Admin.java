@@ -88,8 +88,7 @@ public class Admin extends HttpServlet {
             HttpSession sess=request.getSession(true);
             List<ReferentielArticle> listeRefArticle = sessionAdmin.ListerReferentielArticle();
             sess.setAttribute("listeRefArticle",listeRefArticle); 
-            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";
-            
+            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";   
         } 
          else if (act.equals("insererPromotion"))
         {
@@ -109,6 +108,8 @@ public class Admin extends HttpServlet {
             doActionSupprimerMagasin(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
+         
+       
        
          
         
