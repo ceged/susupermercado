@@ -35,7 +35,7 @@ for(LigneCommande l : listeLigneCommande){%>
 <tr><td Width=15%><%=l.getArticle().getLibelleArticle() %></td>
 <td Width=15%><%=l.getQuantiteLigne() %></td>
 <td Width=15%><%=l.getPrixAchatUnitaire()%></td>
-<td Width=30%><A href="ChefRayonServlet?action=SupprimerLigneAchat&ligneId=<%=l.getId() %>"> Cliquez ici</A></td>
+<td Width=30%><A href="ChefRayonServlet?action=SupprimerLigneAchat&ligneId=<%=l.getId() %>&commandeId=<%=commande.getId()%>"> Cliquez ici</A></td>
 
 </tr><%}%></TABLE>
 

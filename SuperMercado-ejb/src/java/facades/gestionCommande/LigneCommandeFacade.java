@@ -52,6 +52,20 @@ public class LigneCommandeFacade extends AbstractFacade<LigneCommande> implement
     }
     
     @Override
+    public LigneCommande ChercherLigneCommandeParId(Long idLCommande){
+        LigneCommande l=null;
+        Query req = getEntityManager().createQuery("Select l from LigneCommande as l where l.id=:idLCommande");
+        req.setParameter("idLCommande", idLCommande);
+        Collection<LigneCommande>col=req.getResultList();
+            for(LigneCommande c:col)
+    {
+        l=c;
+    }
+        return l;
+    }
+    
+    
+    @Override
     public List<LigneCommande> RechercherListeLigneCommandeParCommande(Commande commande){
         List<LigneCommande> listeLigneCommande = new ArrayList();
         Query req = getEntityManager().createQuery("Select l from LigneCommande as l where l.commande=:commande");

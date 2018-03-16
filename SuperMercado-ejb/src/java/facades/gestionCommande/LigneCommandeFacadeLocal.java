@@ -38,4 +38,6 @@ public interface LigneCommandeFacadeLocal {
     
     List<LigneCommande> RechercherListeLigneCommandeParCommande(Commande commande);
     
+    LigneCommande ChercherLigneCommandeParId(Long idLCommande);
+    
 }

@@ -116,6 +116,26 @@ public class ChefRayonServlet extends HttpServlet {
             sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
         }
+        else if(act.equals("SupprimerLigneAchat")){
+            doActionsupprimerLigneCommande(request,response);
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            HttpSession sess=request.getSession(true);
+            List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(c);
+            sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
+            
+        }
+        else if(act.equals("validerBonCommande")){
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            sessionChefDeRayon.ValiderBonCommande(c);
+            String message="Bon de commande validé";
+            request.setAttribute("message", message);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
         else if(act.equals("insererBonCommande"))
         {
             doActioninsererBonCommande(request,response);
@@ -189,7 +209,23 @@ public class ChefRayonServlet extends HttpServlet {
 request.setAttribute( "message", message );
 }   
     
-    
+    protected void doActionsupprimerLigneCommande(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String idLigne= request.getParameter( "ligneId" );
+    String message;
+    if (idLigne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
+} else
+{
+    Long id=Long.parseLong(idLigne);
+    LigneCommande l=sessionChefDeRayon.ChercherLigneCommandeParId(id);
+    sessionChefDeRayon.SupprimerLigneCommande(l);
+    message="Article supprimé";
+}
+   
+request.setAttribute( "message", message );
+}
+            
             protected void doActioninsererLigneCommande(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String quantite= request.getParameter( "quantite" );

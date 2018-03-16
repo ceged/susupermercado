@@ -214,6 +214,17 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     }
     
     @Override
+    public void SupprimerLigneCommande(LigneCommande ligneCommande){
+        ligneCommandeFacade.SupprimerLigneCommande(ligneCommande);
+    }
+    
+    @Override
+    public LigneCommande ChercherLigneCommandeParId(Long id){
+        LigneCommande l=ligneCommandeFacade.ChercherLigneCommandeParId(id);
+        return l;
+    }
+    
+    @Override
     public Commande RechercherCommandeParId(Long id){
         Commande commande=commandeFacade.RechercherCommandeParId(id);
         return commande;
@@ -223,6 +234,12 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     public List<LigneCommande> RechercherListLigneCommandeParCommande(Commande commande){
         List<LigneCommande>liste=ligneCommandeFacade.RechercherListeLigneCommandeParCommande(commande);
         return liste;
+    }
+    
+    @Override
+    public void ValiderBonCommande(Commande commande){
+        String statut="valider";
+        commandeFacade.ChangerStatutCommande(commande, statut);
     }
     
 }

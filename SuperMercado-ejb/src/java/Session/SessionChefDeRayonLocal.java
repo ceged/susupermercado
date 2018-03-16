@@ -50,4 +50,10 @@ public interface SessionChefDeRayonLocal {
     
     List<LigneCommande> RechercherListLigneCommandeParCommande(Commande commande);
     
+    void ValiderBonCommande(Commande commande);
+    
+    void SupprimerLigneCommande(LigneCommande ligneCommande);
+    
+    LigneCommande ChercherLigneCommandeParId(Long id);
+    
 }
