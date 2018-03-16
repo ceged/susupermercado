@@ -7,9 +7,11 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,11 +33,26 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
     }
 
     @Override
-    public void CreerAchat(Date dateAchat) {
+    public Achat CreerAchat(Date dateAchat) {
         Achat achat = new Achat ();
         achat.setDateAchat(dateAchat);
-        
+       
         em.persist(achat);
+        
+        return achat;
+    }
+    
+    @Override
+    public Achat RechercheAchatParId(Long idAchat){
+        Achat a = null;
+        Query req = getEntityManager().createQuery("Select a from Achat as a where a.id =:idAchat ");
+        req.setParameter("idAchat", idAchat);
+        List<Achat>listeAchat=req.getResultList();
+            for(Achat ac:listeAchat)
+    {
+        a=ac;
+    }
+        return a;
     }
     
     

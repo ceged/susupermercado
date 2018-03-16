@@ -31,6 +31,8 @@ public interface AchatFacadeLocal {
 
     int count();
 
-    void CreerAchat(Date dateAchat);
+    Achat CreerAchat(Date dateAchat);
+    
+    Achat RechercheAchatParId(Long idAchat);
     
 }
