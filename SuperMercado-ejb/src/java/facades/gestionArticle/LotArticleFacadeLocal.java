@@ -31,7 +31,7 @@ public interface LotArticleFacadeLocal {
 
     int count();
 
-    void ModifierQteLotArticle(int qteAModifier, boolean signe, LotArticle LotArticle);
+    void ModifierQteLotArticle(int qteAModifier, LotArticle LotArticle);
 
     LotArticle RechercherLotArticleParId(long IdLotArticle);
 
