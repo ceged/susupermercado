@@ -49,6 +49,9 @@
                 <%}%>
         </SELECT>
         <br />
+        <A HREF="GestionCommandeJSP/CreerFournisseur.jsp">
+        Créer un fournisseur</A><br/><br/>
+        <br />
         <label for="listeFournisseur">Liste de fournisseur<span class="requis">*</span></label><br />
         <%
             int i=0;

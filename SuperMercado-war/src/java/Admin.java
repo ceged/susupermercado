@@ -71,8 +71,9 @@ public class Admin extends HttpServlet {
         }
         else if (act.equals("TransfererListeCategorie"))
         {
+            HttpSession sess=request.getSession(true);
             List<Categorie> listeCategorie = sessionAdmin.ListerCategorie();
-            request.setAttribute("listeCategorie",listeCategorie); 
+            sess.setAttribute("listeCategorie",listeCategorie); 
             jspChoix="/GestionArticleJSP/CreerSousCategorie.jsp";
             
         } 
