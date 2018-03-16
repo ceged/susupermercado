@@ -62,5 +62,7 @@ public interface SessionDirecteurMagasinLocal {
     
     List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur);
     
+    String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin);
+    
     
 }

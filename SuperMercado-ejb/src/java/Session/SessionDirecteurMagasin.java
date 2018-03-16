@@ -13,6 +13,7 @@ import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
@@ -32,6 +33,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 
+      @EJB
+    private AgentRayonFacadeLocal agentRayonFacade;
+      
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
 
@@ -78,7 +82,22 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
             }
         return message; 
     }
-
+ @Override 
+    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+           Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
+            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            message="Agent de Rayon créé";
+            }
+        return message; 
+    }
        
 @Override
     public String CreerSecteur(String libelleSecteur, String nomMagasin) {

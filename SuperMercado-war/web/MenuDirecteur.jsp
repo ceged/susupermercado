@@ -38,6 +38,8 @@
         Supprimer une caisse</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerAgentCaisse.jsp">
         Créer un AgentCaisse</A><br/><br/>
+        <A HREF="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">
+        Créer un AgentRayon</A><br/><br/>
         
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>

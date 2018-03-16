@@ -20,6 +20,7 @@ import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
 import facades.gestionCommande.FournisseurFacade;
 import facades.gestionCommande.FournisseurFacadeLocal;
+import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
@@ -35,6 +36,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+  
 
     @EJB
     private FournisseurFacadeLocal fournisseurFacade;
@@ -172,6 +175,7 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
             }
         return message; 
     }
+   
     
     @Override
     public Fournisseur ChercherFournisseurParId(Long idFournisseur){

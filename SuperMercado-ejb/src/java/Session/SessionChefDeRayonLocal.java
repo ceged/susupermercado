@@ -37,5 +37,6 @@ public interface SessionChefDeRayonLocal {
     String CreerFournisseur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal);
     
     Fournisseur ChercherFournisseurParId(Long idFournisseur);
+
     
 }
