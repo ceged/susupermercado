@@ -31,15 +31,13 @@
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
         <input type="text" name="libelleArticle" value="" size="20" maxlength="20" />
         <br />
-        <input type="hidden" name="rayon" value=<%=c.getRayon()%> size="20" maxlength="20" />
-        <br />
-        <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin()%> size="20" maxlength="20" />
-        <br />
+        <input type="hidden" name="rayon" value=<%=c.getRayon().getLibelleRayon() %> size="20" maxlength="20" />
+        <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin().getNomMagasin() %> size="20" maxlength="20" />
         <label for="marque">Marque <span class="requis">*</span></label>
         <input type="text" name="marque" value="" size="20" maxlength="20" />
         <br />
         <label for="prix">Prix de vente <span class="requis">*</span></label>
-        <input type="text" name="prix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" />
         <br />
         <label for="souscategorie">Sous catégorie <span class="requis">*</span></label>
         <SELECT name="souscategorie" size="1">

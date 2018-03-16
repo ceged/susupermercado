@@ -6,7 +6,11 @@
 
 import Session.SessionAdminLocal;
 import entités.gestionArticle.Categorie;
+
 import entités.gestionMagasin.Magasin;
+
+import entités.gestionArticle.ReferentielArticle;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -40,7 +44,6 @@ public class Admin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         String jspChoix ="/MenuAdmin.jsp";
         String act=request.getParameter("action");
         
@@ -67,15 +70,28 @@ public class Admin extends HttpServlet {
         }
         else if (act.equals("TransfererListeCategorie"))
         {
-            HttpSession sess=request.getSession(true);
             List<Categorie> listeCategorie = sessionAdmin.ListerCategorie();
-            sess.setAttribute("listeCategorie",listeCategorie); 
+            request.setAttribute("listeCategorie",listeCategorie); 
             jspChoix="/GestionArticleJSP/CreerSousCategorie.jsp";
             
         } 
         else if (act.equals("insererSousCategorie"))
         {
             doActionInsererSousCategorie(request,response);
+            jspChoix="/MenuAdmin.jsp";
+        }
+         
+        else if (act.equals("TransfererListeRefArticle"))
+        {
+            HttpSession sess=request.getSession(true);
+            List<ReferentielArticle> listeRefArticle = sessionAdmin.ListerReferentielArticle();
+            sess.setAttribute("listeRefArticle",listeRefArticle); 
+            jspChoix="/GestionArticleJSP/CreerPromotion.jsp";
+            
+        } 
+         else if (act.equals("insererPromotion"))
+        {
+            doActionInsererPromotion(request,response);
             jspChoix="/MenuAdmin.jsp";
         }
         else if (act.equals("TransfererListeMagasin"))
@@ -186,6 +202,7 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
    
 request.setAttribute( "message", message );
 }
+
 protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String nomMagasinSupprimer= request.getParameter( "nomMagasin" );
@@ -196,6 +213,30 @@ protected void doActionSupprimerMagasin(HttpServletRequest request, HttpServletR
 {
    
     message =sessionAdmin.SupprimerMagasin(nomMagasinSupprimer);
+    
+}
+    request.setAttribute( "message", message );
+
+}
+
+
+protected void doActionInsererPromotion(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+    String dateDeb= request.getParameter( "dateDeb" );
+    String dateFin= request.getParameter( "dateFin" );
+    String prixPromo= request.getParameter( "prixPromo" );
+    String libelle= request.getParameter( "libelle" );
+    String message;
+    if ( dateDeb.trim().isEmpty()&&dateFin.trim().isEmpty()&&prixPromo.trim().isEmpty()&&libelle.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+} else
+{   
+    Date deb=Date.valueOf(dateDeb);
+    Date fin=Date.valueOf(dateFin);
+    float promo = Float.valueOf(prixPromo);
+    
+    message =sessionAdmin.CreerPromotion(deb,fin,promo,libelle);
+
 
 }
    

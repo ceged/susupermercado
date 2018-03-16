@@ -63,12 +63,12 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
         return result;
     }
 
+    
     @Override
     public Rayon RechercherRayonParNom(String nomRayon, Magasin magasin) {
-        
         Rayon result = null ;
-        Query req=getEntityManager().createQuery("SELECT r from Rayon as r where r.libelleRayon=:nomRayon AND r.secteur.magasin=:magasin");
-        req.setParameter("nomRayon",nomRayon);
+        Query req=getEntityManager().createQuery("SELECT r from Rayon as r where r.libelleRayon=:libelleRayon AND r.secteur.magasin=:magasin");
+        req.setParameter("libelleRayon",nomRayon);
         req.setParameter("magasin",magasin);
         List<Rayon>l=req.getResultList();
         for(Rayon r:l){
@@ -76,4 +76,12 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
     }
         return result ;
     }   
+
+    @Override
+    public List <Rayon> ConsulterRayonsSansChef(Magasin magasin) {
+        Query req=getEntityManager().createQuery("SELECT r from Rayon AS r WHERE r.secteur.magasin=:magasin AND r.chefRayon IS NULL");
+        req.setParameter("magasin",magasin);
+        List result = req.getResultList();
+        return result;
+    }
 }   

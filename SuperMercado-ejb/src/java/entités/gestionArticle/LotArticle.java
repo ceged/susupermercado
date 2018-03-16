@@ -102,5 +102,17 @@ public class LotArticle implements Serializable {
         this.stockProduit = stockProduit;
     }
 
+    public List<LigneAchat> getListeLigneAchats() {
+        return listeLigneAchats;
+    }
+
+    public Casse getCasse() {
+        return casse;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 
 }

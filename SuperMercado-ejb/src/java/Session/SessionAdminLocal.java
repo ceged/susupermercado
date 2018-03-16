@@ -37,9 +37,18 @@ public interface SessionAdminLocal {
     String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie);
 
     List<Categorie> ListerCategorie();
+
     
     String SupprimerMagasin(String nomMagasin);
     
     List<Magasin> ListerMagasin();
+
+
+    String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, String libelle);
+
+    List<ReferentielArticle>  ListerReferentielArticle();
+    
+    
+
   
 }

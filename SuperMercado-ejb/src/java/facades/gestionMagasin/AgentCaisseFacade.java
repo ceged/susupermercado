@@ -6,6 +6,7 @@
 package facades.gestionMagasin;
 
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Magasin;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,7 +32,7 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
     }
     
     @Override
-    public void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal) {
+    public void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Magasin magasin) {
         AgentCaisse agent = new AgentCaisse();
         
         agent.setPrenom(prenom);
@@ -42,6 +43,7 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
         agent.setSexe(sexe);
         agent.setAdresse(adresse);
         agent.setCodePostal(codePostal);
+        agent.setMagasin(magasin);
 
         em.persist(agent);
         

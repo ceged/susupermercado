@@ -17,12 +17,10 @@
         <link rel="stylesheet" href="test.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
-        <jsp:useBean id="listeSecteur" scope="session" class="List<Secteur>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
  <% DirecteurMagasin a= directeurConnecte;
-List<Secteur> listeSecteur2 =listeSecteur;
 List<Rayon> listeRayon2 =listeRayon;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
@@ -30,14 +28,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Rayon a supprimer (majuscules et accents interdits)</legend>
-        <label for="libellesecteur">Secteur <span class="requis">*</span></label>
-        <SELECT name="libellesecteur" size="1">
-            <%
-            for(Secteur s: listeSecteur2){ %>
-            <OPTION><%=s.getLibelleSecteur()%>
-                <%}%>
-        </SELECT>
-        <br />
+        
         <label for="libelleRayon">Rayon<span class="requis">*</span></label>
         <SELECT name="libelleRayon" size="1">
             <%
@@ -46,7 +37,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
                 <%}%>    
         </SELECT>
         <br /> 
-        <input type="hidden" name="magasin" value="<%=a.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="nomMagasin" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="supprimerRayon">
         </fieldset>

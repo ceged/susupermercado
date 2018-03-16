@@ -7,6 +7,7 @@
 import Session.SessionDirecteurMagasinLocal;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
@@ -63,6 +64,11 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererChefRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+        else if (act.equals("InsererAgentCaisse"))
+        {
+            doActionInsererAgentCaisse(request,response);
+            jspChoix="/MenuDirecteur.jsp";
+        }
         else if (act.equals("transferListeRayon"))
         {
             String directeurCherche= request.getParameter( "directeur" );
@@ -83,7 +89,7 @@ public class DirecteurServlet extends HttpServlet {
             String directeurCherche= request.getParameter( "directeur" );
             DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
             HttpSession sess=request.getSession(true);
-            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
+            List<Secteur> listeSecteur = sessionDirecteurMagasin.ConsultationListeSecteurParMagasin(d.getMagasin().getNomMagasin());
             sess.setAttribute("listeSecteur",listeSecteur); 
             jspChoix="/GestionMagasinJSP/CreerRayon.jsp";
         }
@@ -92,13 +98,20 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererCaisse(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
-        else if (act.equals("TransfererListeRayon"))
+        else if (act.equals("transferListeCaisse"))//utiliser dans creation d'affectation
         {
             String directeurCherche= request.getParameter( "directeur" );
             DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
             HttpSession sess=request.getSession(true);
-            List<Secteur> listeSecteur = sessionDirecteurMagasin.ListerSecteur(d);
-            sess.setAttribute("listeSecteur",listeSecteur); 
+            List<Caisse> listeCaisse = sessionDirecteurMagasin.ConsultationCaisseParMagasin(d.getMagasin().getNomMagasin());
+            sess.setAttribute("listeCaisse",listeCaisse); 
+            jspChoix="/GestionMagasinJSP/CreerAgentCaisse.jsp";
+        }
+        else if (act.equals("TransfererListeRayon"))
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);  
             List<Rayon> listeRayon = sessionDirecteurMagasin.ListerRayon();
             sess.setAttribute("listeRayon",listeRayon); 
             
@@ -162,13 +175,12 @@ String nomPersonne= request.getParameter( "nom" );
     if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerChefRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
 } else
-{
-    Date dob=Date.valueOf(dobPersonne);
-    sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, rayon, magasin);
-    message = "Chef de Rayon créé";
-}
+    {
+        Date dob=Date.valueOf(dobPersonne);
+        message = sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, rayon, magasin);
+    }
    
-request.setAttribute( "message", message );
+        request.setAttribute( "message", message );
 }
 
     protected void doActionInsererRayon(HttpServletRequest request, HttpServletResponse response)
@@ -208,24 +220,46 @@ request.setAttribute( "message", message );
     protected void doActionSupprimerRayon(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String nomRayonSupprimer= request.getParameter( "libelleRayon" );
-    String secteur= request.getParameter( "libelleSecteur" );
     String magasin= request.getParameter( "nomMagasin" );
     String message;
-    if ( magasin.trim().isEmpty()&&secteur.trim().isEmpty()&&nomRayonSupprimer.trim().isEmpty())
+    if ( magasin.trim().isEmpty()&&nomRayonSupprimer.trim().isEmpty())
     {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/SupprimerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression de rayon.";
 } else
 {
    
-    message =sessionDirecteurMagasin.SupprimerRayon(magasin,secteur,nomRayonSupprimer);
-    message = "Rayon supprimé";
+    message =sessionDirecteurMagasin.SupprimerRayon(nomRayonSupprimer,magasin);
+    
 }
    
 request.setAttribute( "message", message );
 }
 
 
+protected void doActionInsererAgentCaisse(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+String nomPersonne= request.getParameter( "nom" );
+    String prenomPersonne= request.getParameter( "prenom" );
+    String loginPersonne= request.getParameter( "login" );
+    String mdpPersonne= request.getParameter( "mdp" );
+    String sexePersonne= request.getParameter( "sexe" );
+    String dobPersonne= request.getParameter( "dob" );
+    String adressePersonne= request.getParameter( "adresse" );
+    String codePostalPersonne= request.getParameter( "codePostal" );
+    String magasin = request.getParameter("magasin");
 
+
+    String message;
+    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerChefRayonJSP.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
+} else
+    {
+        Date dob=Date.valueOf(dobPersonne);
+        message = sessionDirecteurMagasin.CreerAgentCaisse(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, dob, sexePersonne,adressePersonne, codePostalPersonne, magasin);
+    }
+   
+        request.setAttribute( "message", message );
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

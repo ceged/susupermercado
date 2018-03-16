@@ -5,7 +5,11 @@
  */
 
 import Session.SessionChefDeRayonLocal;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.DirecteurMagasin;
+import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -47,15 +51,55 @@ public class ChefRayonServlet extends HttpServlet {
             {
             jspChoix="/MenuChefdeRayon.jsp";
             }
-        else if (act.equals("creerArticle"))
+        else if (act.equals("passageListeSousCategorie"))
         {
-            List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             HttpSession sess=request.getSession(true);
+            List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             sess.setAttribute("listeSousCategorie",listeSousCategorie); 
             jspChoix="/GestionArticleJSP/CreerArticle.jsp";
         }
+        else if (act.equals("passageInfospourModifierPrix"))
+        {
+            String chefRayonCherche= request.getParameter( "chefRayon" );
+            ChefRayon c=sessionChefDeRayon.ChercherChefRayonParId(chefRayonCherche);
+            HttpSession sess=request.getSession(true);
+            List<ReferentielArticle> listeReferentielArticleModifier = sessionChefDeRayon.ConsulterListeArticleParChefRayon(c);
+            sess.setAttribute("listeReferentielArticleModifier",listeReferentielArticleModifier);
+            if(listeReferentielArticleModifier==null){
+                String message="aucun article existant";
+                request.setAttribute( "message", message );
+                jspChoix="/MenuChefdeRayon.jsp";
+            }else{
+                jspChoix="/GestionArticleJSP/ModifierPrixArticle.jsp";
+            }
+        }
+        else if (act.equals("passageInfospourSupprimerArticle"))
+        {
+            String chefRayonCherche= request.getParameter( "chefRayon" );
+            ChefRayon c=sessionChefDeRayon.ChercherChefRayonParId(chefRayonCherche);
+            HttpSession sess=request.getSession(true);
+            List<ReferentielArticle> listeReferentielArticle = sessionChefDeRayon.ConsulterListeArticleParChefRayon(c);
+            sess.setAttribute("listeReferentielArticle",listeReferentielArticle);
+            if(listeReferentielArticle==null){
+                String message="aucun article existant";
+                request.setAttribute( "message", message );
+                jspChoix="/MenuChefdeRayon.jsp";
+            }
+            else{
+                jspChoix="/GestionArticleJSP/SupprimerArticle.jsp";
+            }
+        }
+        else if(act.equals("modifierPrixArticle"))
+        {
+            doActionModifierPrixArticle(request,response);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
         else if (act.equals("insererReferentielArticle")){
             doActionInserReferentielArticle(request,response);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
+        else if(act.equals("SupprimerArticle")){
+            doActionSupprimerArticle(request,response);
             jspChoix="/MenuChefdeRayon.jsp";
         }
         
@@ -97,6 +141,40 @@ public class ChefRayonServlet extends HttpServlet {
 request.setAttribute( "message", message );
 }   
 
+    protected void doActionModifierPrixArticle(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleArticleCree= request.getParameter( "libelleArticle" );
+    String magasinCree= request.getParameter( "magasin" );
+    String rayonCree= request.getParameter( "rayon" );
+    String newPrix= request.getParameter( "newprix" );
+    String message;
+    if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()&&newPrix.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/ModifierPrixArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de prix.";
+} else
+{
+    Float prixVente=Float.parseFloat(newPrix);
+    message=sessionChefDeRayon.ModifierPrixReferentielArticle(libelleArticleCree, rayonCree, magasinCree, prixVente);
+}
+   
+request.setAttribute( "message", message );
+}   
+    
+    protected void doActionSupprimerArticle(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String libelleArticleCree= request.getParameter( "libelleArticle" );
+    String magasinCree= request.getParameter( "magasin" );
+    String rayonCree= request.getParameter( "rayon" );
+    String message;
+    if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/ModifierPrixArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de prix.";
+} else
+{
+    message=sessionChefDeRayon.SupprimerReferentielArticle(libelleArticleCree, rayonCree, magasinCree);
+}
+   
+request.setAttribute( "message", message );
+}   
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

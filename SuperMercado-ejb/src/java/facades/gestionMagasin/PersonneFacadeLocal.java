@@ -5,6 +5,7 @@
  */
 package facades.gestionMagasin;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import entités.gestionMagasin.Personne;
 import java.util.List;
 import javax.ejb.Local;
@@ -39,5 +40,8 @@ public interface PersonneFacadeLocal {
     List RechercherPersonneParNom(String nom);
 
     void SupprimerPersonne(Personne personne);
-    
+
+    Personne GetPersonneParLogin(String login);   
+
+    Boolean LoginEstUnique(String login);
 }
