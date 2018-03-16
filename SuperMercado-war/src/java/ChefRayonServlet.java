@@ -102,6 +102,10 @@ public class ChefRayonServlet extends HttpServlet {
             doActionSupprimerArticle(request,response);
             jspChoix="/MenuChefdeRayon.jsp";
         }
+        else if(act.equals("insererFournisseur")){
+            doActioninsererFournisseur(request,response);
+            jspChoix="/MenuChefdeRayon.jsp";
+        }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -174,6 +178,29 @@ request.setAttribute( "message", message );
    
 request.setAttribute( "message", message );
 }   
+    
+protected void doActioninsererFournisseur(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String nomPersonne= request.getParameter( "nom" );
+    String prenomPersonne= request.getParameter( "prenom" );
+    String loginPersonne= request.getParameter( "login" );
+    String mdpPersonne= request.getParameter( "mdp" );
+    String sexePersonne= request.getParameter( "sexe" );
+    String dobPersonne= request.getParameter( "dob" );
+    String adressePersonne= request.getParameter( "adresse" );
+    String codePostalPersonne= request.getParameter( "codePostal" );
+    String message;
+    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerFournisseur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un fournisseur.";
+} else
+{
+    Date dob=Date.valueOf(dobPersonne);
+    message=sessionChefDeRayon.CreerFournisseur(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne);
+    
+}
+   
+request.setAttribute( "message", message );
+}
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

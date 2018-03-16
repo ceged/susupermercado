@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionArticle.Promotion;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
 import entités.gestionMagasin.ChefRayon;
@@ -13,11 +14,16 @@ import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.FournisseurFacade;
+import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
+import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -28,6 +34,15 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionChefDeRayon implements SessionChefDeRayonLocal {
+
+    @EJB
+    private FournisseurFacadeLocal fournisseurFacade;
+
+    @EJB
+    private PersonneFacadeLocal personneFacade;
+
+    @EJB
+    private PromotionFacadeLocal promotionFacade;
 
     @EJB
     private ChefRayonFacadeLocal chefRayonFacade;
@@ -92,7 +107,14 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(referentielArticle==null){
             message="article inconnu";
         }
-        referentielArticleFacade.ModifierPrixReferentielArticle(referentielArticle,newPrix);
+        Promotion p= promotionFacade.RechercherPromotionEnCoursParArticle(referentielArticle);
+        if(p!=null){
+            message="promotion en cours";
+        }
+        else{
+            referentielArticleFacade.ModifierPrixReferentielArticle(referentielArticle,newPrix);
+        }
+        
         return message;
     }
     
@@ -128,5 +150,21 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     listeArticle=referentielArticleFacade.RechercherListeArticleParRayon(chefRayon.getRayon());
     return listeArticle;
 }
+
+    @Override 
+    public String CreerFournisseur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal){
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+            fournisseurFacade.CreerFournisseur(prenom, nom, login, mdp, dob, sexe, adresse, codePostal);
+            message="Fournisseur créé";
+            }
+        return message; 
+    }
+
     
 }

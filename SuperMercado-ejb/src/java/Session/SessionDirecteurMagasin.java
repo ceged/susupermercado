@@ -78,8 +78,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
             }
         return message; 
     }
-    
-    
+
+       
 @Override
     public String CreerSecteur(String libelleSecteur, String nomMagasin) {
         String message = "magasin inconnu";

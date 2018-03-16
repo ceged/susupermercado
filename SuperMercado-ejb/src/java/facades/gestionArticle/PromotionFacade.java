@@ -7,10 +7,12 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Promotion;
 import entités.gestionArticle.ReferentielArticle;
+import java.util.Collection;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -43,8 +45,28 @@ public class PromotionFacade extends AbstractFacade<Promotion> implements Promot
         em.persist(P);
     }
     
+    @Override
+    public Promotion RechercherPromotionEnCoursParArticle(ReferentielArticle referentielArticle){
+        Promotion p = null;
+        Date dateJour= new Date();
+        Query req = getEntityManager().createQuery("Select p from Promotion as p where p.article=:referentielArticle");
+        req.setParameter("referentielArticle", referentielArticle);
+        Collection<Promotion>col=req.getResultList();
+            for(Promotion p2:col)
+        {
+        if(dateJour.compareTo(p2.getDateFin())==-1){
+             p=p2;
+               
+                }
+        }
+        return p;
+      }
+    
+    
+ }
     
     
     
     
-}
+    
+

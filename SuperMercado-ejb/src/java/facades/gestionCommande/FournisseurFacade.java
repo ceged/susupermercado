@@ -6,6 +6,9 @@
 package facades.gestionCommande;
 
 import entités.gestionCommande.Fournisseur;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Magasin;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +30,23 @@ public class FournisseurFacade extends AbstractFacade<Fournisseur> implements Fo
 
     public FournisseurFacade() {
         super(Fournisseur.class);
+    }
+    
+    @Override
+    public void CreerFournisseur(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal) {
+        Fournisseur fournisseur = new Fournisseur();
+        
+        fournisseur.setPrenom(prenom);
+        fournisseur.setNom(nom);
+        fournisseur.setLogin(login);
+        fournisseur.setMdp(mdp);
+        fournisseur.setDob(dob);
+        fournisseur.setSexe(sexe);
+        fournisseur.setAdresse(adresse);
+        fournisseur.setCodePostal(codePostal);
+
+        em.persist(fournisseur);
+        
     }
     
 }

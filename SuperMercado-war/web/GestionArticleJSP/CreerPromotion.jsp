@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="listeRefArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
@@ -31,7 +32,7 @@
         <br />  
         
         <label for="prixPromo">Prix de la promotion <span class="requis">*</span></label>
-        <input type="number" name="prixPromo" min="0" max="100" step="0.01" />
+        <input type="number" name="prixPromo" min="0" step="0.01" />
         <br />
             
         <label for="libelle"> Libellé Article <span class="requis">*</span></label>

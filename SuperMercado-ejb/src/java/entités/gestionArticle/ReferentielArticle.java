@@ -14,6 +14,7 @@ import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import java.io.Serializable;
 import java.util.List;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class ReferentielArticle implements Serializable {
     @OneToMany(mappedBy = "article")
     private List<LigneCommande> listeLigneCommandes;
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(cascade=REMOVE, mappedBy = "article")
     private List<Promotion> listePromotions;
 
     private static final long serialVersionUID = 1L;
