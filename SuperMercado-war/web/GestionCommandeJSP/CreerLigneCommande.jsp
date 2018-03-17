@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="entités.gestionArticle.ReferentielArticle"%>
+<a href="CreerLigneCommande.jsp"></a>
 <%@page import="entités.gestionCommande.Commande"%>
 <%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page import="entités.gestionMagasin.ChefRayon"%>
@@ -32,7 +33,7 @@
         <SELECT name="article" size="1">
             <%
             for(ReferentielArticle r: liste){ %>
-            <OPTION> <%=r.getLibelleArticle()%>
+            <OPTION value="<%=r.getCodeBarre()%>"> <%=r.getLibelleArticle()%>
                 <%}%>
         </SELECT>
         <br />
@@ -40,7 +41,7 @@
         <input type="number" name="quantite" value="" size="20" maxlength="20" />
         <br />
         <label for="prix"> Prix Unitaire <span class="requis">*</span></label>
-        <input type="number" name="prix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" />
         <br />
         <input type="hidden" name="commandeId" value="<%=commande.getId()%>">
         <input type="hidden" name="action" value="insererLigneCommande">
