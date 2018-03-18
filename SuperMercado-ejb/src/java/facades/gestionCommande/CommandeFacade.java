@@ -9,6 +9,7 @@ import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionMagasin.ChefRayon;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,7 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
         em.persist(c);
     }
     
-    @Override
+    @Override//encours;valider;livrer;reclamer;
     public void ChangerStatutCommande(Commande commande,String statut){
         commande.setStatutCommande(statut);
         em.merge(commande);
@@ -81,6 +82,31 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
         }
       }
         return commandeCherche;
+    }
+    
+    @Override
+    public List<Commande> RechercherListeBonCommmandeParStatutParChefRayon(String statut,ChefRayon chefRayon){
+        List<Commande> listeCommande = new ArrayList<Commande>();
+        Query req=getEntityManager().createQuery("Select c from Commande as c WHERE c.statut=:statut and c.chefRayon=:chefRayon");
+        req.setParameter("statut", statut);
+        req.setParameter("chefRayon", chefRayon);
+        Collection<Commande>col=req.getResultList();
+        for(Commande c:col){
+            listeCommande.add(c);
+        }
+        return listeCommande;
+    }
+    
+    @Override
+    public List<Commande> RechercherListeBonCommmandeParChefRayon(ChefRayon chefRayon){
+        List<Commande> listeCommande = new ArrayList<Commande>();
+        Query req=getEntityManager().createQuery("Select c from Commande as c WHERE c.chefRayon=:chefRayon");
+        req.setParameter("chefRayon", chefRayon);
+        Collection<Commande>col=req.getResultList();
+        for(Commande c:col){
+            listeCommande.add(c);
+        }
+        return listeCommande;
     }
     
 }

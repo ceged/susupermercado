@@ -32,7 +32,7 @@ public interface SessionChefDeRayonLocal {
     
     ChefRayon ChercherChefRayonParId(String id);
     
-    String SupprimerReferentielArticle(String libelleArticle, String rayon,String magasin);
+    String SupprimerReferentielArticle(Long idArticle, String rayon,String magasin);
     
     List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chefRayon);
     
@@ -44,7 +44,7 @@ public interface SessionChefDeRayonLocal {
     
     Commande ChercherDernierCommande();
     
-    void CreerLigneBonCommande(String article, Long idCommande, float Prix, int Quantite );
+    void CreerLigneBonCommande(Long idArticle, Long idCommande, float Prix, int Quantite );
     
     Commande RechercherCommandeParId(Long id);
     
@@ -55,5 +55,9 @@ public interface SessionChefDeRayonLocal {
     void SupprimerLigneCommande(LigneCommande ligneCommande);
     
     LigneCommande ChercherLigneCommandeParId(Long id);
+    
+    List<Commande>RechercherListeCommandeParStatutParChefRayon(String statut, String idChefRayon);
+    
+    List<Commande>RecherListeCommandeParChefRayon(String idChefRayon);
     
 }

@@ -29,6 +29,7 @@ import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -137,7 +138,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     }
     
     @Override
-    public String SupprimerReferentielArticle(String libelleArticle, String rayon,String magasin){
+    public String SupprimerReferentielArticle(Long idArticle, String rayon,String magasin){
         String message ="Article supprimé";
         Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(magasin);
         if(magasinRecherche==null){
@@ -147,7 +148,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(rayonRecherche==null){
             message="rayon inconnu";
         }
-        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParLibelleParRayon(rayonRecherche, libelleArticle);
+        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idArticle);
         if(referentielArticle==null){
             message="article inconnu";
         }
@@ -208,8 +209,8 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     }
     
     @Override
-    public void CreerLigneBonCommande(String article, Long idCommande, float Prix, int Quantite ){
-        ReferentielArticle r= referentielArticleFacade.RechercheReferentielArticleParLibelle(article);
+    public void CreerLigneBonCommande(Long idArticle, Long idCommande, float Prix, int Quantite ){
+        ReferentielArticle r= referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idArticle);
         Commande commande= commandeFacade.RechercherCommandeParId(idCommande);
         ligneCommandeFacade.CreerLigneCommandeParBonCommande(r, commande, Prix, Quantite);
     }
@@ -243,4 +244,19 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
         commandeFacade.ChangerStatutCommande(commande, statut);
     }
     
+    @Override
+    public List<Commande>RechercherListeCommandeParStatutParChefRayon(String statut, String idChefRayon){
+        List<Commande> liste=new ArrayList <Commande>();
+        ChefRayon c=ChercherChefRayonParId(idChefRayon);
+        liste=commandeFacade.RechercherListeBonCommmandeParStatutParChefRayon(statut, c);
+        return liste; 
+    }
+    
+    @Override
+    public List<Commande>RecherListeCommandeParChefRayon(String idChefRayon){
+        List<Commande> liste=new ArrayList <Commande>();
+        ChefRayon c=ChercherChefRayonParId(idChefRayon);
+        liste=commandeFacade.RechercherListeBonCommmandeParChefRayon(c);
+        return liste; 
+    }
 }

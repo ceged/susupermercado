@@ -37,6 +37,9 @@ public class LigneCommandeFacade extends AbstractFacade<LigneCommande> implement
     
     @Override
     public void SupprimerLigneCommande(LigneCommande ligneCommandeSupp){
+        if (!em.contains(ligneCommandeSupp)) {
+    ligneCommandeSupp = em.merge(ligneCommandeSupp);
+}
         em.remove(ligneCommandeSupp);
     }
     

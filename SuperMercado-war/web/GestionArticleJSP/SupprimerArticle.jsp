@@ -33,7 +33,7 @@
         <SELECT name="libelleArticle" size="1">
             <%
             for(ReferentielArticle r: liste){ %>
-            <OPTION><%=r.getLibelleArticle()%>
+            <OPTION value="<%=r.getCodeBarre()%>"><%=r.getLibelleArticle()%>
                 <%}%>
         </SELECT>
         <br />
