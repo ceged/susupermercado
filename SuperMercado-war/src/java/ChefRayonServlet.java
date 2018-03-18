@@ -85,6 +85,20 @@ public class ChefRayonServlet extends HttpServlet {
             sess.setAttribute("listeFournisseur",listeFournisseur);
             jspChoix="/GestionCommandeJSP/CreerBonCommande.jsp";
         }
+        else if(act.equals("passageModifListeBonCommande")){
+            HttpSession sess=request.getSession(true);
+            String idChef=request.getParameter("chefRayon");
+            String statut=request.getParameter("statut");
+            List<Commande> liste= sessionChefDeRayon.RecherListeCommandeParChefRayon(idChef);
+            if(statut.equalsIgnoreCase("aucun")){
+                liste=sessionChefDeRayon.RecherListeCommandeParChefRayon(idChef);
+            }
+            else{
+                liste=sessionChefDeRayon.RechercherListeCommandeParStatutParChefRayon(statut, idChef);
+            }
+            sess.setAttribute("liste", liste);
+            jspChoix="/GestionCommandeJSP/AfficherListeCommande.jsp";
+        }
         else if (act.equals("passageInfospourSupprimerArticle"))
         {
             String chefRayonCherche= request.getParameter( "chefRayon" );
@@ -105,6 +119,23 @@ public class ChefRayonServlet extends HttpServlet {
         {
             doActionModifierPrixArticle(request,response);
             jspChoix="/MenuChefdeRayon.jsp";
+        }
+        else if(act.equals("passageInfosListeBonCommande")){
+            String idChef=request.getParameter("chefRayon");
+            List<Commande>liste=sessionChefDeRayon.RecherListeCommandeParChefRayon(idChef);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionCommandeJSP/AfficherListeCommande.jsp";
+        }
+        else if(act.equals("afficherBonCommande")){
+            String idCommande= request.getParameter( "commandeId" );
+            Long id=Long.parseLong(idCommande);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
+            HttpSession sess=request.getSession(true);
+            List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(c);
+            sess.setAttribute("commande",c);
+            sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
         }
         else if(act.equals("insererLigneCommande")){
             doActioninsererLigneCommande(request,response);

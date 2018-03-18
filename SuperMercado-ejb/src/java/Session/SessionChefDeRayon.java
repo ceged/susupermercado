@@ -28,6 +28,7 @@ import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.RayonFacadeLocal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -242,4 +243,19 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
         commandeFacade.ChangerStatutCommande(commande, statut);
     }
     
+    @Override
+    public List<Commande>RechercherListeCommandeParStatutParChefRayon(String statut, String idChefRayon){
+        List<Commande> liste=new ArrayList <Commande>();
+        ChefRayon c=ChercherChefRayonParId(idChefRayon);
+        liste=commandeFacade.RechercherListeBonCommmandeParStatutParChefRayon(statut, c);
+        return liste; 
+    }
+    
+    @Override
+    public List<Commande>RecherListeCommandeParChefRayon(String idChefRayon){
+        List<Commande> liste=new ArrayList <Commande>();
+        ChefRayon c=ChercherChefRayonParId(idChefRayon);
+        liste=commandeFacade.RechercherListeBonCommmandeParChefRayon(c);
+        return liste; 
+    }
 }

@@ -29,6 +29,8 @@
         Créer un fournisseur</A><br/><br/>
         <A HREF="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">
         Créer bon de commande</A><br/><br/>
+        <A HREF="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">
+        Afficher les bon de commandes</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

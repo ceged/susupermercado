@@ -41,4 +41,8 @@ public interface CommandeFacadeLocal {
     
     Commande RechercherDernierCommandeCree();
     
+    List<Commande> RechercherListeBonCommmandeParStatutParChefRayon(String statut,ChefRayon chefRayon);
+    
+    List<Commande> RechercherListeBonCommmandeParChefRayon(ChefRayon chefRayon);
+    
 }

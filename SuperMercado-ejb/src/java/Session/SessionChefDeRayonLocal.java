@@ -56,4 +56,8 @@ public interface SessionChefDeRayonLocal {
     
     LigneCommande ChercherLigneCommandeParId(Long id);
     
+    List<Commande>RechercherListeCommandeParStatutParChefRayon(String statut, String idChefRayon);
+    
+    List<Commande>RecherListeCommandeParChefRayon(String idChefRayon);
+    
 }

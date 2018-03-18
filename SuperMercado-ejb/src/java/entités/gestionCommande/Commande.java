@@ -42,13 +42,7 @@ public class Commande implements Serializable {
         this.listeLigneCommandes = listeLigneCommandes;
     }
 
-    public String getStatut() {
-        return statut;
-    }
-
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
+    
 
     @OneToMany(mappedBy = "commande")
     private List<Livraison> listeLivraisons;
@@ -106,6 +100,14 @@ public class Commande implements Serializable {
     }
     
     private String statut;
+    
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
     
     public void setStatutCommande(String statut){
         this.statut=statut;

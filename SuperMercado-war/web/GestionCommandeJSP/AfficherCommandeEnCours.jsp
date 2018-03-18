@@ -20,10 +20,14 @@
 <h1>Liste des articles ajoutés</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
-out.println( attribut );
+if(attribut!=null){
+    out.println( attribut );
+}
+
 %> </p>
 <A HREF="GestionCommandeJSP/CreerLigneCommande.jsp?commandeId=<%=commande.getId() %>">Ajouter un article</A><br />
 <A HREF="ChefRayonServlet?action=validerBonCommande&commandeId=<%=commande.getId()%>">Valider le bon de commande</A><br />
+<A HREF="MenuChefdeRayon.jsp">Retour au menu</A><br />
 <TABLE border width=50%>
 <tr> <TD>Designation article</TD>
 <TD>Quantité</TD>
