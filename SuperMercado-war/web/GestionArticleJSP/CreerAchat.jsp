@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MenuAgentCaisse
-    Created on : 16 mars 2018, 15:19:32
+    Document   : CreerAchat
+    Created on : 16 mars 2018, 15:22:06
     Author     : CGAILLOTDREVON
 --%>
 
@@ -12,10 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenue sur le menu Caisse !</h1>
-        
-        <A HREF="EmployeCaisseServlet?action=insererAchat">
-        Créer un achat</A><br/><br/>
-       
+        <h1>Hello World!</h1>
     </body>
 </html>

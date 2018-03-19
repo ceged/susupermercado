@@ -6,6 +6,9 @@
 package facades.gestionCommande;
 
 import entités.gestionCommande.Commande;
+import entités.gestionCommande.Fournisseur;
+import entités.gestionMagasin.ChefRayon;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +32,17 @@ public interface CommandeFacadeLocal {
     List<Commande> findRange(int[] range);
 
     int count();
+    
+    void CreerBonCommande(ChefRayon chefRayon, Date dateCommande, Fournisseur fournisseur);
+    
+    Commande RechercherCommandeParId(Long idCommande);
+    
+    void ChangerStatutCommande(Commande commande,String statut);
+    
+    Commande RechercherDernierCommandeCree();
+    
+    List<Commande> RechercherListeBonCommmandeParStatutParChefRayon(String statut,ChefRayon chefRayon);
+    
+    List<Commande> RechercherListeBonCommmandeParChefRayon(ChefRayon chefRayon);
     
 }

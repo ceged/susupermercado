@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CreerChefRayon
-    Created on : 14 mars 2018, 11:59:16
-    Author     : Sophia
+    Document   : CreerAgentRayon
+    Created on : 16 mars 2018, 17:23:54
+    Author     : tangu_000
 --%>
 
 <%@page import="entités.gestionMagasin.Rayon"%>
@@ -26,7 +26,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
          <h1>Formulaire de création Chef de Rayon</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations ChefMagasin (majuscules et accents interdits)</legend>
+        <legend>Informations Agent de rayon (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" />
         <br />
@@ -64,11 +64,12 @@ List<Rayon> listeRayon2 =listeRayon;{%>
         <br />
         <input type="hidden" name="magasin" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
-        <input type="hidden" name="action" value="insererChefRayon">
+        <input type="hidden" name="action" value="insererAgentRayon">
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
     </body>
 </html>
+        
         

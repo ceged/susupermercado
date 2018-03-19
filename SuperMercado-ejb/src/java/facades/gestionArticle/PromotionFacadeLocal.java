@@ -34,4 +34,6 @@ public interface PromotionFacadeLocal {
 
     void CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, ReferentielArticle article);
     
+    Promotion RechercherPromotionEnCoursParArticle(ReferentielArticle referentielArticle);
+    
 }

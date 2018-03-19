@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
+import entités.gestionArticle.ReferentielArticle;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,26 +34,15 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
     
 
     @Override
-    public void ModifierQteLotArticle(int qteAModifier, boolean signe, LotArticle LotArticle) {
+    public void ModifierQteLotArticle(int qteAModifier, LotArticle LotArticle) {
         //règle signe : true = +, False = -
         int nouvelleQte = 0;    
         int ancienneQte = 0;
-                
-                if (signe = true) {
-                
-                ancienneQte = LotArticle.getQuantiteLot();
-                
-                nouvelleQte = ancienneQte + qteAModifier;
-               
-        }
-                else if (signe = false) {
               
                 ancienneQte = LotArticle.getQuantiteLot();
                 
                 nouvelleQte = ancienneQte - qteAModifier;
-               
-                }
-                
+          
      LotArticle.setQuantiteLot(nouvelleQte);
      em.merge(LotArticle);
      
@@ -68,6 +58,20 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         return la;
         
     }
+
+    @Override
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
+        
+        LotArticle la = new LotArticle ();
+        
+        la.setQuantiteLot(qteLotArticle);
+        la.setArticle(refLotArticle);
+        
+        em.persist(la);
+        
+    }
+    
+    
     
     
     

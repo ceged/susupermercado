@@ -57,7 +57,7 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
         AgentCaisse result = null ;
         Long id=Long.parseLong(idAgentCaisse);
         Query req=getEntityManager().createQuery("SELECT a from AgentCaisse as a where a.id=:id AND a.magasin=:magasin");
-        req.setParameter("id",idAgentCaisse);
+        req.setParameter("id",id);
         req.setParameter("magasin",magasin);
         List<AgentCaisse>l=req.getResultList();
         for(AgentCaisse c:l){

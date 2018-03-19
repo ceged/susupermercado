@@ -10,6 +10,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
+import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
@@ -34,6 +35,9 @@ public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
+
+    @EJB
+    private LotArticleFacadeLocal lotArticleFacade;
 
     @EJB
     private PromotionFacadeLocal promotionFacade;
@@ -66,6 +70,10 @@ public class SessionAdmin implements SessionAdminLocal {
     
     
     
+    
+    
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -87,6 +95,9 @@ public class SessionAdmin implements SessionAdminLocal {
         }
         else if (directeurMagasinFacade.findAll().contains(personneConnecte)){
             i=3;
+        }
+        else if (agentCaisseFacade.findAll().contains(personneConnecte)){
+            i=4;
         }
         else if (agentCaisseFacade.findAll().contains(personneConnecte)){
             i=4;
@@ -115,12 +126,19 @@ public class SessionAdmin implements SessionAdminLocal {
     
         @Override 
     public String CreerDirecteur(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String magasin){
-        String message ="Magasin inconnu";
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else{
+        message ="Magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
         if(magasinRecherche!=null){
+            directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
             message="Directeur créé";
+            }
         }
-        directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
         return message;
     }
     
@@ -205,6 +223,11 @@ public class SessionAdmin implements SessionAdminLocal {
         return listeArticle;
         
     }
+
+   
+    
+    
+   
     
     
     

@@ -10,6 +10,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionVenteEnLigne.RetraitMagasin;
 import java.io.Serializable;
 import java.util.List;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Magasin implements Serializable {
     @OneToMany(mappedBy = "magasin")
     private List<RetraitMagasin> listeRetraitMagasins;
 
-    @OneToOne(mappedBy = "magasin")
+    @OneToOne(cascade=REMOVE,mappedBy = "magasin")
     private DirecteurMagasin directeurMagasin;
 
     @OneToMany(mappedBy = "magasin")

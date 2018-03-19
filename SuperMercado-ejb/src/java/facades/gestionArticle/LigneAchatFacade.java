@@ -43,4 +43,6 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
     
     
     
+    
+    
 }

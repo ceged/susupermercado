@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <title>JSP Page</title>
     </head>
@@ -26,10 +27,19 @@
         Créer un chef de rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">
         Créer un rayon</A><br/><br/>
+        <A HREF="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">
+        Modifier un rayon</A><br/><br/>
+        <A HREF="DirecteurServlet?action=TransfererListeRayon&directeur=<%=p.getId()%>">
+        Supprimer un rayon</A><br/><br/>
+
         <A HREF="GestionMagasinJSP/CreerCaisse.jsp">
         Créer une caisse</A><br/><br/>
+        <A HREF="DirecteurServlet?action=TransfererListeCaisse&directeur=<%=p.getId()%>">
+        Supprimer une caisse</A><br/><br/>
         <A HREF="GestionMagasinJSP/CreerAgentCaisse.jsp">
         Créer un AgentCaisse</A><br/><br/>
+        <A HREF="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">
+        Créer un AgentRayon</A><br/><br/>
         <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">
         Modifier mon mot de passe</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>">

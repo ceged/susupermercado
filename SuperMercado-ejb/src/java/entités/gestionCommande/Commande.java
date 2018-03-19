@@ -26,6 +26,24 @@ import javax.persistence.Temporal;
 @Entity
 public class Commande implements Serializable {
 
+    public List<Livraison> getListeLivraisons() {
+        return listeLivraisons;
+    }
+
+    public void setListeLivraisons(List<Livraison> listeLivraisons) {
+        this.listeLivraisons = listeLivraisons;
+    }
+
+    public List<LigneCommande> getListeLigneCommandes() {
+        return listeLigneCommandes;
+    }
+
+    public void setListeLigneCommandes(List<LigneCommande> listeLigneCommandes) {
+        this.listeLigneCommandes = listeLigneCommandes;
+    }
+
+    
+
     @OneToMany(mappedBy = "commande")
     private List<Livraison> listeLivraisons;
 
@@ -79,6 +97,24 @@ public class Commande implements Serializable {
 
     public void setDateCommande(java.util.Date dateCommande) {
         this.dateCommande = dateCommande;
+    }
+    
+    private String statut;
+    
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+    
+    public void setStatutCommande(String statut){
+        this.statut=statut;
+    }
+    
+    public String getStatutCommande(){
+        return statut;
     }
     
     @ManyToOne

@@ -15,6 +15,7 @@ import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
@@ -37,6 +38,9 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     @EJB
     private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
 
+      @EJB
+    private AgentRayonFacadeLocal agentRayonFacade;
+      
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
 
@@ -83,8 +87,23 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
             }
         return message; 
     }
-    
-    
+ @Override 
+    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+        String message;
+        if(personneFacade.LoginEstUnique(login)==false)
+        {
+            message = "login existe déjà";
+        }
+        else
+        {
+           Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
+            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
+            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            message="Agent de Rayon créé";
+            }
+        return message; 
+    }
+       
 @Override
     public String CreerSecteur(String libelleSecteur, String nomMagasin) {
         String message = "magasin inconnu";
@@ -124,9 +143,14 @@ public String CreerRayon (String secteur, String libelleRayon){
     }  
 
     @Override
-    public Rayon RechercherRayonParNomRayon(String nomRayon, String nomMagasin) {
+    public Rayon RechercherRayonParNomRayon(String libelleRayon, String nomMagasin) {
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
-        return rayonFacade.RechercherRayonParNom(nomRayon, magasin);
+        return rayonFacade.RechercherRayonParNom(libelleRayon, magasin);
+    }
+    @Override
+    public Caisse RechercherCaisseParIdCaisse(Long id, String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return caisseFacade.RechercherCaisseParId(id, magasin);
     }
     @Override
     public String CreerCaisse(Long id, String nomMagasin) {
@@ -185,7 +209,64 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
             }
         return message; 
     }
-
+    
+     @Override
+    public List<Rayon> ListerRayon() {
+        
+        List<Rayon> listeRayon = rayonFacade.findAll();
+        return listeRayon;
+        
+    }
+     @Override
+    public List<Caisse> ListerCaisse() {
+        
+        List<Caisse> listeCaisse= caisseFacade.findAll();
+        return listeCaisse;
+        
+    }
+    @Override
+    public String SupprimerRayon(String magasin, String rayon) {
+        String message="SOS problem";
+        
+        /*Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Rayon rayonRecherche =rayonFacade.RechercherRayonParNom(rayon, magasinRecherche) ;
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }*/
+        
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(magasin,rayon);
+        
+       if (rayonRecherche!=null){
+        rayonFacade.SupprimerRayon(rayonRecherche);
+        message = "rayon supprimé avec succès";
+        
+    }
+        return message;
+    }
+     @Override
+    public String SupprimerCaisse(Long caisse,String magasin) {
+        String message="problem";
+        
+        /*Magasin magasinRecherche =magasinFacade.RechercherMagasinParNom(magasin) ;
+        if(magasinRecherche==null){
+            message="magasin inconnu";
+        }
+        Caisse caisseRecherche =caisseFacade.RechercherCaisseParNom(caisse, magasinRecherche) ;
+        if(caisseRecherche==null){
+            message="caisse inconnu";
+        }*/
+        
+        Caisse caisseRecherche= this.RechercherCaisseParIdCaisse(caisse,magasin);
+        
+       if (caisseRecherche!=null){
+        caisseFacade.SupprimerCaisse(caisseRecherche);
+        message = "caisse supprimé avec succès";
+        
+    }
+    return message;}
     @Override
     public String CreationAffectation(String idCaisseString, String idAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin) {
         
@@ -207,5 +288,29 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
         return agentCaisseFacade.ConsulterListeAgentCaisseParMagasin(magasin);
     }
-}
+
     
+    @Override
+    public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
+        String message ="Rayon modifié";
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(nomMagasin,LibelleRayon);
+       
+        if(rayonRecherche==null){
+            message="rayon inconnu";
+        }
+       
+        else{
+            rayonFacade.ModifierRayon(newLibelleRayon,rayonRecherche);
+        }
+        
+        return message;
+    }
+    
+    @Override
+    public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
+    List<Rayon> listeRayon;
+    listeRayon=rayonFacade.ConsulterListeRayonsParMagasin(directeur.getMagasin());
+    return listeRayon;
+}
+  
+}

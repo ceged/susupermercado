@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="essai.css" type="text/css">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
@@ -25,6 +25,12 @@
         Modifier prix article</A><br/><br/>
         <A HREF="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=c.getId()%>">
         Supprimer article</A><br/><br/>
+        <A HREF="GestionCommandeJSP/CreerFournisseur.jsp">
+        Créer un fournisseur</A><br/><br/>
+        <A HREF="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">
+        Créer bon de commande</A><br/><br/>
+        <A HREF="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">
+        Afficher les bon de commandes</A><br/><br/>
         <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">
         Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">

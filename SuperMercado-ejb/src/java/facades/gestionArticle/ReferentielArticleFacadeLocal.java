@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Rayon;
 import java.util.List;
@@ -33,7 +34,7 @@ public interface ReferentielArticleFacadeLocal {
 
     int count();
     
-    public void CreerReferentielArticle (String libelleArticle, Rayon rayon, String marque, float prixVente, SousCategorie sousCategorie );
+    void CreerReferentielArticle (String libelleArticle, Rayon rayon, String marque, float prixVente, SousCategorie sousCategorie,List<Fournisseur> listeFournisseur );
     
     public ReferentielArticle RechercheReferentielArticleParCodeBarre(Long codeBarreRecherche);
     

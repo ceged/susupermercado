@@ -4,6 +4,7 @@
     Author     : PC Tim
 --%>
 
+<%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page import="java.util.List"%>
 <%@page import="entités.gestionArticle.SousCategorie"%>
 <%@page import="entités.gestionMagasin.ChefRayon"%>
@@ -17,6 +18,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
+        <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
@@ -46,6 +48,16 @@
             <OPTION><%=s.getLibelleSousCategorie()%>
                 <%}%>
         </SELECT>
+        <br />
+        <A HREF="GestionCommandeJSP/CreerFournisseur.jsp">
+        Créer un fournisseur</A><br/><br/>
+        <br />
+        <label for="listeFournisseur">Liste de fournisseur<span class="requis">*</span></label><br />
+        <%
+            int i=0;
+            for(Fournisseur f: listeFournisseur){ i++;%>
+            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20"/><%=f.getNom()%>
+                <%}%>
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">
         </fieldset>
