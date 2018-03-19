@@ -45,4 +45,6 @@ public interface CommandeFacadeLocal {
     
     List<Commande> RechercherListeBonCommmandeParChefRayon(ChefRayon chefRayon);
     
+    List<Commande> RechercherListeBonCommmandeParFournisseur(Fournisseur fournisseur);
+    
 }

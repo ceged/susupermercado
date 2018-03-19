@@ -14,6 +14,7 @@ import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
@@ -32,6 +33,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private FournisseurFacadeLocal fournisseurFacade;
 
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
@@ -98,6 +102,9 @@ public class SessionAdmin implements SessionAdminLocal {
         }
         else if (agentCaisseFacade.findAll().contains(personneConnecte)){
             i=4;
+        }
+        else if(fournisseurFacade.findAll().contains(personneConnecte)){
+            i=6;
         }
         return i;
     }

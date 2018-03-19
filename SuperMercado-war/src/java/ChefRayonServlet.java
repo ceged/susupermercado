@@ -5,11 +5,13 @@
  */
 
 import Session.SessionChefDeRayonLocal;
+import Session.SessionFournisseurLocal;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.SousCategorie;
 import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
+import entités.gestionLivraison.Livraison;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Secteur;
@@ -33,6 +35,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/ChefRayonServlet"})
 public class ChefRayonServlet extends HttpServlet {
+
+    @EJB
+    private SessionFournisseurLocal sessionFournisseur;
 
     @EJB
     private SessionChefDeRayonLocal sessionChefDeRayon;
@@ -163,6 +168,7 @@ public class ChefRayonServlet extends HttpServlet {
             Long id=Long.parseLong(idCommande);
             Commande c=sessionChefDeRayon.RechercherCommandeParId(id);
             sessionChefDeRayon.ValiderBonCommande(c);
+            sessionFournisseur.CreerLivraison(c);
             String message="Bon de commande validé";
             request.setAttribute("message", message);
             jspChoix="/MenuChefdeRayon.jsp";
