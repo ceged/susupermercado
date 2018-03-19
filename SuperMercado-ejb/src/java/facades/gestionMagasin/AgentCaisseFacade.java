@@ -76,7 +76,7 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
         
     }
 
-    
+       
 }
     
     

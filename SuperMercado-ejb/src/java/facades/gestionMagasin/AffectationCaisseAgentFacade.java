@@ -9,6 +9,7 @@ import entités.gestionMagasin.AffectationCaisseAgent;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -43,6 +44,21 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
         
         em.persist(affectation);
              
+    }
+
+    @Override
+    public AgentCaisse RechercherAgentParCaisseEtDate(Date date, Caisse caisse) {
+        
+        AgentCaisse result=null;
+        Query req=getEntityManager().createQuery("SELECT a.agentCaisse from AffectationCaisseAgent AS a WHERE a.caisse=:caisse AND a.dateDebut<=:date AND a.dateFin>=:date");       
+        req.setParameter("caisse",caisse);
+        req.setParameter("date",date);
+        
+        List<AgentCaisse>l=req.getResultList();
+        for(AgentCaisse c:l){
+            result = c;
+    }
+        return result ;
     }
     
     
