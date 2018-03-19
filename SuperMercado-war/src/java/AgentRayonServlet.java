@@ -46,6 +46,8 @@ public class AgentRayonServlet extends HttpServlet {
             jspChoix="/Accueil.jsp";
             }
         
+        
+        
         else if (act.equals("insererCasse"))
         {
             doActionInsererCasse(request,response);

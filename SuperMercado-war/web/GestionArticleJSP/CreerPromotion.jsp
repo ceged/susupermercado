@@ -31,7 +31,7 @@
         <br />  
         
         <label for="prixPromo">Prix de la promotion <span class="requis">*</span></label>
-        <input type="number" name="prixPromo" min="0" max="100" step="0.01" />
+        <input type="number" name="prixPromo" min="0" max="2000" step="0.01" />
         <br />
             
         <label for="libelle"> Libellé Article <span class="requis">*</span></label>

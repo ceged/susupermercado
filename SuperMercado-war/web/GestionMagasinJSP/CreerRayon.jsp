@@ -1,4 +1,4 @@
-<%@page import="entités.gestionMagasin.Secteur"%>
+ <%@page import="entités.gestionMagasin.Secteur"%>
 <%@page import="java.util.List"%>
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 ²<%-- 
