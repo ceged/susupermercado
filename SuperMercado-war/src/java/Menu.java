@@ -9,6 +9,7 @@
 
 import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
+import entités.gestionCommande.Fournisseur;
 import Session.SessionPersonneLocal;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.ChefRayon;
@@ -100,6 +101,12 @@ public class Menu extends HttpServlet {
                 AgentCaisse agentCaisse = (AgentCaisse)personneConnecte;
                 sess.setAttribute("agentCaisse",agentCaisse);
                 jspChoix="/MenuAgentCaisse.jsp";
+            }
+            else if(i==6){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                Fournisseur fournisseurConnecte = (Fournisseur)personneConnecte;
+                sess.setAttribute("fournisseurConnecte",fournisseurConnecte);
+                jspChoix="/MenuFournisseur.jsp";
             }
             }
         else if (act.equals("CasterEnPersonne"))
