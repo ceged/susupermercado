@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -47,4 +48,8 @@ public interface SessionDirecteurMagasinLocal {
     String CreerAgentCaisse(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin);
     
     List <Secteur> ConsultationListeSecteursParMagasin(String nomMagasin);
+
+    String CreationAffectation(String nomCaisse, String nomAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin);
+    
+    List <AgentCaisse> ConsultationListeAgentCaisseParMagasin(String nomMagasin);
 }

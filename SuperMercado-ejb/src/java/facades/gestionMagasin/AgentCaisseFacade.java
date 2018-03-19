@@ -8,9 +8,11 @@ package facades.gestionMagasin;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Magasin;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -48,5 +50,34 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
         em.persist(agent);
         
     }
+
+    @Override
+    public AgentCaisse RechercherAgentCaisse(String idAgentCaisse, Magasin magasin) {
+        
+        AgentCaisse result = null ;
+        Long id=Long.parseLong(idAgentCaisse);
+        Query req=getEntityManager().createQuery("SELECT a from AgentCaisse as a where a.id=:id AND a.magasin=:magasin");
+        req.setParameter("id",idAgentCaisse);
+        req.setParameter("magasin",magasin);
+        List<AgentCaisse>l=req.getResultList();
+        for(AgentCaisse c:l){
+            result = c;
+    }
+        return result ;
+    }
+
+    @Override
+    public List<AgentCaisse> ConsulterListeAgentCaisseParMagasin(Magasin magasin) {
+        
+        Query req=getEntityManager().createQuery("SELECT a from AgentCaisse AS a WHERE a.magasin=:magasin");
+        req.setParameter("magasin",magasin);
+        List result = req.getResultList();
+        return result;
+        
+    }
+
     
 }
+    
+    
+

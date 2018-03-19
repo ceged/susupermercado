@@ -33,5 +33,9 @@ public interface AgentCaisseFacadeLocal {
     int count();
     
     void CreerAgentCaisse(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Magasin magasin);
+
     
+    AgentCaisse RechercherAgentCaisse(String idAgentCaisse, Magasin magasin);
+
+    List<AgentCaisse> ConsulterListeAgentCaisseParMagasin(Magasin magasin);
 }

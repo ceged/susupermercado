@@ -32,6 +32,9 @@
         Créer un AgentCaisse</A><br/><br/>
         <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">
         Modifier mon mot de passe</A><br/><br/>
+        <A HREF="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>">
+        Affecter un agent à une caisse</A><br/><br/>
+        
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

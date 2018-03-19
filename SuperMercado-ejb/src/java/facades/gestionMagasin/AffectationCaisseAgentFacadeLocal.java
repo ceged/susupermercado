@@ -33,5 +33,7 @@ public interface AffectationCaisseAgentFacadeLocal {
 
     int count();
 
+    void CreerAffectation(AgentCaisse agentCaisse, Caisse caisse, Date debut, Date fin);
+
     
 }
