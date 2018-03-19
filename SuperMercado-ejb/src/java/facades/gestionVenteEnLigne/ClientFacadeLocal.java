@@ -6,6 +6,7 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.Client;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface ClientFacadeLocal {
     List<Client> findRange(int[] range);
 
     int count();
+
+    void CreerClient(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal);
     
 }

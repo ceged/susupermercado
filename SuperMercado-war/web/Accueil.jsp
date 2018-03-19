@@ -16,6 +16,8 @@
         <h1>Page d'accueil du site</h1>
         <A HREF="Connexion.jsp">
         Se connecter</A><br/><br/>
+        <A HREF="GestionVentesEnLigneJSP/CreerCompteClient.jsp">
+        Client ? Cliquez ici pour créer un compte</A><br/><br/>
         
         <p> <%
         String attribut = (String) request.getAttribute("message");
