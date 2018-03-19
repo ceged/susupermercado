@@ -47,6 +47,12 @@ public class LivraisonFacade extends AbstractFacade<Livraison> implements Livrai
     }
     
     @Override
+    public void ModifierStatutLivraison(Livraison livraison, String statut){
+        livraison.setStatut(statut);
+        em.merge(livraison);
+    }
+    
+    @Override
     public Livraison ChercherLivraisonParCommandeParStatut(String statut,Commande commande){
         Livraison livraison=new Livraison();
         Query req=getEntityManager().createQuery("SELECT l from Livraison as l where l.commande=:commande AND l.Statut=:statut");

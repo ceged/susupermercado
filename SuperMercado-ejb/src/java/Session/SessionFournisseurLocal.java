@@ -39,4 +39,6 @@ public interface SessionFournisseurLocal {
     LigneLivraison ChercherLigneLivraisonParId(String idLigne);
     
     void ModifierStatutLigneLivraison(LigneLivraison ligne, String statut);
+    
+    void ModifierStatutLivraison(String idLivraison, String statut);
 }

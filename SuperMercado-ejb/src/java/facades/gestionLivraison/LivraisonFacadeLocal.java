@@ -40,5 +40,7 @@ public interface LivraisonFacadeLocal {
     List<Livraison> ChercherListeLivraisonParFournisseur(Fournisseur fournisseur);
     
      Livraison ChercherLivraisonParId(Long idLivraison);
+     
+     void ModifierStatutLivraison(Livraison livraison, String statut);
     
 }

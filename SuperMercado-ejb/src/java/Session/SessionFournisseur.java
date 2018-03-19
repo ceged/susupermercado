@@ -67,6 +67,13 @@ public class SessionFournisseur implements SessionFournisseurLocal {
     }
     
     @Override
+    public void ModifierStatutLivraison(String idLivraison, String statut){
+        Long id=Long.parseLong(idLivraison);
+        Livraison livraison = livraisonFacade.ChercherLivraisonParId(id);
+        livraisonFacade.ModifierStatutLivraison(livraison, statut);
+    }
+    
+    @Override
     public void CreerLigneLivraison(Livraison livraison,LigneCommande lc){
         ligneLivraisonFacade.CreerLigneLivraison(livraison,lc.getArticle(),lc.getQuantiteLigne());
     }

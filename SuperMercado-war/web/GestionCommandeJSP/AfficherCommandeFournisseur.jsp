@@ -41,10 +41,10 @@ for(LigneLivraison l : liste){%>
 <td Width=15%><%=l.getQuantiteFournisseur()%></td>
 <td Width=15%><%=l.getMentionStatut()%></td>
 <td Width=30%><A href="FournisseurServlet?action=ValiderLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId() %>"> Cliquez ici</A></td>
-<td Width=30%><A href="FournisseurServlet?action=SupprimerLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId()%>"> Cliquez ici</A></td>
+<td Width=30%><A href="FournisseurServlet?action=ExclureLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId()%>"> Cliquez ici</A></td>
 </tr><%}%></TABLE>
 
-<A HREF="MenuFournisseur.jsp">Valider la commande pour livraison</A><br />
+<A HREF="FournisseurServlet?action=ValiderLivraison&livraisonId=<%=livraison.getId() %>&statut=valider&fournisseurId=<%=livraison.getCommande().getFournisseur().getId()%>">Valider la commande pour livraison</A><br />
 <hr>
 </body>
 </html>

@@ -83,7 +83,30 @@ public class FournisseurServlet extends HttpServlet {
                 sess.setAttribute("liste",liste);
                 jspChoix="/GestionCommandeJSP/AfficherCommandeFournisseur.jsp";
             }
+        else if(act.equals("ExclureLigneLivraison")){
+               String idLigneLivraison=request.getParameter("ligneId");
+               String livraisonId=request.getParameter("livraisonId");
+               LigneLivraison l = sessionFournisseur.ChercherLigneLivraisonParId(idLigneLivraison);
+               Livraison livraison = sessionFournisseur.ChercherLivraisonParId(livraisonId);
+               String statut="nonlivrer";
+               sessionFournisseur.ModifierStatutLigneLivraison(l, statut);
+               List<LigneLivraison> liste=sessionFournisseur.ChercherListeLigneLivraisonParLivraison(livraison);
+               HttpSession sess=request.getSession(true);
+                sess.setAttribute("livraison",livraison);
+                sess.setAttribute("liste",liste);
+                jspChoix="/GestionCommandeJSP/AfficherCommandeFournisseur.jsp";
+            }
+        else if(act.equals("ValiderLivraison")){
+            String livraisonId=request.getParameter("livraisonId");
+            String statut=request.getParameter("statut");
+            String idFournisseur=request.getParameter("fournisseurId");
+            sessionFournisseur.ModifierStatutLivraison(livraisonId, statut);
+            List<Livraison> liste=sessionFournisseur.ChercherListeLivraisonParFournisseur(idFournisseur);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionCommandeJSP/AfficherListeCommandeFournisseur.jsp";
             
+        }
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
