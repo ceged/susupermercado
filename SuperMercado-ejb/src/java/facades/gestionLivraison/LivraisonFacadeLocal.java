@@ -5,7 +5,10 @@
  */
 package facades.gestionLivraison;
 
+import entités.gestionCommande.Commande;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionLivraison.Livraison;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +32,15 @@ public interface LivraisonFacadeLocal {
     List<Livraison> findRange(int[] range);
 
     int count();
+    
+    Livraison CreerLivraison(Commande commande,String Statut);
+    
+    Livraison ChercherLivraisonParCommandeParStatut(String statut,Commande commande);
+    
+    List<Livraison> ChercherListeLivraisonParFournisseur(Fournisseur fournisseur);
+    
+     Livraison ChercherLivraisonParId(Long idLivraison);
+     
+     void ModifierStatutLivraison(Livraison livraison, String statut);
     
 }

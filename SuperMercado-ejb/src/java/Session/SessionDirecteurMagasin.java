@@ -293,7 +293,7 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     @Override
     public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
         String message ="Rayon modifié";
-        Rayon rayonRecherche=this.RechercherRayonParNomRayon(nomMagasin,LibelleRayon);
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(LibelleRayon, nomMagasin);
        
         if(rayonRecherche==null){
             message="rayon inconnu";
