@@ -24,7 +24,7 @@
 List<Rayon> listeRayon2 =listeRayon;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
-        <h1>Formulaire de suppression caisse</h1>
+        <h1>Formulaire de suppression rayon</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Rayon a supprimer (majuscules et accents interdits)</legend>
