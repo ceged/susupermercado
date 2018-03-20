@@ -12,6 +12,7 @@ import Session.SessionChefDeRayonLocal;
 import Session.SessionPersonneLocal;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.AgentRayon;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
@@ -114,6 +115,12 @@ public class Menu extends HttpServlet {
                 AgentLivraison agentLivraisonConnecte = (AgentLivraison)personneConnecte;
                 sess.setAttribute("agentLivraisonConnecte",agentLivraisonConnecte);
                 jspChoix="/MenuAgentLivraison.jsp";
+            }
+            else if(i==9){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                AgentRayon agentRayonConnecte = (AgentRayon)personneConnecte;
+                sess.setAttribute("agentRayonConnecte",agentRayonConnecte);
+                jspChoix="/MenuAgentRayon.jsp";
             }
           }
         
