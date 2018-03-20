@@ -13,8 +13,6 @@ import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.Livraison;
 import entités.gestionMagasin.ChefRayon;
-import entités.gestionMagasin.DirecteurMagasin;
-import entités.gestionMagasin.Secteur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;

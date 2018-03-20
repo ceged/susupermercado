@@ -46,14 +46,14 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     }
 
     @Override
-    public void ModifierMdp(long id, String mdpActuel, String mdpNouveau) {
+    public void ModifierMdp(Personne personne, String mdpActuel, String mdpNouveau) {
         
-        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p.mdp=:mdpActuel AND p.id=:id");
-        req.setParameter("id", id);
+        Query req = getEntityManager().createQuery("SELECT p FROM Personne AS p WHERE p=:personne and p.mdp=:mdpActuel");
         req.setParameter("mdpActuel", mdpActuel);
+        req.setParameter("personne", personne);
         List <Personne> l=req.getResultList();
         for(Personne p : l){
-            p.setLogin(mdpNouveau);
+            p.setMdp(mdpNouveau);
             em.merge(p);
         }
     }

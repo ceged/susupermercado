@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -12,6 +13,7 @@ import entités.gestionMagasin.Personne;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
+import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
@@ -32,6 +34,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
 
       @EJB
     private AgentRayonFacadeLocal agentRayonFacade;
@@ -261,10 +266,31 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         message = "caisse supprimé avec succès";
         
     }
+    return message;}
+    @Override
+    public String CreationAffectation(String idCaisseString, String idAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin) {
+        
+        String message;
+        
+        Long idCaisse = Long.parseLong(idCaisseString);
+        
+        Magasin magasin=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        Caisse caisse = caisseFacade.RechercherCaisseParId(idCaisse, magasin);
+        AgentCaisse agentCaisse = agentCaisseFacade.RechercherAgentCaisse(idAgentCaisse, magasin);
+        affectationCaisseAgentFacade.CreerAffectation(agentCaisse, caisse, dateDebut, dateFin);
+        message = "affectation effectuée";
         return message;
     }
+
+
+    @Override
+    public List <AgentCaisse> ConsultationListeAgentCaisseParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return agentCaisseFacade.ConsulterListeAgentCaisseParMagasin(magasin);
+    }
+
     
-     @Override
+    @Override
     public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
         String message ="Rayon modifié";
         Rayon rayonRecherche=this.RechercherRayonParNomRayon(LibelleRayon, nomMagasin);
@@ -279,9 +305,10 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         
         return message;
     }
+    
     @Override
-public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
-    List<Rayon> listeRayon =null;
+    public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
+    List<Rayon> listeRayon;
     listeRayon=rayonFacade.ConsulterListeRayonsParMagasin(directeur.getMagasin());
     return listeRayon;
 }

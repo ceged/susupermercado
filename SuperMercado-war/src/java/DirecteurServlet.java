@@ -7,6 +7,7 @@
 import Session.SessionDirecteurMagasinLocal;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionArticle.SousCategorie;
+import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Rayon;
@@ -112,7 +113,8 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererCaisse(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
-        else if (act.equals("transferListeCaisse"))//utiliser dans creation d'affectation
+        
+        else if (act.equals("transferListeCaisse"))
         {
             String directeurCherche= request.getParameter( "directeur" );
             DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
@@ -120,6 +122,23 @@ public class DirecteurServlet extends HttpServlet {
             List<Caisse> listeCaisse = sessionDirecteurMagasin.ConsultationCaisseParMagasin(d.getMagasin().getNomMagasin());
             sess.setAttribute("listeCaisse",listeCaisse); 
             jspChoix="/GestionMagasinJSP/CreerAgentCaisse.jsp";
+        }
+        
+        else if (act.equals("transferListeCaisseEtAgentCaisse"))//utilisée dans creation d'affectation
+        {
+            String directeurCherche= request.getParameter( "directeur" );
+            DirecteurMagasin d= sessionDirecteurMagasin.ChercherDirecteurParId(directeurCherche);
+            HttpSession sess=request.getSession(true);
+            List<AgentCaisse> listeAgentCaisse = sessionDirecteurMagasin.ConsultationListeAgentCaisseParMagasin(d.getMagasin().getNomMagasin());
+            List<Caisse> listeCaisse = sessionDirecteurMagasin.ConsultationCaisseParMagasin(d.getMagasin().getNomMagasin());
+            sess.setAttribute("listeAgentCaisse",listeAgentCaisse); 
+            sess.setAttribute("listeCaisse",listeCaisse); 
+            jspChoix="/GestionMagasinJSP/CreerAffectation.jsp";
+        }
+         else if (act.equals("insererAffectation"))
+        {
+            doActionInsererAffectation(request,response);
+            jspChoix="/MenuDirecteur.jsp";
         }
         else if (act.equals("TransfererListeRayon"))
         {
@@ -326,6 +345,29 @@ request.setAttribute( "message", message );
 request.setAttribute( "message", message );
 }
 
+    
+    protected void doActionInsererAffectation(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+    String dateDebut= request.getParameter( "dateDebut" );
+    String dateFin= request.getParameter( "dateFin" );
+    String nomAgent= request.getParameter( "nomAgentCaisse" );
+    String idCaisse = request.getParameter("idCaisse");
+    String nomMagasin = request.getParameter("magasin");
+
+    String message;
+    if ( dateDebut.trim().isEmpty()&&dateFin.trim().isEmpty()&&nomAgent.trim().isEmpty()&&idCaisse.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerAffectation.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
+} else
+    {
+        Date date1=Date.valueOf(dateDebut);
+        Date date2=Date.valueOf(dateFin);
+  
+        message = sessionDirecteurMagasin.CreationAffectation(idCaisse, nomAgent, date1, date2, nomMagasin);
+    }
+   
+        request.setAttribute( "message", message );
+}
 
 protected void doActionInsererAgentCaisse(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -33,7 +33,7 @@ public interface PersonneFacadeLocal {
     
     Personne SeConnecter(String login, String mdp);
 
-    void ModifierMdp(long id, String mdpActuel, String mdpNouveau);
+    void ModifierMdp(Personne personne, String mdpActuel, String mdpNouveau);
 
     Personne RechercherPersonneParId(Long id);
 
