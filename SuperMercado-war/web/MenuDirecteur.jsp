@@ -40,6 +40,8 @@
         Créer un AgentCaisse</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">
         Créer un AgentRayon</A><br/><br/>
+        <A HREF="GestionLivraisonJSP/CreerAgentLivraison.jsp">
+        Créer un agent de livraison</A><br/><br/>
         <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">
         Modifier mon mot de passe</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>">

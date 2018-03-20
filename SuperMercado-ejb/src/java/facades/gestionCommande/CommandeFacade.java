@@ -109,4 +109,18 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
         return listeCommande;
     }
     
+    @Override
+    public List<Commande> RechercherListeBonCommmandeParFournisseur(Fournisseur fournisseur){
+        String statut="valider";
+        List<Commande> listeCommande = new ArrayList<Commande>();
+        Query req=getEntityManager().createQuery("Select c from Commande as c WHERE c.fournisseur=:fournisseur AND c.statut=:statut");
+        req.setParameter("fournisseur", fournisseur);
+        req.setParameter("statut", statut);
+        Collection<Commande>col=req.getResultList();
+        for(Commande c:col){
+            listeCommande.add(c);
+        }
+        return listeCommande;
+    }
+    
 }

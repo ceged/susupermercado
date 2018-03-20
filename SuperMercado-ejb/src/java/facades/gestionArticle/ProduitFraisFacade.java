@@ -32,7 +32,7 @@ public class ProduitFraisFacade extends AbstractFacade<ProduitFrais> implements 
     }
     
     @Override
-    public void CreerLotArticle(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption) {
+    public void CreerLotArticleFrais(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption) {
         
         ProduitFrais pf = new ProduitFrais ();
         

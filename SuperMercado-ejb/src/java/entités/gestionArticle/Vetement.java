@@ -58,13 +58,13 @@ public class Vetement extends LotArticle implements Serializable {
         return "entit\u00e9s.gestionMagasin.Vetement[ id=" + id + " ]";
     }
     
-    private int taille;
+    private String taille;
 
-    public int getTaille() {
+    public String getTaille() {
         return taille;
     }
 
-    public void setTaille(int taille) {
+    public void setTaille(String taille) {
         this.taille = taille;
     }
 

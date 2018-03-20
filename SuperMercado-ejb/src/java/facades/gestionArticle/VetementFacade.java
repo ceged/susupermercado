@@ -31,13 +31,13 @@ public class VetementFacade extends AbstractFacade<Vetement> implements Vetement
     }
     
     @Override
-    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int taille, String couleur) {
+    public void CreerLotArticleVetement(int qteLotArticle, ReferentielArticle refLotArticle,String taille, String couleur) {
         
         Vetement v = new Vetement();
         
         v.setQuantiteLot(qteLotArticle);
         v.setArticle(refLotArticle);
-        v.setTaille(qteLotArticle);
+        v.setTaille(taille);
         v.setCouleur(couleur);
         
         em.persist(v);

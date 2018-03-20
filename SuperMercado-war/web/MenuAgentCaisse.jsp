@@ -16,6 +16,8 @@
         
         <A HREF="EmployeCaisseServlet?action=insererAchat">
         Créer un achat</A><br/><br/>
+        <A HREF="Accueil.jsp">
+        Sortir menu principal</A><br/><br/>
        
     </body>
 </html>

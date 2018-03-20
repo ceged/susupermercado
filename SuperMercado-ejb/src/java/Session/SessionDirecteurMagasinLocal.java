@@ -70,4 +70,6 @@ public interface SessionDirecteurMagasinLocal {
     String CreationAffectation(String nomCaisse, String nomAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin);
     
     List <AgentCaisse> ConsultationListeAgentCaisseParMagasin(String nomMagasin);
+    
+    void CreerAgentLivraison(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin);
 }

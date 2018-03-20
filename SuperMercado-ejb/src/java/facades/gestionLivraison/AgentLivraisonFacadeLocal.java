@@ -6,6 +6,8 @@
 package facades.gestionLivraison;
 
 import entités.gestionLivraison.AgentLivraison;
+import entités.gestionMagasin.Magasin;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,9 @@ public interface AgentLivraisonFacadeLocal {
     List<AgentLivraison> findRange(int[] range);
 
     int count();
+    
+    AgentLivraison RechercherAgentLivraison(String idAgentLivraison);
+    
+    void CreerAgentLivraison(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Magasin magasin);
     
 }

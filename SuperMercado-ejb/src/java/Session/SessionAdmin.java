@@ -14,6 +14,8 @@ import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.FournisseurFacadeLocal;
+import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
@@ -35,7 +37,14 @@ import javax.ejb.Stateless;
 public class SessionAdmin implements SessionAdminLocal {
 
     @EJB
+
     private ClientFacadeLocal clientFacade;
+
+    private AgentLivraisonFacadeLocal agentLivraisonFacade;
+
+    @EJB
+    private FournisseurFacadeLocal fournisseurFacade;
+
 
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
@@ -91,6 +100,7 @@ public class SessionAdmin implements SessionAdminLocal {
     public int  SeConnecter(String login, String mp){
         int i = 0;
         Personne personneConnecte =null;
+        
         personneConnecte=personneFacade.SeConnecter(login, mp);
         if(adminFacade.findAll().contains(personneConnecte)){
             i=1;
@@ -104,8 +114,15 @@ public class SessionAdmin implements SessionAdminLocal {
         else if (agentCaisseFacade.findAll().contains(personneConnecte)){
             i=4;
         }
+        
+        else if(fournisseurFacade.findAll().contains(personneConnecte)){
+            i=6;
+        }
         else if (clientFacade.findAll().contains(personneConnecte)){
             i=7;
+        }
+        else if(agentLivraisonFacade.findAll().contains(personneConnecte)){
+            i=8;
         }
         return i;
     }

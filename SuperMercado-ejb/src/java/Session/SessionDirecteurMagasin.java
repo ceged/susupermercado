@@ -13,6 +13,7 @@ import entités.gestionMagasin.Personne;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
+import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.AgentRayonFacadeLocal;
@@ -34,6 +35,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private AgentLivraisonFacadeLocal agentLivraisonFacade;
 
     @EJB
     private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
@@ -293,7 +297,7 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     @Override
     public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
         String message ="Rayon modifié";
-        Rayon rayonRecherche=this.RechercherRayonParNomRayon(nomMagasin,LibelleRayon);
+        Rayon rayonRecherche=this.RechercherRayonParNomRayon(LibelleRayon, nomMagasin);
        
         if(rayonRecherche==null){
             message="rayon inconnu";
@@ -312,5 +316,10 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     listeRayon=rayonFacade.ConsulterListeRayonsParMagasin(directeur.getMagasin());
     return listeRayon;
 }
+    @Override
+    public void CreerAgentLivraison(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin){
+        Magasin m=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        agentLivraisonFacade.CreerAgentLivraison(prenom, nom, login, mdp, dob, sexe, adresse, codePostal, m);
+    }
   
 }

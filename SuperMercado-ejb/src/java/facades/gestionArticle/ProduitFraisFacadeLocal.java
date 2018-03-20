@@ -30,7 +30,7 @@ public interface ProduitFraisFacadeLocal {
 
     List<ProduitFrais> findRange(int[] range);
     
-    void CreerLotArticle(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption);
+    void CreerLotArticleFrais(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption);
 
     int count();
     

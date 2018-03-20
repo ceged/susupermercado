@@ -31,7 +31,7 @@ public class ElectromenagerFacade extends AbstractFacade<Electromenager> impleme
     }
     
     @Override
-    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int garantie) {
+    public void CreerLotArticleElectromenager(int qteLotArticle, ReferentielArticle refLotArticle,int garantie) {
         
         Electromenager e = new Electromenager ();
         

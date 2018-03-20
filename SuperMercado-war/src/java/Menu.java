@@ -10,7 +10,9 @@
 import Session.SessionAdminLocal;
 import Session.SessionChefDeRayonLocal;
 import Session.SessionPersonneLocal;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionLivraison.AgentLivraison;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -102,13 +104,29 @@ public class Menu extends HttpServlet {
                 sess.setAttribute("agentCaisse",agentCaisse);
                 jspChoix="/MenuAgentCaisse.jsp";
             }
+
             else if(i==7){
                 Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
                 Client client = (Client)personneConnecte;
                 sess.setAttribute("client",client);
                 jspChoix="/MenuClient.jsp";
             }
+
+            else if(i==6){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                Fournisseur fournisseurConnecte = (Fournisseur)personneConnecte;
+                sess.setAttribute("fournisseurConnecte",fournisseurConnecte);
+                jspChoix="/MenuFournisseur.jsp";
+
             }
+            else if(i==8){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                AgentLivraison agentLivraisonConnecte = (AgentLivraison)personneConnecte;
+                sess.setAttribute("agentLivraisonConnecte",agentLivraisonConnecte);
+                jspChoix="/MenuAgentLivraison.jsp";
+            }
+          }
+        
         else if (act.equals("CasterEnPersonne"))
         {
             String personneCherche= request.getParameter( "idPersonneSession");
