@@ -29,7 +29,7 @@ public interface ElectromenagerFacadeLocal {
 
     List<Electromenager> findRange(int[] range);
     
-    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int garantie);
+    void CreerLotArticleElectromenager(int qteLotArticle, ReferentielArticle refLotArticle,int garantie);
    
     int count();
     

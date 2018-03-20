@@ -13,10 +13,6 @@
 <tr> <td Width=15%>Bienvenue <%=f.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Fournisseur !</h1>
-        <A HREF="ChefRayonServlet?action=passageListeSousCategorie">
-        Créer une livraison</A><br/><br/>
-        <A HREF="ChefRayonServlet?action=passageListeSousCategorie">
-        Consulter liste livraisons</A><br/><br/>
         <A HREF="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">
         Consulter mes commandes</A><br/><br/>
         <A HREF="Accueil.jsp">

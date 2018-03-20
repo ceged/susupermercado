@@ -29,7 +29,7 @@ public interface VetementFacadeLocal {
 
     List<Vetement> findRange(int[] range);
     
-    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle,int taille, String couleur);
+    void CreerLotArticleVetement(int qteLotArticle, ReferentielArticle refLotArticle,String taille, String couleur);
 
     int count();
     

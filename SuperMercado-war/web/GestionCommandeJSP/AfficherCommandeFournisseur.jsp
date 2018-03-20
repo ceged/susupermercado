@@ -14,6 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="livraison" scope="session" class="Livraison"></jsp:useBean>
         <jsp:useBean id="liste" scope="session" class="List<LigneLivraison>"></jsp:useBean>
 <title>Commande</title>
@@ -43,8 +44,17 @@ for(LigneLivraison l : liste){%>
 <td Width=30%><A href="FournisseurServlet?action=ValiderLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId() %>"> Cliquez ici</A></td>
 <td Width=30%><A href="FournisseurServlet?action=ExclureLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId()%>"> Cliquez ici</A></td>
 </tr><%}%></TABLE>
-
-<A HREF="FournisseurServlet?action=ValiderLivraison&livraisonId=<%=livraison.getId() %>&statut=valider&fournisseurId=<%=livraison.getCommande().getFournisseur().getId()%>">Valider la commande pour livraison</A><br />
+<br />
+ <form method="get" action="/SuperMercado-war/FournisseurServlet">
+        <label for="date"> Date de livraison prévue <span class="requis">*</span></label>
+        <input type="date" name="date" value="" size="20" maxlength="20" />
+        <input type="hidden" name="action" value="ValiderLivraison">
+        <input type="hidden" name="statut" value="attentereception">
+        <input type="hidden" name="livraisonId" value=<%=livraison.getId() %>>
+        <input type="hidden" name="fournisseurId" value=<%=livraison.getCommande().getFournisseur().getId()%>>
+        <input type="submit" value="Valider la commande pour livraison"/>
+        <br />
+ </form>
 <hr>
 </body>
 </html>

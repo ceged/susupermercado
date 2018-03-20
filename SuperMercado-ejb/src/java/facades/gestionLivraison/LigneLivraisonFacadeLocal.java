@@ -39,4 +39,6 @@ public interface LigneLivraisonFacadeLocal {
     void ModifierStatutLigneLivraison(LigneLivraison l,String statut);
     
     LigneLivraison ChercherLigneLivraisonParId(Long ligneId);
+    
+    void ModifierQuantiteLigneLivraison(LigneLivraison l, int qtReceptionner, int qtLivrer);
 }

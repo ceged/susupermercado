@@ -8,6 +8,7 @@ package facades.gestionLivraison;
 import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.Magasin;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -42,5 +43,10 @@ public interface LivraisonFacadeLocal {
      Livraison ChercherLivraisonParId(Long idLivraison);
      
      void ModifierStatutLivraison(Livraison livraison, String statut);
+     
+     List<Livraison> ChercherListeLivraisonParMagasin (Magasin magasin);
+     
+     void ModifierDateLivraisonPrevuParLivraison(Livraison livraison, Date datePrevue);
     
+     void ModifierDateLivraisonEffectiveParLivraison(Livraison livraison, Date dateEffective);
 }

@@ -48,6 +48,8 @@ public class LigneLivraisonFacade extends AbstractFacade<LigneLivraison> impleme
     
     @Override
     public void ModifierStatutLigneLivraison(LigneLivraison l,String statut){
+        if(statut.compareTo("receptionner")==0){
+        l.setMentionStatut(Mention.receptionner);}
         if(statut.compareTo("attente")==0){
         l.setMentionStatut(Mention.attente);}
         if(statut.compareTo("encours")==0){
@@ -92,6 +94,12 @@ public class LigneLivraisonFacade extends AbstractFacade<LigneLivraison> impleme
         return ligne;
     }
     
+    @Override
+    public void ModifierQuantiteLigneLivraison(LigneLivraison l, int qtReceptionner, int qtLivrer){
+        l.setQuantiteReceptionnee(qtReceptionner);
+        l.setQuantiteLivree(qtLivrer);
+        em.merge(l);
+    }
     
     
 }

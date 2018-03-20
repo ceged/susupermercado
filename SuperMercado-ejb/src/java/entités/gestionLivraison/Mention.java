@@ -10,6 +10,6 @@ package entités.gestionLivraison;
  * @author 3138946
  */
 public enum Mention {
-    validation, reclamationLivraison, reclamationCommande, reclamationQualite, enCours,nonlivrer,attente
+    validation, reclamationLivraison, reclamationCommande, reclamationQualite, enCours,nonlivrer,attente,receptionner
     
 }

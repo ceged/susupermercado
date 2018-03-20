@@ -12,6 +12,7 @@ import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -97,10 +98,8 @@ public class FournisseurServlet extends HttpServlet {
                 jspChoix="/GestionCommandeJSP/AfficherCommandeFournisseur.jsp";
             }
         else if(act.equals("ValiderLivraison")){
-            String livraisonId=request.getParameter("livraisonId");
-            String statut=request.getParameter("statut");
+            doActionValiderLivraison(request,response);
             String idFournisseur=request.getParameter("fournisseurId");
-            sessionFournisseur.ModifierStatutLivraison(livraisonId, statut);
             List<Livraison> liste=sessionFournisseur.ChercherListeLivraisonParFournisseur(idFournisseur);
             HttpSession sess=request.getSession(true);
             sess.setAttribute("liste",liste);
@@ -164,4 +163,25 @@ public class FournisseurServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    protected void doActionValiderLivraison(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String livraisonId=request.getParameter("livraisonId");
+            String statut=request.getParameter("statut");
+            String idFournisseur=request.getParameter("fournisseurId");
+            String dateLivraisonPrevue=request.getParameter("date");
+            String message;
+            if (dateLivraisonPrevue.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/AfficherCommandeFournisseur.jsp\">Cliquez ici</a> pour accéder au formulaire de gestion commande fournisseur.";
+} else
+{
+    Date d=Date.valueOf(dateLivraisonPrevue); 
+    sessionFournisseur.ModifierDateLivraisonPrevuParLivraison(livraisonId, d);
+    sessionFournisseur.ModifierStatutLivraison(livraisonId, statut);
+    message="Commande valider par fournisseur";
+}       
+   
+request.setAttribute( "message", message );
+}
+    
 }

@@ -70,6 +70,10 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererAgentRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+         else if(act.equals("InsererAgentLivraison")){
+             doActionInsererAgentLivraison(request,response);
+             jspChoix="/MenuDirecteur.jsp";
+         }
         else if (act.equals("InsererAgentCaisse"))
         {
             doActionInsererAgentCaisse(request,response);
@@ -369,6 +373,32 @@ request.setAttribute( "message", message );
         request.setAttribute( "message", message );
 }
 
+    protected void doActionInsererAgentLivraison(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+String nomPersonne= request.getParameter( "nom" );
+    String prenomPersonne= request.getParameter( "prenom" );
+    String loginPersonne= request.getParameter( "login" );
+    String mdpPersonne= request.getParameter( "mdp" );
+    String sexePersonne= request.getParameter( "sexe" );
+    String dobPersonne= request.getParameter( "dob" );
+    String adressePersonne= request.getParameter( "adresse" );
+    String codePostalPersonne= request.getParameter( "codePostal" );
+    String magasin = request.getParameter("magasin");
+
+
+    String message;
+    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionLivraisonJSP/CreerAgentLivraison.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un agent de livraison";
+} else
+    {
+        Date dob=Date.valueOf(dobPersonne);
+        sessionDirecteurMagasin.CreerAgentLivraison(prenomPersonne, nomPersonne, loginPersonne, mdpPersonne, dob, sexePersonne, adressePersonne, codePostalPersonne, magasin);
+        message="agent de livraison créé";
+    }
+   
+        request.setAttribute( "message", message );
+}
+    
 protected void doActionInsererAgentCaisse(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 String nomPersonne= request.getParameter( "nom" );

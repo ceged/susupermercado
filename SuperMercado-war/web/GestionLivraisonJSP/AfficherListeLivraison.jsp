@@ -4,6 +4,7 @@
     Author     : Soldat
 --%>
 
+<%@page import="entités.gestionLivraison.AgentLivraison"%>
 <%@page import="entités.gestionLivraison.Livraison"%>
 <%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page import="entités.gestionMagasin.ChefRayon"%>
@@ -15,31 +16,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="liste" scope="session" class="List<Livraison>"></jsp:useBean>
-        <jsp:useBean id="fournisseurConnecte" scope="session" class="Fournisseur"></jsp:useBean>
-<title>lListe de vos commandes</title>
+        <jsp:useBean id="agentLivraisonConnecte" scope="session" class="AgentLivraison"></jsp:useBean>
+<title>Liste de vos livraisons</title>
 </head>
 <body>
-<h1>Liste de vos commandes</h1>
+<h1>Liste de vos livraisons</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
 if(attribut!=null){
     out.println( attribut );
             }
 %> </p>
-<A HREF="MenuFournisseur.jsp">Retour au menu</A><br />
+<A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
 <TABLE border width=50%>
-<tr> <TD>Magasin</TD>
-<TD>Date</TD>
+<tr> <TD>Fournisseur</TD>
+<TD>Date livraison prévue</TD>
 <TD>Statut</TD>
-<TD>Voir la commande</TD>
+<TD>Voir la livraison</TD>
  </tr>
 <%
 for(Livraison l : liste){%>
-<tr><td Width=15%><%=l.getCommande().getChefRayon().getRayon().getSecteur().getMagasin().getNomMagasin() %></td>
-<td Width=15%><%=l.getCommande().getDateCommande()%></td>
+<tr><td Width=15%><%=l.getCommande().getFournisseur().getNom()%></td>
+<td Width=15%><%=l.getDatePrevue() %></td>
 <td Width=15%><%=l.getStatut()%></td>
-<td Width=30%><A href="FournisseurServlet?action=afficherCommandeFournisseur&livraisonId=<%=l.getId()%>"> Cliquez ici</A></td>
+<td Width=30%><A href="AgentLivraisonServlet?action=afficherLivraisonAgent&livraisonId=<%=l.getId()%>"> Cliquez ici</A></td>
 
 </tr><%}%></TABLE>
 

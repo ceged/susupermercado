@@ -15,6 +15,7 @@ import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionCommande.LigneCommandeFacadeLocal;
 import facades.gestionLivraison.LigneLivraisonFacadeLocal;
 import facades.gestionLivraison.LivraisonFacadeLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -116,6 +117,13 @@ public class SessionFournisseur implements SessionFournisseurLocal {
      @Override
      public void ModifierStatutLigneLivraison(LigneLivraison ligne, String statut){
          ligneLivraisonFacade.ModifierStatutLigneLivraison(ligne, statut);
+     }
+     
+     @Override
+     public void ModifierDateLivraisonPrevuParLivraison(String Idlivraison , Date datePrevue){
+         Long id=Long.parseLong(Idlivraison);
+         Livraison l=livraisonFacade.ChercherLivraisonParId(id);
+         livraisonFacade.ModifierDateLivraisonPrevuParLivraison(l, datePrevue);
      }
     
     // Add business logic below. (Right-click in editor and choose

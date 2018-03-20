@@ -10,6 +10,7 @@ import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -41,4 +42,6 @@ public interface SessionFournisseurLocal {
     void ModifierStatutLigneLivraison(LigneLivraison ligne, String statut);
     
     void ModifierStatutLivraison(String idLivraison, String statut);
+    
+    void ModifierDateLivraisonPrevuParLivraison(String  Idlivraison, Date datePrevue);
 }
