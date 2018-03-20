@@ -21,6 +21,7 @@ import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
+import facades.gestionVenteEnLigne.ClientFacadeLocal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,6 +33,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private ClientFacadeLocal clientFacade;
 
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
@@ -74,6 +78,7 @@ public class SessionAdmin implements SessionAdminLocal {
     
     
     
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -99,8 +104,8 @@ public class SessionAdmin implements SessionAdminLocal {
         else if (agentCaisseFacade.findAll().contains(personneConnecte)){
             i=4;
         }
-        else if (agentCaisseFacade.findAll().contains(personneConnecte)){
-            i=4;
+        else if (clientFacade.findAll().contains(personneConnecte)){
+            i=7;
         }
         return i;
     }

@@ -15,6 +15,7 @@ import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -100,6 +101,12 @@ public class Menu extends HttpServlet {
                 AgentCaisse agentCaisse = (AgentCaisse)personneConnecte;
                 sess.setAttribute("agentCaisse",agentCaisse);
                 jspChoix="/MenuAgentCaisse.jsp";
+            }
+            else if(i==7){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                Client client = (Client)personneConnecte;
+                sess.setAttribute("client",client);
+                jspChoix="/MenuClient.jsp";
             }
             }
         else if (act.equals("CasterEnPersonne"))

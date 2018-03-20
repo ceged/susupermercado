@@ -6,6 +6,8 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,17 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
     public AchatEnLigneFacade() {
         super(AchatEnLigne.class);
     }
+
+    @Override
+    public AchatEnLigne CreationAchatEnLigne(Client client) {
+        AchatEnLigne a = new AchatEnLigne();
+        Date dateAchat = new Date();
+        a.setClient(client);
+        a.setDateAchat(dateAchat);
+        
+        em.persist(a);
+        return a;
+    }
+    
     
 }

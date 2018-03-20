@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionVenteEnLigne.AchatEnLigne;
 import java.lang.String;
 import java.util.Date;
 import javax.ejb.Local;
@@ -17,5 +18,9 @@ import javax.ejb.Local;
 public interface SessionClientLocal {
 
     String CreationCompteClient(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal);
+
+    AchatEnLigne CreationAchatEnLigne(String idClient);
+
+    AchatEnLigne RechercheAchatParId(String id);
     
 }

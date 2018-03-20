@@ -5,9 +5,17 @@
  */
 
 import Session.SessionClientLocal;
+import Session.SessionPersonneLocal;
+import entités.gestionArticle.Achat;
+import entités.gestionArticle.ReferentielArticle;
+import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,8 +33,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ClientServlet extends HttpServlet {
 
     @EJB
+    private SessionPersonneLocal sessionPersonne;
+
+    @EJB
     private SessionClientLocal sessionClient;
 
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,6 +63,47 @@ public class ClientServlet extends HttpServlet {
         {
             doActionInsererClient(request,response);
             jspChoix="/GestionVentesEnLigneJSP/MenuClient.jsp";
+        }
+        
+        else if (act.equals("transferListeMagasin")) /// pour le choix des magasins par le client au debut
+        {
+            HttpSession sess=request.getSession(true);
+            List<Magasin> listeMagasin = sessionPersonne.ConsultationMagasins();
+            sess.setAttribute("listeMagasin",listeMagasin);
+            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+        }
+        else if (act.equals("transferArticlesParMagasin")) /// 
+        {
+            //création de session
+            HttpSession sess=request.getSession(true);
+            //recuperation de paramètres 
+            String idClientString = request.getParameter("idClient");
+            String nomMagasin = request.getParameter("magasin");
+            //Recuperation du client connecté 
+            Personne p = sessionPersonne.RechercherPersonneParId(idClientString);
+            Client c = (Client) p;
+            //Recuperation du magasin choisi
+            Magasin magasinChoisi = sessionPersonne.RechercherMagasinParNom(nomMagasin);
+            //Recuperation de la liste d'article du magasin choisi 
+            List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
+            //Creation de l'achat 
+            AchatEnLigne achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+            
+            sess.setAttribute("client", c);
+            sess.setAttribute("achatEnCours", achatEnCours);
+            sess.setAttribute("listeArticle",listeArticle);
+            sess.setAttribute("magasinChoisi",magasinChoisi);
+            
+            jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
+        }
+        else if(act.equals("insererLignePanier")){
+            doActioninsererLignePanier(request,response);
+            String idAchat= request.getParameter("idAchat");
+            AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
+            HttpSession sess=request.getSession(true);
+
+          //  sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -128,4 +183,26 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
    
     request.setAttribute( "message", message );
 }
+
+protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    String quantite= request.getParameter( "quantite" );
+    String article= request.getParameter( "article" );
+    String client = request.getParameter("idClient");
+    String achat = request.getParameter("idAchat");
+    
+    String message;
+    if ( quantite.trim().isEmpty()&&article.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
+} else
+{
+    
+    int qte=Integer.parseInt(quantite);
+    
+    message="Article ajouté";
+}
+   
+request.setAttribute( "message", message );
+}
+
 }

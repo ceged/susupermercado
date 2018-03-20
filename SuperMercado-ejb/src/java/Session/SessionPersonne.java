@@ -5,8 +5,13 @@
  */
 package Session;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Personne;
+import entités.gestionMagasin.Magasin;
+import facades.gestionArticle.ReferentielArticleFacadeLocal;
+import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -17,9 +22,16 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionPersonne implements SessionPersonneLocal {
 
-@EJB
+    @EJB
+    private ReferentielArticleFacadeLocal referentielArticleFacade;
+
+    @EJB
+    private MagasinFacadeLocal magasinFacade;
+
+    @EJB
     private PersonneFacadeLocal personneFacade;
 
+    
     @Override
     public void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne) {
         Long id=Long.parseLong(idPersonne);
@@ -34,5 +46,22 @@ public class SessionPersonne implements SessionPersonneLocal {
         return personneFacade.RechercherPersonneParId(id);
     }
 
+    @Override
+    public List <Magasin> ConsultationMagasins() {
+        return magasinFacade.findAll();
+    }
+
+    @Override
+    public List<ReferentielArticle> ConsultationArticlesParMagasin(String nomMagasin) {
+        Magasin magasin= magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return referentielArticleFacade.RechercheReferentielArticleParMagasin(magasin);
+    }
+
+    @Override
+    public Magasin RechercherMagasinParNom(String nomMagasin) {
+        return magasinFacade.RechercherMagasinParNom(nomMagasin);
+    }
+
+    
     
 }

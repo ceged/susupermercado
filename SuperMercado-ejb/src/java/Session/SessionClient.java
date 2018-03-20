@@ -5,7 +5,14 @@
  */
 package Session;
 
+import entités.gestionArticle.Achat;
+import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
+import facades.gestionArticle.AchatCaisseFacadeLocal;
+import facades.gestionArticle.AchatFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import facades.gestionVenteEnLigne.AchatEnLigneFacadeLocal;
 import java.lang.String;
 import facades.gestionVenteEnLigne.ClientFacadeLocal;
 import java.util.Date;
@@ -21,10 +28,22 @@ import javax.ejb.Stateless;
 public class SessionClient implements SessionClientLocal {
 
     @EJB
+    private AchatFacadeLocal achatFacade;
+
+    @EJB
+    private AchatEnLigneFacadeLocal achatEnLigneFacade;
+
+    @EJB
+    private AchatCaisseFacadeLocal achatCaisseFacade;
+
+    @EJB
     private PersonneFacadeLocal personneFacade;
 
     @EJB
     private ClientFacadeLocal clientFacade;
+    
+    
+    
     
     
     
@@ -45,5 +64,24 @@ public class SessionClient implements SessionClientLocal {
             }
         return message; 
     }
+
+    @Override
+    public AchatEnLigne CreationAchatEnLigne(String idClient) {
+    Long id = Long.valueOf(idClient);
+    Personne p = personneFacade.RechercherPersonneParId(id);
+    Client c = (Client) p;
+    AchatEnLigne a = achatEnLigneFacade.CreationAchatEnLigne(c);
+    return a;
+    }
+
+    @Override
+    public AchatEnLigne RechercheAchatParId(String id) {
+        Long idAchat = Long.valueOf(id);
+        Achat a = achatFacade.RechercheAchatParId(idAchat);
+        AchatEnLigne achatenligne = (AchatEnLigne) a;
+        return achatenligne;
+    }
+    
+    
 }
     
