@@ -33,4 +33,10 @@ public interface CreneauFacadeLocal {
     
     void CreerCreneau(Date heureDebut, Date heureFin);
     
+    void ModifierCreneau(Creneau creneau);
+    
+    Creneau ChercherCreneauParId(String idCreneau);
+    
+    Creneau ChercherCreneauHoraire(Date heureDebut, Date heureFin);
+    
 }
