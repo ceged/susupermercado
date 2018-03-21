@@ -9,6 +9,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
 import facades.gestionArticle.ElectromenagerFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
@@ -18,6 +19,7 @@ import facades.gestionArticle.VetementFacadeLocal;
 import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionLivraison.LigneLivraisonFacadeLocal;
 import facades.gestionLivraison.LivraisonFacadeLocal;
+import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionVenteEnLigne.CreneauFacadeLocal;
 import java.sql.Time;
 import java.util.Date;
@@ -31,6 +33,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
+
+    @EJB
+    private MagasinFacadeLocal magasinFacade;
 
     @EJB
     private CreneauFacadeLocal creneauFacade;
@@ -118,14 +123,24 @@ public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
     }
     
     @Override
-    public List<Creneau> ListeCreneauDispoParMagasin (AgentLivraison a){
-        return creneauFacade.ChercherCreneauDispoParMagasin(a.getMagasin());
+    public List<Creneau> ListeCreneauDispoParMagasin (Magasin m){
+        return creneauFacade.ChercherCreneauDispoParMagasin(m);
+    }
+    
+    @Override
+    public List<Creneau> ListeCreneauDispoParMagasinParDate(Magasin m, Date d){
+        return creneauFacade.ChercherCreneauDispoParMagasinParDate(m, d);
     }
     
     @Override
     public void ModifierCreneau(String idCreneau){
         Creneau c=creneauFacade.ChercherCreneauParId(idCreneau);
         creneauFacade.ModifierCreneau(c);
+    }
+    
+    @Override
+    public Magasin ChercherMagasinParNom(String nomMagasin){
+        return magasinFacade.RechercherMagasinParNom(nomMagasin);
     }
             
 }

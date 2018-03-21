@@ -7,6 +7,7 @@ package Session;
 
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
 import java.sql.Time;
 import java.util.Date;
@@ -40,6 +41,10 @@ public interface SessionAgentLivraisonLocal {
     
     void ModifierCreneau(String idCreneau);
     
-    List<Creneau> ListeCreneauDispoParMagasin (AgentLivraison a);
+    List<Creneau> ListeCreneauDispoParMagasin (Magasin m);
+    
+    List<Creneau> ListeCreneauDispoParMagasinParDate(Magasin m, Date d);
+    
+    Magasin ChercherMagasinParNom(String nomMagasin);
     
 }

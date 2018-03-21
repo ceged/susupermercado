@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Session.SessionAgentLivraisonLocal;
+import Session.SessionDirecteurMagasinLocal;
 import Session.SessionFournisseurLocal;
 import static com.sun.xml.bind.util.CalendarConv.formatter;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
 import java.sql.Date;
 import java.sql.Time;
@@ -32,6 +34,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/AgentLivraisonServlet"})
 public class AgentLivraisonServlet extends HttpServlet {
+
+    @EJB
+    private SessionDirecteurMagasinLocal sessionDirecteurMagasin;
 
     @EJB
     private SessionFournisseurLocal sessionFournisseur;
@@ -97,15 +102,39 @@ public class AgentLivraisonServlet extends HttpServlet {
             DoActionInsererCreneau(request,response);
             jspChoix="/MenuAgentLivraison.jsp";
         }
-        else if(act.equals("passageInfosCreneauDispo")){
-            String agentLivraisonId=request.getParameter("agentLivraison");
+        else if(act.equals("passageDateChoisi")){
+            String agentLivraisonId=request.getParameter("idAgent");
+            String date=request.getParameter("date");
+            List<Creneau> liste;
             AgentLivraison a=sessionAgentLivraison.ChercherAgentLivraisonParId(agentLivraisonId);
-            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(a);
+            if(date.equalsIgnoreCase("")){
+                liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(a.getMagasin());
+            }
+            else{
+                Date d=Date.valueOf(date);    
+                liste=sessionAgentLivraison.ListeCreneauDispoParMagasinParDate(a.getMagasin(), d);
+            }
             HttpSession sess=request.getSession(true);
             sess.setAttribute("liste",liste);
             jspChoix="/GestionLivraisonJSP/AfficherCreneauDispo.jsp";
         }
-        
+        else if(act.equals("passageInfosCreneauDispo")){
+            String agentLivraisonId=request.getParameter("agentLivraison");
+            AgentLivraison a=sessionAgentLivraison.ChercherAgentLivraisonParId(agentLivraisonId);
+            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(a.getMagasin());
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispo.jsp";
+        }
+        //Pour le client
+        else if(act.equals("passageDateChoisiClient")){
+            String nomMagasin=request.getParameter("nomMagasin");
+            Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
+            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp";
+        }
        
         
         RequestDispatcher Rd;

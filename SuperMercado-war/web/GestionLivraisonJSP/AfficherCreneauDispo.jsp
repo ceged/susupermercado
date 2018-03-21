@@ -27,6 +27,13 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
+<form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
+    <label for="dateChoisi">Choisir une date <span class="requis">*</span></label>
+    <input type="date" name="date" value="" size="20" maxlength="20" />
+    <input type="hidden" name="idAgent" value="<%=agentLivraisonConnecte.getId()%>">
+    <input type="hidden" name="action" value="passageDateChoisi">
+    <input type="submit" value="Valider" />
+</form>
 <TABLE border width=50%>
 <tr> <TD>Date</TD>
 <TD>Heure début</TD>
