@@ -9,6 +9,7 @@ import entités.gestionArticle.ReferentielArticle;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionVenteEnLigne.Creneau;
 import facades.gestionArticle.ElectromenagerFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.ProduitFraisFacadeLocal;
@@ -17,6 +18,8 @@ import facades.gestionArticle.VetementFacadeLocal;
 import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionLivraison.LigneLivraisonFacadeLocal;
 import facades.gestionLivraison.LivraisonFacadeLocal;
+import facades.gestionVenteEnLigne.CreneauFacadeLocal;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,6 +31,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
+
+    @EJB
+    private CreneauFacadeLocal creneauFacade;
 
     @EJB
     private ElectromenagerFacadeLocal electromenagerFacade;
@@ -103,6 +109,23 @@ public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
         Long id=Long.parseLong(idLigneLivraison);
         LigneLivraison l=ligneLivraisonFacade.ChercherLigneLivraisonParId(id);
         ligneLivraisonFacade.ModifierQuantiteLigneLivraison(l, qtReceptionner, qtLivrer);
+    }
+    
+    @Override
+    public void CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent){
+        AgentLivraison a=agentLivraisonFacade.RechercherAgentLivraison(idAgent);
+        creneauFacade.CreerCreneau(heureDebut, heureFin, date, a.getMagasin());
+    }
+    
+    @Override
+    public List<Creneau> ListeCreneauDispoParMagasin (AgentLivraison a){
+        return creneauFacade.ChercherCreneauDispoParMagasin(a.getMagasin());
+    }
+    
+    @Override
+    public void ModifierCreneau(String idCreneau){
+        Creneau c=creneauFacade.ChercherCreneauParId(idCreneau);
+        creneauFacade.ModifierCreneau(c);
     }
             
 }

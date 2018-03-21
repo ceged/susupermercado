@@ -20,6 +20,10 @@
         <h1>Menu Agent Rayon</h1>
         <A HREF="AgentLivraisonServlet?action=passageInfosListeReceptionLivraison&agentLivraison=<%=agentLivraisonConnecte.getId()%>">
         Consulter la liste de livraison</A><br/><br/>
+        <A HREF="AgentLivraisonServlet?action=passageInfosCreneauDispo&agentLivraison=<%=agentLivraisonConnecte.getId()%>">
+        Consulter la liste des créneaux dispos</A><br/><br/>
+        <A HREF="GestionLivraisonJSP/CreerCreneau.jsp">
+        Créer un créneau</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

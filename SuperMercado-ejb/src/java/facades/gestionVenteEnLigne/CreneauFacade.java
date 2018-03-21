@@ -5,7 +5,11 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
+import static java.lang.Boolean.TRUE;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -33,11 +37,13 @@ public class CreneauFacade extends AbstractFacade<Creneau> implements CreneauFac
     }
     
     @Override
-    public void CreerCreneau(Date heureDebut, Date heureFin){
+    public void CreerCreneau(Time heureDebut, Time heureFin, Date date, Magasin magasin){
         Creneau c=new Creneau();
         c.setDisponibilité(Boolean.TRUE);
         c.setHeureDebut(heureDebut);
         c.setHeureFin(heureFin);
+        c.setDate(date);
+        c.setMagasin(magasin);
         em.merge(c);
     }
     
@@ -71,6 +77,46 @@ public class CreneauFacade extends AbstractFacade<Creneau> implements CreneauFac
             creneau=c;
         }
         return creneau;
+    }
+    
+    @Override
+    public List<Creneau> ChercherCreneauDispo(){
+        List<Creneau> result=null;
+        Query req=getEntityManager().createQuery("SELECT c from Creneau AS c WHERE c.disponibilité=:TRUE");
+        List<Creneau> liste=req.getResultList();
+        for (Creneau c:liste){
+            result.add(c);
+        }
+        return result;
+    }
+    
+    @Override
+    public List<Creneau> ChercherCreneauDispoParMagasin(Magasin magasin){
+        Boolean dispo=TRUE;
+        List<Creneau> result=new ArrayList<Creneau>();
+        Query req=getEntityManager().createQuery("SELECT c from Creneau AS c WHERE c.disponibilité=:dispo AND c.magasin=:magasin");
+        req.setParameter("magasin",magasin);
+        req.setParameter("dispo",dispo);
+        List<Creneau> liste=req.getResultList();
+        for (Creneau c:liste){
+            result.add(c);
+        }
+        return result;
+    }
+    
+    @Override
+    public List<Creneau> ChercherCreneauDispoParMagasinParDate(Magasin magasin,Date date){
+        Boolean dispo=TRUE;
+        List<Creneau> result=new ArrayList<Creneau>();
+        Query req=getEntityManager().createQuery("SELECT c from Creneau AS c WHERE c.disponibilité=:dispo AND c.magasin=:magasin AND c.dateCreneau=:date");
+        req.setParameter("magasin",magasin);
+        req.setParameter("date",date);
+        req.setParameter("dispo",dispo);
+        List<Creneau> liste=req.getResultList();
+        for (Creneau c:liste){
+            result.add(c);
+        }
+        return result;
     }
     
 }

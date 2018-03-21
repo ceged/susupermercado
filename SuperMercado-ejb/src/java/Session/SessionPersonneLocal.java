@@ -6,6 +6,9 @@
 package Session;
 
 import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Creneau;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -18,5 +21,7 @@ public interface SessionPersonneLocal {
     void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne);
 
     Personne RechercherPersonneParId(String idPersonne);
+    
+
     
 }

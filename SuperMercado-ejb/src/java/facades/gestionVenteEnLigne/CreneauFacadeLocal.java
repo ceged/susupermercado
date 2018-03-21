@@ -5,7 +5,9 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,12 +33,18 @@ public interface CreneauFacadeLocal {
 
     int count();
     
-    void CreerCreneau(Date heureDebut, Date heureFin);
+   void CreerCreneau(Time heureDebut, Time heureFin, Date date, Magasin magasin);
     
     void ModifierCreneau(Creneau creneau);
     
     Creneau ChercherCreneauParId(String idCreneau);
     
     Creneau ChercherCreneauHoraire(Date heureDebut, Date heureFin);
+    
+    List<Creneau> ChercherCreneauDispo();
+    
+    List<Creneau> ChercherCreneauDispoParMagasin(Magasin magasin);
+    
+    List<Creneau> ChercherCreneauDispoParMagasinParDate(Magasin magasin,Date date);
     
 }

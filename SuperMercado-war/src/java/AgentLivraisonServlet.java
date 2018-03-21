@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Session.SessionAgentLivraisonLocal;
 import Session.SessionFournisseurLocal;
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionVenteEnLigne.Creneau;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
@@ -89,6 +93,19 @@ public class AgentLivraisonServlet extends HttpServlet {
             sess.setAttribute("liste",liste);
             jspChoix="/GestionLivraisonJSP/AfficherListeLivraison.jsp";
         }
+        else if (act.equals("insererCreneau")){
+            DoActionInsererCreneau(request,response);
+            jspChoix="/MenuAgentLivraison.jsp";
+        }
+        else if(act.equals("passageInfosCreneauDispo")){
+            String agentLivraisonId=request.getParameter("agentLivraison");
+            AgentLivraison a=sessionAgentLivraison.ChercherAgentLivraisonParId(agentLivraisonId);
+            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(a);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispo.jsp";
+        }
+        
        
         
         RequestDispatcher Rd;
@@ -180,6 +197,30 @@ String livraisonId=request.getParameter("livraisonId");
 request.setAttribute( "message", message );
 }
 
+    protected void DoActionInsererCreneau(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+            String heureDebut=request.getParameter("heureDebut");
+            String date=request.getParameter("date");
+            String heureFin=request.getParameter("heureFin");
+            String agentId=request.getParameter("agentId");
+            String message;
+            if (heureDebut.trim().isEmpty()&&heureFin.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionLivraisonJSP/CreerCreneau.jsp\">Cliquez ici</a> pour accéder au formulaire de création de créneau.";
+} else
+{
+    Date d=Date.valueOf(date);
+    LocalTime dDebut= LocalTime.parse(heureDebut);
+    LocalTime dFin= LocalTime.parse(heureFin);
+    Time Fin=Time.valueOf(dFin);
+    Time Debut=Time.valueOf(dDebut);
+    sessionAgentLivraison.CreerCreneau(Debut, Fin,d, agentId);
+    message="Créneau créé";
+}             
+request.setAttribute( "message", message );
+}
+    
+    
 
 protected void DoActionExclureLigneLivraison(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
