@@ -34,4 +34,5 @@ public interface AgentRayonFacadeLocal {
     
     void CreerAgentRayon(String nom, String prenom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, Rayon rayon);
     
+    AgentRayon ChercherAgentRayonParId(String idAgent);
 }

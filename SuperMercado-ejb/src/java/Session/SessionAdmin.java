@@ -7,6 +7,8 @@ package Session;
 
 import entités.gestionArticle.Categorie;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.AgentLivraison;
+import entités.gestionMagasin.AgentRayon;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import facades.gestionArticle.CategorieFacadeLocal;
@@ -114,10 +116,10 @@ public class SessionAdmin implements SessionAdminLocal {
         else if(fournisseurFacade.findAll().contains(personneConnecte)){
             i=6;
         }
-        else if(agentLivraisonFacade.findAll().contains(personneConnecte)){
+        else if(personneConnecte instanceof AgentLivraison){
             i=8;
         }
-        else if(agentRayonFacade.findAll().contains(personneConnecte)){
+        else if(personneConnecte instanceof AgentRayon){
             i=9;
         }
         return i;
