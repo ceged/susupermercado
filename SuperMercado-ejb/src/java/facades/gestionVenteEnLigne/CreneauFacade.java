@@ -6,6 +6,7 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.Creneau;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,15 @@ public class CreneauFacade extends AbstractFacade<Creneau> implements CreneauFac
 
     public CreneauFacade() {
         super(Creneau.class);
+    }
+    
+    @Override
+    public void CreerCreneau(Date heureDebut, Date heureFin){
+        Creneau c=new Creneau();
+        c.setDisponibilité(Boolean.FALSE);
+        c.setHeureDebut(heureDebut);
+        c.setHeureFin(heureFin);
+        em.merge(c);
     }
     
 }

@@ -6,6 +6,7 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.Creneau;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface CreneauFacadeLocal {
     List<Creneau> findRange(int[] range);
 
     int count();
+    
+    void CreerCreneau(Date heureDebut, Date heureFin);
     
 }
