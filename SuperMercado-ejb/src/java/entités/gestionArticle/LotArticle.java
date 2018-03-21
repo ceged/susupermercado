@@ -9,6 +9,7 @@ import entités.gestionArticle.Casse;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.LigneAchat;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -89,4 +90,15 @@ public class LotArticle implements Serializable {
     public void setArticle(ReferentielArticle article) {
         this.article = article;
     }
+    
+    private Date dateCreation;
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
 }

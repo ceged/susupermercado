@@ -7,6 +7,8 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -63,12 +65,22 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
     public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
         
         LotArticle la = new LotArticle ();
-        
+        Date date = new Date();
         la.setQuantiteLot(qteLotArticle);
         la.setArticle(refLotArticle);
+        la.setDateCreation(date);
         
         em.persist(la);
         
+    }
+
+    @Override
+    public LotArticle RechercherLotArticleFIFO(ReferentielArticle article) {
+        LotArticle la;
+        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article");
+        req.setParameter("article", article);
+        List result = req.getResultList();
+        return null;
     }
     
     

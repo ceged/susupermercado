@@ -36,5 +36,7 @@ public interface LotArticleFacadeLocal {
     LotArticle RechercherLotArticleParId(long IdLotArticle);
 
     void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle);
+
+    LotArticle RechercherLotArticleFIFO(ReferentielArticle article);
     
 }
