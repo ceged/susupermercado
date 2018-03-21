@@ -107,5 +107,12 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         return result;
         
     }
-    
+
+    @Override
+    public List<ReferentielArticle> RechercheReferentielArticleParMagasin(Magasin magasin) {
+        Query req = getEntityManager().createQuery("Select r from ReferentielArticle as r where r.rayon.secteur.magasin=:magasin");
+        req.setParameter("magasin", magasin);
+        List<ReferentielArticle> result = req.getResultList();
+        return result;
+    }   
 }

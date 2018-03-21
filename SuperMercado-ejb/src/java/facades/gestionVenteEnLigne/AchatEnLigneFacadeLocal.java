@@ -6,6 +6,7 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface AchatEnLigneFacadeLocal {
     List<AchatEnLigne> findRange(int[] range);
 
     int count();
+
+    AchatEnLigne CreationAchatEnLigne(Client client);
     
 }

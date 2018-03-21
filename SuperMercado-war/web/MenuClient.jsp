@@ -1,23 +1,28 @@
 <%-- 
-    Document   : Accueil
-    Created on : 12 mars 2018, 10:15:57
-    Author     : PC Tim
+    Document   : MenuClient
+    Created on : 19 mars 2018, 16:18:05
+    Author     : Sophia
 --%>
 
+<%@page import="entités.gestionVenteEnLigne.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="text.css" type="text/css">
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Page d'accueil du site</h1>
-        <A HREF="Connexion.jsp">
-        Se connecter</A><br/><br/>
-        <A HREF="GestionVentesEnLigneJSP/CreerCompteClient.jsp">
-        Client ? Cliquez ici pour créer un compte</A><br/><br/>
+         <% Client c= client;{%>
+<tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
+    </tr><%}%>
+        <h1>Menu Client</h1>
+        <A HREF="ClientServlet?action=transferListeMagasin">
+        Online Shopping</A><br/><br/>
+        
+        
+        
         
         <p> <%
         String attribut = (String) request.getAttribute("message");

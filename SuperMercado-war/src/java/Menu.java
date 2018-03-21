@@ -18,6 +18,7 @@ import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -58,7 +59,7 @@ public class Menu extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // sessionAdmin.CreerPersonneAdmin();
+        //sessionAdmin.CreerPersonneAdmin();
         response.setContentType("text/html;charset=UTF-8");
 
         
@@ -104,11 +105,20 @@ public class Menu extends HttpServlet {
                 sess.setAttribute("agentCaisse",agentCaisse);
                 jspChoix="/MenuAgentCaisse.jsp";
             }
+
+            else if(i==7){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                Client client = (Client)personneConnecte;
+                sess.setAttribute("client",client);
+                jspChoix="/MenuClient.jsp";
+            }
+
             else if(i==6){
                 Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
                 Fournisseur fournisseurConnecte = (Fournisseur)personneConnecte;
                 sess.setAttribute("fournisseurConnecte",fournisseurConnecte);
                 jspChoix="/MenuFournisseur.jsp";
+
             }
             else if(i==8){
                 Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);

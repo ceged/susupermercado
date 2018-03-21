@@ -5,10 +5,14 @@
  */
 package Session;
 
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionLivraison.AgentLivraison;
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.Creneau;
+import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionLivraison.AgentLivraisonFacadeLocal;
+import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionVenteEnLigne.CreneauFacadeLocal;
 import java.util.Date;
@@ -29,9 +33,16 @@ public class SessionPersonne implements SessionPersonneLocal {
     @EJB
     private CreneauFacadeLocal creneauFacade;
 
-@EJB
+    @EJB
+    private ReferentielArticleFacadeLocal referentielArticleFacade;
+
+    @EJB
+    private MagasinFacadeLocal magasinFacade;
+
+    @EJB
     private PersonneFacadeLocal personneFacade;
 
+    
     @Override
     public void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne) {
         Long id=Long.parseLong(idPersonne);
@@ -48,5 +59,22 @@ public class SessionPersonne implements SessionPersonneLocal {
     
     
 
+    @Override
+    public List <Magasin> ConsultationMagasins() {
+        return magasinFacade.findAll();
+    }
+
+    @Override
+    public List<ReferentielArticle> ConsultationArticlesParMagasin(String nomMagasin) {
+        Magasin magasin= magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return referentielArticleFacade.RechercheReferentielArticleParMagasin(magasin);
+    }
+
+    @Override
+    public Magasin RechercherMagasinParNom(String nomMagasin) {
+        return magasinFacade.RechercherMagasinParNom(nomMagasin);
+    }
+
+    
     
 }

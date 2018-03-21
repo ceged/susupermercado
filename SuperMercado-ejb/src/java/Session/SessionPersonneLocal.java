@@ -5,6 +5,8 @@
  */
 package Session;
 
+import entités.gestionArticle.ReferentielArticle;
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.Creneau;
 import java.util.Date;
@@ -21,6 +23,12 @@ public interface SessionPersonneLocal {
     void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne);
 
     Personne RechercherPersonneParId(String idPersonne);
+
+    List <Magasin> ConsultationMagasins();
+
+    List<ReferentielArticle> ConsultationArticlesParMagasin(String nomMagasin);
+
+    Magasin RechercherMagasinParNom(String nomMagasin);
     
 
     
