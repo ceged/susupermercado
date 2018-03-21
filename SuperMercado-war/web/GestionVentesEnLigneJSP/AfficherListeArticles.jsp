@@ -45,10 +45,10 @@
         <input type="hidden" name="action" value="insererLignePanier">
         <input type="hidden" id="idqte" name="quantite" value="">
         </fieldset>
-        
-        <input type="submit" value="Valider le panier" />
+
         <input type="reset" value="Remettre à zéro" /> <br />
-        <button onclick="getQuantite()"> Ajouter au panier</button>
+        <button onclick="getQuantite()"> Ajouter au panier</button> <br />
+        <input type="submit" value="Valider le panier" />
         </form> 
             <script>
 function getQuantite() {

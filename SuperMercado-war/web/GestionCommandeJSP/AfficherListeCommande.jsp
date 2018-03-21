@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="liste" scope="session" class="List<Commande>"></jsp:useBean>
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
-<title>lListe des bons de commandes</title>
+<title>Liste des bons de commandes</title>
 </head>
 <body>
 <h1>Liste des bons de commande</h1>

@@ -62,25 +62,37 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
     }
 
     @Override
+    public LotArticle RechercherLotArticleParNom(String nom) {
+        
+        LotArticle la;
+        Query req = getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article.libelleArticle=:nom");
+        req.setParameter("nom", nom);
+        la = (LotArticle) req.getSingleResult();
+        return la;
+        
+    }
+    @Override
     public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
         
         LotArticle la = new LotArticle ();
-        Date date = new Date();
         la.setQuantiteLot(qteLotArticle);
         la.setArticle(refLotArticle);
+        Date date = new Date();
         la.setDateCreation(date);
         
         em.persist(la);
         
     }
+    
 
     @Override
     public LotArticle RechercherLotArticleFIFO(ReferentielArticle article) {
         LotArticle la;
-        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article");
+        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article ORDER BY la.dateCreation");
         req.setParameter("article", article);
-        List result = req.getResultList();
-        return null;
+        List maliste = req.getResultList();
+        la= (LotArticle) maliste.get(0);
+        return la;
     }
     
     

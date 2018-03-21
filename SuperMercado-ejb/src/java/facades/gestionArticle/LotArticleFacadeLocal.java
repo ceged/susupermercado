@@ -39,4 +39,5 @@ public interface LotArticleFacadeLocal {
 
     LotArticle RechercherLotArticleFIFO(ReferentielArticle article);
     
+    LotArticle RechercherLotArticleParNom(String nom);
 }

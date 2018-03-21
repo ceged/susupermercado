@@ -6,11 +6,16 @@
 package Session;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.LotArticle;
+import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionArticle.AchatFacadeLocal;
+import facades.gestionArticle.LigneAchatFacadeLocal;
+import facades.gestionArticle.LotArticleFacadeLocal;
+import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionVenteEnLigne.AchatEnLigneFacadeLocal;
 import java.lang.String;
@@ -26,6 +31,15 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionClient implements SessionClientLocal {
+
+    @EJB
+    private LigneAchatFacadeLocal ligneAchatFacade;
+
+    @EJB
+    private ReferentielArticleFacadeLocal referentielArticleFacade;
+
+    @EJB
+    private LotArticleFacadeLocal lotArticleFacade;
 
     @EJB
     private AchatFacadeLocal achatFacade;
@@ -81,7 +95,27 @@ public class SessionClient implements SessionClientLocal {
         AchatEnLigne achatenligne = (AchatEnLigne) a;
         return achatenligne;
     }
+
+    @Override
+    public LotArticle GetLotArticleFIFO(String idArticle) {
+        
+        Long id = Long.valueOf(idArticle);
+        ReferentielArticle article = referentielArticleFacade.RechercheReferentielArticleParCodeBarre(id);
+        LotArticle lot = lotArticleFacade.RechercherLotArticleFIFO(article);
+        return lot;
+    }
+
+    @Override
+    public void creationLignePanier(String quantite, String article, String idAchat) {
+        LotArticle lotselectionne = this.GetLotArticleFIFO(article);
+        int quantiteInt = Integer.parseInt(quantite);
+        Long idAchatLong = Long.valueOf(idAchat);
+        Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
+        ligneAchatFacade.CreerLigneAchat(quantiteInt, lotselectionne, achat);
+        
+    }
     
+   
     
 }
     

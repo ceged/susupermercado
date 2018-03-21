@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.Vetement;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,6 +40,8 @@ public class VetementFacade extends AbstractFacade<Vetement> implements Vetement
         v.setArticle(refLotArticle);
         v.setTaille(taille);
         v.setCouleur(couleur);
+        Date date = new Date();
+        v.setDateCreation(date);
         
         em.persist(v);
         

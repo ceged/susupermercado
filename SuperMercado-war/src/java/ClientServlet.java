@@ -62,7 +62,7 @@ public class ClientServlet extends HttpServlet {
         else if (act.equals("insererClient"))
         {
             doActionInsererClient(request,response);
-            jspChoix="/GestionVentesEnLigneJSP/MenuClient.jsp";
+            jspChoix="/MenuClient.jsp";
         }
         
         else if (act.equals("transferListeMagasin")) /// pour le choix des magasins par le client au debut
@@ -187,18 +187,17 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
 protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String quantite= request.getParameter( "quantite" );
-    String article= request.getParameter( "article" );
+    String idArticle= request.getParameter( "article" );
     String client = request.getParameter("idClient");
     String achat = request.getParameter("idAchat");
     
     String message;
-    if ( quantite.trim().isEmpty()&&article.trim().isEmpty()){
+    if ( quantite.trim().isEmpty()&&idArticle.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
 } else
 {
     
-    int qte=Integer.parseInt(quantite);
-    
+    sessionClient.creationLignePanier(quantite, idArticle, achat);
     message="Article ajouté";
 }
    

@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Electromenager;
 import entités.gestionArticle.ReferentielArticle;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,6 +39,8 @@ public class ElectromenagerFacade extends AbstractFacade<Electromenager> impleme
         e.setQuantiteLot(qteLotArticle);
         e.setArticle(refLotArticle);
         e.setGarantie(garantie);
+        Date date = new Date();
+        e.setDateCreation(date);
         
         em.persist(e);
         

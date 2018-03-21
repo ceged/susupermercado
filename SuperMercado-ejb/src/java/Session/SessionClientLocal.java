@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionArticle.LotArticle;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import java.lang.String;
 import java.util.Date;
@@ -22,5 +23,9 @@ public interface SessionClientLocal {
     AchatEnLigne CreationAchatEnLigne(String idClient);
 
     AchatEnLigne RechercheAchatParId(String id);
+
+    LotArticle GetLotArticleFIFO(String nomArticle);
+
+    void creationLignePanier(String quantite, String nomArticle, String idAchat);
     
 }

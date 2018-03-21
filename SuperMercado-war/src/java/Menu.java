@@ -125,6 +125,7 @@ public class Menu extends HttpServlet {
                 sess.setAttribute("agentLivraisonConnecte",agentLivraisonConnecte);
                 jspChoix="/MenuAgentLivraison.jsp";
             }
+           
           }
         
         else if (act.equals("CasterEnPersonne"))
