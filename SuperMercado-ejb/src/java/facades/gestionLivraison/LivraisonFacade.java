@@ -98,7 +98,7 @@ public class LivraisonFacade extends AbstractFacade<Livraison> implements Livrai
         String statut2="attentereception";
         String statut3="probleme";
         List<Livraison> liste= new ArrayList<Livraison>();
-        Query req=getEntityManager().createQuery("SELECT l from Livraison as l where l.commande.chefRayon.rayon.secteur.magasin=:magasin AND l.Statut=:statut OR l.Statut=:statut2 OR l.Statut=:statut3");
+        Query req=getEntityManager().createQuery("SELECT l from Livraison as l where l.commande.chefRayon.rayon.secteur.magasin=:magasin AND (l.Statut=:statut OR l.Statut=:statut2 OR l.Statut=:statut3)");
         req.setParameter("magasin",magasin);
         req.setParameter("statut",statut);
         req.setParameter("statut2",statut2);

@@ -36,6 +36,8 @@ public interface AffectationCaisseAgentFacadeLocal {
     void CreerAffectation(AgentCaisse agentCaisse, Caisse caisse, Date debut, Date fin);
 
     AgentCaisse RechercherAgentParCaisseEtDate(Date date, Caisse caisse);
+    
+    AffectationCaisseAgent RechercherAffectionParDateAgent(Date d, AgentCaisse agent);
 
     
 }

@@ -113,15 +113,6 @@ public class ReferentielArticle implements Serializable {
         this.prixVenteMagasin = prixVenteMagasin;
     }
 
-        private float prixVenteNational;
-
-    public float getPrixVenteNational() {
-        return prixVenteNational;
-    }
-
-    public void setPrixVenteNational(float prixVenteNational) {
-        this.prixVenteNational = prixVenteNational;
-    }
     
     @ManyToMany
     private List <Fournisseur> listeFournisseurs;

@@ -65,6 +65,20 @@ public class AgentCaisseFacade extends AbstractFacade<AgentCaisse> implements Ag
     }
         return result ;
     }
+    
+    @Override
+    public AgentCaisse RechercherAgentCaisseParId(String idAgentCaisse) {
+        
+        AgentCaisse result = null ;
+        Long id=Long.parseLong(idAgentCaisse);
+        Query req=getEntityManager().createQuery("SELECT a from AgentCaisse as a where a.id=:id");
+        req.setParameter("id",id);
+        List<AgentCaisse>l=req.getResultList();
+        for(AgentCaisse c:l){
+            result = c;
+    }
+        return result ;
+    }
 
     @Override
     public List<AgentCaisse> ConsulterListeAgentCaisseParMagasin(Magasin magasin) {

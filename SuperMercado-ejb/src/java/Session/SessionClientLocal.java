@@ -8,6 +8,7 @@ package Session;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
@@ -33,5 +34,7 @@ public interface SessionClientLocal {
     List<LigneAchat> GetLignesPanier(String idAchat);
 
     void SuppressionLigneAchat(String idLigneAchat);
+    
+    Client ChercherClientParLoginMdp(String login, String mdp);
     
 }

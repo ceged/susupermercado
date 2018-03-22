@@ -8,6 +8,8 @@ package Session;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Creneau;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,5 +29,7 @@ public interface SessionPersonneLocal {
     List<ReferentielArticle> ConsultationArticlesParMagasin(String nomMagasin);
 
     Magasin RechercherMagasinParNom(String nomMagasin);
+    
+
     
 }

@@ -11,6 +11,7 @@ import entités.gestionCommande.Fournisseur;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionMagasin.Admin;
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.AgentRayon;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -25,6 +26,7 @@ import facades.gestionCommande.FournisseurFacadeLocal;
 import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
@@ -42,6 +44,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private AgentRayonFacadeLocal agentRayonFacade;
 
     @EJB
 
@@ -129,6 +134,9 @@ public class SessionAdmin implements SessionAdminLocal {
         }
         else if(personneConnecte instanceof AgentLivraison){
             i=8;
+        }
+        else if(personneConnecte instanceof AgentRayon){
+            i=9;
         }
         return i;
     }

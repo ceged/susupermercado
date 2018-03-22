@@ -5,8 +5,10 @@
  */
 package entités.gestionVenteEnLigne;
 
+import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.LivraisonDomicile;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -65,25 +67,37 @@ public class Creneau implements Serializable {
     }
  
 
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date heureDebut;
 
-    public Date getHeureDebut() {
+    private Time heureDebut;
+
+    public Time getHeureDebut() {
         return heureDebut;
     }
 
-    public void setHeureDebut(Date heureDebut) {
+    public void setHeureDebut(Time heureDebut) {
         this.heureDebut = heureDebut;
     }
 
     @Temporal(javax.persistence.TemporalType.DATE)
-       private Date heureFin;
+    private Date dateCreneau;
 
-    public Date getHeureFin() {
+    public Date getDate() {
+        return dateCreneau;
+    }
+
+    public void setDate(Date dateCreneau) {
+        this.dateCreneau = dateCreneau;
+    }
+    
+    
+
+       private Time heureFin;
+
+    public Time getHeureFin() {
         return heureFin;
     }
 
-    public void setHeureFin(Date heureFin) {
+    public void setHeureFin(Time heureFin) {
         this.heureFin = heureFin;
     }
 
@@ -96,5 +110,16 @@ public class Creneau implements Serializable {
     public void setDisponibilité(Boolean disponibilité) {
         this.disponibilité = disponibilité;
     }
+    
+        private Magasin magasin;
+     
+        public Magasin getMagasin(){
+            return magasin;
+        }
+        
+        public void setMagasin(Magasin magasin){
+            this.magasin=magasin;
+        }
+        
 
 }

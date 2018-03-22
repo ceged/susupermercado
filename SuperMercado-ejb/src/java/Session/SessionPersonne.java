@@ -6,11 +6,16 @@
 package Session;
 
 import entités.gestionArticle.ReferentielArticle;
-import entités.gestionMagasin.Personne;
+import entités.gestionLivraison.AgentLivraison;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Creneau;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
+import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
+import facades.gestionVenteEnLigne.CreneauFacadeLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,6 +26,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionPersonne implements SessionPersonneLocal {
+
+    @EJB
+    private AgentLivraisonFacadeLocal agentLivraisonFacade;
+
+    @EJB
+    private CreneauFacadeLocal creneauFacade;
 
     @EJB
     private ReferentielArticleFacadeLocal referentielArticleFacade;
@@ -45,6 +56,8 @@ public class SessionPersonne implements SessionPersonneLocal {
         Long id=Long.parseLong(idPersonne);
         return personneFacade.RechercherPersonneParId(id);
     }
+    
+    
 
     @Override
     public List <Magasin> ConsultationMagasins() {

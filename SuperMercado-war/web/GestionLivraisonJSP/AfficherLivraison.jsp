@@ -4,6 +4,7 @@
     Author     : Soldat
 --%>
 
+<%@page import="entités.gestionLivraison.Mention"%>
 <%@page import="entités.gestionLivraison.AgentLivraison"%>
 <%@page import="entités.gestionLivraison.Livraison"%>
 <%@page import="entités.gestionLivraison.LigneLivraison"%>
@@ -69,13 +70,13 @@ for(LigneLivraison l : liste){%>
         <OPTION>XXL
         </SELECT></td>
 <td Width=15%><input type="date" name="datePeremption" value="" size="20" maxlength="20" /></td>
-<td Width=30%>
+<% Mention e=Mention.validation ; if(l.getMentionStatut().equals(e)){%> <td Width=30%>
     <input type="hidden" name="ligneId" value=<%=l.getId()%>>
     <input type="hidden" name="agentLivraisonId" value=<%= agentLivraisonConnecte.getId() %>>
     <input type="hidden" name="livraisonId" value=<%=livraison.getId() %>>
     <input type="hidden" name="action" value="ValiderLigneLivraison">
-    <input type="submit" value="Valider" /></td>
-    </tr></form><%}%></TABLE>
+    <input type="submit" value="Valider" /></td><%}else{%><td Width=30%>Déjà valider</td>
+    </tr></form><%}}%></TABLE>
     
 <form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
 <label for="date"> Date de livraison effective <span class="requis">*</span></label>

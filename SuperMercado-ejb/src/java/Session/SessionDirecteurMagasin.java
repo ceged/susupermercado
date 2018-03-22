@@ -76,7 +76,7 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override 
-    public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+    public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String Idrayon, String nomMagasin){
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
         {
@@ -84,15 +84,14 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         }
         else
         {
-            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
-            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-            chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            Rayon r=rayonFacade.ChercherRayonParId(Idrayon);
+            chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, r);
             message="Chef de Rayon créé";
             }
         return message; 
     }
  @Override 
-    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String Idrayon, String nomMagasin){
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
         {
@@ -101,8 +100,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         else
         {
            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
-            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            Rayon r=rayonFacade.ChercherRayonParId(Idrayon);
+            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, r);
             message="Agent de Rayon créé";
             }
         return message; 

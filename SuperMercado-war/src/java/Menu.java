@@ -12,6 +12,7 @@ import Session.SessionChefDeRayonLocal;
 import Session.SessionPersonneLocal;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.AgentRayon;
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionMagasin.ChefRayon;
 import entités.gestionMagasin.DirecteurMagasin;
@@ -61,7 +62,7 @@ public class Menu extends HttpServlet {
         //sessionAdmin.CreerPersonneAdmin();
         response.setContentType("text/html;charset=UTF-8");
 
-
+        
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
         if ((act == null)||(act.equals("null")))
@@ -125,7 +126,12 @@ public class Menu extends HttpServlet {
                 sess.setAttribute("agentLivraisonConnecte",agentLivraisonConnecte);
                 jspChoix="/MenuAgentLivraison.jsp";
             }
-           
+            else if(i==9){
+                Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);
+                AgentRayon agentRayonConnecte = (AgentRayon)personneConnecte;
+                sess.setAttribute("agentRayonConnecte",agentRayonConnecte);
+                jspChoix="/MenuAgentRayon.jsp";
+            }
           }
         
         else if (act.equals("CasterEnPersonne"))

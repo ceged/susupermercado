@@ -7,6 +7,9 @@ package Session;
 
 import entités.gestionLivraison.AgentLivraison;
 import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.Magasin;
+import entités.gestionVenteEnLigne.Creneau;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -33,5 +36,15 @@ public interface SessionAgentLivraisonLocal {
     void CreerLotArticleFrais(int qteProduitFrais, Long idRefArticle,Date datePeremption);
     
     void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie);
+    
+      void CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent);
+    
+    void ModifierCreneau(String idCreneau);
+    
+    List<Creneau> ListeCreneauDispoParMagasin (Magasin m);
+    
+    List<Creneau> ListeCreneauDispoParMagasinParDate(Magasin m, Date d);
+    
+    Magasin ChercherMagasinParNom(String nomMagasin);
     
 }

@@ -49,14 +49,19 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
      em.merge(LotArticle);
      
     }
+    
+    
 
     @Override
     public LotArticle RechercherLotArticleParId(long id) {
         
-        LotArticle la;
+        LotArticle la=null;
         Query req = getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.id=:id");
         req.setParameter("id", id);
-        la = (LotArticle) req.getSingleResult();
+        List<LotArticle>liste=req.getResultList();
+        for (LotArticle c:liste){
+            la=c;
+        }
         return la;
         
     }

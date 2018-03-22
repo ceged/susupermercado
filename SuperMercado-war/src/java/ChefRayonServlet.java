@@ -63,9 +63,22 @@ public class ChefRayonServlet extends HttpServlet {
             HttpSession sess=request.getSession(true);
             List<SousCategorie> listeSousCategorie = sessionChefDeRayon.ListerSousCategorie();
             List<Fournisseur> listeFournisseur=sessionChefDeRayon.ListerFournisseur();
+            if(listeSousCategorie.isEmpty()){
+                String message="vous devez créer des sous catégorie avant";
+                request.setAttribute( "message", message );
+                jspChoix="/MenuChefdeRayon.jsp";
+            }
+            else if(listeFournisseur.isEmpty()){
+                String message="vous devez créer des fournisseurs avant";
+                request.setAttribute( "message", message );
+                jspChoix="/MenuChefdeRayon.jsp";
+            }
+            else{
             sess.setAttribute("listeFournisseur",listeFournisseur);
             sess.setAttribute("listeSousCategorie",listeSousCategorie); 
             jspChoix="/GestionArticleJSP/CreerArticle.jsp";
+            }
+            
         }
         else if (act.equals("passageInfospourModifierPrix"))
         {

@@ -5,12 +5,15 @@
  */
 package facades.gestionMagasin;
 
+import entités.gestionArticle.Casse;
 import entités.gestionMagasin.AgentRayon;
 import entités.gestionMagasin.Rayon;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -49,5 +52,18 @@ public class AgentRayonFacade extends AbstractFacade<AgentRayon> implements Agen
 
         em.persist(agent);
         
+    }
+    
+    @Override
+    public AgentRayon ChercherAgentRayonParId(String idAgent){
+        Long id=Long.parseLong(idAgent);
+        AgentRayon agent=new AgentRayon();
+        Query req = getEntityManager().createQuery("SELECT a FROM AgentRayon AS a WHERE a.id=:id");
+        req.setParameter("id", id);
+        List<AgentRayon> liste=req.getResultList();
+        for (AgentRayon a:liste){
+            agent=a;
+        }
+        return agent;
     }
 }

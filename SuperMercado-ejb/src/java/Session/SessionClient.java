@@ -117,6 +117,12 @@ public class SessionClient implements SessionClientLocal {
         
     }
     
+    @Override
+    public Client ChercherClientParLoginMdp(String login, String mdp){
+        Client c= new Client();
+        c=clientFacade.ChercherClientParLoginMdp(login, mdp);
+                return c;
+    }
 
     @Override
     public List<LigneAchat> GetLignesPanier(String idAchat) {
