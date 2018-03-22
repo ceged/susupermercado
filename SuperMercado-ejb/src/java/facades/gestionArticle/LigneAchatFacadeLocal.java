@@ -33,5 +33,9 @@ public interface LigneAchatFacadeLocal {
     int count();
 
     void CreerLigneAchat(int qteAchetees, LotArticle lotArticle, Achat achat);
+
+    void SupprimerLigneAchat(LigneAchat ligneAchat);
+
+    LigneAchat RechercherLigneAchatParId(Long idLigne);
     
 }

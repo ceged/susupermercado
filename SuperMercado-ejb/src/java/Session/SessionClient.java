@@ -6,6 +6,7 @@
 package Session;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Personne;
@@ -21,6 +22,7 @@ import facades.gestionVenteEnLigne.AchatEnLigneFacadeLocal;
 import java.lang.String;
 import facades.gestionVenteEnLigne.ClientFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -121,6 +123,29 @@ public class SessionClient implements SessionClientLocal {
         c=clientFacade.ChercherClientParLoginMdp(login, mdp);
                 return c;
     }
+
+    @Override
+    public List<LigneAchat> GetLignesPanier(String idAchat) {
+        Long idAchatLong = Long.valueOf(idAchat);
+        Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
+        return achatFacade.getListeLigneAchat(achat);
+    }
+
+    @Override
+    public void SuppressionLigneAchat(String idLigneAchat) {
+        Long idLigneAchatLong = Long.valueOf(idLigneAchat);
+        LigneAchat a = ligneAchatFacade.RechercherLigneAchatParId(idLigneAchatLong);
+        ligneAchatFacade.SupprimerLigneAchat(a);
+    }
+
+    @Override
+    public void ValidationAchat(String idAchat) {
+        Long idAchatLong = Long.valueOf(idAchat);
+        Achat a = achatFacade.RechercheAchatParId(idAchatLong);
+        achatFacade.ValiderAchat(a);
+          
+    }
+    
     
 }
     

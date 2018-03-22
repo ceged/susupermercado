@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.LigneAchat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -34,5 +35,9 @@ public interface AchatFacadeLocal {
     Achat CreerAchat(Date dateAchat);
     
     Achat RechercheAchatParId(Long idAchat);
+
+    List<LigneAchat> getListeLigneAchat(Achat achat);
+
+    void ValiderAchat(Achat achat);
     
 }

@@ -7,6 +7,7 @@
 import Session.SessionEmployeCaisseLocal;
 import entités.gestionArticle.AchatCaisse;
 import entités.gestionArticle.LigneAchat;
+import entités.gestionArticle.LotArticle;
 import entités.gestionMagasin.AgentCaisse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,6 +73,26 @@ public class EmployeCaisseServlet extends HttpServlet {
             sess.setAttribute("liste",liste); 
             jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
         }
+        else if (act.equals("SupprimerLigneAchat")){
+            String idLigne=request.getParameter("ligneId");
+            sessionEmployeCaisse.SupprimerLigneAchatCaissev2(idLigne);
+            String idAchat=request.getParameter("achatId");
+            AchatCaisse a=sessionEmployeCaisse.ChercherAchatCaisseParId(idAchat);
+            HttpSession sess=request.getSession(true);
+            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
+            sess.setAttribute("liste",liste); 
+            String message="Article supprimé";
+            request.setAttribute( "message", message );
+            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
+            
+        }
+        else if(act.equals("validerAchatCaisse")){
+            String idAchat=request.getParameter("idAchat");
+            sessionEmployeCaisse.ValiderAchatCaisse(idAchat);
+            String message="Achat valider et payer";
+            request.setAttribute( "message", message );
+            
+        }
         
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -92,7 +113,8 @@ public class EmployeCaisseServlet extends HttpServlet {
         }
     }
 
-    protected void doActioninsererLigneAchat(HttpServletRequest request, HttpServletResponse response)
+    
+        protected void doActioninsererLigneAchat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
 
@@ -101,7 +123,13 @@ public class EmployeCaisseServlet extends HttpServlet {
             String message;
             Long idLot=Long.parseLong(IDLot);
             Long idAchat=Long.parseLong(IDAchat);
-            message=sessionEmployeCaisse.CreerLigneAchat(idLot, 1, idAchat);
+            LotArticle l=sessionEmployeCaisse.ChercherLotArticleParId(IDLot);
+            if(l.getQuantiteLot()==0){
+                message="Plus de quantité en stock";
+            }
+            else{
+                message=sessionEmployeCaisse.CreerLigneAchat(idLot, 1, idAchat);
+            }
      
    
 request.setAttribute( "message", message );

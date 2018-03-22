@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.LigneAchat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -36,6 +37,7 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
     public Achat CreerAchat(Date dateAchat) {
         Achat achat = new Achat ();
         achat.setDateAchat(dateAchat);
+     
        
         em.persist(achat);
         
@@ -53,6 +55,21 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
         a=ac;
     }
         return a;
+    }
+
+    @Override
+    public List<LigneAchat> getListeLigneAchat(Achat achat) {
+        List<LigneAchat> result;
+        Query req = getEntityManager().createQuery("Select a from LigneAchat as a where a.achat=:achat");
+        req.setParameter("achat", achat);
+        result = req.getResultList();
+        return result;
+    }
+
+    @Override
+    public void ValiderAchat(Achat achat) {
+        achat.setStatutAchat("Valide");
+        em.merge(achat);
     }
     
     

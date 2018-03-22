@@ -37,6 +37,7 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
         Date dateAchat = new Date();
         a.setClient(client);
         a.setDateAchat(dateAchat);
+        a.setStatutAchat("En Cours");
         
         em.persist(a);
         return a;

@@ -8,6 +8,7 @@ import Session.SessionAgentLivraisonLocal;
 import Session.SessionClientLocal;
 import Session.SessionPersonneLocal;
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
@@ -60,11 +61,14 @@ public class ClientServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
-        if ((act == null)||(act.equals("null")))
+        String act2=request.getParameter("action2");
+        /*if ((act == null)||(act.equals("null")))
             {
             jspChoix="/Accueil.jsp";
             }
-        else if (act.equals("insererClient"))
+        */
+        if(act!=null){
+        if (act.equals("insererClient"))
         {
             doActionInsererClient(request,response);
             jspChoix="/MenuClient.jsp";
@@ -117,6 +121,35 @@ public class ClientServlet extends HttpServlet {
             HttpSession sess=request.getSession(true);
             sess.setAttribute("liste",liste);
             jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp";
+        }
+        else if(act.equals("SupprimerLigneAchat")){
+            doActioninsererSupprimerLigneAchat(request,response);
+            String idLigneAchat= request.getParameter("ligneAchatId");
+            HttpSession sess=request.getSession(true);
+            String idAchatEnCours = request.getParameter("idAchat");
+            List<LigneAchat> listeLignesPanier = sessionClient.GetLignesPanier(idAchatEnCours);
+            sess.setAttribute("listeLignesPanier", listeLignesPanier);
+            jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
+        }
+        else if(act.equals("validerPanier")){
+            String idAchat= request.getParameter("idAchat");
+            //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
+            sessionClient.ValidationAchat(idAchat);
+        }
+        }
+        else if (act2.equals("consulterVotrePanier"))
+        {
+            
+            HttpSession sess=request.getSession(true);
+            String idAchatEnCours = request.getParameter("idAchat");
+            List<LigneAchat> listeLignesPanier = sessionClient.GetLignesPanier(idAchatEnCours);
+            sess.setAttribute("listeLignesPanier", listeLignesPanier);
+            jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
+            
+        }
+        else 
+        {
+            jspChoix="/Accueil.jsp";
         }
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -220,4 +253,21 @@ protected void doActioninsererLignePanier(HttpServletRequest request, HttpServle
 request.setAttribute( "message", message );
 }
 
+protected void doActioninsererSupprimerLigneAchat(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+    String idLigne = request.getParameter("ligneAchatId");
+    String message;
+    
+    if ( idLigne.trim().isEmpty()){
+    message = "Erreur pas de ligne récup de la jsp " + "<br /> <a href=\"GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp\">Cliquez ici</a>";
+} else
+{
+    
+    sessionClient.SuppressionLigneAchat(idLigne);
+    message="Article Supprimé";
+}
+   
+request.setAttribute( "message", message );
+}
 }

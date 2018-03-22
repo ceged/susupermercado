@@ -63,6 +63,12 @@ for(LigneAchat l : liste){t=t+l.getLotArticle().getArticle().getPrixVenteMagasin
     
 </table>       
         
+    <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
+        <input type="hidden" name="idAchat" value="<%=achatCaisse.getId() %>">
+        <input type="hidden" name="action" value="validerAchatCaisse">
+        <input type="submit" value="Valider panier/Passer au paiement" />
+        <br />
+        </form>
     
     
     </body>

@@ -8,9 +8,11 @@ package facades.gestionArticle;
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -40,9 +42,25 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
         ligneAchat.setAchat(achat);
         em.persist(ligneAchat);
     }
+
+    @Override
+    public void SupprimerLigneAchat(LigneAchat ligneAchat) {
+        em.remove(ligneAchat);
+    }
+
+    @Override
+    public LigneAchat RechercherLigneAchatParId(Long idLigne) {
+        LigneAchat a = null;
+        Query req = getEntityManager().createQuery("Select a from LigneAchat as a where a.id =:idLigneAchat ");
+        req.setParameter("idLigneAchat", idLigne);
+        List<LigneAchat>listeLigneAchat=req.getResultList();
+            for(LigneAchat ac:listeLigneAchat)
+    {
+        a=ac;
+    }
+        return a;
+    }
     
     
-    
-    
-    
+   
 }

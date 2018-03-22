@@ -81,6 +81,13 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         
         return message;
     }
+    
+    @Override
+    public void SupprimerLigneAchatCaissev2(String idLigneAchat){
+        LigneAchat l=this.ChercherLigneAchat(idLigneAchat);
+        ligneAchatFacade.SupprimerLigneAchat(l);
+        lotArticleFacade.ModifierQteLotArticle(-1, l.getLotArticle());
+    }
 
     @Override
     public void CreerAchat() {
@@ -130,5 +137,12 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
     public LigneAchat ChercherLigneAchat (String idLigneAchat){
         Long id=Long.parseLong(idLigneAchat);
         return ligneAchatFacade.find(id);
+    }
+    
+    
+    @Override
+    public void ValiderAchatCaisse(String idAchat){
+        AchatCaisse a=this.ChercherAchatCaisseParId(idAchat);
+        achatFacade.ValiderAchat(a);
     }
 }
