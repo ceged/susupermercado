@@ -5,10 +5,12 @@
  */
 package Session;
 
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -27,5 +29,9 @@ public interface SessionClientLocal {
     LotArticle GetLotArticleFIFO(String nomArticle);
 
     void creationLignePanier(String quantite, String nomArticle, String idAchat);
+
+    List<LigneAchat> GetLignesPanier(String idAchat);
+
+    void SuppressionLigneAchat(String idLigneAchat);
     
 }
