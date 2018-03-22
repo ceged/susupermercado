@@ -3,6 +3,14 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionArticle.ReferentielArticle"%>
 <a href="CreerLigneCommande.jsp"></a>

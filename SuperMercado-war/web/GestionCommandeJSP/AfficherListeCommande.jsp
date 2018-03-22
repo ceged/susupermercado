@@ -3,6 +3,14 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page import="entités.gestionCommande.Commande"%>

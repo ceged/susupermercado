@@ -3,6 +3,15 @@
     Created on : 22 mars 2018, 11:38:15
     Author     : Soldat
 --%>
+<% 
+        
+    if (session.getAttribute("agentCaisse") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
+
 
 <%@page import="entités.gestionArticle.AchatCaisse"%>
 <%@page import="entités.gestionArticle.LigneAchat"%>

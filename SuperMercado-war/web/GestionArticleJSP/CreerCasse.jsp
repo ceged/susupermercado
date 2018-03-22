@@ -3,6 +3,14 @@
     Created on : 13 mars 2018, 16:15:46
     Author     : CGAILLOTDREVON
 --%>
+<% 
+        
+    if (session.getAttribute("agentRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionMagasin.AgentRayon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

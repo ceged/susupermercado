@@ -3,14 +3,30 @@
     Created on : 13 mars 2018, 10:31:11
     Author     : Soldat
 --%>
+<% 
+        
+    if (session.getAttribute("personneConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
+
+<%@page import="java.io.IOException"%>
+<%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
 <link rel="stylesheet" href="text.css" type="text/css">
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
+        
+
+
+
+
         <title>JSP Page</title>
     </head>
     <body>
