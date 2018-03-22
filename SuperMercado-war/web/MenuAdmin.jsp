@@ -21,15 +21,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="text.css" type="text/css">
-        
-
-
-
 
         <title>JSP Page</title>
     </head>
     <body>
+            
         <h1>Bienvenue sur le menu Admin !</h1>
         <A HREF="GestionMagasinJSP/CreerMagasin.jsp">
         Créer un magasin</A><br/><br/>
@@ -45,7 +41,7 @@
         Supprimer un magasin</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
-        
+
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
