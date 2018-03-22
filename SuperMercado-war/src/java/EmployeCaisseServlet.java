@@ -124,7 +124,10 @@ public class EmployeCaisseServlet extends HttpServlet {
             Long idLot=Long.parseLong(IDLot);
             Long idAchat=Long.parseLong(IDAchat);
             LotArticle l=sessionEmployeCaisse.ChercherLotArticleParId(IDLot);
-            if(l.getQuantiteLot()==0){
+            if(l==null){
+                message="Code barre inconnu";
+            }
+            else if(l.getQuantiteLot()==0){
                 message="Plus de quantité en stock";
             }
             else{
