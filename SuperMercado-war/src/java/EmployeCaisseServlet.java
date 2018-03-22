@@ -54,8 +54,9 @@ public class EmployeCaisseServlet extends HttpServlet {
             }
             else{
             HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=
+            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
             sess.setAttribute("listeRayon",liste); 
+            sess.setAttribute("achatCaisse",a); 
             jspChoix="/GestionMagasinJSP/CreerAgentRayon.jsp";
             }
         }

@@ -7,6 +7,7 @@ package Session;
 
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
@@ -18,6 +19,7 @@ import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -104,4 +106,9 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         return agentCaisseFacade.RechercherAgentCaisseParId(idAgent);
     }
     
+    @Override
+    public List<LigneAchat> ChercherLigneAchatParAchat(AchatCaisse a){
+        List<LigneAchat> result=achatCaisseFacade.ChercherListeLigneAchatParAchatCaisse(a);
+        return result;
+    }
 }
