@@ -85,7 +85,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(magasinRecherche==null){
             message="magasin inconnu";
         }
-            Rayon rayonRecherche =rayonFacade.RechercherRayonParNom(rayon, magasinRecherche) ;
+            Rayon rayonRecherche =rayonFacade.ChercherRayonParId(rayon) ;
         if(rayonRecherche==null){
             message="rayon inconnu";
         }

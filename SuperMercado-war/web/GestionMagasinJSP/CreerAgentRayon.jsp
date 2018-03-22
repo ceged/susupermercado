@@ -54,11 +54,11 @@ List<Rayon> listeRayon2 =listeRayon;{%>
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
         <input type="text" name="codePostal" value="" size="20" maxlength="20" />
         <br />
-        <label for="libelleRayon">Rayon<span class="requis">*</span></label>
-        <SELECT name="libelleRayon" size="1">
+        <label for="idRayon">Rayon<span class="requis">*</span></label>
+        <SELECT name="idRayon" size="1">
             <%
             for(Rayon r: listeRayon2){ %>
-            <OPTION><%=r.getLibelleRayon()%>
+            <OPTION value="<%=r.getId() %>"><%=r.getLibelleRayon()%>
                 <%}%>    
         </SELECT>
         <br />
