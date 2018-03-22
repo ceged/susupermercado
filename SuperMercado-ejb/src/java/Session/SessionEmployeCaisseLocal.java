@@ -5,6 +5,8 @@
  */
 package Session;
 
+import entités.gestionArticle.AchatCaisse;
+import entités.gestionMagasin.AgentCaisse;
 import javax.ejb.Local;
 
 /**
@@ -17,4 +19,7 @@ public interface SessionEmployeCaisseLocal {
     String CreerLigneAchat(long codeLotArticle, int qteAchetee, long codeAchat);
     void CreerAchat();
     
+    AchatCaisse CreerAchatCaisse(String idAgent);
+    
+    AgentCaisse ChercherAgentCaisseParId(String idAgent);
 }

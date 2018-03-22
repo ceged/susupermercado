@@ -38,4 +38,7 @@ public interface AgentCaisseFacadeLocal {
     AgentCaisse RechercherAgentCaisse(String idAgentCaisse, Magasin magasin);
 
     List<AgentCaisse> ConsulterListeAgentCaisseParMagasin(Magasin magasin);
+    
+    AgentCaisse RechercherAgentCaisseParId(String idAgentCaisse);
+    
 }

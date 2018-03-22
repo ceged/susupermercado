@@ -6,11 +6,14 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionMagasin.Caisse;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -42,5 +45,19 @@ public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements Ac
         
         return achatCaisse;
     }
+    
+    @Override
+    public List<LigneAchat> ChercherListeLigneAchatParAchatCaisse(AchatCaisse a){
+        List<LigneAchat> result=null;
+        Query req = getEntityManager().createQuery("Select l from LigneAchat as l where l.achat.id=:a");
+        req.setParameter("a", a.getId());
+        List<LigneAchat>listeAchat=req.getResultList();
+            for(LigneAchat l:listeAchat)
+    {
+        result.add(l);
+    }
+        return result;
+    }
+    
     
 }

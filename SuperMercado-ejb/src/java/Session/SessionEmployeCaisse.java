@@ -6,10 +6,17 @@
 package Session;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.AchatCaisse;
 import entités.gestionArticle.LotArticle;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Caisse;
+import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionArticle.AchatFacadeLocal;
 import facades.gestionArticle.LigneAchatFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
+import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
+import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.CaisseFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -20,6 +27,18 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
+
+    @EJB
+    private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
+
+    @EJB
+    private AgentCaisseFacadeLocal agentCaisseFacade;
+
+    @EJB
+    private CaisseFacadeLocal caisseFacade;
+
+    @EJB
+    private AchatCaisseFacadeLocal achatCaisseFacade;
 
     @EJB
     private AchatFacadeLocal achatFacade;
@@ -68,8 +87,21 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         Achat a = null ;
         
         a = achatFacade.CreerAchat(dateAchat);
-        
-        
-      
+               
 }
+    @Override
+    public AchatCaisse CreerAchatCaisse(String idAgent){
+        AchatCaisse achat=null;
+        Date dateAchat= new Date();
+        AgentCaisse a=this.ChercherAgentCaisseParId(idAgent);
+        Caisse c=affectationCaisseAgentFacade.RechercherAffectionParDateAgent(dateAchat, a).getCaisse();
+        achat=achatCaisseFacade.CreerAchatCaisse(dateAchat, c);
+        return achat;
+    }
+    
+    @Override
+    public AgentCaisse ChercherAgentCaisseParId(String idAgent){
+        return agentCaisseFacade.RechercherAgentCaisseParId(idAgent);
+    }
+    
 }

@@ -4,13 +4,21 @@
  * and open the template in the editor.
  */
 
+import Session.SessionEmployeCaisseLocal;
+import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
+import entités.gestionMagasin.AgentCaisse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sun.management.Agent;
 
 /**
  *
@@ -18,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/EmployeCaisseServlet"})
 public class EmployeCaisseServlet extends HttpServlet {
+
+    @EJB
+    private SessionEmployeCaisseLocal sessionEmployeCaisse;
 
     
     
@@ -33,9 +44,20 @@ public class EmployeCaisseServlet extends HttpServlet {
             jspChoix="/Accueil.jsp";
             }
         
-        else if (act.equals("insererAchat"))
+        else if (act.equals("passageInfoCreerAchatCaisse"))
         {
-            
+            String message=null;
+            String idAgent=request.getParameter("idAgent");
+            AchatCaisse a=sessionEmployeCaisse.CreerAchatCaisse(idAgent);
+            if(a==null){
+                message="vous n'êtes pas affecté à une caisse";
+            }
+            else{
+            HttpSession sess=request.getSession(true);
+            List<LigneAchat> liste=
+            sess.setAttribute("listeRayon",liste); 
+            jspChoix="/GestionMagasinJSP/CreerAgentRayon.jsp";
+            }
         }
         
         

@@ -61,6 +61,20 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
         return result ;
     }
     
-    
+    @Override
+    public AffectationCaisseAgent RechercherAffectionParDateAgent(Date d, AgentCaisse agent){
+        AffectationCaisseAgent result= null;
+        Query req=getEntityManager().createQuery("SELECT a from AffectationCaisseAgent AS a WHERE a.agentCaisse=:agent AND a.dateDebut<=:d AND a.dateFin>=:d");       
+        req.setParameter("d",d);
+        req.setParameter("agent",agent);
+        
+        List<AffectationCaisseAgent>l=req.getResultList();
+        for(AffectationCaisseAgent a:l){
+            result = a;
+    }
+        return result ;
+    }
+     
+
     
 }
