@@ -19,10 +19,21 @@
 </tr>
         <h1>Bienvenue sur le menu Caisse !</h1>
         
-        <A HREF="EmployeCaisseServlet?action=passageInfoCreerAchatCaisse&idAgent=<% agentCaisse.getId();%>">
+        <A HREF="EmployeCaisseServlet?action=passageInfoCreerAchatCaisse&idAgent=<%=agentCaisse.getId()%>">
         Créer un achat</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
        
+        
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
+        
+        
     </body>
 </html>

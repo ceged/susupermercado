@@ -30,6 +30,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
 
+
     @EJB
     private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
 
@@ -110,5 +111,24 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
     public List<LigneAchat> ChercherLigneAchatParAchat(AchatCaisse a){
         List<LigneAchat> result=achatCaisseFacade.ChercherListeLigneAchatParAchatCaisse(a);
         return result;
+    }
+    
+    @Override
+    public LotArticle ChercherLotArticleParId(String idLot){
+        Long id=Long.parseLong(idLot);
+        LotArticle lot=lotArticleFacade.RechercherLotArticleParId(id);
+        return lot;
+    }
+    
+    @Override
+    public AchatCaisse ChercherAchatCaisseParId(String idAchat){
+        Long id=Long.parseLong(idAchat);
+        return achatCaisseFacade.find(id);
+    }
+    
+    @Override
+    public LigneAchat ChercherLigneAchat (String idLigneAchat){
+        Long id=Long.parseLong(idLigneAchat);
+        return ligneAchatFacade.find(id);
     }
 }

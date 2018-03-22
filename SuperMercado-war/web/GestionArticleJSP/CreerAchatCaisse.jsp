@@ -19,12 +19,22 @@
         
         <title>Menu Panier Achat Caisse</title>
     </head>
-    <body>
+
+        <body>
         <h1>Liste de vos achats caisse</h1>
+        
+        <p> <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+}
+
+%> </p>
+        
         <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
             <label for="number"> Code barre lot article <span class="requis">*</span></label>
         <input type="number" name="idLotArticle" value="" size="20" maxlength="20" />
-        <input type="hidden" name="idAchat" value="insererLigneAchat">
+        <input type="hidden" name="idAchat" value="<%=achatCaisse.getId() %>">
         <input type="hidden" name="action" value="insererLigneAchat">
         <input type="submit" value="Valider" />
         <br />
@@ -53,5 +63,7 @@ for(LigneAchat l : liste){t=t+l.getLotArticle().getArticle().getPrixVenteMagasin
     
 </table>       
         
+    
+    
     </body>
 </html>

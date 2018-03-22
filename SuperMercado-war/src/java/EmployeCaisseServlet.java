@@ -10,8 +10,10 @@ import entités.gestionArticle.LigneAchat;
 import entités.gestionMagasin.AgentCaisse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,11 +39,11 @@ public class EmployeCaisseServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String jspChoix ="/Accueil.jsp";
+        String jspChoix ="/MenuAgentCaisse.jsp";
         String act=request.getParameter("action");
         if ((act == null)||(act.equals("null")))
             {
-            jspChoix="/Accueil.jsp";
+            jspChoix="/MenuAgentCaisse.jsp";
             }
         
         else if (act.equals("passageInfoCreerAchatCaisse"))
@@ -49,32 +51,31 @@ public class EmployeCaisseServlet extends HttpServlet {
             String message=null;
             String idAgent=request.getParameter("idAgent");
             AchatCaisse a=sessionEmployeCaisse.CreerAchatCaisse(idAgent);
-            if(a==null){
-                message="vous n'êtes pas affecté à une caisse";
+            if(a!=null){
+                HttpSession sess=request.getSession(true);
+            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
+            sess.setAttribute("liste",liste); 
+            sess.setAttribute("achatCaisse",a); 
+            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
+                
             }
             else{
-            HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
-            sess.setAttribute("listeRayon",liste); 
-            sess.setAttribute("achatCaisse",a); 
-            jspChoix="/GestionMagasinJSP/CreerAgentRayon.jsp";
+                message="vous n'êtes pas affecté à une caisse";
             }
         }
+        else if (act.equals("insererLigneAchat")){
+            doActioninsererLigneAchat(request,response);
+            String idAchat=request.getParameter("idAchat");
+            AchatCaisse a=sessionEmployeCaisse.ChercherAchatCaisseParId(idAchat);
+            HttpSession sess=request.getSession(true);
+            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
+            sess.setAttribute("liste",liste); 
+            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        RequestDispatcher Rd;
+        Rd= getServletContext().getRequestDispatcher(jspChoix);
+        Rd.forward(request,response);
         
         
         try (PrintWriter out = response.getWriter()) {
@@ -91,6 +92,22 @@ public class EmployeCaisseServlet extends HttpServlet {
         }
     }
 
+    protected void doActioninsererLigneAchat(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+
+            String IDLot=request.getParameter("idLotArticle");
+            String IDAchat=request.getParameter("idAchat");
+            String message;
+            Long idLot=Long.parseLong(IDLot);
+            Long idAchat=Long.parseLong(IDAchat);
+            message=sessionEmployeCaisse.CreerLigneAchat(idLot, 1, idAchat);
+     
+   
+request.setAttribute( "message", message );
+}
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

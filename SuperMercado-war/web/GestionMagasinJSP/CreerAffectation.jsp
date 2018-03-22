@@ -53,7 +53,7 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
         <SELECT name="nomAgentCaisse" size="1">
             <%
             for(AgentCaisse ac: listeAgentCaisse2){ %>
-            <OPTION><%=ac.getId().toString()%>
+            <OPTION value="<%=ac.getId().toString()%>"><%=ac.getNom() %>
               <%}%>
         </SELECT>
         <br />
