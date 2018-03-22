@@ -59,7 +59,13 @@
             }
             }
         </script>
-            
+            <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
     </body>
 </html>
 

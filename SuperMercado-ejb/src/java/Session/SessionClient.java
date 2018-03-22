@@ -99,22 +99,32 @@ public class SessionClient implements SessionClientLocal {
     }
 
     @Override
-    public LotArticle GetLotArticleFIFO(String idArticle) {
+    public LotArticle GetLotArticleFIFO(String idArticle, String quantite) {
         
         Long id = Long.valueOf(idArticle);
+        int quantiteInt = Integer.valueOf(quantite);
         ReferentielArticle article = referentielArticleFacade.RechercheReferentielArticleParCodeBarre(id);
         LotArticle lot = lotArticleFacade.RechercherLotArticleFIFO(article);
         return lot;
     }
 
     @Override
-    public void creationLignePanier(String quantite, String article, String idAchat) {
-        LotArticle lotselectionne = this.GetLotArticleFIFO(article);
+    public String creationLignePanier(String quantite, String article, String idAchat) {
+        String message;
         int quantiteInt = Integer.parseInt(quantite);
+        LotArticle lotselectionne = this.GetLotArticleFIFO(article, quantite);
+        if(lotselectionne.getQuantiteLot()<quantiteInt)
+        {
+            message = "Stock insuffisant, veuillez réduire votre quantité";
+        }
+        else
+        {
         Long idAchatLong = Long.valueOf(idAchat);
         Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
         ligneAchatFacade.CreerLigneAchat(quantiteInt, lotselectionne, achat);
-        
+        message = "article ajouté à votre panier";
+        }
+        return message;
     }
     
     @Override
@@ -142,8 +152,28 @@ public class SessionClient implements SessionClientLocal {
     public void ValidationAchat(String idAchat) {
         Long idAchatLong = Long.valueOf(idAchat);
         Achat a = achatFacade.RechercheAchatParId(idAchatLong);
+        this.ReduireStockPourAchat(a);
         achatFacade.ValiderAchat(a);
+              
           
+    }
+
+    @Override
+    public AchatEnLigne RechercherAchatEnCours(String idClient) {
+        Long idClientLong = Long.valueOf(idClient);
+        Client client = (Client) personneFacade.RechercherPersonneParId(idClientLong);
+        return achatEnLigneFacade.RechercherAchatEnLigneEnCours(client);
+    }
+
+    @Override
+    public void ReduireStockPourAchat(Achat achat) {
+ 
+        List <LigneAchat> listelignesAchat = achatFacade.getListeLigneAchat(achat);
+        listelignesAchat.forEach((ligne) -> {
+            LotArticle lot = ligne.getLotArticle();
+            int qte = ligne.getQuantiteAchetee();
+            lotArticleFacade.ModifierQteLotArticle(qte, lot);
+        });
     }
     
     

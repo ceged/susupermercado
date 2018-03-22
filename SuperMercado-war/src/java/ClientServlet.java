@@ -96,8 +96,17 @@ public class ClientServlet extends HttpServlet {
             //Recuperation de la liste d'article du magasin choisi 
             List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
             //Creation de l'achat 
-            AchatEnLigne achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
-            
+            //verification si achat en cours , si non il cree, si oui il ouvre l'achat en cours
+            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString);
+            AchatEnLigne achatEnCours = null;
+            if(achatclientencours==null)
+            {           
+            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+            }
+            else
+            {
+            achatEnCours = achatclientencours;
+            }
             sess.setAttribute("client", c);
             sess.setAttribute("achatEnCours", achatEnCours);
             sess.setAttribute("listeArticle",listeArticle);
@@ -245,9 +254,7 @@ protected void doActioninsererLignePanier(HttpServletRequest request, HttpServle
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
 } else
 {
-    
-    sessionClient.creationLignePanier(quantite, idArticle, achat);
-    message="Article ajouté";
+    message = sessionClient.creationLignePanier(quantite, idArticle, achat);
 }
    
 request.setAttribute( "message", message );
