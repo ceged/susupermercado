@@ -27,38 +27,37 @@
         AchatEnLigne ach = achatEnCours;%>
         <h1></h1>
         <form method="get" action="/SuperMercado-war/ClientServlet">
-        <fieldset>
-        <td Width=15%>Bienvenue <%=c.getPrenom()%></td>   
-        <br />
-        <label for="nomMagasin">Articles disponibles pour le magasin <%=m.getNomMagasin()%> <span class="requis"></span></label>
-        <br />
+            <fieldset>
+                <td Width=15%>Bienvenue <%=c.getPrenom()%></td>   
+                <br />
+                <label for="nomMagasin">Articles disponibles pour le magasin <%=m.getNomMagasin()%> <span class="requis"></span></label>
+                <br />
         
-         <%
-            for(ReferentielArticle a: listeArticle){ %>
-            <input type="radio" name="article" value=<%=a.getCodeBarre()%> size="20"/>
-            <label><%=a.getLibelleArticle()%></label> <br />
-            <%}%>  
+                <% for(ReferentielArticle a: listeArticle){ %>
+                <input type="radio" name="article" value=<%=a.getCodeBarre()%> size="20"/>
+                <label><%=a.getLibelleArticle()%></label> <br />
+                <%}%>  
                 
-        <br />
-        <input type="hidden" name="idClient" value=<%=c.getId()%>>
-        <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
-        <input type="hidden" name="action" value="insererLignePanier">
-        <input type="hidden" id="idqte" name="quantite" value="">
-        </fieldset>
-
-        <input type="reset" value="Remettre à zéro" /> <br />
-        <button onclick="getQuantite()"> Ajouter au panier</button> <br />
-        <input type="submit" value="Valider le panier" />
+                 <br />
+                    <input type="hidden" name="idClient" value=<%=c.getId()%>>
+                    <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
+                    <input type="hidden" id="idqte" name="quantite" value="">
+                <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
+                <input type="reset" value="Remettre à zéro" /> <br />
+            </fieldset>
+            <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
         </form> 
-            <script>
-function getQuantite() {
-    var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
-    if (qte !== null) {
-        alert("Produit ajouté à votre panier");
-        document.getElementById('idqte').value = qte;
-    }
-}
-            </script>
+        
+        <script>
+            function getQuantite() {
+            var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
+            if (qte !== null) {
+            document.getElementById('idqte').value = qte;
+            document.getElementById('action').value = "insererLignePanier";
+            }
+            }
+        </script>
+            
     </body>
 </html>
 
