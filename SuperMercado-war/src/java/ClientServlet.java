@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Session.SessionAgentLivraisonLocal;
 import Session.SessionClientLocal;
 import Session.SessionPersonneLocal;
 import entités.gestionArticle.Achat;
@@ -12,6 +13,7 @@ import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
+import entités.gestionVenteEnLigne.Creneau;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -31,6 +33,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/ClientServlet"})
 public class ClientServlet extends HttpServlet {
+
+    @EJB
+    private SessionAgentLivraisonLocal sessionAgentLivraison;
 
     @EJB
     private SessionPersonneLocal sessionPersonne;
@@ -104,6 +109,14 @@ public class ClientServlet extends HttpServlet {
 
           //  sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
+        }
+        else if(act.equals("passageDateChoisiClient")){
+            String nomMagasin=request.getParameter("nomMagasin");
+            Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
+            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp";
         }
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
@@ -179,6 +192,9 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
     {
         Date dob=Date.valueOf(dobPersonne);
         message = sessionClient.CreationCompteClient(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne);
+        Client client=sessionClient.ChercherClientParLoginMdp(loginPersonne, mdpPersonne);
+        HttpSession sess=request.getSession(true);
+        sess.setAttribute("client",client);
     }
    
     request.setAttribute( "message", message );

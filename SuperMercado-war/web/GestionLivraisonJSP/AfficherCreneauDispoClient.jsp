@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="entités.gestionVenteEnLigne.AchatEnLigne"%>
 <%@page import="entités.gestionMagasin.Magasin"%>
 <%@page import="entités.gestionLivraison.AgentLivraison"%>
 <%@page import="entités.gestionVenteEnLigne.Creneau"%>
@@ -17,6 +18,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="liste" scope="session" class="List<Creneau>"></jsp:useBean>
         <jsp:useBean id="magasin" scope="session" class="Magasin"></jsp:useBean>
+        <jsp:useBean id="achatLigne" scope="session" class="AchatEnLigne"></jsp:useBean>
 <title>Liste des créneaux dispos client</title>
 </head>
 <body>
@@ -40,6 +42,7 @@ if(attribut!=null){
 <TD>Heure début</TD>
 <TD>Heure fin</TD>
 <TD>Disponibilité</TD>
+<TD>Choisir ce créneau</TD>
  </tr>
 <%
 for(Creneau c : liste){%>
@@ -47,7 +50,14 @@ for(Creneau c : liste){%>
 <td Width=15%><%=c.getHeureDebut() %></td>
 <td Width=15%><%=c.getHeureFin() %></td>
 <td Width=15%><%=c.getDisponibilité() %></td>
-
+<td Width=15%>
+   <form method="get" action="/SuperMercado-war/ClientServlet">
+    <input type="hidden" name="idCreneau" value="<%=c.getId() %>">
+    <input type="hidden" name="achatLigne" value="<%=achatLigne.getId()%>">
+    <input type="hidden" name="action" value="ChoisiCreneau">
+    <input type="submit" value="Valider" />
+</form>
+</td>
 </tr><%}%></TABLE>
 
 <hr>

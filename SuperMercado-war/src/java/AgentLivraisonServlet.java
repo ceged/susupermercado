@@ -126,15 +126,7 @@ public class AgentLivraisonServlet extends HttpServlet {
             sess.setAttribute("liste",liste);
             jspChoix="/GestionLivraisonJSP/AfficherCreneauDispo.jsp";
         }
-        //Pour le client
-        else if(act.equals("passageDateChoisiClient")){
-            String nomMagasin=request.getParameter("nomMagasin");
-            Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
-            List<Creneau>liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
-            HttpSession sess=request.getSession(true);
-            sess.setAttribute("liste",liste);
-            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp";
-        }
+        
        
         
         RequestDispatcher Rd;

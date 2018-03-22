@@ -241,7 +241,7 @@ String nomPersonne= request.getParameter( "nom" );
     String dobPersonne= request.getParameter( "dob" );
     String adressePersonne= request.getParameter( "adresse" );
     String codePostalPersonne= request.getParameter( "codePostal" );
-    String rayon= request.getParameter( "libelleRayon" );
+    String idRayon= request.getParameter( "idRayon" );
     String magasin = request.getParameter("magasin");
 
     String message;
@@ -250,7 +250,7 @@ String nomPersonne= request.getParameter( "nom" );
 } else
     {
         Date dob=Date.valueOf(dobPersonne);
-        message = sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, rayon, magasin);
+        message = sessionDirecteurMagasin.CreerChefRayon(nomPersonne, prenomPersonne,loginPersonne, mdpPersonne, sexePersonne, dob, adressePersonne, codePostalPersonne, idRayon, magasin);
     }
    
         request.setAttribute( "message", message );

@@ -85,4 +85,18 @@ public class RayonFacade extends AbstractFacade<Rayon> implements RayonFacadeLoc
         List result = req.getResultList();
         return result;
     }
+    
+    @Override
+    public Rayon ChercherRayonParId(String idRayon){
+        Long id=Long.getLong(idRayon);
+        Rayon result=new Rayon();
+        Query req=getEntityManager().createQuery("SELECT r from Rayon AS r WHERE r.id=:id");
+        req.setParameter("id",id);
+        List<Rayon>l=req.getResultList();
+        for(Rayon r:l)
+        {
+            result=r;
+        }
+        return result;
+    }
 }   

@@ -33,4 +33,5 @@ public interface ClientFacadeLocal {
 
     void CreerClient(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal);
     
+    Client ChercherClientParLoginMdp(String Login, String mdp);
 }

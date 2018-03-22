@@ -20,7 +20,8 @@
         <h1>Menu Client</h1>
         <A HREF="ClientServlet?action=transferListeMagasin">
         Online Shopping</A><br/><br/>
-        
+        <A HREF="Accueil.jsp">
+        Sortir menu principal</A><br/><br/>
         
         
         

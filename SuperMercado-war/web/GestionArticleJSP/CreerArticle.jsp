@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
-        <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
+        <jsp:useBean id="listeSousCategorie" scope="session" class="List<SousCategorie>"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
@@ -29,7 +29,7 @@
         <h1>Formulaire de création d'article</h1>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations Ouvrage (majuscules et accents interdits)</legend>
+        <legend>Informations Produit (majuscules et accents interdits)</legend>
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
         <input type="text" name="libelleArticle" value="" size="20" maxlength="20" />
         <br />
