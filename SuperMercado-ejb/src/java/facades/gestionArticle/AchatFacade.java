@@ -37,6 +37,7 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
     public Achat CreerAchat(Date dateAchat) {
         Achat achat = new Achat ();
         achat.setDateAchat(dateAchat);
+     
        
         em.persist(achat);
         
@@ -63,6 +64,12 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
         req.setParameter("achat", achat);
         result = req.getResultList();
         return result;
+    }
+
+    @Override
+    public void ValiderAchat(Achat achat) {
+        achat.setStatutAchat("Valide");
+        em.merge(achat);
     }
     
     

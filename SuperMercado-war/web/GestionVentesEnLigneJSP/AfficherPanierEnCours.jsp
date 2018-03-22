@@ -18,9 +18,7 @@
     </head>
     <body>
         <h1>Mon Panier!</h1>
-        <form>
-            
-        </form>
+        
         <TABLE border width=50%>
 <tr> 
 <TD>Article</TD>
@@ -37,5 +35,13 @@ for(LigneAchat c : listeLignesPanier){%>
 
 </tr><%}%>
 </TABLE>
+<form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
+      <button type="submit">Continue Shopping</button>   
+</form>
+<form method="get" action="/SuperMercado-war/ClientServlet">
+      <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
+      <input type="hidden" name="action" value="validerPanier">
+      <button type="submit"> Valider mon panier </button>   
+</form>
     </body>
 </html>

@@ -36,5 +36,7 @@ public interface SessionClientLocal {
     void SuppressionLigneAchat(String idLigneAchat);
     
     Client ChercherClientParLoginMdp(String login, String mdp);
+
+    void ValidationAchat(String idAchat);
     
 }

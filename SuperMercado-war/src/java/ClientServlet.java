@@ -131,7 +131,11 @@ public class ClientServlet extends HttpServlet {
             sess.setAttribute("listeLignesPanier", listeLignesPanier);
             jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
         }
-        
+        else if(act.equals("validerPanier")){
+            String idAchat= request.getParameter("idAchat");
+            //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
+            sessionClient.ValidationAchat(idAchat);
+        }
         }
         else if (act2.equals("consulterVotrePanier"))
         {

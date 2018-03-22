@@ -137,6 +137,14 @@ public class SessionClient implements SessionClientLocal {
         LigneAchat a = ligneAchatFacade.RechercherLigneAchatParId(idLigneAchatLong);
         ligneAchatFacade.SupprimerLigneAchat(a);
     }
+
+    @Override
+    public void ValidationAchat(String idAchat) {
+        Long idAchatLong = Long.valueOf(idAchat);
+        Achat a = achatFacade.RechercheAchatParId(idAchatLong);
+        achatFacade.ValiderAchat(a);
+          
+    }
     
     
 }

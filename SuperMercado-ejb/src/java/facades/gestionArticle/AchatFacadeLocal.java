@@ -37,5 +37,7 @@ public interface AchatFacadeLocal {
     Achat RechercheAchatParId(Long idAchat);
 
     List<LigneAchat> getListeLigneAchat(Achat achat);
+
+    void ValiderAchat(Achat achat);
     
 }
