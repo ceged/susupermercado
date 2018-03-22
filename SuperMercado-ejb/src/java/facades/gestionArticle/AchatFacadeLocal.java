@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
+import entités.gestionVenteEnLigne.Client;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;

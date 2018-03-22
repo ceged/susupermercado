@@ -43,5 +43,12 @@ for(LigneAchat c : listeLignesPanier){%>
       <input type="hidden" name="action" value="validerPanier">
       <button type="submit"> Valider mon panier </button>   
 </form>
+      <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
     </body>
 </html>

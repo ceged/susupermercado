@@ -32,5 +32,7 @@ public interface AchatEnLigneFacadeLocal {
     int count();
 
     AchatEnLigne CreationAchatEnLigne(Client client);
+
+    AchatEnLigne RechercherAchatEnLigneEnCours(Client client);
     
 }
