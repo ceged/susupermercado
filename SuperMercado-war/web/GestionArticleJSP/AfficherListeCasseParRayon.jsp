@@ -3,7 +3,13 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
-
+<% 
+        
+    if (session.getAttribute("agentRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionArticle.Casse"%>
 <%@page import="entités.gestionMagasin.AgentRayon"%>

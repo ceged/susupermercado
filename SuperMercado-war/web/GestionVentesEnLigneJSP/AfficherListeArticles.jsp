@@ -4,6 +4,7 @@
     Author     : Sophia
 --%>
 
+
 <%@page import="entités.gestionVenteEnLigne.AchatEnLigne"%>
 <%@page import="entités.gestionMagasin.Magasin"%>
 <%@page import="entités.gestionArticle.ReferentielArticle"%>

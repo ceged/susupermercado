@@ -3,6 +3,13 @@
     Created on : 16 mars 2018, 10:17:30
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("personneConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

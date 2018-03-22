@@ -3,6 +3,13 @@
     Created on : 14 mars 2018, 14:44:46
     Author     : tangu_000
 --%>
+<% 
+        
+    if (session.getAttribute("directeurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="java.util.List"%>
 <%@page import="entités.gestionMagasin.Magasin"%>

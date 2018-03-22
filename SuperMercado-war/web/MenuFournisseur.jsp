@@ -1,3 +1,11 @@
+<% 
+        
+    if (session.getAttribute("fournisseurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 <%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
