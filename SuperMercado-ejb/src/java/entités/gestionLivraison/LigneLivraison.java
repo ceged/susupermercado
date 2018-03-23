@@ -118,16 +118,6 @@ public class LigneLivraison implements Serializable {
         this.livraison = livraison;
     }
     
-    @ManyToOne
-        private ReferentielArticle article;
-
-    public ReferentielArticle getArticle() {
-        return article;
-    }
-
-    public void setArticle(ReferentielArticle article) {
-        this.article = article;
-    }
 
     private Mention mentionStatut;
 

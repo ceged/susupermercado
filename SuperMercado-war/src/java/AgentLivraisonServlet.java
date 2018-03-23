@@ -182,23 +182,23 @@ public class AgentLivraisonServlet extends HttpServlet {
     if(datePeremption.equalsIgnoreCase("")){
         if(taille.equalsIgnoreCase("")){
             if(garantie.equalsIgnoreCase("")){
-                 sessionAgentLivraison.CreerLotArticle(l.getArticle().getCodeBarre(),qtReceptionner,l);
+                 sessionAgentLivraison.CreerLotArticle(l.getLigneCommande().getArticle().getCodeBarre(),qtReceptionner,l);
                  message="Lot article créé";
             }
             else{
                 int garantieDuree=Integer.valueOf(garantie);
-                sessionAgentLivraison.CreerLotArticleElectromenager(qtReceptionner, l.getArticle().getCodeBarre(),garantieDuree,l);
+                sessionAgentLivraison.CreerLotArticleElectromenager(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(),garantieDuree,l);
                 message="Lot Electroménager créé";
             }
         }
         else{
-            sessionAgentLivraison.CreerLotArticleVetement(qtReceptionner, l.getArticle().getCodeBarre(), taille, couleur,l);
+            sessionAgentLivraison.CreerLotArticleVetement(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(), taille, couleur,l);
             message="Lot vêtement créé";
         }
     }
     else{
         Date dPeremption=Date.valueOf(datePeremption);
-        sessionAgentLivraison.CreerLotArticleFrais(qtReceptionner, l.getArticle().getCodeBarre(), dPeremption,l);
+        sessionAgentLivraison.CreerLotArticleFrais(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(), dPeremption,l);
         message="Lot produit frais créé";
     }
 

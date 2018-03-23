@@ -52,7 +52,7 @@ if(attribut!=null){
  </tr>
 <%
 for(LigneLivraison l : liste){%>
-<form method="get" action="/SuperMercado-war/AgentLivraisonServlet"><tr><td Width=15%><%=l.getArticle().getLibelleArticle() %></td>
+<form method="get" action="/SuperMercado-war/AgentLivraisonServlet"><tr><td Width=15%><%=l.getLigneCommande().getArticle().getLibelleArticle() %></td>
 <td Width=15%><%=l.getQuantiteFournisseur()%></td>
 <td Width=15%><input type="number" name="quantiteLivrer" value="" size="20" maxlength="20" /></td>
 <td Width=15%><input type="number" name="quantiteReceptionner" value="" size="20" maxlength="20" /></td>

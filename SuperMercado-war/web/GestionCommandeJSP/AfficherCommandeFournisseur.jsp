@@ -50,7 +50,7 @@ for(LigneLivraison l : liste){
     if(l.getMentionStatut()!= Mention.nonlivrer){
     t=t+l.getLigneCommande().getPrixAchatUnitaire()*l.getLigneCommande().getQuantiteLigne();
 }%>
-<tr><td Width=15%><%=l.getArticle().getLibelleArticle() %></td>
+<tr><td Width=15%><%=l.getLigneCommande().getArticle().getLibelleArticle() %></td>
 <td Width=15%><%=l.getQuantiteFournisseur()%></td>
 <td Width=15%><%=l.getMentionStatut()%></td>
 <td Width=30%><A href="FournisseurServlet?action=ValiderLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId() %>"> Cliquez ici</A></td>
