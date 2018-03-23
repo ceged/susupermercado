@@ -3,6 +3,7 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<%@page import="entités.gestionLivraison.LigneLivraison"%>
 <% 
         
     if (session.getAttribute("fournisseurConnecte") == null) {
