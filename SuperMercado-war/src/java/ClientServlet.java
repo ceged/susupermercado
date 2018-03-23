@@ -70,8 +70,11 @@ public class ClientServlet extends HttpServlet {
         if(act!=null){
         if (act.equals("insererClient"))
         {
-            doActionInsererClient(request,response);
-            jspChoix="/MenuClient.jsp";
+            String message = doActionInsererClient(request,response);
+            if(message.equals("login existe déjà"))
+            {jspChoix="/GestionVentesEnLigneJSP/CreerCompteClient.jsp";}
+            else
+            {jspChoix="/MenuClient.jsp";}
         }
         
         else if (act.equals("transferListeMagasin")) /// pour le choix des magasins par le client au debut
@@ -158,8 +161,10 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("validerPanier")){
             String idAchat= request.getParameter("idAchat");
-            //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            sessionClient.ValidationAchat(idAchat);
+            String message = sessionClient.ValidationAchat(idAchat);
+            request.setAttribute( "message", message );
+            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+            
         }
         else if(act.equals("annulerInsertionLigne")){
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
@@ -234,7 +239,7 @@ public class ClientServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-protected void doActionInsererClient(HttpServletRequest request, HttpServletResponse response)
+protected String doActionInsererClient(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String nomPersonne= request.getParameter( "nom" );
     String prenomPersonne= request.getParameter( "prenom" );
@@ -247,7 +252,7 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
 
 
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()||sexePersonne.isEmpty()||dobPersonne.isEmpty()||adressePersonne.isEmpty()||codePostalPersonne.isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionVentesEnLigneJSP/CreerCompteClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un compte";
 } else
     {
@@ -259,6 +264,7 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
     }
    
     request.setAttribute( "message", message );
+    return message;
 }
 
 protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)

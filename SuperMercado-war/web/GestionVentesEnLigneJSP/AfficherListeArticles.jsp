@@ -49,7 +49,10 @@
             </fieldset>
             <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
         </form> 
-        
+        <form method="get" action="/SuperMercado-war/ClientServlet">
+      <input type="hidden" name="action" value="transferListeMagasin">
+      <button type="submit">Changer de magasin</button> 
+        </form>
         <script>
             function getQuantite() {
             var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
