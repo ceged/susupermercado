@@ -116,11 +116,10 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("insererLignePanier")){
             doActioninsererLignePanier(request,response);
-            String idAchat= request.getParameter("idAchat");
+            /*String idAchat= request.getParameter("idAchat");
             AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            HttpSession sess=request.getSession(true);
-
-          //  sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            HttpSession sess=request.getSession(true);*/
+          //sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         else if(act.equals("passageDateChoisiClient")){
@@ -144,6 +143,9 @@ public class ClientServlet extends HttpServlet {
             String idAchat= request.getParameter("idAchat");
             //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
             sessionClient.ValidationAchat(idAchat);
+        }
+        else if(act.equals("annulerInsertionLigne")){
+            jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         }
         else if (act2.equals("consulterVotrePanier"))
@@ -246,7 +248,7 @@ protected void doActioninsererLignePanier(HttpServletRequest request, HttpServle
             throws ServletException, IOException {
     String quantite= request.getParameter( "quantite" );
     String idArticle= request.getParameter( "article" );
-    String client = request.getParameter("idClient");
+   // String client = request.getParameter("idClient");
     String achat = request.getParameter("idAchat");
     
     String message;

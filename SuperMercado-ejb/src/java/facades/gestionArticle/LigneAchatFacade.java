@@ -8,6 +8,7 @@ package facades.gestionArticle;
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
+import entités.gestionVenteEnLigne.AchatEnLigne;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -59,6 +60,26 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
         a=ac;
     }
         return a;
+    }
+
+    @Override
+    public LigneAchat RechercherLigneParLotDansUnAchat(Achat achat, LotArticle lot) {
+        LigneAchat a = null;
+        Query req = getEntityManager().createQuery("Select a from LigneAchat as a where a.achat=:achat and a.lotArticle=:lot");
+        req.setParameter("achat", achat);
+        req.setParameter("lot", lot);
+        List<LigneAchat>listeLigneAchat=req.getResultList();
+            for(LigneAchat ac:listeLigneAchat)
+    {
+        a=ac;
+    }
+        return a;
+    }
+
+    @Override
+    public void AjouterQuantiteLigne(int quantiteAjoute, LigneAchat ligne) {
+        ligne.setQuantiteAchetee(quantiteAjoute+ligne.getQuantiteAchetee());
+        em.merge(ligne);
     }
     
     
