@@ -195,7 +195,7 @@ protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServ
     String libelleSousCategorie= request.getParameter( "libelleSousCategorie" );
     String message;
     if ( libelleCategorie.trim().isEmpty()&&libelleSousCategorie.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticleJSP/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticleJSP/CreerSousCategorie.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
     message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
