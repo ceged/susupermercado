@@ -8,8 +8,10 @@ package facades.gestionArticle;
 import entités.gestionArticle.AchatCaisse;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionMagasin.Caisse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +23,9 @@ import javax.persistence.Query;
  */
 @Stateless
 public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements AchatCaisseFacadeLocal {
+
+    @EJB
+    private AchatFacadeLocal achatFacade;
 
     @PersistenceContext(unitName = "SuperMercado-ejbPU")
     private EntityManager em;
@@ -39,6 +44,7 @@ public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements Ac
         AchatCaisse achatCaisse = new AchatCaisse ();
         achatCaisse.setDateAchat(dateAchat);
         achatCaisse.setCaisse(caisse);
+        achatCaisse.setStatutAchat("En Cours");
         
        
         em.persist(achatCaisse);
@@ -48,7 +54,7 @@ public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements Ac
     
     @Override
     public List<LigneAchat> ChercherListeLigneAchatParAchatCaisse(AchatCaisse a){
-        List<LigneAchat> result=null;
+        List<LigneAchat> result=new ArrayList();
         Query req = getEntityManager().createQuery("Select l from LigneAchat as l where l.achat.id=:a");
         req.setParameter("a", a.getId());
         List<LigneAchat>listeAchat=req.getResultList();
@@ -58,6 +64,7 @@ public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements Ac
     }
         return result;
     }
+    
     
     
 }

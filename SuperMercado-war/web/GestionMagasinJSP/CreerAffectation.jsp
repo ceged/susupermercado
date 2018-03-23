@@ -3,6 +3,14 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("directeurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionMagasin.AgentCaisse"%>
 <%@page import="entités.gestionMagasin.Caisse"%>
@@ -53,7 +61,7 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
         <SELECT name="nomAgentCaisse" size="1">
             <%
             for(AgentCaisse ac: listeAgentCaisse2){ %>
-            <OPTION><%=ac.getId().toString()%>
+            <OPTION value="<%=ac.getId().toString()%>"><%=ac.getNom() %>
               <%}%>
         </SELECT>
         <br />

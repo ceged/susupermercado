@@ -84,4 +84,14 @@ public class Achat implements Serializable {
         return serialVersionUID;
     }
  
+        private String statutAchat;
+
+    public String getStatutAchat() {
+        return statutAchat;
+    }
+
+    public void setStatutAchat(String statutAchat) {
+        this.statutAchat = statutAchat;
+    }
+
 }

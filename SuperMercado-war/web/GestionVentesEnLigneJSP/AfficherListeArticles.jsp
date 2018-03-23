@@ -4,6 +4,7 @@
     Author     : Sophia
 --%>
 
+
 <%@page import="entités.gestionVenteEnLigne.AchatEnLigne"%>
 <%@page import="entités.gestionMagasin.Magasin"%>
 <%@page import="entités.gestionArticle.ReferentielArticle"%>
@@ -14,6 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <title>JSP Page</title>
         <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
         <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
@@ -57,7 +59,13 @@
             }
             }
         </script>
-            
+            <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
     </body>
 </html>
 

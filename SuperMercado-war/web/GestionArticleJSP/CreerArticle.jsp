@@ -3,6 +3,14 @@
     Created on : 12 mars 2018, 09:47:40
     Author     : PC Tim
 --%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page import="java.util.List"%>

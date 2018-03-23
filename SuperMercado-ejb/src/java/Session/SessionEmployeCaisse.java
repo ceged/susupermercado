@@ -7,6 +7,7 @@ package Session;
 
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
@@ -18,6 +19,7 @@ import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -27,6 +29,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
+
 
     @EJB
     private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
@@ -78,6 +81,13 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         
         return message;
     }
+    
+    @Override
+    public void SupprimerLigneAchatCaissev2(String idLigneAchat){
+        LigneAchat l=this.ChercherLigneAchat(idLigneAchat);
+        ligneAchatFacade.SupprimerLigneAchat(l);
+        lotArticleFacade.ModifierQteLotArticle(-1, l.getLotArticle());
+    }
 
     @Override
     public void CreerAchat() {
@@ -104,4 +114,35 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         return agentCaisseFacade.RechercherAgentCaisseParId(idAgent);
     }
     
+    @Override
+    public List<LigneAchat> ChercherLigneAchatParAchat(AchatCaisse a){
+        List<LigneAchat> result=achatCaisseFacade.ChercherListeLigneAchatParAchatCaisse(a);
+        return result;
+    }
+    
+    @Override
+    public LotArticle ChercherLotArticleParId(String idLot){
+        Long id=Long.parseLong(idLot);
+        LotArticle lot=lotArticleFacade.RechercherLotArticleParId(id);
+        return lot;
+    }
+    
+    @Override
+    public AchatCaisse ChercherAchatCaisseParId(String idAchat){
+        Long id=Long.parseLong(idAchat);
+        return achatCaisseFacade.find(id);
+    }
+    
+    @Override
+    public LigneAchat ChercherLigneAchat (String idLigneAchat){
+        Long id=Long.parseLong(idLigneAchat);
+        return ligneAchatFacade.find(id);
+    }
+    
+    
+    @Override
+    public void ValiderAchatCaisse(String idAchat){
+        AchatCaisse a=this.ChercherAchatCaisseParId(idAchat);
+        achatFacade.ValiderAchat(a);
+    }
 }

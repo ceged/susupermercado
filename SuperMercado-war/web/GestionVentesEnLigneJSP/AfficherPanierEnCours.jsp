@@ -3,6 +3,14 @@
     Created on : 21 mars 2018, 17:22:18
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("client") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionVenteEnLigne.AchatEnLigne"%>
 <%@page import="entités.gestionArticle.LigneAchat"%>
@@ -12,15 +20,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <title>JSP Page</title>
         <jsp:useBean id="listeLignesPanier" scope="session" class="List<LigneAchat>"></jsp:useBean>
         <jsp:useBean id="achatEnCours" scope="session" class="AchatEnLigne"></jsp:useBean>
     </head>
     <body>
         <h1>Mon Panier!</h1>
-        <form>
-            
-        </form>
+        
         <TABLE border width=50%>
 <tr> 
 <TD>Article</TD>
@@ -37,5 +44,20 @@ for(LigneAchat c : listeLignesPanier){%>
 
 </tr><%}%>
 </TABLE>
+<form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
+      <button type="submit">Continue Shopping</button>   
+</form>
+<form method="get" action="/SuperMercado-war/ClientServlet">
+      <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
+      <input type="hidden" name="action" value="validerPanier">
+      <button type="submit"> Valider mon panier </button>   
+</form>
+      <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
     </body>
 </html>

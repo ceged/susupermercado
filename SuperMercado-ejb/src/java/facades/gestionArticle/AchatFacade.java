@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
+import entités.gestionVenteEnLigne.Client;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -37,6 +38,7 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
     public Achat CreerAchat(Date dateAchat) {
         Achat achat = new Achat ();
         achat.setDateAchat(dateAchat);
+     
        
         em.persist(achat);
         
@@ -64,6 +66,14 @@ public class AchatFacade extends AbstractFacade<Achat> implements AchatFacadeLoc
         result = req.getResultList();
         return result;
     }
+
+    @Override
+    public void ValiderAchat(Achat achat) {
+        achat.setStatutAchat("Valide");
+        em.merge(achat);
+    }
+
+    
     
     
     

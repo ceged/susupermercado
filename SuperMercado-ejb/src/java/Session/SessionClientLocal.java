@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionVenteEnLigne.AchatEnLigne;
@@ -27,14 +28,20 @@ public interface SessionClientLocal {
 
     AchatEnLigne RechercheAchatParId(String id);
 
-    LotArticle GetLotArticleFIFO(String nomArticle);
+    LotArticle GetLotArticleFIFO(String nomArticle, String quantite);
 
-    void creationLignePanier(String quantite, String nomArticle, String idAchat);
+    String creationLignePanier(String quantite, String nomArticle, String idAchat);
 
     List<LigneAchat> GetLignesPanier(String idAchat);
 
     void SuppressionLigneAchat(String idLigneAchat);
     
     Client ChercherClientParLoginMdp(String login, String mdp);
+
+    void ValidationAchat(String idAchat);
+
+    AchatEnLigne RechercherAchatEnCours(String idClient);
+
+    void ReduireStockPourAchat(Achat achat);
     
 }

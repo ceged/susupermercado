@@ -3,6 +3,13 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("directeurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionMagasin.Caisse"%>
 <%@page import="entités.gestionMagasin.Rayon"%>
@@ -38,8 +45,8 @@
         <br />
         <label for="sexe">Sexe <span class="requis">*</span></label>
         <SELECT name="sexe" size="1">
-        <OPTION>Masculin
-        <OPTION>Féminin
+        <OPTION value="masculin">Masculin
+        <OPTION value="feminin">Féminin
         </SELECT>
         <br />
         <label for="dob">Date de naissance <span class="requis">*</span></label>
@@ -49,7 +56,7 @@
         <input type="text" name="adresse" value="" size="20" maxlength="20" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" />
+        <input type="number" name="codePostal" value="" size="5" maxlength="5"/>
               <br />
         <input type="hidden" name="action" value="InsererAgentLivraison">
         <br />

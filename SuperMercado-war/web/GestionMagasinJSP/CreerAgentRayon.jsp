@@ -3,6 +3,13 @@
     Created on : 16 mars 2018, 17:23:54
     Author     : tangu_000
 --%>
+<% 
+        
+    if (session.getAttribute("directeurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionMagasin.Rayon"%>
 <%@page import="java.util.List"%>
@@ -16,7 +23,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Formulaire de création d'agent</title>
     </head>
     <body>
 <% DirecteurMagasin a= directeurConnecte;
@@ -26,7 +33,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
          <h1>Formulaire de création Chef de Rayon</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations Agent de rayon (majuscules et accents interdits)</legend>
+        <legend>Informations Agent de rayon</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" />
         <br />
@@ -41,8 +48,8 @@ List<Rayon> listeRayon2 =listeRayon;{%>
         <br />
         <label for="sexe">Sexe <span class="requis">*</span></label>
         <SELECT name="sexe" size="1">
-        <OPTION>Masculin
-        <OPTION>Féminin
+        <OPTION value="masculin">Masculin
+        <OPTION value="feminin">Féminin
         </SELECT>
         <br />
         <label for="dob">Date de naissance <span class="requis">*</span></label>
@@ -52,7 +59,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
         <input type="text" name="adresse" value="" size="20" maxlength="20" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" />
+        <input type="number" name="codePostal" value="" size="5" maxlength="5"/>
         <br />
         <label for="idRayon">Rayon<span class="requis">*</span></label>
         <SELECT name="idRayon" size="1">
