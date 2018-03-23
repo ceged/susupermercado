@@ -46,6 +46,7 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
 
     @Override
     public void SupprimerLigneAchat(LigneAchat ligneAchat) {
+        ligneAchat= em.merge(ligneAchat);
         em.remove(ligneAchat);
     }
 

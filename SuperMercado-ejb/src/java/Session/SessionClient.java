@@ -196,6 +196,15 @@ public class SessionClient implements SessionClientLocal {
             lotArticleFacade.ModifierQteLotArticle(qte, lot);
         });
     }
+
+    @Override
+    public void ViderPanier(List<LigneAchat> liste) {
+        for(LigneAchat ligne : liste)
+        {
+                ligneAchatFacade.SupprimerLigneAchat(ligne);
+        }
+    }
+    
     
     
 }

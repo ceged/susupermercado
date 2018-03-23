@@ -97,15 +97,32 @@ public class ClientServlet extends HttpServlet {
             List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
             //Creation de l'achat 
             //verification si achat en cours , si non il cree, si oui il ouvre l'achat en cours
-            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString);
-            AchatEnLigne achatEnCours = null;
-            if(achatclientencours==null)
+            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString); //Achat existant créé avant
+            AchatEnLigne achatEnCours; //nouveau achat 
+            if(achatclientencours==null) // si pas d'achat en cours pour le client
             {           
-            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString); //creer un achat
             }
-            else
+            else //si achat en cours existe 
             {
-            achatEnCours = achatclientencours;
+                List <LigneAchat> la = achatclientencours.getListeLigneAchats();
+                if(la.isEmpty())
+                {
+                achatEnCours = achatclientencours; //passer en attribut l'achat trouvé
+                }
+                else
+                {
+                    Magasin magasinPanierTrouve =  la.get(0).getLotArticle().getArticle().getRayon().getSecteur().getMagasin();
+                    if(magasinPanierTrouve==magasinChoisi)
+                    {
+                        achatEnCours = achatclientencours;
+                    }
+                    else 
+                    {
+                        sessionClient.ViderPanier(la);
+                        achatEnCours=achatclientencours;
+                    }
+                }
             }
             sess.setAttribute("client", c);
             sess.setAttribute("achatEnCours", achatEnCours);
