@@ -3,6 +3,13 @@
     Created on : 13 mars 2018, 12:00:11
     Author     : Soldat
 --%>
+<% 
+        
+    if (session.getAttribute("personneConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

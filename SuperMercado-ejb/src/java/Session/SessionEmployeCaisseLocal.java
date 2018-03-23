@@ -6,7 +6,10 @@
 package Session;
 
 import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
+import entités.gestionArticle.LotArticle;
 import entités.gestionMagasin.AgentCaisse;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -22,4 +25,12 @@ public interface SessionEmployeCaisseLocal {
     AchatCaisse CreerAchatCaisse(String idAgent);
     
     AgentCaisse ChercherAgentCaisseParId(String idAgent);
+    
+    List<LigneAchat> ChercherLigneAchatParAchat(AchatCaisse a);
+    
+    LotArticle ChercherLotArticleParId(String idLot);
+    
+    AchatCaisse ChercherAchatCaisseParId(String idAchat);
+    
+    LigneAchat ChercherLigneAchat (String idLigneAchat);
 }

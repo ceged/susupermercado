@@ -3,6 +3,13 @@
     Created on : 16 mars 2018, 15:19:32
     Author     : CGAILLOTDREVON
 --%>
+<% 
+        
+    if (session.getAttribute("agentCaisse") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionMagasin.AgentCaisse"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,10 +26,21 @@
 </tr>
         <h1>Bienvenue sur le menu Caisse !</h1>
         
-        <A HREF="EmployeCaisseServlet?action=passageInfoCreerAchatCaisse&idAgent=<% agentCaisse.getId();%>">
+        <A HREF="EmployeCaisseServlet?action=passageInfoCreerAchatCaisse&idAgent=<%=agentCaisse.getId()%>">
         Créer un achat</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
        
+        
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
+        
+        
     </body>
 </html>
