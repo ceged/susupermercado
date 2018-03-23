@@ -76,7 +76,7 @@ public class SessionFournisseur implements SessionFournisseurLocal {
     
     @Override
     public void CreerLigneLivraison(Livraison livraison,LigneCommande lc){
-        ligneLivraisonFacade.CreerLigneLivraison(livraison,lc.getArticle(),lc.getQuantiteLigne(),lc);
+        ligneLivraisonFacade.CreerLigneLivraison(livraison,lc.getQuantiteLigne(),lc);
     }
     
     @Override

@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.Vetement;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,7 +33,7 @@ public class VetementFacade extends AbstractFacade<Vetement> implements Vetement
     }
     
     @Override
-    public void CreerLotArticleVetement(int qteLotArticle, ReferentielArticle refLotArticle,String taille, String couleur) {
+    public void CreerLotArticleVetement(int qteLotArticle, ReferentielArticle refLotArticle,String taille, String couleur, LigneLivraison l) {
         
         Vetement v = new Vetement();
         

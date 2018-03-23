@@ -33,7 +33,7 @@ public interface LigneLivraisonFacadeLocal {
 
     int count();
     
-    void CreerLigneLivraison(Livraison livraison, ReferentielArticle article, int quantite, LigneCommande ligneCommande);
+    void CreerLigneLivraison(Livraison livraison, int quantite, LigneCommande ligneCommande);
     
     List<LigneLivraison> ChercherListeLigneLivraisonParLivraison(Livraison livraison);
     

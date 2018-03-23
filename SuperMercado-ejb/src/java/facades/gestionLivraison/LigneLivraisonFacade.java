@@ -38,11 +38,10 @@ public class LigneLivraisonFacade extends AbstractFacade<LigneLivraison> impleme
     }
     
     @Override
-    public void CreerLigneLivraison(Livraison livraison, ReferentielArticle article, int quantite, LigneCommande ligneCommande){
+    public void CreerLigneLivraison(Livraison livraison, int quantite, LigneCommande ligneCommande){
         LigneLivraison l= new LigneLivraison();
         l.setLivraison(livraison);
         l.setLigneCommande(ligneCommande);
-        l.setArticle(article);
         l.setQuantiteFournisseur(quantite);
         l.setMentionStatut(Mention.attente);
         em.persist(l);

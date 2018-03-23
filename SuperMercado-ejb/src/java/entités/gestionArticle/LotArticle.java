@@ -8,6 +8,7 @@ package entités.gestionArticle;
 import entités.gestionArticle.Casse;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionArticle.LigneAchat;
+import entités.gestionLivraison.LigneLivraison;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -99,6 +100,17 @@ public class LotArticle implements Serializable {
 
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+    
+    @OneToOne
+    private LigneLivraison ligneLivraison;
+    
+    public LigneLivraison getLigneLivraison(){
+        return ligneLivraison;
+    }
+    
+    public void setLigneLivraison(LigneLivraison ligneLivraison){
+        this.ligneLivraison = ligneLivraison;
     }
 
 }

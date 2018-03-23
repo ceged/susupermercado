@@ -62,6 +62,9 @@ public class FournisseurServlet extends HttpServlet {
             sess.setAttribute("liste",liste);
             jspChoix="/GestionCommandeJSP/AfficherListeCommandeFournisseur.jsp";
         }
+        else if (act.equals("ChoisirDateLivraison")){
+            
+        }
         else if (act.equals("afficherCommandeFournisseur")){
             String idLivraison=request.getParameter("livraisonId");
             Livraison livraison=sessionFournisseur.ChercherLivraisonParId(idLivraison);

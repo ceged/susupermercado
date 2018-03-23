@@ -3,6 +3,7 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<%@page import="entités.gestionLivraison.Mention"%>
 <% 
         
     if (session.getAttribute("fournisseurConnecte") == null) {
@@ -45,7 +46,10 @@ if(attribut!=null){
 <TD>Supprimer la ligne</TD>
  </tr>
 <%float t=0;
-for(LigneLivraison l : liste){%>
+for(LigneLivraison l : liste){
+    if(l.getMentionStatut()!= Mention.nonlivrer){
+    t=t+l.getLigneCommande().getPrixAchatUnitaire()*l.getLigneCommande().getQuantiteLigne();
+}%>
 <tr><td Width=15%><%=l.getArticle().getLibelleArticle() %></td>
 <td Width=15%><%=l.getQuantiteFournisseur()%></td>
 <td Width=15%><%=l.getMentionStatut()%></td>
@@ -53,6 +57,13 @@ for(LigneLivraison l : liste){%>
 <td Width=30%><A href="FournisseurServlet?action=ExclureLigneLivraison&ligneId=<%=l.getId() %>&livraisonId=<%=livraison.getId()%>"> Cliquez ici</A></td>
 </tr><%}%></TABLE>
 <br />
+<table border width="50%">
+    <tr>
+        <td>Montant total : </td>
+        <td><%=t%></td>
+    </tr>
+    
+</table>
  <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Date de livraison prévue <span class="requis">*</span></label>
         <input type="date" name="date" value="" size="20" maxlength="20" />

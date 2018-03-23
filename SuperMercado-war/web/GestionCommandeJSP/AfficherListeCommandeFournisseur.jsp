@@ -37,6 +37,14 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuFournisseur.jsp">Retour au menu</A><br />
+<form method="get" action="/SuperMercado-war/FournisseurServlet">
+        <label for="date"> Choisir une date <span class="requis">*</span></label>
+        <input type="date" name="date" value="" size="20" maxlength="20" />
+        <input type="hidden" name="action" value="ChoisirDateLivraison">
+        <input type="hidden" name="fournisseurId" value=<%=fournisseurConnecte.getId()%>>
+        <input type="submit" value="Valider la date"/>
+        <br />
+ </form>
 <TABLE border width=50%>
 <tr> <TD>Magasin</TD>
 <TD>Date</TD>

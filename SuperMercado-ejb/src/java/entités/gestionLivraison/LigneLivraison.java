@@ -66,6 +66,7 @@ public class LigneLivraison implements Serializable {
         return "entit\u00e9s.gestionMagasin.ligneLivraison[ id=" + id + " ]";
     }
  
+    @OneToOne
     private LigneCommande ligneCommande; 
     
     public LigneCommande getLigneCommande(){
