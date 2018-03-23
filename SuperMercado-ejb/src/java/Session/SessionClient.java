@@ -170,13 +170,21 @@ public class SessionClient implements SessionClientLocal {
     }
 
     @Override
-    public void ValidationAchat(String idAchat) {
+    public String ValidationAchat(String idAchat) {
+        String message;
         Long idAchatLong = Long.valueOf(idAchat);
         Achat a = achatFacade.RechercheAchatParId(idAchatLong);
+        if(!achatFacade.getListeLigneAchat(a).isEmpty())
+        {
         this.ReduireStockPourAchat(a);
         achatFacade.ValiderAchat(a);
-              
-          
+        message = "Panier Validé";
+        }
+        else
+        {
+        message="panier vide, aucun achat à valider"; 
+        }
+        return message;
     }
 
     @Override

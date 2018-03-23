@@ -38,7 +38,7 @@ public interface SessionClientLocal {
     
     Client ChercherClientParLoginMdp(String login, String mdp);
 
-    void ValidationAchat(String idAchat);
+    String ValidationAchat(String idAchat);
 
     AchatEnLigne RechercherAchatEnCours(String idClient);
 
