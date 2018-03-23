@@ -5,7 +5,10 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionMagasin.Magasin;
+import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.RetraitMagasin;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +30,15 @@ public class RetraitMagasinFacade extends AbstractFacade<RetraitMagasin> impleme
 
     public RetraitMagasinFacade() {
         super(RetraitMagasin.class);
+    }
+    
+    @Override
+    public void CreerRetraitMagasin(AchatEnLigne achat, Date dateRecup, Magasin m){
+        RetraitMagasin r= new RetraitMagasin();
+        r.setAchatEnLigne(achat);
+        r.setDateRecuperation(dateRecup);
+        r.setMagasin(m);
+        em.merge(r);
     }
     
 }

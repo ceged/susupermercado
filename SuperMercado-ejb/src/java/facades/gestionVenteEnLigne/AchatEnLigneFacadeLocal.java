@@ -35,4 +35,6 @@ public interface AchatEnLigneFacadeLocal {
 
     AchatEnLigne RechercherAchatEnLigneEnCours(Client client);
     
+    void AjouterModeLivraison(AchatEnLigne a,String modeLivraison);
+    
 }

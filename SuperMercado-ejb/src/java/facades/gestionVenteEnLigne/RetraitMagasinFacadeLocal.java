@@ -5,7 +5,10 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionMagasin.Magasin;
+import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.RetraitMagasin;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +32,7 @@ public interface RetraitMagasinFacadeLocal {
     List<RetraitMagasin> findRange(int[] range);
 
     int count();
+    
+    void CreerRetraitMagasin(AchatEnLigne achat, Date dateRecup, Magasin m);
     
 }

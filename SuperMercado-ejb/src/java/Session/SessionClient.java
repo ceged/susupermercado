@@ -9,18 +9,24 @@ import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
+import entités.gestionVenteEnLigne.Creneau;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionArticle.AchatFacadeLocal;
 import facades.gestionArticle.LigneAchatFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
+import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionVenteEnLigne.AchatEnLigneFacadeLocal;
 import java.lang.String;
 import facades.gestionVenteEnLigne.ClientFacadeLocal;
+import facades.gestionVenteEnLigne.CreneauFacadeLocal;
+import facades.gestionVenteEnLigne.LivraisonDomicileFacadeLocal;
+import facades.gestionVenteEnLigne.RetraitMagasinFacadeLocal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -33,6 +39,18 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionClient implements SessionClientLocal {
+
+    @EJB
+    private CreneauFacadeLocal creneauFacade;
+
+    @EJB
+    private LivraisonDomicileFacadeLocal livraisonDomicileFacade;
+
+    @EJB
+    private RetraitMagasinFacadeLocal retraitMagasinFacade;
+
+    @EJB
+    private MagasinFacadeLocal magasinFacade;
 
     @EJB
     private LigneAchatFacadeLocal ligneAchatFacade;
@@ -213,7 +231,30 @@ public class SessionClient implements SessionClientLocal {
         }
     }
     
+    @Override
+    public void AjouterChoixModeLivraison(Achat a, String modeLivraison){
+        AchatEnLigne al= achatEnLigneFacade.find(a.getId());
+        achatEnLigneFacade.AjouterModeLivraison(al, modeLivraison);
+        
+    }
     
+    @Override
+    public void CreerRetraitMagasin(String idAchatLigne, Date dateRecup, String magasinId){
+        Long idAchat=Long.parseLong(idAchatLigne);
+        Long idMag=Long.parseLong(magasinId);
+        AchatEnLigne a=achatEnLigneFacade.find(idAchat);
+        Magasin m=magasinFacade.find(idMag);
+        retraitMagasinFacade.CreerRetraitMagasin(a, dateRecup, m);
+        
+    }
+    
+    @Override
+    public void CreerLivraisonDomicile(String idAchatLigne, String adresse, String codePostal, String ville, String  creneauId){
+        Long idAchat=Long.parseLong(idAchatLigne);
+        AchatEnLigne a=achatEnLigneFacade.find(idAchat);
+        Creneau creneau=creneauFacade.ChercherCreneauParId(creneauId);
+        livraisonDomicileFacade.CreerLivraisonDomicile(a, adresse, codePostal, ville, creneau);
+    }
     
 }
     

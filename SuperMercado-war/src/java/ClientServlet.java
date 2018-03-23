@@ -36,6 +36,9 @@ import javax.servlet.http.HttpSession;
 public class ClientServlet extends HttpServlet {
 
     @EJB
+    private SessionAgentLivraisonLocal sessionAgentLivraison1;
+
+    @EJB
     private SessionAgentLivraisonLocal sessionAgentLivraison;
 
     @EJB
@@ -162,9 +165,15 @@ public class ClientServlet extends HttpServlet {
         else if(act.equals("validerPanier")){
             String idAchat= request.getParameter("idAchat");
             String message = sessionClient.ValidationAchat(idAchat);
+            Achat achat=sessionClient.RechercheAchatParId(idAchat);
             request.setAttribute( "message", message );
-            jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";
-            
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("achat", achat);
+            jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";  
+        }
+        else if(act.equals("selectionModeLivraison")){
+            doActioninsererChoixModeLivraison(request,response);     
+ 
         }
         else if(act.equals("annulerInsertionLigne")){
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
@@ -265,6 +274,36 @@ protected String doActionInsererClient(HttpServletRequest request, HttpServletRe
    
     request.setAttribute( "message", message );
     return message;
+}
+
+protected void doActioninsererChoixModeLivraison(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            String idAchat= request.getParameter("idAchat");
+            String livraisonDomicile= request.getParameter("livraisonDomicile");
+            String retraitMagasin= request.getParameter("retraitMagasin");
+    String jspChoix;
+    String message;
+    if ( livraisonDomicile.trim().isEmpty()&&retraitMagasin.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionVentesEnLigneJSP/ChoixModeLivraison.jsp\">Cliquez ici</a> pour accéder choix de livraison.";
+} else
+{
+    Achat a=sessionClient.RechercheAchatParId(idAchat);
+    if(livraisonDomicile.isEmpty()){
+        sessionClient.AjouterChoixModeLivraison(a, "Magasin");
+        jspChoix="/GestionVentesEnLigneJSP/InfoRetraitMagasin.jsp"; 
+    }
+    else{
+        sessionClient.AjouterChoixModeLivraison(a, "Domicile");
+        String nomMagasin= request.getParameter("nomMag");
+        Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
+        List<Creneau> liste= sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
+        HttpSession sess=request.getSession(true);
+        sess.setAttribute("liste",liste);
+        jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp"; 
+    }
+    
+}
+
 }
 
 protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)

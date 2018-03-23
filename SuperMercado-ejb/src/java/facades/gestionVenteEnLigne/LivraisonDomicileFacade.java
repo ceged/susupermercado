@@ -5,6 +5,8 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Creneau;
 import entités.gestionVenteEnLigne.LivraisonDomicile;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,6 +29,17 @@ public class LivraisonDomicileFacade extends AbstractFacade<LivraisonDomicile> i
 
     public LivraisonDomicileFacade() {
         super(LivraisonDomicile.class);
+    }
+    
+    @Override
+    public void CreerLivraisonDomicile(AchatEnLigne achat, String adresse, String codePostal, String ville, Creneau creneau ){
+        LivraisonDomicile l = new LivraisonDomicile();
+        l.setAchatEnLigne(achat);
+        l.setAdresse(adresse);
+        l.setCodePostal(codePostal);
+        l.setVille(ville);
+        l.setCreneau(creneau);
+        em.merge(l);
     }
     
 }

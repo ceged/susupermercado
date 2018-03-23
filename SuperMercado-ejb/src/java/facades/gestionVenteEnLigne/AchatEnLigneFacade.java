@@ -61,6 +61,12 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
         return a;
     }
     
+    @Override
+    public void AjouterModeLivraison(AchatEnLigne a,String modeLivraison){
+        a.setModeLivraison(modeLivraison);
+        em.merge(a);
+    }
+    
     
     
 }

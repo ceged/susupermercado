@@ -46,4 +46,9 @@ public interface SessionClientLocal {
 
     void ViderPanier(List<LigneAchat> liste);
     
+    void AjouterChoixModeLivraison(Achat a, String modeLivraison);
+    
+    void CreerLivraisonDomicile(String idAchatLigne, String adresse, String codePostal, String ville, String  creneauId);
+    
+    void CreerRetraitMagasin(String idAchatLigne, Date dateRecup, String magasinId);
 }
