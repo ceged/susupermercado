@@ -163,7 +163,7 @@ public class ClientServlet extends HttpServlet {
             String idAchat= request.getParameter("idAchat");
             String message = sessionClient.ValidationAchat(idAchat);
             request.setAttribute( "message", message );
-            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+            jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";
             
         }
         else if(act.equals("annulerInsertionLigne")){
