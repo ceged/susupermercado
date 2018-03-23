@@ -97,15 +97,32 @@ public class ClientServlet extends HttpServlet {
             List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
             //Creation de l'achat 
             //verification si achat en cours , si non il cree, si oui il ouvre l'achat en cours
-            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString);
-            AchatEnLigne achatEnCours = null;
-            if(achatclientencours==null)
+            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString); //Achat existant créé avant
+            AchatEnLigne achatEnCours; //nouveau achat 
+            if(achatclientencours==null) // si pas d'achat en cours pour le client
             {           
-            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString); //creer un achat
             }
-            else
+            else //si achat en cours existe 
             {
-            achatEnCours = achatclientencours;
+                List <LigneAchat> la = achatclientencours.getListeLigneAchats();
+                if(la.isEmpty())
+                {
+                achatEnCours = achatclientencours; //passer en attribut l'achat trouvé
+                }
+                else
+                {
+                    Magasin magasinPanierTrouve =  la.get(0).getLotArticle().getArticle().getRayon().getSecteur().getMagasin();
+                    if(magasinPanierTrouve==magasinChoisi)
+                    {
+                        achatEnCours = achatclientencours;
+                    }
+                    else 
+                    {
+                        sessionClient.ViderPanier(la);
+                        achatEnCours=achatclientencours;
+                    }
+                }
             }
             sess.setAttribute("client", c);
             sess.setAttribute("achatEnCours", achatEnCours);
@@ -116,11 +133,10 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("insererLignePanier")){
             doActioninsererLignePanier(request,response);
-            String idAchat= request.getParameter("idAchat");
+            /*String idAchat= request.getParameter("idAchat");
             AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            HttpSession sess=request.getSession(true);
-
-          //  sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            HttpSession sess=request.getSession(true);*/
+          //sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         else if(act.equals("passageDateChoisiClient")){
@@ -144,6 +160,9 @@ public class ClientServlet extends HttpServlet {
             String idAchat= request.getParameter("idAchat");
             //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
             sessionClient.ValidationAchat(idAchat);
+        }
+        else if(act.equals("annulerInsertionLigne")){
+            jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         }
         else if (act2.equals("consulterVotrePanier"))
@@ -246,7 +265,7 @@ protected void doActioninsererLignePanier(HttpServletRequest request, HttpServle
             throws ServletException, IOException {
     String quantite= request.getParameter( "quantite" );
     String idArticle= request.getParameter( "article" );
-    String client = request.getParameter("idClient");
+   // String client = request.getParameter("idClient");
     String achat = request.getParameter("idAchat");
     
     String message;

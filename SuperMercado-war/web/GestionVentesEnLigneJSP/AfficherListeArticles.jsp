@@ -57,6 +57,9 @@
             document.getElementById('idqte').value = qte;
             document.getElementById('action').value = "insererLignePanier";
             }
+            else {
+                document.getElementById('action').value = "annulerInsertionLigne";
+            }
             }
         </script>
             <p>      <%

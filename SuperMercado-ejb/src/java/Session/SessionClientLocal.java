@@ -43,5 +43,7 @@ public interface SessionClientLocal {
     AchatEnLigne RechercherAchatEnCours(String idClient);
 
     void ReduireStockPourAchat(Achat achat);
+
+    void ViderPanier(List<LigneAchat> liste);
     
 }

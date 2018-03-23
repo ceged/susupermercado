@@ -111,21 +111,42 @@ public class SessionClient implements SessionClientLocal {
     @Override
     public String creationLignePanier(String quantite, String article, String idAchat) {
         String message;
-        int quantiteInt = Integer.parseInt(quantite);
+        int quantiteInt = Integer.parseInt(quantite); 
         LotArticle lotselectionne = this.GetLotArticleFIFO(article, quantite);
-        if(lotselectionne.getQuantiteLot()<quantiteInt)
+        Long idAchatLong = Long.valueOf(idAchat);
+        Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
+        
+        //Verification si ligne existante 
+        
+        LigneAchat ligneExistante = ligneAchatFacade.RechercherLigneParLotDansUnAchat(achat, lotselectionne);
+        if(ligneExistante==null)
         {
-            message = "Stock insuffisant, veuillez réduire votre quantité";
+            if(lotselectionne.getQuantiteLot()<quantiteInt)
+                {message = "Stock insuffisant, veuillez réduire votre quantité";}
+            else
+                {ligneAchatFacade.CreerLigneAchat(quantiteInt, lotselectionne, achat);
+                message = "article ajouté à votre panier";}
         }
         else
         {
-        Long idAchatLong = Long.valueOf(idAchat);
-        Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
-        ligneAchatFacade.CreerLigneAchat(quantiteInt, lotselectionne, achat);
-        message = "article ajouté à votre panier";
+            int qteLot = ligneExistante.getLotArticle().getQuantiteLot();
+            int qteLigneExistante = ligneExistante.getQuantiteAchetee();
+            int quantiteRestante =  qteLot-qteLigneExistante;
+            if(quantiteRestante<quantiteInt)
+            {
+                message = "Stock insuffisant, veuillez réduire votre quantité";
+            }
+            else
+            {
+                ligneAchatFacade.AjouterQuantiteLigne(quantiteInt, ligneExistante);
+                message = "article ajouté à votre panier";}
         }
         return message;
     }
+
+     
+    
+    
     
     @Override
     public Client ChercherClientParLoginMdp(String login, String mdp){
@@ -175,6 +196,15 @@ public class SessionClient implements SessionClientLocal {
             lotArticleFacade.ModifierQteLotArticle(qte, lot);
         });
     }
+
+    @Override
+    public void ViderPanier(List<LigneAchat> liste) {
+        for(LigneAchat ligne : liste)
+        {
+                ligneAchatFacade.SupprimerLigneAchat(ligne);
+        }
+    }
+    
     
     
 }
