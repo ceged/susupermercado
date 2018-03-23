@@ -7,12 +7,16 @@ package Session;
 
 import entités.gestionArticle.Casse;
 import entités.gestionArticle.LotArticle;
+import entités.gestionCommande.Commande;
+import entités.gestionLivraison.Livraison;
 import entités.gestionMagasin.AgentRayon;
 import entités.gestionMagasin.Rayon;
 import facades.gestionArticle.CasseFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
+import facades.gestionCommande.CommandeFacadeLocal;
 import facades.gestionLivraison.AgentLivraisonFacadeLocal;
+import facades.gestionLivraison.LivraisonFacadeLocal;
 import facades.gestionMagasin.AgentRayonFacadeLocal;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +29,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAgentRayon implements SessionAgentRayonLocal {
+
+    @EJB
+    private LivraisonFacadeLocal livraisonFacade;
+
+    @EJB
+    private CommandeFacadeLocal commandeFacade;
 
     @EJB
     private ReferentielArticleFacadeLocal referentielArticleFacade;
@@ -73,6 +83,21 @@ public class SessionAgentRayon implements SessionAgentRayonLocal {
         LotArticle lot= lotArticleFacade.RechercherLotArticleParId(idLot);
         lotArticleFacade.ModifierQteLotArticle(newQte, lot);
     }
-
+    
+    @Override
+    public AgentRayon ChercherAgentRayonParId(String idAgent){
+        Long id=Long.parseLong(idAgent);
+        return agentRayonFacade.find(id);
+    }
+    
+    @Override
+    public List<Commande> ChercherListeCommandeParAgentRayon(Rayon r){
+        return commandeFacade.RechercherListeBonCommmandeParRayonValider(r);
+    }
+    
+    @Override
+    public List<Livraison> ChercherListeLivraisonParAgentRayon(Rayon r){
+        return livraisonFacade.ChercherListeLivraisonParRayon(r);
+    }
     
 }

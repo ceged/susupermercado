@@ -6,6 +6,10 @@
 package Session;
 
 import entités.gestionArticle.Casse;
+import entités.gestionCommande.Commande;
+import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.AgentRayon;
+import entités.gestionMagasin.Rayon;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -22,4 +26,10 @@ public interface SessionAgentRayonLocal {
     List<Casse> ChercherListeCasseParRayon(String idAgentRayon);
     
     void ModifierQteLotArticle(String idLotArticle, int newQte);
+    
+    AgentRayon ChercherAgentRayonParId(String idAgent);
+    
+    List<Livraison> ChercherListeLivraisonParAgentRayon(Rayon r);
+    
+    List<Commande> ChercherListeCommandeParAgentRayon(Rayon r);
 }

@@ -8,6 +8,7 @@ package facades.gestionCommande;
 import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Rayon;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -46,5 +47,7 @@ public interface CommandeFacadeLocal {
     List<Commande> RechercherListeBonCommmandeParChefRayon(ChefRayon chefRayon);
     
     List<Commande> RechercherListeBonCommmandeParFournisseur(Fournisseur fournisseur);
+    
+    List<Commande> RechercherListeBonCommmandeParRayonValider(Rayon r);
     
 }

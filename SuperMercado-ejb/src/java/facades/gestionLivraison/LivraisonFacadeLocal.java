@@ -9,6 +9,7 @@ import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionLivraison.Livraison;
 import entités.gestionMagasin.Magasin;
+import entités.gestionMagasin.Rayon;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -51,4 +52,6 @@ public interface LivraisonFacadeLocal {
      void ModifierDateLivraisonEffectiveParLivraison(Livraison livraison, Date dateEffective);
      
      List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2);
+     
+     List<Livraison>ChercherListeLivraisonParRayon(Rayon r);
 }

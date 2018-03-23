@@ -5,6 +5,7 @@
  */
 package entités.gestionLivraison;
 
+import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
 import entités.gestionCommande.LigneCommande;
 import java.io.Serializable;
@@ -27,6 +28,25 @@ public class LigneLivraison implements Serializable {
     
     @OneToOne(mappedBy = "ligneLivraison")
     private Reclamation reclamation;
+
+    public Reclamation getReclamation() {
+        return reclamation;
+    }
+
+    public void setReclamation(Reclamation reclamation) {
+        this.reclamation = reclamation;
+    }
+
+    public LotArticle getLotArticle() {
+        return lotArticle;
+    }
+
+    public void setLotArticle(LotArticle lotArticle) {
+        this.lotArticle = lotArticle;
+    }
+    
+    @OneToOne(mappedBy = "ligneLivraison")
+    private LotArticle lotArticle;
 
     private static final long serialVersionUID = 1L;
     @Id

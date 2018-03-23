@@ -9,6 +9,7 @@ import entités.gestionCommande.Commande;
 import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.Rayon;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -102,6 +103,20 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
         List<Commande> listeCommande = new ArrayList<Commande>();
         Query req=getEntityManager().createQuery("Select c from Commande as c WHERE c.chefRayon=:chefRayon");
         req.setParameter("chefRayon", chefRayon);
+        Collection<Commande>col=req.getResultList();
+        for(Commande c:col){
+            listeCommande.add(c);
+        }
+        return listeCommande;
+    }
+    
+    @Override
+    public List<Commande> RechercherListeBonCommmandeParRayonValider(Rayon r){
+        String statut="valider";
+        List<Commande> listeCommande = new ArrayList<Commande>();
+        Query req=getEntityManager().createQuery("Select c from Commande as c WHERE c.chefRayon.rayon=:r AND c.statut=:statut");
+        req.setParameter("r", r);
+        req.setParameter("statut", statut);
         Collection<Commande>col=req.getResultList();
         for(Commande c:col){
             listeCommande.add(c);

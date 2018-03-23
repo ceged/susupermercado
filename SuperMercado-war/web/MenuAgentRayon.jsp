@@ -29,6 +29,10 @@
         Saisir casse</A><br/><br/>
         <A HREF="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>">
         Consulter liste casse de mon rayon</A><br/><br/>
+        <A HREF="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">
+        Consulter liste commandes de mon rayon</A><br/><br/>
+        <A HREF="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">
+        Consulter liste livraison de mon rayon</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

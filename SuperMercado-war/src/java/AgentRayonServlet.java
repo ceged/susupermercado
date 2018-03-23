@@ -4,8 +4,16 @@
  * and open the template in the editor.
  */
 
+import Session.SessionAgentLivraisonLocal;
 import Session.SessionAgentRayonLocal;
+import Session.SessionChefDeRayonLocal;
+import Session.SessionFournisseurLocal;
 import entités.gestionArticle.Casse;
+import entités.gestionCommande.Commande;
+import entités.gestionCommande.LigneCommande;
+import entités.gestionLivraison.LigneLivraison;
+import entités.gestionLivraison.Livraison;
+import entités.gestionMagasin.AgentRayon;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -25,6 +33,15 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/AgentRayonServlet"})
 public class AgentRayonServlet extends HttpServlet {
+
+    @EJB
+    private SessionChefDeRayonLocal sessionChefDeRayon;
+
+    @EJB
+    private SessionFournisseurLocal sessionFournisseur;
+
+    @EJB
+    private SessionAgentLivraisonLocal sessionAgentLivraison;
 
     @EJB
     private SessionAgentRayonLocal sessionAgentRayon;
@@ -57,6 +74,41 @@ public class AgentRayonServlet extends HttpServlet {
             HttpSession sess=request.getSession(true);
             sess.setAttribute("liste",liste);
             jspChoix="/GestionArticleJSP/AfficherListeCasseParRayon.jsp";
+        }
+        else if (act.equals("passageListecommande")){
+            String idAgent=request.getParameter("idAgent");
+            AgentRayon a= sessionAgentRayon.ChercherAgentRayonParId(idAgent);
+            List<Commande> liste=sessionAgentRayon.ChercherListeCommandeParAgentRayon(a.getRayon());
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionCommandeJSP/AfficherListeCommandeParRayon.jsp";
+        }
+        else if (act.equals("passageListelivraison")){
+            String idAgent=request.getParameter("idAgent");
+            AgentRayon a= sessionAgentRayon.ChercherAgentRayonParId(idAgent);
+            List<Livraison> liste=sessionAgentRayon.ChercherListeLivraisonParAgentRayon(a.getRayon());
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherListeLivraisonParRayon.jsp";
+        }
+        else if(act.equals("afficherLivraisonAgent")){
+            String id=request.getParameter("livraisonId");
+            Livraison l=sessionFournisseur.ChercherLivraisonParId(id);
+            List<LigneLivraison> liste=sessionFournisseur.ChercherListeLigneLivraisonParLivraison(l);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("livraison",l);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherLivraisonParRayon.jsp";
+        }
+        else if(act.equals("afficherCommandeRayon")){
+            String id=request.getParameter("commandeId");
+            Long idC=Long.parseLong(id);
+            Commande c=sessionChefDeRayon.RechercherCommandeParId(idC);
+            List<LigneCommande> liste=sessionChefDeRayon.RechercherListLigneCommandeParCommande(c);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("commande",c);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionCommandeJSP/AfficherCommandeParRayon.jsp";
         }
             
         RequestDispatcher Rd;
