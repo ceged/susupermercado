@@ -125,6 +125,11 @@ public class SessionFournisseur implements SessionFournisseurLocal {
          Livraison l=livraisonFacade.ChercherLivraisonParId(id);
          livraisonFacade.ModifierDateLivraisonPrevuParLivraison(l, datePrevue);
      }
+     
+     @Override
+     public List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2){
+         return livraisonFacade.ChercherListeLivraisonParFournisseurEntreDate(fournisseur, d1, d2);
+     }
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

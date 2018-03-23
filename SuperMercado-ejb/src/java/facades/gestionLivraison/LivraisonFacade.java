@@ -93,6 +93,22 @@ public class LivraisonFacade extends AbstractFacade<Livraison> implements Livrai
     }
     
     @Override
+    public List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2){
+        
+        List<Livraison> liste= new ArrayList<Livraison>();
+        Query req=getEntityManager().createQuery("SELECT l from Livraison as l where l.commande.fournisseur=:fournisseur AND l.commande.dateCommande>:d1 AND l.commande.dateCommande<:d2");
+        req.setParameter("d1",d1);
+        req.setParameter("fournisseur",fournisseur);
+        req.setParameter("d2",d2);
+            Collection<Livraison>col=req.getResultList();
+            for(Livraison l:col)
+    {
+        liste.add(l);
+    }
+        return liste;
+    }
+    
+    @Override
     public List<Livraison> ChercherListeLivraisonParMagasin (Magasin magasin){
         String statut="receptionner";
         String statut2="attentereception";

@@ -31,8 +31,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class ReferentielArticle implements Serializable {
 
-    @OneToMany(mappedBy = "article")
-    private List<LigneLivraison> listeLigneLivraisons;
+    
 
     @OneToMany(mappedBy = "article")
     private List<LotArticle> listeLotArticles;
@@ -138,9 +137,6 @@ public class ReferentielArticle implements Serializable {
         this.rayon = rayon;
     }
 
-    public List<LigneLivraison> getListeLigneLivraisons() {
-        return listeLigneLivraisons;
-    }
 
     public List<LotArticle> getListeLotArticles() {
         return listeLotArticles;
