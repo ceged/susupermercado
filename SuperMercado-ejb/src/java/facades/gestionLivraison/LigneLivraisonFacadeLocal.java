@@ -6,6 +6,7 @@
 package facades.gestionLivraison;
 
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
 import java.util.List;
@@ -32,7 +33,7 @@ public interface LigneLivraisonFacadeLocal {
 
     int count();
     
-    void CreerLigneLivraison(Livraison livraison, ReferentielArticle article, int quantite);
+    void CreerLigneLivraison(Livraison livraison, ReferentielArticle article, int quantite, LigneCommande ligneCommande);
     
     List<LigneLivraison> ChercherListeLigneLivraisonParLivraison(Livraison livraison);
     
