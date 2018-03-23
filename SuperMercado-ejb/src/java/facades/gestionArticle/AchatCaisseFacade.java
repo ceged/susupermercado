@@ -11,6 +11,7 @@ import entités.gestionMagasin.Caisse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +23,9 @@ import javax.persistence.Query;
  */
 @Stateless
 public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements AchatCaisseFacadeLocal {
+
+    @EJB
+    private AchatFacadeLocal achatFacade;
 
     @PersistenceContext(unitName = "SuperMercado-ejbPU")
     private EntityManager em;
@@ -60,6 +64,7 @@ public class AchatCaisseFacade extends AbstractFacade<AchatCaisse> implements Ac
     }
         return result;
     }
+    
     
     
 }

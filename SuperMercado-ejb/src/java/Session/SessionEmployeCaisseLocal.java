@@ -33,4 +33,9 @@ public interface SessionEmployeCaisseLocal {
     AchatCaisse ChercherAchatCaisseParId(String idAchat);
     
     LigneAchat ChercherLigneAchat (String idLigneAchat);
+    
+    
+    void ValiderAchatCaisse(String idAchat);
+    
+    void SupprimerLigneAchatCaissev2(String idLigneAchat);
 }

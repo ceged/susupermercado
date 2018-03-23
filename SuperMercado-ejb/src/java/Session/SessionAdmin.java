@@ -156,8 +156,17 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
-    public void CreerMagasin(String nomMagasin, String adresse, String codePostal){
-        magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
+    public String CreerMagasin(String nomMagasin, String adresse, String codePostal){
+        String message=null;
+        Magasin m=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if(m!=null){
+            message="nom de magasin déjà utilisé";
+        }
+        else{
+            magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
+            message="magasin créé";
+        }
+        return message;
     }
     
         @Override 
