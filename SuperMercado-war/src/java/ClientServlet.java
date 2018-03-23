@@ -251,7 +251,7 @@ protected void doActioninsererLignePanier(HttpServletRequest request, HttpServle
     
     String message;
     if ( quantite.trim().isEmpty()&&idArticle.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/CreerLigneCommande.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionVentesEnLigneJSP/AfficherListeArticles.jsp\">Cliquez ici</a> pour accéder au formulaire d'ajout un article.";
 } else
 {
     message = sessionClient.creationLignePanier(quantite, idArticle, achat);
