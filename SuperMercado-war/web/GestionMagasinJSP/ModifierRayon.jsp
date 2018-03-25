@@ -13,18 +13,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="text.css" type="text/css">
+        <link rel="stylesheet" href="test.css" type="text/css">
          <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayonModifie" scope="session" class="List<Rayon>"></jsp:useBean>
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <% DirecteurMagasin d= directeurConnecte;
 List<Rayon> listeRayon2 =listeRayonModifie;{%>
 <tr> <td Width=15%>Bienvenue <%=d.getNom()%></td>
 </tr><%}%>
         <h1>Formulaire de modification rayon</h1>
-        <form method="get" action="/SuperMercado-war/DirecteurServlet">
+       <center> 
+           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Rayon a modifier (majuscules et accents interdits)</legend>
         <br />
@@ -45,5 +49,9 @@ List<Rayon> listeRayon2 =listeRayonModifie;{%>
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+           </form>
+       </center> 
+      <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

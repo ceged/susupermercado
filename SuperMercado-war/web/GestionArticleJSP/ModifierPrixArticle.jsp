@@ -16,14 +16,18 @@
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeReferentielArticleModifier" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar_chefrayon.jsp" %>
     <body>
         <% ChefRayon c= chefRayonConnecte;
         List<ReferentielArticle> liste=listeReferentielArticleModifier;{%>
 <tr> <td Width=15%>Bienvenue <%=c.getNom()%></td>
 </tr><%}%>
         <h1>Formulaire de création d'article</h1>
-        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+        <center> 
+            <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations Article (majuscules et accents interdits)</legend>
         <br />
@@ -44,5 +48,12 @@
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+            </form>
+        </center>
+        
+        <%@ include file="/include/footer.jsp" %>
+        
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+

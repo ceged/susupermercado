@@ -15,13 +15,17 @@
         <link rel="stylesheet" href="test.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
 <% DirecteurMagasin a= directeurConnecte;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
         <h1>Formulaire de création de caisse</h1>
-        <form method="get" action="/SuperMercado-war/DirecteurServlet">
+       <center> 
+           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Caisse (majuscules et accents interdits)</legend>
         <label for="id">Numéro de la caisse <span class="requis">*</span></label>
@@ -34,5 +38,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+        </center> 
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

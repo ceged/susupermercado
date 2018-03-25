@@ -5,6 +5,8 @@
  */
 package facades.gestionVenteEnLigne;
 
+import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Creneau;
 import entités.gestionVenteEnLigne.LivraisonDomicile;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +32,5 @@ public interface LivraisonDomicileFacadeLocal {
 
     int count();
     
+    void CreerLivraisonDomicile(AchatEnLigne achat, String adresse, String codePostal, String ville, Creneau creneau );
 }

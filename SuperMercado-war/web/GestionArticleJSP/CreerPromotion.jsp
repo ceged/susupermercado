@@ -15,12 +15,15 @@
         <link rel="stylesheet" href="Article.css" type="text/css">
         <jsp:useBean id="listeRefArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <title>JSP Page</title>
+    <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar.jsp" %>
     <body>
         
        <h1>Créer une Promotion</h1>
         
-        <form method="get" action="/SuperMercado-war/Admin">
+        <center> <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         
         <label for="dob">Date de début de la promotion <span class="requis">*</span></label>
@@ -51,5 +54,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form> 
+        </center> 
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

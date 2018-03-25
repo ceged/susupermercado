@@ -6,9 +6,13 @@
 package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.AchatEnLigne;
+import entités.gestionVenteEnLigne.Client;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +32,41 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
     public AchatEnLigneFacade() {
         super(AchatEnLigne.class);
     }
+
+    @Override
+    public AchatEnLigne CreationAchatEnLigne(Client client) {
+        AchatEnLigne a = new AchatEnLigne();
+        Date dateAchat = new Date();
+        a.setClient(client);
+        a.setDateAchat(dateAchat);
+        a.setStatutAchat("En Cours");
+        
+        em.persist(a);
+        return a;
+    }
+
+    @Override
+    public AchatEnLigne RechercherAchatEnLigneEnCours(Client client) {
+        String statut = "En Cours";
+        AchatEnLigne a = null;
+        Query req = getEntityManager().createQuery("Select a from AchatEnLigne as a where a.client=:client and a.statutAchat=:statut");
+        req.setParameter("client", client);
+        req.setParameter("statut", statut);
+        List<AchatEnLigne>listeAchat=req.getResultList();
+        
+        for(AchatEnLigne ac:listeAchat)
+    {
+        a=ac;
+    }
+        return a;
+    }
+    
+    @Override
+    public void AjouterModeLivraison(AchatEnLigne a,String modeLivraison){
+        a.setModeLivraison(modeLivraison);
+        em.merge(a);
+    }
+    
+    
     
 }

@@ -8,6 +8,7 @@ package facades.gestionArticle;
 import entités.gestionArticle.Achat;
 import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
+import entités.gestionVenteEnLigne.AchatEnLigne;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,5 +34,13 @@ public interface LigneAchatFacadeLocal {
     int count();
 
     void CreerLigneAchat(int qteAchetees, LotArticle lotArticle, Achat achat);
+
+    void SupprimerLigneAchat(LigneAchat ligneAchat);
+
+    LigneAchat RechercherLigneAchatParId(Long idLigne);
+
+    LigneAchat RechercherLigneParLotDansUnAchat(Achat achat, LotArticle lot);
+
+    void AjouterQuantiteLigne(int quantiteAjoute, LigneAchat ligne);
     
 }

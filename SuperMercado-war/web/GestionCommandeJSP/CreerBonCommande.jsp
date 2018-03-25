@@ -15,14 +15,18 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="Commande.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="test/css">
         <title>JSP Page</title>
-    </head>
+   <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
          <h1>Formulaire de bon de commande</h1>
-        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+        <center> <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations bon de commande (majuscules et accents interdits)</legend>
         <label for="fournisseur">Fournisseur <span class="requis">*</span></label>
@@ -42,6 +46,10 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+        </center>
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+
         

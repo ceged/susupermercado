@@ -33,6 +33,22 @@ public class AchatEnLigne extends Achat implements Serializable {
     @OneToOne(mappedBy = "achatEnLigne")
     private RetraitMagasin retraitMagasin;
 
+    public RetraitMagasin getRetraitMagasin() {
+        return retraitMagasin;
+    }
+
+    public void setRetraitMagasin(RetraitMagasin retraitMagasin) {
+        this.retraitMagasin = retraitMagasin;
+    }
+
+    public LivraisonDomicile getLivraisonDomicile() {
+        return livraisonDomicile;
+    }
+
+    public void setLivraisonDomicile(LivraisonDomicile livraisonDomicile) {
+        this.livraisonDomicile = livraisonDomicile;
+    }
+
    
     @OneToOne(mappedBy = "achatEnLigne")
     private LivraisonDomicile livraisonDomicile;
@@ -87,12 +103,14 @@ public class AchatEnLigne extends Achat implements Serializable {
         this.client = client;
     }
 
-    private ModeLivraison modeLivraison;
+    private String modeLivraison;
+    
+    
 
-    public ModeLivraison getModeLivraison() {
+    public String getModeLivraison() {
         return modeLivraison;
     }
-    public void setModeLivraison(ModeLivraison modeLivraison) {
+    public void setModeLivraison(String modeLivraison) {
         this.modeLivraison = modeLivraison;
     }
     

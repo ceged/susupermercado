@@ -13,10 +13,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="Commande.css" type="text/css">
         <jsp:useBean id="liste" scope="session" class="List<Commande>"></jsp:useBean>
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
 <title>lListe des bons de commandes</title>
-</head>
+<%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
 <body>
 <h1>Liste des bons de commande</h1>
 <p> <%
@@ -55,5 +59,7 @@ for(Commande c : liste){%>
 </tr><%}%></TABLE>
 
 <hr>
-</body>
+ <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

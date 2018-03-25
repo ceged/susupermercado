@@ -6,6 +6,7 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionMagasin.Caisse;
 import java.util.Date;
 import java.util.List;
@@ -33,5 +34,7 @@ public interface AchatCaisseFacadeLocal {
     int count();
     
     AchatCaisse CreerAchatCaisse(Date dateAchat,Caisse caisse);
+    
+    List<LigneAchat> ChercherListeLigneAchatParAchatCaisse(AchatCaisse a);
     
 }

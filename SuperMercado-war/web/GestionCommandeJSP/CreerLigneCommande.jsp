@@ -18,15 +18,19 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="Commande.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
-        <link rel="stylesheet" href="test.css" type="test/css">
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
     <% List<ReferentielArticle> liste= commande.getFournisseur().getListeReferentielArticles(); %>
          <h1>Formulaire de ligne commande</h1>
-        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+        <center> 
+            <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations ligne commande (majuscules et accents interdits)</legend>
         <label for="article">Article du fournisseur<span class="requis">*</span></label>
@@ -49,6 +53,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+        </center> 
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
-        

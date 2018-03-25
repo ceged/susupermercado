@@ -6,11 +6,20 @@
 package Session;
 
 import entités.gestionArticle.Achat;
+import entités.gestionArticle.AchatCaisse;
+import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.Caisse;
+import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionArticle.AchatFacadeLocal;
 import facades.gestionArticle.LigneAchatFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
+import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
+import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.CaisseFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -20,6 +29,19 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
+
+
+    @EJB
+    private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
+
+    @EJB
+    private AgentCaisseFacadeLocal agentCaisseFacade;
+
+    @EJB
+    private CaisseFacadeLocal caisseFacade;
+
+    @EJB
+    private AchatCaisseFacadeLocal achatCaisseFacade;
 
     @EJB
     private AchatFacadeLocal achatFacade;
@@ -59,6 +81,13 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         
         return message;
     }
+    
+    @Override
+    public void SupprimerLigneAchatCaissev2(String idLigneAchat){
+        LigneAchat l=this.ChercherLigneAchat(idLigneAchat);
+        ligneAchatFacade.SupprimerLigneAchat(l);
+        lotArticleFacade.ModifierQteLotArticle(-1, l.getLotArticle());
+    }
 
     @Override
     public void CreerAchat() {
@@ -68,8 +97,52 @@ public class SessionEmployeCaisse implements SessionEmployeCaisseLocal {
         Achat a = null ;
         
         a = achatFacade.CreerAchat(dateAchat);
-        
-        
-      
+               
 }
+    @Override
+    public AchatCaisse CreerAchatCaisse(String idAgent){
+        AchatCaisse achat=null;
+        Date dateAchat= new Date();
+        AgentCaisse a=this.ChercherAgentCaisseParId(idAgent);
+        Caisse c=affectationCaisseAgentFacade.RechercherAffectionParDateAgent(dateAchat, a).getCaisse();
+        achat=achatCaisseFacade.CreerAchatCaisse(dateAchat, c);
+        return achat;
+    }
+    
+    @Override
+    public AgentCaisse ChercherAgentCaisseParId(String idAgent){
+        return agentCaisseFacade.RechercherAgentCaisseParId(idAgent);
+    }
+    
+    @Override
+    public List<LigneAchat> ChercherLigneAchatParAchat(AchatCaisse a){
+        List<LigneAchat> result=achatCaisseFacade.ChercherListeLigneAchatParAchatCaisse(a);
+        return result;
+    }
+    
+    @Override
+    public LotArticle ChercherLotArticleParId(String idLot){
+        Long id=Long.parseLong(idLot);
+        LotArticle lot=lotArticleFacade.RechercherLotArticleParId(id);
+        return lot;
+    }
+    
+    @Override
+    public AchatCaisse ChercherAchatCaisseParId(String idAchat){
+        Long id=Long.parseLong(idAchat);
+        return achatCaisseFacade.find(id);
+    }
+    
+    @Override
+    public LigneAchat ChercherLigneAchat (String idLigneAchat){
+        Long id=Long.parseLong(idLigneAchat);
+        return ligneAchatFacade.find(id);
+    }
+    
+    
+    @Override
+    public void ValiderAchatCaisse(String idAchat){
+        AchatCaisse a=this.ChercherAchatCaisseParId(idAchat);
+        achatFacade.ValiderAchat(a);
+    }
 }

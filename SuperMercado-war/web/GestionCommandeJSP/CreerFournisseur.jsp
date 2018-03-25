@@ -13,13 +13,16 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="test.css" type="text/css">
+        <link rel="stylesheet" href="Commande.css" type="text/css">
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar_chefrayon.jsp" %>
     <body>
 
          <h1>Formulaire de création Fournisseur</h1>
-        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+        <center> <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations Fournisseur (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
@@ -54,6 +57,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+        </center>
+  <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
-        

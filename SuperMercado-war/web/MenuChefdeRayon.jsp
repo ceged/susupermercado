@@ -4,19 +4,22 @@
     Author     : PC Tim
 --%>
 
-<%@page import="entités.gestionMagasin.ChefRayon"%>
+<%--<%@page import="entités.gestionMagasin.ChefRayon"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="text.css" type="text/css">
-        <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
+       <%-- <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>--%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar_chefrayon.jsp" %>
     <body>
-        <% ChefRayon c= chefRayonConnecte;{%>
-<tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
+       <%--<% ChefRayon c= chefRayonConnecte;{%>--%>
+<%--<tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Chef de rayon !</h1>
         <A HREF="ChefRayonServlet?action=passageListeSousCategorie">
@@ -33,7 +36,7 @@
         Afficher les bon de commandes</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
-        
+        --%>
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
@@ -42,5 +45,7 @@
         else{
         out.println( attribut );}
         %> </p>
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

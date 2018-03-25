@@ -6,6 +6,10 @@
 package facades.gestionArticle;
 
 import entités.gestionArticle.Casse;
+import entités.gestionArticle.LotArticle;
+import entités.gestionMagasin.AgentRayon;
+import entités.gestionMagasin.Rayon;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +33,9 @@ public interface CasseFacadeLocal {
     List<Casse> findRange(int[] range);
 
     int count();
+    
+    List<Casse> ChercherListeCasseParRayon(Rayon rayon);
+    
+    void CreerCasse(AgentRayon agent, Date dateCasse, LotArticle lot, String motifCasse, int quantiteCasse );
     
 }

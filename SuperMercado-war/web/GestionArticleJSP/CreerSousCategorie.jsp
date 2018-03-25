@@ -14,13 +14,16 @@
         <link rel="stylesheet" href="Article.css" type="text/css">
         <jsp:useBean id="listeCategorie" scope="session" class="List<Categorie>"></jsp:useBean>
         <title>JSP Page</title>
+    <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
     <body>
  
         
             <h1>Créer une sous-catégorie</h1>
         
-        <form method="get" action="/SuperMercado-war/Admin">
+        <center> <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
             
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
@@ -43,9 +46,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form> 
-                
-               
-                
-        
-    </body> 
+        </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

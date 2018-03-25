@@ -44,4 +44,6 @@ public interface RayonFacadeLocal {
     Rayon RechercherRayonParNom(String nomRayon, Magasin magasin);
 
     List ConsulterRayonsSansChef(Magasin magasin);
+    
+    Rayon ChercherRayonParId(String idRayon);
 }

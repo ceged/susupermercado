@@ -11,10 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <h1>Formulaire de création directeur</h1>
-        <form method="get" action="/SuperMercado-war/Admin">
+        <center> 
+            <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Directeur (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
@@ -52,5 +56,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+            </center> 
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

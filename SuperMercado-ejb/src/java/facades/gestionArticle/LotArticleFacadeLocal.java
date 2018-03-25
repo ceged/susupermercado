@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -35,6 +36,9 @@ public interface LotArticleFacadeLocal {
 
     LotArticle RechercherLotArticleParId(long IdLotArticle);
 
-    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle);
+    void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle, LigneLivraison l);
+
+    LotArticle RechercherLotArticleFIFO(ReferentielArticle article);
     
+    LotArticle RechercherLotArticleParNom(String nom);
 }

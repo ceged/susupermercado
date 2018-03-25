@@ -12,7 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar_admin.jsp" %>
     <body>
         <h1>Bienvenue sur le menu Admin !</h1>
         <A HREF="GestionMagasinJSP/CreerMagasin.jsp">
@@ -38,5 +41,7 @@
         else{
         out.println( attribut );}
         %> </p>
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

@@ -5,7 +5,10 @@
  */
 package facades.gestionLivraison;
 
+import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
+import entités.gestionLivraison.Livraison;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +33,13 @@ public interface LigneLivraisonFacadeLocal {
 
     int count();
     
+    void CreerLigneLivraison(Livraison livraison, int quantite, LigneCommande ligneCommande);
+    
+    List<LigneLivraison> ChercherListeLigneLivraisonParLivraison(Livraison livraison);
+    
+    void ModifierStatutLigneLivraison(LigneLivraison l,String statut);
+    
+    LigneLivraison ChercherLigneLivraisonParId(Long ligneId);
+    
+    void ModifierQuantiteLigneLivraison(LigneLivraison l, int qtReceptionner, int qtLivrer);
 }

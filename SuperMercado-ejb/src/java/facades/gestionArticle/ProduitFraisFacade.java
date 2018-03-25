@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.ProduitFrais;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,14 +33,15 @@ public class ProduitFraisFacade extends AbstractFacade<ProduitFrais> implements 
     }
     
     @Override
-    public void CreerLotArticle(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption) {
+    public void CreerLotArticleFrais(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption, LigneLivraison l) {
         
         ProduitFrais pf = new ProduitFrais ();
         
         pf.setQuantiteLot(qteProduitFrais);
         pf.setArticle(refLotArticle);
         pf.setDatePeremption(datePeremption);
-        
+        Date date = new Date();
+        pf.setDateCreation(date);
         
         em.persist(pf);
         

@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
     <% DirecteurMagasin p= directeurConnecte;{%>
 <tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
@@ -52,5 +55,7 @@
         else{
         out.println( attribut );}
         %> </p>
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

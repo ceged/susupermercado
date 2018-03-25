@@ -7,6 +7,9 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,28 +50,56 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
      em.merge(LotArticle);
      
     }
+    
+    
 
     @Override
     public LotArticle RechercherLotArticleParId(long id) {
         
-        LotArticle la;
+        LotArticle la=null;
         Query req = getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.id=:id");
         req.setParameter("id", id);
-        la = (LotArticle) req.getSingleResult();
+        List<LotArticle>liste=req.getResultList();
+        for (LotArticle c:liste){
+            la=c;
+        }
         return la;
         
     }
 
     @Override
-    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
+    public LotArticle RechercherLotArticleParNom(String nom) {
+        
+        LotArticle la;
+        Query req = getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article.libelleArticle=:nom");
+        req.setParameter("nom", nom);
+        la = (LotArticle) req.getSingleResult();
+        return la;
+        
+    }
+    @Override
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle, LigneLivraison l) {
         
         LotArticle la = new LotArticle ();
-        
         la.setQuantiteLot(qteLotArticle);
         la.setArticle(refLotArticle);
+        la.setLigneLivraison(l);
+        Date date = new Date();
+        la.setDateCreation(date);
         
         em.persist(la);
         
+    }
+    
+
+    @Override
+    public LotArticle RechercherLotArticleFIFO(ReferentielArticle article) {
+        LotArticle la;
+        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article ORDER BY la.dateCreation");
+        req.setParameter("article", article);
+        List maliste = req.getResultList();
+        la= (LotArticle) maliste.get(0);
+        return la;
     }
     
     

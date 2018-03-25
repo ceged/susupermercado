@@ -5,6 +5,7 @@
  */
 package Session;
 
+import entités.gestionMagasin.AgentCaisse;
 import entités.gestionMagasin.Caisse;
 import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
@@ -12,6 +13,8 @@ import entités.gestionMagasin.Personne;
 import entités.gestionMagasin.Rayon;
 import entités.gestionMagasin.Secteur;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
+import facades.gestionLivraison.AgentLivraisonFacadeLocal;
+import facades.gestionMagasin.AffectationCaisseAgentFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
 import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.CaisseFacadeLocal;
@@ -32,6 +35,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
+
+    @EJB
+    private AgentLivraisonFacadeLocal agentLivraisonFacade;
+
+    @EJB
+    private AffectationCaisseAgentFacadeLocal affectationCaisseAgentFacade;
 
       @EJB
     private AgentRayonFacadeLocal agentRayonFacade;
@@ -67,7 +76,7 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override 
-    public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+    public String CreerChefRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String Idrayon, String nomMagasin){
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
         {
@@ -75,15 +84,14 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         }
         else
         {
-            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
-            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-            chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            Rayon r=rayonFacade.ChercherRayonParId(Idrayon);
+            chefRayonFacade.CreerChefRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, r);
             message="Chef de Rayon créé";
             }
         return message; 
     }
  @Override 
-    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String rayon, String nomMagasin){
+    public String CreerAgentRayon(String nom, String prenom, String login, String mdp, String sexe, Date dob, String adresse, String codePostal, String Idrayon, String nomMagasin){
         String message;
         if(personneFacade.LoginEstUnique(login)==false)
         {
@@ -92,8 +100,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
         else
         {
            Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
-            Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, rayonRecherche);
+            Rayon r=rayonFacade.ChercherRayonParId(Idrayon);
+            agentRayonFacade.CreerAgentRayon(nom, prenom, login, mdp, dob, sexe, adresse, codePostal, r);
             message="Agent de Rayon créé";
             }
         return message; 
@@ -261,10 +269,31 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         message = "caisse supprimé avec succès";
         
     }
+    return message;}
+    @Override
+    public String CreationAffectation(String idCaisseString, String idAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin) {
+        
+        String message;
+        
+        Long idCaisse = Long.parseLong(idCaisseString);
+        
+        Magasin magasin=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        Caisse caisse = caisseFacade.RechercherCaisseParId(idCaisse, magasin);
+        AgentCaisse agentCaisse = agentCaisseFacade.RechercherAgentCaisse(idAgentCaisse, magasin);
+        affectationCaisseAgentFacade.CreerAffectation(agentCaisse, caisse, dateDebut, dateFin);
+        message = "affectation effectuée";
         return message;
     }
+
+
+    @Override
+    public List <AgentCaisse> ConsultationListeAgentCaisseParMagasin(String nomMagasin) {
+        Magasin magasin = magasinFacade.RechercherMagasinParNom(nomMagasin);
+        return agentCaisseFacade.ConsulterListeAgentCaisseParMagasin(magasin);
+    }
+
     
-     @Override
+    @Override
     public String ModifierLibelleRayon(String LibelleRayon, String newLibelleRayon, String nomMagasin){
         String message ="Rayon modifié";
         Rayon rayonRecherche=this.RechercherRayonParNomRayon(LibelleRayon, nomMagasin);
@@ -279,11 +308,17 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
         
         return message;
     }
+    
     @Override
-public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
-    List<Rayon> listeRayon =null;
+    public List<Rayon> ConsulterListeRayonParDirecteur(DirecteurMagasin directeur){
+    List<Rayon> listeRayon;
     listeRayon=rayonFacade.ConsulterListeRayonsParMagasin(directeur.getMagasin());
     return listeRayon;
 }
+    @Override
+    public void CreerAgentLivraison(String prenom, String nom, String login, String mdp, Date dob, String sexe, String adresse, String codePostal, String nomMagasin){
+        Magasin m=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        agentLivraisonFacade.CreerAgentLivraison(prenom, nom, login, mdp, dob, sexe, adresse, codePostal, m);
+    }
   
 }

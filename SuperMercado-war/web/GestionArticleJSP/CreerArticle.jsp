@@ -20,7 +20,11 @@
         <jsp:useBean id="listeSousCategorie" scope="session" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <title>JSP Page</title>
+        <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+ 
     <body>
         <% ChefRayon c= chefRayonConnecte;
     List<SousCategorie> listeSousCategorie2 =listeSousCategorie;{%>
@@ -64,5 +68,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+    <%@ include file="/include/footer.jsp" %>
+     
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

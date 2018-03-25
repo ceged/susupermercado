@@ -7,20 +7,32 @@ package Session;
 
 import entités.gestionArticle.Categorie;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.Fournisseur;
+import entités.gestionLivraison.AgentLivraison;
+import entités.gestionMagasin.Admin;
+import entités.gestionMagasin.AgentCaisse;
+import entités.gestionMagasin.AgentRayon;
+import entités.gestionMagasin.ChefRayon;
+import entités.gestionMagasin.DirecteurMagasin;
 import entités.gestionMagasin.Magasin;
 import entités.gestionMagasin.Personne;
+import entités.gestionVenteEnLigne.Client;
 import facades.gestionArticle.CategorieFacadeLocal;
 import facades.gestionArticle.LotArticleFacadeLocal;
 import facades.gestionArticle.PromotionFacadeLocal;
 import facades.gestionArticle.ReferentielArticleFacadeLocal;
 import facades.gestionArticle.SousCategorieFacadeLocal;
+import facades.gestionCommande.FournisseurFacadeLocal;
+import facades.gestionLivraison.AgentLivraisonFacadeLocal;
 import facades.gestionMagasin.AdminFacadeLocal;
 import facades.gestionMagasin.AgentCaisseFacadeLocal;
+import facades.gestionMagasin.AgentRayonFacadeLocal;
 import facades.gestionMagasin.ChefRayonFacadeLocal;
 import facades.gestionMagasin.DirecteurMagasinFacadeLocal;
 import facades.gestionMagasin.MagasinFacadeLocal;
 import facades.gestionMagasin.PersonneFacadeLocal;
 import facades.gestionMagasin.SecteurFacadeLocal;
+import facades.gestionVenteEnLigne.ClientFacadeLocal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,6 +44,19 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class SessionAdmin implements SessionAdminLocal {
+
+    @EJB
+    private AgentRayonFacadeLocal agentRayonFacade;
+
+    @EJB
+
+    private ClientFacadeLocal clientFacade;
+
+    private AgentLivraisonFacadeLocal agentLivraisonFacade;
+
+    @EJB
+    private FournisseurFacadeLocal fournisseurFacade;
+
 
     @EJB
     private AgentCaisseFacadeLocal agentCaisseFacade;
@@ -74,6 +99,7 @@ public class SessionAdmin implements SessionAdminLocal {
     
     
     
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -85,19 +111,32 @@ public class SessionAdmin implements SessionAdminLocal {
     @Override
     public int  SeConnecter(String login, String mp){
         int i = 0;
-        Personne personneConnecte =null;
+        Personne personneConnecte;     
         personneConnecte=personneFacade.SeConnecter(login, mp);
-        if(adminFacade.findAll().contains(personneConnecte)){
+        
+        if(personneConnecte instanceof Admin){
             i=1;
         }
-        else if (chefRayonFacade.findAll().contains(personneConnecte)){
+        else if (personneConnecte instanceof ChefRayon){
             i=2;
         }
-        else if (directeurMagasinFacade.findAll().contains(personneConnecte)){
+        else if (personneConnecte instanceof DirecteurMagasin){
             i=3;
         }
-        else if (agentCaisseFacade.findAll().contains(personneConnecte)){
+        else if (personneConnecte instanceof AgentCaisse){
             i=4;
+        }
+        else if(personneConnecte instanceof Fournisseur){
+            i=6;
+        }
+        else if (personneConnecte instanceof Client){
+            i=7;
+        }
+        else if(personneConnecte instanceof AgentLivraison){
+            i=8;
+        }
+        else if(personneConnecte instanceof AgentRayon){
+            i=9;
         }
         return i;
     }
@@ -117,8 +156,17 @@ public class SessionAdmin implements SessionAdminLocal {
     }
     
     @Override
-    public void CreerMagasin(String nomMagasin, String adresse, String codePostal){
-        magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
+    public String CreerMagasin(String nomMagasin, String adresse, String codePostal){
+        String message=null;
+        Magasin m=magasinFacade.RechercherMagasinParNom(nomMagasin);
+        if(m!=null){
+            message="nom de magasin déjà utilisé";
+        }
+        else{
+            magasinFacade.CreerMagasin(nomMagasin, adresse, codePostal);
+            message="magasin créé";
+        }
+        return message;
     }
     
         @Override 
