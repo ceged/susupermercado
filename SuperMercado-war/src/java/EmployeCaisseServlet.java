@@ -4,24 +4,13 @@
  * and open the template in the editor.
  */
 
-import Session.SessionEmployeCaisseLocal;
-import entités.gestionArticle.AchatCaisse;
-import entités.gestionArticle.LigneAchat;
-import entités.gestionArticle.LotArticle;
-import entités.gestionMagasin.AgentCaisse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sun.management.Agent;
 
 /**
  *
@@ -30,9 +19,6 @@ import sun.management.Agent;
 @WebServlet(urlPatterns = {"/EmployeCaisseServlet"})
 public class EmployeCaisseServlet extends HttpServlet {
 
-    @EJB
-    private SessionEmployeCaisseLocal sessionEmployeCaisse;
-
     
     
     
@@ -40,69 +26,32 @@ public class EmployeCaisseServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String jspChoix ="/MenuAgentCaisse.jsp";
+        String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
         if ((act == null)||(act.equals("null")))
             {
-            jspChoix="/MenuAgentCaisse.jsp";
+            jspChoix="/Accueil.jsp";
             }
         
-        else if (act.equals("passageInfoCreerAchatCaisse"))
+        else if (act.equals("insererAchat"))
         {
-            String message=null;
-            String idAgent=request.getParameter("idAgent");
-            AchatCaisse a=sessionEmployeCaisse.CreerAchatCaisse(idAgent);
-            if(a!=null){
-                HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
-            sess.setAttribute("liste",liste); 
-            sess.setAttribute("achatCaisse",a); 
-            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
-                
-            }
-            else{
-
-            HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=null;
-            sess.setAttribute("listeRayon",liste); 
-            jspChoix="/GestionMagasinJSP/CreerAgentRayon.jsp";
-
-                message="vous n'êtes pas affecté à une caisse";
-            }
-        }
-        else if (act.equals("insererLigneAchat")){
-            doActioninsererLigneAchat(request,response);
-            String idAchat=request.getParameter("idAchat");
-            AchatCaisse a=sessionEmployeCaisse.ChercherAchatCaisseParId(idAchat);
-            HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
-            sess.setAttribute("liste",liste); 
-            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
-        }
-        else if (act.equals("SupprimerLigneAchat")){
-            String idLigne=request.getParameter("ligneId");
-            sessionEmployeCaisse.SupprimerLigneAchatCaissev2(idLigne);
-            String idAchat=request.getParameter("achatId");
-            AchatCaisse a=sessionEmployeCaisse.ChercherAchatCaisseParId(idAchat);
-            HttpSession sess=request.getSession(true);
-            List<LigneAchat> liste=sessionEmployeCaisse.ChercherLigneAchatParAchat(a);
-            sess.setAttribute("liste",liste); 
-            String message="Article supprimé";
-            request.setAttribute( "message", message );
-            jspChoix="/GestionArticleJSP/CreerAchatCaisse.jsp";
-            
-        }
-        else if(act.equals("validerAchatCaisse")){
-            String idAchat=request.getParameter("idAchat");
-            sessionEmployeCaisse.ValiderAchatCaisse(idAchat);
-            String message="Achat valider et payer";
-            request.setAttribute( "message", message );
             
         }
         
-        RequestDispatcher Rd;
-        Rd= getServletContext().getRequestDispatcher(jspChoix);
-        Rd.forward(request,response);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         try (PrintWriter out = response.getWriter()) {
@@ -119,32 +68,6 @@ public class EmployeCaisseServlet extends HttpServlet {
         }
     }
 
-    
-        protected void doActioninsererLigneAchat(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-
-            String IDLot=request.getParameter("idLotArticle");
-            String IDAchat=request.getParameter("idAchat");
-            String message;
-            Long idLot=Long.parseLong(IDLot);
-            Long idAchat=Long.parseLong(IDAchat);
-            LotArticle l=sessionEmployeCaisse.ChercherLotArticleParId(IDLot);
-            if(l==null){
-                message="Code barre inconnu";
-            }
-            else if(l.getQuantiteLot()==0){
-                message="Plus de quantité en stock";
-            }
-            else{
-                message=sessionEmployeCaisse.CreerLigneAchat(idLot, 1, idAchat);
-            }
-     
-   
-request.setAttribute( "message", message );
-}
-    
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

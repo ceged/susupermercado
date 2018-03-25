@@ -14,6 +14,8 @@
      <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
+     
     <body>
         <h1>Identifiants de connexion</h1>
     <center> <form method="get" action="Menu">
