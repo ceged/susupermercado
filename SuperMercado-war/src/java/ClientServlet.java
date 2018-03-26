@@ -70,8 +70,11 @@ public class ClientServlet extends HttpServlet {
         if(act!=null){
         if (act.equals("insererClient"))
         {
-            doActionInsererClient(request,response);
-            jspChoix="/MenuClient.jsp";
+            String message = doActionInsererClient(request,response);
+            if(message.equals("login existe déjà"))
+            {jspChoix="/GestionVentesEnLigneJSP/CreerCompteClient.jsp";}
+            else
+            {jspChoix="/MenuClient.jsp";}
         }
         
         else if (act.equals("transferListeMagasin")) /// pour le choix des magasins par le client au debut
@@ -97,15 +100,32 @@ public class ClientServlet extends HttpServlet {
             List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
             //Creation de l'achat 
             //verification si achat en cours , si non il cree, si oui il ouvre l'achat en cours
-            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString);
-            AchatEnLigne achatEnCours = null;
-            if(achatclientencours==null)
+            AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString); //Achat existant créé avant
+            AchatEnLigne achatEnCours; //nouveau achat 
+            if(achatclientencours==null) // si pas d'achat en cours pour le client
             {           
-            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+            achatEnCours = sessionClient.CreationAchatEnLigne(idClientString); //creer un achat
             }
-            else
+            else //si achat en cours existe 
             {
-            achatEnCours = achatclientencours;
+                List <LigneAchat> la = achatclientencours.getListeLigneAchats();
+                if(la.isEmpty())
+                {
+                achatEnCours = achatclientencours; //passer en attribut l'achat trouvé
+                }
+                else
+                {
+                    Magasin magasinPanierTrouve =  la.get(0).getLotArticle().getArticle().getRayon().getSecteur().getMagasin();
+                    if(magasinPanierTrouve==magasinChoisi)
+                    {
+                        achatEnCours = achatclientencours;
+                    }
+                    else 
+                    {
+                        sessionClient.ViderPanier(la);
+                        achatEnCours=achatclientencours;
+                    }
+                }
             }
             sess.setAttribute("client", c);
             sess.setAttribute("achatEnCours", achatEnCours);
@@ -116,11 +136,10 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("insererLignePanier")){
             doActioninsererLignePanier(request,response);
-            String idAchat= request.getParameter("idAchat");
+            /*String idAchat= request.getParameter("idAchat");
             AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            HttpSession sess=request.getSession(true);
-
-          //  sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            HttpSession sess=request.getSession(true);*/
+          //sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         else if(act.equals("passageDateChoisiClient")){
@@ -142,8 +161,13 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("validerPanier")){
             String idAchat= request.getParameter("idAchat");
-            //AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            sessionClient.ValidationAchat(idAchat);
+            String message = sessionClient.ValidationAchat(idAchat);
+            request.setAttribute( "message", message );
+            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+            
+        }
+        else if(act.equals("annulerInsertionLigne")){
+            jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         }
         else if (act2.equals("consulterVotrePanier"))
@@ -215,7 +239,7 @@ public class ClientServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-protected void doActionInsererClient(HttpServletRequest request, HttpServletResponse response)
+protected String doActionInsererClient(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String nomPersonne= request.getParameter( "nom" );
     String prenomPersonne= request.getParameter( "prenom" );
@@ -228,7 +252,7 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
 
 
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()||sexePersonne.isEmpty()||dobPersonne.isEmpty()||adressePersonne.isEmpty()||codePostalPersonne.isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionVentesEnLigneJSP/CreerCompteClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un compte";
 } else
     {
@@ -240,13 +264,14 @@ protected void doActionInsererClient(HttpServletRequest request, HttpServletResp
     }
    
     request.setAttribute( "message", message );
+    return message;
 }
 
 protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String quantite= request.getParameter( "quantite" );
     String idArticle= request.getParameter( "article" );
-    String client = request.getParameter("idClient");
+   // String client = request.getParameter("idClient");
     String achat = request.getParameter("idAchat");
     
     String message;

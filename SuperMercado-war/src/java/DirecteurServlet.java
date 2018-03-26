@@ -220,8 +220,8 @@ public class DirecteurServlet extends HttpServlet {
     String libelleSecteur= request.getParameter( "libelleSecteur" );
     String magasinSecteur= request.getParameter( "magasinSecteur" );
     String message;
-    if ( libelleSecteur.trim().isEmpty()&&magasinSecteur.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
+    if ( libelleSecteur.trim().isEmpty()||magasinSecteur.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerSecteur.jsp\">Cliquez ici</a> pour accéder au formulaire de création magasin.";
 } else
 {
     message = sessionDirecteurMagasin.CreerSecteur(libelleSecteur, magasinSecteur);
@@ -284,7 +284,7 @@ String nomPersonne= request.getParameter( "nom" );
     String libellesecteurCherche= request.getParameter( "libellesecteur" );
     String rayon= request.getParameter( "libelleRayon" );
     String message;
-    if ( libellesecteurCherche.trim().isEmpty()&&rayon.trim().isEmpty()){
+    if ( libellesecteurCherche.trim().isEmpty()||rayon.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création de rayon.";
 } else
 {
@@ -302,8 +302,8 @@ request.setAttribute( "message", message );
     Long Idcaisse = Long.valueOf(caisse);
                     String message;
  
-    if ( libelleMagasinCherche.trim().isEmpty()&&caisse.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerMagasin.jsp\">Cliquez ici</a> pour accéder au formulaire de création de caisse.";
+    if ( libelleMagasinCherche.trim().isEmpty()||caisse.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerCaisse.jsp\">Cliquez ici</a> pour accéder au formulaire de création de caisse.";
 } else
 {
     
@@ -318,7 +318,7 @@ request.setAttribute( "message", message );
     String nomRayonSupprimer= request.getParameter( "libelleRayon" );
     String magasin= request.getParameter( "nomMagasin" );
     String message;
-    if ( magasin.trim().isEmpty()&&nomRayonSupprimer.trim().isEmpty())
+    if ( magasin.trim().isEmpty()||nomRayonSupprimer.trim().isEmpty())
     {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/SupprimerRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression de rayon.";
 } else
@@ -336,7 +336,7 @@ request.setAttribute( "message", message );
     String magasin= request.getParameter( "nomMagasin" );
     Long idCaisse = Long.valueOf(CaisseASupprimer);
     String message;
-    if ( magasin.trim().isEmpty()&&CaisseASupprimer.trim().isEmpty())
+    if ( magasin.trim().isEmpty()||CaisseASupprimer.trim().isEmpty())
     {
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/SupprimerCaisse.jsp\">Cliquez ici</a> pour accéder au formulaire de suppression de caisse.";
 } else
@@ -360,8 +360,8 @@ request.setAttribute( "message", message );
     String nomMagasin = request.getParameter("magasin");
 
     String message;
-    if ( dateDebut.trim().isEmpty()&&dateFin.trim().isEmpty()&&nomAgent.trim().isEmpty()&&idCaisse.trim().isEmpty()){
-    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerAffectation.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
+    if ( dateDebut.trim().isEmpty()||dateFin.trim().isEmpty()||nomAgent.trim().isEmpty()||idCaisse.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerAffectation.jsp\">Cliquez ici</a> pour accéder au formulaire d'affectation";
 } else
     {
         Date date1=Date.valueOf(dateDebut);
@@ -413,7 +413,7 @@ String nomPersonne= request.getParameter( "nom" );
 
 
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasin/CreerChefRayonJSP.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
 } else
     {
@@ -430,7 +430,7 @@ String nomPersonne= request.getParameter( "nom" );
     String Rayon= request.getParameter( "libelleRayon" );
     String newRayon= request.getParameter( "newLibelleRayon" );
     String message;
-    if (newRayon.trim().isEmpty()&& magasin.trim().isEmpty()){
+    if (newRayon.trim().isEmpty()|| magasin.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/ModifierRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de rayon.";
 } else
 {

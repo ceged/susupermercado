@@ -61,6 +61,12 @@ public class EmployeCaisseServlet extends HttpServlet {
                 
             }
             else{
+
+            HttpSession sess=request.getSession(true);
+            List<LigneAchat> liste=null;
+            sess.setAttribute("listeRayon",liste); 
+            jspChoix="/GestionMagasinJSP/CreerAgentRayon.jsp";
+
                 message="vous n'êtes pas affecté à une caisse";
             }
         }

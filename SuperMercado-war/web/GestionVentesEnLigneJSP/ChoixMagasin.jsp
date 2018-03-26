@@ -20,7 +20,7 @@
     <body>
          <% Client c = client;%>
         <h1>Choisissez un magasin</h1>
-        <form method="get" action="/SuperMercado-war/ClientServlet">
+        <form method="post" action="/SuperMercado-war/ClientServlet">
         <fieldset>
 
         
