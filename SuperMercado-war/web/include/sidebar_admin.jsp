@@ -11,9 +11,8 @@
 				<div class="span8">
 					<div class="account pull-left">
 						<ul class="user-menu">				
-							<li><a href="Accueil.jsp">Mon compte</a></li>
-							<li><a href="Accueil.jsp">Panier</a></li>					
-							<li><a href="Accueil.jsp">Portail de connection</a></li>		
+							<li><a href="Accueil.jsp">Mon compte</a></li>					
+							<li><a href="Accueil.jsp">Portail de connexion</a></li>		
 						</ul>
 					</div>
 				</div>

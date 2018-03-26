@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
+        <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeCaisse" scope="session" class="List<Caisse>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
@@ -20,9 +21,10 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar_dir.jsp" %>
     <body>
- <% 
+ <% DirecteurMagasin a= directeurConnecte;
 List<Caisse> listeCaisse2 =listeCaisse;{%>
-
+<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
+</tr><%}%>
         <h1>Formulaire de suppression caisse</h1>
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -35,9 +37,9 @@ List<Caisse> listeCaisse2 =listeCaisse;{%>
             for(Caisse c: listeCaisse2){ %>
             <OPTION><%=c.getId()%>
                 <%}%>    
-        </SELECT> 
+        </SELECT>
         <br /> 
-        <input type="hidden" name="nomMagasin" value="<%=p.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="nomMagasin" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="supprimerCaisse">
         </fieldset>

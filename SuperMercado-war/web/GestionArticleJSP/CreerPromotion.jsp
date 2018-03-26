@@ -1,11 +1,10 @@
-<%@page import="entités.gestionArticle.ReferentielArticle"%>
-<%@page import="java.util.List"%>
-
 <%-- 
     Document   : CreerPromotion
     Created on : 15 mars 2018, 10:47:16
     Author     : CGAILLOTDREVON
 --%>
+<%@page import="entités.gestionArticle.ReferentielArticle"%>
+<%@page import="java.util.List"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -14,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
+         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayonModifie" scope="session" class="List<Rayon>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
@@ -21,9 +22,10 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar_dir.jsp" %>
     <body>
-        <% 
+        <% DirecteurMagasin d= directeurConnecte;
 List<Rayon> listeRayon2 =listeRayonModifie;{%>
-
+<tr> <td Width=15%>Bienvenue <%=d.getNom()%></td>
+</tr><%}%>
         <h1>Formulaire de modification rayon</h1>
        <center> 
            <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -41,7 +43,7 @@ List<Rayon> listeRayon2 =listeRayonModifie;{%>
         <label for="newLibelleRayon">Nouveau nom rayon <span class="requis">*</span></label>
         <input type="text" name="newLibelleRayon" value="" size="20" maxlength="20" />
         <br />
-        <input type="hidden" name="magasin" value="<%=p.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="magasin" value="<%=d.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="modifierRayon">
         </fieldset>
