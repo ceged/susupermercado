@@ -12,7 +12,7 @@
 						<ul class="user-menu">				
 							<li><a href="Connexion.jsp">Mon compte</a></li>
 							<li><a href="Connexion.jsp">Panier</a></li>					
-							<li><a href="Connexion.jsp">Portail de connection</a></li>		
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
 						</ul>
 					</div>
 				</div>
