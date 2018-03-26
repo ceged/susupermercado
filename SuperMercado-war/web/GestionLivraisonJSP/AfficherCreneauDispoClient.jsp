@@ -43,11 +43,17 @@ if(attribut!=null){
     <input type="hidden" name="action" value="passageDateChoisiClient">
     <input type="submit" value="Valider" />
 </form>
+<form method="get" action="/SuperMercado-war/ClientServlet">
+    <label for="adresse">Adresse <span class="requis">*</span></label>
+    <input type="text" name="adresse" value="" size="20" maxlength="20" required="" />
+    <label for="codePostal">Code Postal <span class="requis">*</span></label>
+    <input type="number" name="codePostal" value="" size="20" maxlength="20" required="" />
+    <label for="ville">Ville <span class="requis">*</span></label>
+    <input type="text" name="ville" value="" size="20" maxlength="20" required=""/>
 <TABLE border width=50%>
-<tr> <TD>Date</TD>
+    <tr> <TD>Date</TD>
 <TD>Heure début</TD>
 <TD>Heure fin</TD>
-<TD>Disponibilité</TD>
 <TD>Choisir ce créneau</TD>
  </tr>
 <%
@@ -55,9 +61,7 @@ for(Creneau c : liste){%>
 <tr><td Width=15%><%=c.getDate() %></td>
 <td Width=15%><%=c.getHeureDebut() %></td>
 <td Width=15%><%=c.getHeureFin() %></td>
-<td Width=15%><%=c.getDisponibilité() %></td>
 <td Width=15%>
-   <form method="get" action="/SuperMercado-war/ClientServlet">
     <input type="hidden" name="idCreneau" value="<%=c.getId() %>">
     <input type="hidden" name="achatLigne" value="<%=achatLigne.getId()%>">
     <input type="hidden" name="action" value="ChoisiCreneau">
