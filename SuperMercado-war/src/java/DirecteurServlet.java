@@ -245,7 +245,7 @@ String nomPersonne= request.getParameter( "nom" );
     String magasin = request.getParameter("magasin");
 
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerChefRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un chef de rayon";
 } else
     {
@@ -269,7 +269,7 @@ String nomPersonne= request.getParameter( "nom" );
     String magasin = request.getParameter("magasin");
 
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerAgentRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un agent de rayon";
 } else
     {
@@ -307,8 +307,7 @@ request.setAttribute( "message", message );
 } else
 {
     
-    message = sessionDirecteurMagasin.CreerCaisse(Idcaisse,libelleMagasinCherche);
-    
+    message = sessionDirecteurMagasin.CreerCaisse(Idcaisse,libelleMagasinCherche);  
 }
    
 request.setAttribute( "message", message );
@@ -418,7 +417,7 @@ String nomPersonne= request.getParameter( "nom" );
         Date dob=Date.valueOf(dobPersonne);
         message = sessionDirecteurMagasin.CreerAgentCaisse(nomPersonne, prenomPersonne, loginPersonne, mdpPersonne, dob, sexePersonne,adressePersonne, codePostalPersonne, magasin);
     }
-   
+
         request.setAttribute( "message", message );
 }
  protected void doActionModifierRayon(HttpServletRequest request, HttpServletResponse response)
