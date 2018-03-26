@@ -6,6 +6,7 @@
 package facades.gestionLivraison;
 
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
 import entités.gestionLivraison.Mention;
@@ -37,10 +38,10 @@ public class LigneLivraisonFacade extends AbstractFacade<LigneLivraison> impleme
     }
     
     @Override
-    public void CreerLigneLivraison(Livraison livraison, ReferentielArticle article, int quantite){
+    public void CreerLigneLivraison(Livraison livraison, int quantite, LigneCommande ligneCommande){
         LigneLivraison l= new LigneLivraison();
         l.setLivraison(livraison);
-        l.setArticle(article);
+        l.setLigneCommande(ligneCommande);
         l.setQuantiteFournisseur(quantite);
         l.setMentionStatut(Mention.attente);
         em.persist(l);

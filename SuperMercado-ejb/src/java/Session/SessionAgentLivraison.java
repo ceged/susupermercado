@@ -88,25 +88,25 @@ public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
     }
     
     @Override
-    public void CreerLotArticle(Long idRefArticle,int quantite){
+    public void CreerLotArticle(Long idRefArticle,int quantite, LigneLivraison l){
         ReferentielArticle article=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idRefArticle);
-        lotArticleFacade.CreerLotArticle(quantite, article);
+        lotArticleFacade.CreerLotArticle(quantite, article,l);
     }
     @Override
-    public void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie){
+    public void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie, LigneLivraison l){
         ReferentielArticle article=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idRefArticle);
-        electromenagerFacade.CreerLotArticleElectromenager(qteLotArticle, article, garantie);
+        electromenagerFacade.CreerLotArticleElectromenager(qteLotArticle, article, garantie,l );
     }
     @Override
-    public void CreerLotArticleFrais(int qteProduitFrais, Long idRefArticle,Date datePeremption){
+    public void CreerLotArticleFrais(int qteProduitFrais, Long idRefArticle,Date datePeremption, LigneLivraison l){
         ReferentielArticle article=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idRefArticle);
-        produitFraisFacade.CreerLotArticleFrais(qteProduitFrais, article, datePeremption);
+        produitFraisFacade.CreerLotArticleFrais(qteProduitFrais, article, datePeremption,l);
     }
     
     @Override
-    public void CreerLotArticleVetement(int qteLotArticle, Long idRefArticle,String taille, String couleur){
+    public void CreerLotArticleVetement(int qteLotArticle, Long idRefArticle,String taille, String couleur, LigneLivraison l){
         ReferentielArticle article=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idRefArticle);
-        vetementFacade.CreerLotArticleVetement(qteLotArticle, article, taille, couleur);
+        vetementFacade.CreerLotArticleVetement(qteLotArticle, article, taille, couleur,l);
     }
     
     @Override

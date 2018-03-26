@@ -7,6 +7,7 @@
 import Session.SessionChefDeRayonLocal;
 import Session.SessionFournisseurLocal;
 import entités.gestionCommande.Commande;
+import entités.gestionCommande.Fournisseur;
 import entités.gestionCommande.LigneCommande;
 import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
@@ -61,6 +62,27 @@ public class FournisseurServlet extends HttpServlet {
             HttpSession sess=request.getSession(true);
             sess.setAttribute("liste",liste);
             jspChoix="/GestionCommandeJSP/AfficherListeCommandeFournisseur.jsp";
+        }
+        else if (act.equals("ChoisirDateLivraison")){
+            String idFournisseur=request.getParameter("fournisseurId");
+            String date1=request.getParameter("date1");
+            String date2=request.getParameter("date2");
+            if(date1.isEmpty()&&date2.isEmpty()){
+                List<Livraison> liste=sessionFournisseur.ChercherListeLivraisonParFournisseur(idFournisseur);
+                HttpSession sess=request.getSession(true);
+                sess.setAttribute("liste",liste);
+               jspChoix="/GestionCommandeJSP/AfficherListeCommandeFournisseur.jsp"; 
+            }
+            else{
+            Date d1=Date.valueOf(date1);
+            Date d2=Date.valueOf(date2);
+            Fournisseur f= sessionFournisseur.ChercherFournisseurParId(idFournisseur);
+            List<Livraison> liste= sessionFournisseur.ChercherListeLivraisonParFournisseurEntreDate(f, d1, d2);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionCommandeJSP/AfficherListeCommandeFournisseur.jsp";
+            }
+            
         }
         else if (act.equals("afficherCommandeFournisseur")){
             String idLivraison=request.getParameter("livraisonId");

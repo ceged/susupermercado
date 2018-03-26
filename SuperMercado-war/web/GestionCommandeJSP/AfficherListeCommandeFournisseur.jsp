@@ -3,6 +3,7 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<%@page import="entités.gestionLivraison.LigneLivraison"%>
 <% 
         
     if (session.getAttribute("fournisseurConnecte") == null) {
@@ -36,6 +37,15 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuFournisseur.jsp">Retour au menu</A><br />
+<form method="get" action="/SuperMercado-war/FournisseurServlet">
+        <label for="date"> Recherche entre 2 dates <span class="requis">*</span></label>
+        <input type="date" name="date1" value="" size="20" maxlength="20" />
+        <input type="date" name="date2" value="" size="20" maxlength="20" />
+        <input type="hidden" name="action" value="ChoisirDateLivraison">
+        <input type="hidden" name="fournisseurId" value=<%=fournisseurConnecte.getId()%>>
+        <input type="submit" value="Valider la date"/>
+        <br />
+ </form>
 <TABLE border width=50%>
 <tr> <TD>Magasin</TD>
 <TD>Date</TD>

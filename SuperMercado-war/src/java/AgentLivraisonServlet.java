@@ -160,6 +160,11 @@ public class AgentLivraisonServlet extends HttpServlet {
         String couleur=request.getParameter("couleur");
         String message=null;
         String statut=null;
+    if (quantiteLivrer.trim().isEmpty()&& quantiteReceptionner.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/AfficherLivraison.jsp\">Cliquez ici</a> pour accéder au formulaire de gestion livraison.";
+} else{    
+        
+        
     int qtLivrer=Integer.valueOf(quantiteLivrer);
     int qtReceptionner=Integer.valueOf(quantiteReceptionner);
     LigneLivraison l=sessionFournisseur.ChercherLigneLivraisonParId(ligneLivraisonId);
@@ -177,28 +182,29 @@ public class AgentLivraisonServlet extends HttpServlet {
     if(datePeremption.equalsIgnoreCase("")){
         if(taille.equalsIgnoreCase("")){
             if(garantie.equalsIgnoreCase("")){
-                 sessionAgentLivraison.CreerLotArticle(l.getArticle().getCodeBarre(),qtReceptionner);
+                 sessionAgentLivraison.CreerLotArticle(l.getLigneCommande().getArticle().getCodeBarre(),qtReceptionner,l);
                  message="Lot article créé";
             }
             else{
                 int garantieDuree=Integer.valueOf(garantie);
-                sessionAgentLivraison.CreerLotArticleElectromenager(qtReceptionner, l.getArticle().getCodeBarre(),garantieDuree);
+                sessionAgentLivraison.CreerLotArticleElectromenager(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(),garantieDuree,l);
                 message="Lot Electroménager créé";
             }
         }
         else{
-            sessionAgentLivraison.CreerLotArticleVetement(qtReceptionner, l.getArticle().getCodeBarre(), taille, couleur);
+            sessionAgentLivraison.CreerLotArticleVetement(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(), taille, couleur,l);
             message="Lot vêtement créé";
         }
     }
     else{
         Date dPeremption=Date.valueOf(datePeremption);
-        sessionAgentLivraison.CreerLotArticleFrais(qtReceptionner, l.getArticle().getCodeBarre(), dPeremption);
+        sessionAgentLivraison.CreerLotArticleFrais(qtReceptionner, l.getLigneCommande().getArticle().getCodeBarre(), dPeremption,l);
         message="Lot produit frais créé";
     }
 
        request.setAttribute( "message", message ); 
-} 
+}
+    }
     protected void DoActionValiderLivraison(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -206,7 +212,7 @@ String livraisonId=request.getParameter("livraisonId");
             String statut=request.getParameter("statut");
             String dateLivraisonEffective=request.getParameter("date");
             String message;
-            if (dateLivraisonEffective.trim().isEmpty()){
+            if (dateLivraisonEffective.trim().isEmpty()&&statut.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommande/AfficherLivraison.jsp\">Cliquez ici</a> pour accéder au formulaire de gestion livraison.";
 } else
 {
@@ -226,7 +232,7 @@ request.setAttribute( "message", message );
             String heureFin=request.getParameter("heureFin");
             String agentId=request.getParameter("agentId");
             String message;
-            if (heureDebut.trim().isEmpty()&&heureFin.trim().isEmpty()){
+            if (heureDebut.trim().isEmpty()&&heureFin.trim().isEmpty()&&date.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionLivraisonJSP/CreerCreneau.jsp\">Cliquez ici</a> pour accéder au formulaire de création de créneau.";
 } else
 {

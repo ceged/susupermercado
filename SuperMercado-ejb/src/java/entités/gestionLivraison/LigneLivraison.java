@@ -6,6 +6,7 @@
 package entités.gestionLivraison;
 
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionCommande.LigneCommande;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -65,7 +66,18 @@ public class LigneLivraison implements Serializable {
         return "entit\u00e9s.gestionMagasin.ligneLivraison[ id=" + id + " ]";
     }
  
-        private int quantiteFournisseur;
+    @OneToOne
+    private LigneCommande ligneCommande; 
+    
+    public LigneCommande getLigneCommande(){
+        return ligneCommande;
+    }
+    
+    public void setLigneCommande(LigneCommande ligneCommande){
+        this.ligneCommande = ligneCommande;
+    }
+    
+    private int quantiteFournisseur;
 
     public int getQuantiteFournisseur() {
         return quantiteFournisseur;
@@ -106,16 +118,6 @@ public class LigneLivraison implements Serializable {
         this.livraison = livraison;
     }
     
-    @ManyToOne
-        private ReferentielArticle article;
-
-    public ReferentielArticle getArticle() {
-        return article;
-    }
-
-    public void setArticle(ReferentielArticle article) {
-        this.article = article;
-    }
 
     private Mention mentionStatut;
 

@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.Electromenager;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,12 +33,13 @@ public class ElectromenagerFacade extends AbstractFacade<Electromenager> impleme
     }
     
     @Override
-    public void CreerLotArticleElectromenager(int qteLotArticle, ReferentielArticle refLotArticle,int garantie) {
+    public void CreerLotArticleElectromenager(int qteLotArticle, ReferentielArticle refLotArticle,int garantie, LigneLivraison l) {
         
         Electromenager e = new Electromenager ();
         
         e.setQuantiteLot(qteLotArticle);
         e.setArticle(refLotArticle);
+        e.setLigneLivraison(l);
         e.setGarantie(garantie);
         Date date = new Date();
         e.setDateCreation(date);

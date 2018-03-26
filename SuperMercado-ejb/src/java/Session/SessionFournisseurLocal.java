@@ -44,4 +44,6 @@ public interface SessionFournisseurLocal {
     void ModifierStatutLivraison(String idLivraison, String statut);
     
     void ModifierDateLivraisonPrevuParLivraison(String  Idlivraison, Date datePrevue);
+    
+    List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2);
 }

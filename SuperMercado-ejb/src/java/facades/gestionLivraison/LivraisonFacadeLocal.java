@@ -49,4 +49,6 @@ public interface LivraisonFacadeLocal {
      void ModifierDateLivraisonPrevuParLivraison(Livraison livraison, Date datePrevue);
     
      void ModifierDateLivraisonEffectiveParLivraison(Livraison livraison, Date dateEffective);
+     
+     List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2);
 }

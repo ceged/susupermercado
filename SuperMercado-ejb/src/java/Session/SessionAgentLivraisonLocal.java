@@ -6,6 +6,7 @@
 package Session;
 
 import entités.gestionLivraison.AgentLivraison;
+import entités.gestionLivraison.LigneLivraison;
 import entités.gestionLivraison.Livraison;
 import entités.gestionMagasin.Magasin;
 import entités.gestionVenteEnLigne.Creneau;
@@ -27,15 +28,15 @@ public interface SessionAgentLivraisonLocal {
     
     void ModifierDateLivraisonEffectiveParLivraison(String Idlivraison, Date dateEffective);
     
-    void CreerLotArticle(Long idRefArticle,int quantite);
+    void CreerLotArticle(Long idRefArticle,int quantite, LigneLivraison l);
     
     void ModifierQuantiteLigneLivraison(String idLigneLivraison, int qtReceptionner, int qtLivrer);
     
-    void CreerLotArticleVetement(int qteLotArticle, Long idRefArticle,String taille, String couleur);
+    void CreerLotArticleVetement(int qteLotArticle, Long idRefArticle,String taille, String couleur, LigneLivraison l);
     
-    void CreerLotArticleFrais(int qteProduitFrais, Long idRefArticle,Date datePeremption);
+    void CreerLotArticleFrais(int qteProduitFrais, Long idRefArticle,Date datePeremption, LigneLivraison l);
     
-    void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie);
+    void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie, LigneLivraison l);
     
       void CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent);
     

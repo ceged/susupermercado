@@ -76,7 +76,7 @@ public class SessionFournisseur implements SessionFournisseurLocal {
     
     @Override
     public void CreerLigneLivraison(Livraison livraison,LigneCommande lc){
-        ligneLivraisonFacade.CreerLigneLivraison(livraison,lc.getArticle(),lc.getQuantiteLigne());
+        ligneLivraisonFacade.CreerLigneLivraison(livraison,lc.getQuantiteLigne(),lc);
     }
     
     @Override
@@ -124,6 +124,11 @@ public class SessionFournisseur implements SessionFournisseurLocal {
          Long id=Long.parseLong(Idlivraison);
          Livraison l=livraisonFacade.ChercherLivraisonParId(id);
          livraisonFacade.ModifierDateLivraisonPrevuParLivraison(l, datePrevue);
+     }
+     
+     @Override
+     public List<Livraison> ChercherListeLivraisonParFournisseurEntreDate(Fournisseur fournisseur, Date d1, Date d2){
+         return livraisonFacade.ChercherListeLivraisonParFournisseurEntreDate(fournisseur, d1, d2);
      }
     
     // Add business logic below. (Right-click in editor and choose

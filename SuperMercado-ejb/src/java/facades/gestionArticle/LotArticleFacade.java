@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.LotArticle;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -77,11 +78,12 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         
     }
     @Override
-    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle) {
+    public void CreerLotArticle(int qteLotArticle, ReferentielArticle refLotArticle, LigneLivraison l) {
         
         LotArticle la = new LotArticle ();
         la.setQuantiteLot(qteLotArticle);
         la.setArticle(refLotArticle);
+        la.setLigneLivraison(l);
         Date date = new Date();
         la.setDateCreation(date);
         

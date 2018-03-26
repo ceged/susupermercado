@@ -7,6 +7,7 @@ package facades.gestionArticle;
 
 import entités.gestionArticle.ProduitFrais;
 import entités.gestionArticle.ReferentielArticle;
+import entités.gestionLivraison.LigneLivraison;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,7 +33,7 @@ public class ProduitFraisFacade extends AbstractFacade<ProduitFrais> implements 
     }
     
     @Override
-    public void CreerLotArticleFrais(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption) {
+    public void CreerLotArticleFrais(int qteProduitFrais, ReferentielArticle refLotArticle,Date datePeremption, LigneLivraison l) {
         
         ProduitFrais pf = new ProduitFrais ();
         
