@@ -7,6 +7,7 @@ package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
+import entités.gestionVenteEnLigne.ModeLivraison;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -35,6 +36,6 @@ public interface AchatEnLigneFacadeLocal {
 
     AchatEnLigne RechercherAchatEnLigneEnCours(Client client);
     
-    void AjouterModeLivraison(AchatEnLigne a,String modeLivraison);
+    void AjouterModeLivraison(AchatEnLigne a,ModeLivraison modeLivraison);
     
 }

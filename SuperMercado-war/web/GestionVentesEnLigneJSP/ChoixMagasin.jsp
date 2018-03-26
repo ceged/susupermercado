@@ -36,5 +36,14 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+        
+        <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
+        
     </body>
 </html>

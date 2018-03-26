@@ -7,6 +7,7 @@ package facades.gestionVenteEnLigne;
 
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
+import entités.gestionVenteEnLigne.ModeLivraison;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -62,7 +63,7 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
     }
     
     @Override
-    public void AjouterModeLivraison(AchatEnLigne a,String modeLivraison){
+    public void AjouterModeLivraison(AchatEnLigne a,ModeLivraison modeLivraison){
         a.setModeLivraison(modeLivraison);
         em.merge(a);
     }

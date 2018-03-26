@@ -15,6 +15,7 @@ import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
 import entités.gestionVenteEnLigne.Creneau;
+import entités.gestionVenteEnLigne.ModeLivraison;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -162,18 +163,64 @@ public class ClientServlet extends HttpServlet {
             sess.setAttribute("listeLignesPanier", listeLignesPanier);
             jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
         }
+        else if(act.equals("passageDateCreneau")){
+            String date=request.getParameter("date");
+            String nomMagasin= request.getParameter("nomMagasin");
+            Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
+            List<Creneau> liste;
+            if(date.equalsIgnoreCase("")){
+                liste=sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
+            }
+            else{
+                Date d=Date.valueOf(date);    
+                liste=sessionAgentLivraison.ListeCreneauDispoParMagasinParDate(m, d);
+            }
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+            jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp"; 
+        }
+        else if(act.equals("dateRetraitMagasin")){
+            doActionDateRetraitMagasin(request,response);
+            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+        }
+        
+        else if(act.equals("selectionModeLivraison")){
+            doActioninsererChoixModeLivraison(request,response); 
+            String modeLivraison= request.getParameter("modeLivraison");
+            if(modeLivraison.equals("retraitMagasin")){
+                String nomMag= request.getParameter("nomMag");
+                String idAchat= request.getParameter("idAchat");
+                Magasin magasinChoisi=sessionAgentLivraison.ChercherMagasinParNom(nomMag);
+                Achat achat=sessionClient.RechercheAchatParId(idAchat);
+                HttpSession sess=request.getSession(true);
+                sess.setAttribute("achat",achat);
+                sess.setAttribute("magasinChoisi",magasinChoisi);
+            jspChoix="/GestionVentesEnLigneJSP/InfoRetraitMagasin.jsp"; 
+            }
+            else{
+                String nomMagasin= request.getParameter("nomMag");
+                Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
+            List<Creneau> liste= sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
+            HttpSession sess=request.getSession(true);
+            sess.setAttribute("liste",liste);
+                jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp"; 
+            }
+        }
+
+        else if (act.equals("ChoisiCreneau")){
+            doActionChoixCreneau(request,response);
+            jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
+        }
+
         else if(act.equals("validerPanier")){
             String idAchat= request.getParameter("idAchat");
             String message = sessionClient.ValidationAchat(idAchat);
-            Achat achat=sessionClient.RechercheAchatParId(idAchat);
             request.setAttribute( "message", message );
+            Achat achat=sessionClient.RechercheAchatParId(idAchat);
             HttpSession sess=request.getSession(true);
             sess.setAttribute("achat", achat);
-            jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";  
-        }
-        else if(act.equals("selectionModeLivraison")){
-            doActioninsererChoixModeLivraison(request,response);     
- 
+            jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";
+            
         }
         else if(act.equals("annulerInsertionLigne")){
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
@@ -193,6 +240,7 @@ public class ClientServlet extends HttpServlet {
         {
             jspChoix="/Accueil.jsp";
         }
+
         RequestDispatcher Rd;
         Rd= getServletContext().getRequestDispatcher(jspChoix);
         Rd.forward(request,response);
@@ -208,6 +256,7 @@ public class ClientServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -276,35 +325,60 @@ protected String doActionInsererClient(HttpServletRequest request, HttpServletRe
     return message;
 }
 
+        protected void doActionDateRetraitMagasin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            String idAchat= request.getParameter("idAchat");
+            String date= request.getParameter("date");
+            String IdMag= request.getParameter("IdMag");
+            Date dateRecup=Date.valueOf(date);
+            String message;
+        sessionClient.CreerRetraitMagasin(idAchat, dateRecup, IdMag);
+        message="Achat et retrait magasin validé";
+        request.setAttribute( "message", message );
+}
+        
+
 protected void doActioninsererChoixModeLivraison(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             String idAchat= request.getParameter("idAchat");
-            String livraisonDomicile= request.getParameter("livraisonDomicile");
-            String retraitMagasin= request.getParameter("retraitMagasin");
-    String jspChoix;
+            String modeLivraison= request.getParameter("modeLivraison");
     String message;
-    if ( livraisonDomicile.trim().isEmpty()&&retraitMagasin.trim().isEmpty()){
+    if ( modeLivraison.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionVentesEnLigneJSP/ChoixModeLivraison.jsp\">Cliquez ici</a> pour accéder choix de livraison.";
-} else
-{
+    request.setAttribute( "message", message );
+    } else
+    {
     Achat a=sessionClient.RechercheAchatParId(idAchat);
-    if(livraisonDomicile.isEmpty()){
-        sessionClient.AjouterChoixModeLivraison(a, "Magasin");
-        jspChoix="/GestionVentesEnLigneJSP/InfoRetraitMagasin.jsp"; 
+    if(modeLivraison.equals("retraitMagasin")){
+        sessionClient.AjouterChoixModeLivraison(a, ModeLivraison.magasin);
     }
     else{
-        sessionClient.AjouterChoixModeLivraison(a, "Domicile");
-        String nomMagasin= request.getParameter("nomMag");
-        Magasin m=sessionAgentLivraison.ChercherMagasinParNom(nomMagasin);
-        List<Creneau> liste= sessionAgentLivraison.ListeCreneauDispoParMagasin(m);
-        HttpSession sess=request.getSession(true);
-        sess.setAttribute("liste",liste);
-        jspChoix="/GestionLivraisonJSP/AfficherCreneauDispoClient.jsp"; 
+        sessionClient.AjouterChoixModeLivraison(a, ModeLivraison.domicile);
     }
     
 }
 
 }
+
+        protected void doActionChoixCreneau(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            String idAchat= request.getParameter("achatLigne");
+            String idCreneau= request.getParameter("idCreneau");
+            String adresse= request.getParameter("adresse");
+            String cp= request.getParameter("codePostal");
+            String ville= request.getParameter("ville");
+    String message;
+    if ( idCreneau.trim().isEmpty()||adresse.trim().isEmpty()||cp.trim().isEmpty()||ville.trim().isEmpty()){
+    message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionLivraisonJSP/AfficherCreneauDispoClient.jsp\">Cliquez ici</a> pour accéder choix de créneau.";
+} else
+    {
+        sessionClient.CreerLivraisonDomicile(idAchat, adresse, cp, ville, idCreneau);
+        message="Achat et livraison validé";
+    
+    }
+    request.setAttribute( "message", message );
+}
+
 
 protected void doActioninsererLignePanier(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

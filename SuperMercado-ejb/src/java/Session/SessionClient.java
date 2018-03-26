@@ -14,6 +14,7 @@ import entités.gestionMagasin.Personne;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
 import entités.gestionVenteEnLigne.Creneau;
+import entités.gestionVenteEnLigne.ModeLivraison;
 import facades.gestionArticle.AchatCaisseFacadeLocal;
 import facades.gestionArticle.AchatFacadeLocal;
 import facades.gestionArticle.LigneAchatFacadeLocal;
@@ -232,7 +233,7 @@ public class SessionClient implements SessionClientLocal {
     }
     
     @Override
-    public void AjouterChoixModeLivraison(Achat a, String modeLivraison){
+    public void AjouterChoixModeLivraison(Achat a, ModeLivraison modeLivraison){
         AchatEnLigne al= achatEnLigneFacade.find(a.getId());
         achatEnLigneFacade.AjouterModeLivraison(al, modeLivraison);
         
@@ -254,6 +255,7 @@ public class SessionClient implements SessionClientLocal {
         AchatEnLigne a=achatEnLigneFacade.find(idAchat);
         Creneau creneau=creneauFacade.ChercherCreneauParId(creneauId);
         livraisonDomicileFacade.CreerLivraisonDomicile(a, adresse, codePostal, ville, creneau);
+        creneauFacade.ModifierCreneau(creneau);
     }
     
 }

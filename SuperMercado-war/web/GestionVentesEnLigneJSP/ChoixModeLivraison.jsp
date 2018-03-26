@@ -28,11 +28,13 @@
         <h1>Choix mode de livraison</h1>
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <label for="retraitMagasin">Retrait en magasin <span class="requis">*</span></label>
-        <input type="radio" name="retraitMagasin" value="" size="20" maxlength="20" />
+        <input type="radio" name="modeLivraison" value="retraitMagasin" size="20" maxlength="20" />
+        <br />
         <br />
         <label for="livraisonDomicile">Livraison à domicile <span class="requis">*</span></label>
-        <input type="radio" name="livraisonDomicile" value="" size="20" maxlength="20" />
+        <input type="radio" name="modeLivraison" value="livraisonDomicile" size="20" maxlength="20" />
         <br />
+        <input type="reset" value="Remettre à zéro" /> <br />
         <input type="hidden" name="action" value="selectionModeLivraison">
         <input type="hidden" name="nomMag" value="<%=magasinChoisi.getNomMagasin()%>">
         <input type="hidden" name="idAchat" value="<%=achat.getId()%>">
