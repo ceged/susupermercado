@@ -16,15 +16,22 @@
     </head>    
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
+    
     <body>
          <% Client c= client;{%>
 <tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
     </tr><%}%>
         <h1>Menu Client</h1>
+        
+        <%@ include file="/include/flexslider.jsp" %>
+        
+        <center>
+        
         <A HREF="ClientServlet?action=transferListeMagasin">
         Online Shopping</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
+        </center>
         
         
         

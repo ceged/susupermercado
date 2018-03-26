@@ -18,7 +18,8 @@
      
     <body>
         <h1>Identifiants de connexion</h1>
-    <center> <form method="get" action="Menu">
+    <center> 
+        <form method="get" action="Menu">
         <label for="loginUser">Login <span class="requis">*</span></label>
         <input type="text" name="loginUser" value="" size="20" maxlength="20" />
         <br />

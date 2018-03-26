@@ -13,7 +13,6 @@
         <%@ include file="/include/css.jsp" %>
     </head>
     <body>
-         <body>	
         <%@ include file="/include/header.jsp" %>
         <%@ include file="/include/sidebar.jsp" %>
         <%@ include file="/include/flexslider.jsp" %>
