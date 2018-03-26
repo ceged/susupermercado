@@ -10,19 +10,19 @@
 						<h4>Navigation</h4>
 						<ul class="nav">
 							<li><a href="Accueil.jsp">Accueil</a></li>  
-							<li><a href="./about.html">A propos de Susupermercado</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li><a href="Accueil.jsp">A propos de Susupermercado</a></li>
+							<li><a href="Accueil.jsp">Contact</a></li>
 							<li><a href="./cart.html">Panier</a></li>
 							<li><a href="Connexion.jsp">Se connecter</a></li>							
 						</ul>					
 					</div>
 					<div class="span4">
-						<h4>My Account</h4>
+						<h4>Mon compte</h4>
 						<ul class="nav">
 							<li><a href="Connexion.jsp">Mon compte</a></li>
-							<li><a href="#">Histoire du groupe</a></li>
-							<li><a href="#">Liste de souhait</a></li>
-							<li><a href="#">Newsletter</a></li>
+							<li><a href="Accueil.jsp">Histoire du groupe</a></li>
+							<li><a href="Accueil.jsp">Liste de souhait</a></li>
+							<li><a href="Accueil.jsp">Newsletter</a></li>
 						</ul>
 					</div>
 					<div class="span5">
