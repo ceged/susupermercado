@@ -10,6 +10,7 @@ import entités.gestionArticle.LigneAchat;
 import entités.gestionArticle.LotArticle;
 import entités.gestionVenteEnLigne.AchatEnLigne;
 import entités.gestionVenteEnLigne.Client;
+import entités.gestionVenteEnLigne.ModeLivraison;
 import java.lang.String;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,7 @@ public interface SessionClientLocal {
 
     void ViderPanier(List<LigneAchat> liste);
     
-    void AjouterChoixModeLivraison(Achat a, String modeLivraison);
+    void AjouterChoixModeLivraison(Achat a, ModeLivraison modeLivraison);
     
     void CreerLivraisonDomicile(String idAchatLigne, String adresse, String codePostal, String ville, String  creneauId);
     

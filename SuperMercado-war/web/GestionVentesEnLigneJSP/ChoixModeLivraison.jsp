@@ -1,6 +1,6 @@
 <%-- 
-    Document   : InfoRetraitMagasin
-    Created on : 23 mars 2018, 18:51:53
+    Document   : ChoixModeLivraison
+    Created on : 23 mars 2018, 16:51:35
     Author     : Soldat
 --%>
 <%@page import="entités.gestionMagasin.Magasin"%>
@@ -12,23 +12,31 @@
         rd.forward(request, response);
         response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
  } %>
+
+<%@page import="entités.gestionVenteEnLigne.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
+        <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <jsp:useBean id="achat" scope="session" class="Achat"></jsp:useBean>
-        <title>Informations Retrait Magasin</title>
+        <title>Choix mode de livraison</title>
     </head>
     <body>
-        <h1>Choisir date de retrait</h1>
+        <h1>Choix mode de livraison</h1>
         <form method="get" action="/SuperMercado-war/ClientServlet">
-        <label for="date">Date <span class="requis">*</span></label>
-        <input type="date" name="date" value="livraisonDomicile" min="<%=achat.getDateAchat()%>" size="20" maxlength="20" required="" />
+        <label for="retraitMagasin">Retrait en magasin <span class="requis">*</span></label>
+        <input type="radio" name="modeLivraison" value="retraitMagasin" size="20" maxlength="20" />
         <br />
-        <input type="hidden" name="action" value="dateRetraitMagasin">
-        <input type="hidden" name="IdMag" value="<%=magasinChoisi.getId() %>">
+        <br />
+        <label for="livraisonDomicile">Livraison à domicile <span class="requis">*</span></label>
+        <input type="radio" name="modeLivraison" value="livraisonDomicile" size="20" maxlength="20" />
+        <br />
+        <input type="reset" value="Remettre à zéro" /> <br />
+        <input type="hidden" name="action" value="selectionModeLivraison">
+        <input type="hidden" name="nomMag" value="<%=magasinChoisi.getNomMagasin()%>">
         <input type="hidden" name="idAchat" value="<%=achat.getId()%>">
         <input type="submit" value="Valider" />
         </form>

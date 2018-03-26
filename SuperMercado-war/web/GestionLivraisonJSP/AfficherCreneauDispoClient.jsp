@@ -3,9 +3,10 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<%@page import="entités.gestionArticle.Achat"%>
 <% 
         
-    if (session.getAttribute("clientConnecte") == null) {
+    if (session.getAttribute("client") == null) {
         RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
         rd.forward(request, response);
         response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
@@ -23,8 +24,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="liste" scope="session" class="List<Creneau>"></jsp:useBean>
-        <jsp:useBean id="magasin" scope="session" class="Magasin"></jsp:useBean>
-        <jsp:useBean id="achatLigne" scope="session" class="AchatEnLigne"></jsp:useBean>
+        <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
+        <jsp:useBean id="achat" scope="session" class="Achat"></jsp:useBean>
 <title>Liste des créneaux dispos client</title>
 </head>
 <body>
@@ -36,11 +37,11 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
-<form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
+<form method="get" action="/SuperMercado-war/ClientServlet">
     <label for="dateChoisi">Choisir une date <span class="requis">*</span></label>
     <input type="date" name="date" value="" size="20" maxlength="20" />
-    <input type="hidden" name="nomMagasin" value="<%=magasin.getNomMagasin() %>">
-    <input type="hidden" name="action" value="passageDateChoisiClient">
+    <input type="hidden" name="nomMagasin" value="<%=magasinChoisi.getNomMagasin() %>">
+    <input type="hidden" name="action" value="passageDateCreneau">
     <input type="submit" value="Valider" />
 </form>
 <form method="get" action="/SuperMercado-war/ClientServlet">
@@ -57,18 +58,18 @@ if(attribut!=null){
 <TD>Choisir ce créneau</TD>
  </tr>
 <%
-for(Creneau c : liste){%>
-<tr><td Width=15%><%=c.getDate() %></td>
-<td Width=15%><%=c.getHeureDebut() %></td>
-<td Width=15%><%=c.getHeureFin() %></td>
+for(Creneau c : liste){ if(achat.getDateAchat().before(c.getDate())){ %>
+<tr><td Width=15%><%=c.getDate()%></td>
+<td Width=15%><%=c.getHeureDebut()%></td>
+<td Width=15%><%=c.getHeureFin()%></td>
 <td Width=15%>
-    <input type="hidden" name="idCreneau" value="<%=c.getId() %>">
-    <input type="hidden" name="achatLigne" value="<%=achatLigne.getId()%>">
+    <input type="hidden" name="idCreneau" value="<%=c.getId()%>">
+    <input type="hidden" name="achatLigne" value="<%=achat.getId()%>">
     <input type="hidden" name="action" value="ChoisiCreneau">
     <input type="submit" value="Valider" />
 </form>
 </td>
-</tr><%}%></TABLE>
+</tr><%}}%></TABLE>
 
 <hr>
 </body>

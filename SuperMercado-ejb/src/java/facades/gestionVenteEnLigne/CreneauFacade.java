@@ -56,7 +56,7 @@ public class CreneauFacade extends AbstractFacade<Creneau> implements CreneauFac
     @Override
     public Creneau ChercherCreneauParId(String idCreneau){
         Creneau creneau=null;
-        Long id=Long.getLong(idCreneau);
+        Long id=Long.parseLong(idCreneau);
         Query req=getEntityManager().createQuery("SELECT c from Creneau AS c WHERE c.id=:id");
         req.setParameter("id",id);
         List<Creneau> liste=req.getResultList();

@@ -103,14 +103,14 @@ public class AchatEnLigne extends Achat implements Serializable {
         this.client = client;
     }
 
-    private String modeLivraison;
+    private ModeLivraison modeLivraison;
     
     
 
-    public String getModeLivraison() {
+    public ModeLivraison getModeLivraison() {
         return modeLivraison;
     }
-    public void setModeLivraison(String modeLivraison) {
+    public void setModeLivraison(ModeLivraison modeLivraison) {
         this.modeLivraison = modeLivraison;
     }
     
