@@ -20,9 +20,13 @@
         <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
         <jsp:useBean id="achat" scope="session" class="Achat"></jsp:useBean>
         <title>Informations Retrait Magasin</title>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <h1>Choisir date de retrait</h1>
+    <center>
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <label for="date">Date <span class="requis">*</span></label>
         <input type="date" name="date" value="livraisonDomicile" min="<%=achat.getDateAchat()%>" size="20" maxlength="20" required="" />
@@ -32,5 +36,8 @@
         <input type="hidden" name="idAchat" value="<%=achat.getId()%>">
         <input type="submit" value="Valider" />
         </form>
+   </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

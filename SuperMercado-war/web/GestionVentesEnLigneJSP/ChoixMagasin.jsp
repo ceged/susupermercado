@@ -16,10 +16,14 @@
         <title>JSP Page</title>
         <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
          <% Client c = client;%>
         <h1>Choisissez un magasin</h1>
+    <center>
         <form method="post" action="/SuperMercado-war/ClientServlet">
         <fieldset>
 
@@ -45,5 +49,9 @@ if(attribut!=null){
 %> 
       </p>
         
+    </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+

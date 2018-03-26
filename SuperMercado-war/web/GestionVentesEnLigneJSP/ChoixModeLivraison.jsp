@@ -23,9 +23,13 @@
         <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <jsp:useBean id="achat" scope="session" class="Achat"></jsp:useBean>
         <title>Choix mode de livraison</title>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <h1>Choix mode de livraison</h1>
+    <center>
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <label for="retraitMagasin">Retrait en magasin <span class="requis">*</span></label>
         <input type="radio" name="modeLivraison" value="retraitMagasin" size="20" maxlength="20" />
@@ -40,5 +44,9 @@
         <input type="hidden" name="idAchat" value="<%=achat.getId()%>">
         <input type="submit" value="Valider" />
         </form>
+   </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+
