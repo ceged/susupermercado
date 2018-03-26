@@ -10,7 +10,6 @@
 				<div class="span8">
 					<div class="account pull-left">
 						<ul class="user-menu">				
-							<li><a href="Connexion.jsp">Mon compte</a></li>				
 							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
 						</ul>
 					</div>
