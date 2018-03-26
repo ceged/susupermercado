@@ -15,18 +15,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
-        <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+    <%@ include file="/include/sidebar_dir.jsp" %>
     <body>
- <% DirecteurMagasin a= directeurConnecte;
+ <% 
 List<Rayon> listeRayon2 =listeRayon;{%>
-<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
-</tr><%}%>
+
         <h1>Formulaire de suppression caisse</h1>
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -41,7 +39,7 @@ List<Rayon> listeRayon2 =listeRayon;{%>
                 <%}%>    
         </SELECT>
         <br /> 
-        <input type="hidden" name="nomMagasin" value="<%=a.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="nomMagasin" value="<%=p.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="supprimerRayon">
         </fieldset>
