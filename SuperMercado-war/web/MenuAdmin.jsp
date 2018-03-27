@@ -29,7 +29,7 @@
         <h1>Bienvenue sur le menu Admin !</h1>
         <A HREF="GestionMagasinJSP/CreerMagasin.jsp">
         Créer un magasin</A><br/><br/>
-        <A HREF="GestionMagasinJSP/CreerDirecteur.jsp">
+        <A HREF="Admin?action=TransfererListeMagasinPourAjoutDirecteur">
         Créer un directeur</A><br/><br/>
         <A HREF="GestionArticleJSP/CreerCategorie.jsp">
         Créer une Catégorie</A><br/><br/>
@@ -41,6 +41,8 @@
         Supprimer un magasin</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
 
         <p> <%
         String attribut = (String) request.getAttribute("message");

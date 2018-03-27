@@ -31,6 +31,8 @@
         Consulter la liste des créneaux dispos</A><br/><br/>
         <A HREF="GestionLivraisonJSP/CreerCreneau.jsp">
         Créer un créneau</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentLivraisonConnecte.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

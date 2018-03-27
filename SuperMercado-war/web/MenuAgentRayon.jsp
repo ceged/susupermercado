@@ -33,6 +33,8 @@
         Consulter liste commandes de mon rayon</A><br/><br/>
         <A HREF="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">
         Consulter liste livraison de mon rayon</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

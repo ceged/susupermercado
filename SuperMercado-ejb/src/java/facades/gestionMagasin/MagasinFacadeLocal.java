@@ -37,5 +37,5 @@ public interface MagasinFacadeLocal {
     
     Magasin RechercherMagasinParNom(String nomMagasinRecherche);
 
-    Collection ConsulterListeMagasins();
+    List <Magasin> ConsulterListeMagasins();
 }

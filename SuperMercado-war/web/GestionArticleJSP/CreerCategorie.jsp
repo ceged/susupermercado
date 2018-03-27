@@ -12,7 +12,7 @@
  } %>
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +24,7 @@
         <h1>Créer une catégorie</h1>
         
         
-        <form method="get" action="/SuperMercado-war/Admin">
+        <form method="get" action="/SuperMercado-war/Admin" acceptCharset="utf-8">
         <fieldset>
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
         <label for="libelleCategorie">Libellé catégorie <span class="requis">*</span></label>

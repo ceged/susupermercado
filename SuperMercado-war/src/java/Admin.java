@@ -103,6 +103,14 @@ public class Admin extends HttpServlet {
             jspChoix="/GestionMagasinJSP/SupprimerMagasin.jsp";
             
         } 
+        else if (act.equals("TransfererListeMagasinPourAjoutDirecteur"))
+        {
+            HttpSession sess=request.getSession(true);
+            List<Magasin> listeMagasin = sessionAdmin.ConsultationMagasin();
+            sess.setAttribute("listeMagasin",listeMagasin); 
+            jspChoix="/GestionMagasinJSP/CreerDirecteur.jsp";//à changer
+            
+        } 
          else if (act.equals("supprimerMagasin"))
         {
             doActionSupprimerMagasin(request,response);
@@ -162,7 +170,7 @@ request.setAttribute( "message", message );
     String codePostalPersonne= request.getParameter( "codePostal" );
     String magasinPersonne= request.getParameter( "magasin" );
     String message;
-    if ( nomPersonne.trim().isEmpty()&&prenomPersonne.trim().isEmpty()&&loginPersonne.trim().isEmpty()&&mdpPersonne.trim().isEmpty()&&magasinPersonne.trim().isEmpty()){
+    if ( nomPersonne.trim().isEmpty()||prenomPersonne.trim().isEmpty()||loginPersonne.trim().isEmpty()||mdpPersonne.trim().isEmpty()||magasinPersonne.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/CreerDirecteur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un directeur.";
 } else
 {
@@ -191,14 +199,15 @@ request.setAttribute( "message", message );
 
 protected void doActionInsererSousCategorie(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    String libelleCategorie= request.getParameter( "libelleCategorie" );
+    String idCategorieString= request.getParameter( "idCategorie" );
+    Long idCategorie = Long.valueOf(idCategorieString);
     String libelleSousCategorie= request.getParameter( "libelleSousCategorie" );
     String message;
-    if ( libelleCategorie.trim().isEmpty()&&libelleSousCategorie.trim().isEmpty()){
+    if ( idCategorieString.trim().isEmpty()&&libelleSousCategorie.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticleJSP/CreerSousCategorie.jsp\">Cliquez ici</a> pour accéder au formulaire de création sous catégorie.";
 } else
 {
-    message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, libelleCategorie);
+    message =sessionAdmin.CreerSousCategorie(libelleSousCategorie, idCategorie);
 
 }
    
