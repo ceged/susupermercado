@@ -20,7 +20,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="text.css" type="text/css">
         <title>JSP Page</title>
         <jsp:useBean id="listeLignesPanier" scope="session" class="List<LigneAchat>"></jsp:useBean>
         <jsp:useBean id="achatEnCours" scope="session" class="AchatEnLigne"></jsp:useBean>

@@ -53,7 +53,7 @@
 				<div class="active item">
                                     <ul class="thumbnails">												
                     <li class="span3">
-			<div class="product-box">
+			<div class="row">
                             <span class="sale_tag"></span>
                             <% for(ReferentielArticle ar: listeArticle){ %>
 				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/Boucherie/sauciss.jpe" alt="" /></a></p>
@@ -82,8 +82,9 @@
                     <input type="hidden" id="idqte" name="quantite" value="">
                 <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
                 <input type="reset" value="Remettre à zéro" /> <br />
-            </fieldset>
+            
             <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
+            </fieldset>
         </form> 
     </center>
     <center>

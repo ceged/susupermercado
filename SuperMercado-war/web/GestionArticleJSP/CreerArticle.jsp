@@ -4,7 +4,15 @@
     Author     : PC Tim
 --%>
 
-<%@page import="entités.gestionCommande.Fournisseur"%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
+ <%@page import="entités.gestionCommande.Fournisseur"%>
 <%@page import="java.util.List"%>
 <%@page import="entités.gestionArticle.SousCategorie"%>
 <%@page import="entités.gestionMagasin.ChefRayon"%>
