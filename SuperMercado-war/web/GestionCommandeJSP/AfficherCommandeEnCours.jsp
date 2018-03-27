@@ -3,6 +3,7 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<%@page import="entités.gestionArticle.ReferentielArticle"%>
 <% 
         
     if (session.getAttribute("chefRayonConnecte") == null) {
@@ -22,6 +23,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
         <jsp:useBean id="listeLigneCommande" scope="session" class="List<LigneCommande>"></jsp:useBean>
+        <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
 <title>Bon de commande en cours</title>
 </head>
 <body>

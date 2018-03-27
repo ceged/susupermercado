@@ -40,8 +40,6 @@
         Afficher les bon de commandes</A><br/><br/>
         <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">
         Modifier mon mot de passe</A><br/><br/>
-        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">
-        Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

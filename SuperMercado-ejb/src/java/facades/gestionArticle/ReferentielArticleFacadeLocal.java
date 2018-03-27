@@ -49,5 +49,7 @@ public interface ReferentielArticleFacadeLocal {
     ReferentielArticle RechercheReferentielArticleParLibelle(String libelleRecherche);
 
     List<ReferentielArticle> RechercheReferentielArticleParMagasin(Magasin magasin);
+
+    List<ReferentielArticle> RechercherListeArticleParFournisseur(Fournisseur fournisseur);
     
 }

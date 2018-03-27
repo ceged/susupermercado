@@ -28,6 +28,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
+        <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="test/css">
         <title>JSP Page</title>
     </head>
@@ -40,7 +41,7 @@
         <label for="article">Article du fournisseur<span class="requis">*</span></label>
         <SELECT name="article" size="1">
             <%
-            for(ReferentielArticle r: liste){ %>
+            for(ReferentielArticle r: listeArticle){ %>
             <OPTION value="<%=r.getCodeBarre()%>"> <%=r.getLibelleArticle()%>
                 <%}%>
         </SELECT>
