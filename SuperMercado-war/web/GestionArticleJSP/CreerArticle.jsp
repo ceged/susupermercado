@@ -69,7 +69,7 @@
         <%
             int i=0;
             for(Fournisseur f: listeFournisseur){ i++;%>
-            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" required/><%=f.getNom()%>
+            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" /><%=f.getNom()%>
                 <%}%>
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">

@@ -31,7 +31,7 @@
         <% Magasin m= magasinChoisi;
         Client c = client;
         AchatEnLigne ach = achatEnCours;%>
-        <h1>Bienvenue <%=c.getPrenom()%></h1> <br />
+        
         <p>      <%
 String attribut = (String) request.getAttribute("message");
 if(attribut!=null){
