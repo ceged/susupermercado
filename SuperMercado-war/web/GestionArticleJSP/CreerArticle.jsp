@@ -57,11 +57,15 @@
         Créer un fournisseur</A><br/><br/>
         <br />
         <label for="listeFournisseur">Liste de fournisseur<span class="requis">*</span></label><br />
-        <%
-            int i=0;
+     
+            <SELECT name="fournisseur" type="select" multiple size="5">
+            <% int i=0;
             for(Fournisseur f: listeFournisseur){ i++;%>
-            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20"/><%=f.getNom()%>
+            
+            <OPTION><%=f.getId()%><%=f.getNom()%>
                 <%}%>
+        </SELECT>
+          
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">
         </fieldset>

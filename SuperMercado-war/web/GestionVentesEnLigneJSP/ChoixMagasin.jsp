@@ -28,12 +28,14 @@
         <fieldset>
 
         
-        <label for="magasin">Magasin : <span class="requis">*</span></label>
-         <%
+        <label for="magasin">Magasin disponible : <span class="requis">*</span></label>
+        <SELECT name="magasin" size="1">
+            <%
             for(Magasin m: listeMagasin){ %>
-            <input type="radio" name="magasin" value=<%=m.getNomMagasin()%> size="20"/><%=m.getNomMagasin()%>
+            <OPTION><%=m.getNomMagasin()%>
                 <%}%>
-        <br />
+        </SELECT>
+        
         <input type="hidden" name="idClient" value=<%=c.getId()%>>
         <input type="hidden" name="action" value="transferArticlesParMagasin">
         </fieldset> 

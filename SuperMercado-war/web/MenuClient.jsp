@@ -28,7 +28,7 @@
         <center>
         
         <A HREF="ClientServlet?action=transferListeMagasin">
-        Online Shopping</A><br/><br/>
+        Vente en ligne</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         </center>

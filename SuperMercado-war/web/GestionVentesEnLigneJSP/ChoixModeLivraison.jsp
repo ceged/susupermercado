@@ -28,8 +28,8 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
     <body>
-        <h1>Choix mode de livraison</h1>
-    <center>
+       <center> <h1>Choix mode de livraison</h1>
+    
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <label for="retraitMagasin">Retrait en magasin <span class="requis">*</span></label>
         <input type="radio" name="modeLivraison" value="retraitMagasin" size="20" maxlength="20" />

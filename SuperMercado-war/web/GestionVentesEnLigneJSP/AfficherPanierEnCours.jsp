@@ -29,6 +29,7 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
     <body>
+    <center>
         <h1>Mon Panier!</h1>
         
         <TABLE border width=50%>
@@ -46,20 +47,26 @@ for(LigneAchat c : listeLignesPanier){%>
 <td Width=30%><A href="ClientServlet?action=SupprimerLigneAchat&ligneAchatId=<%=c.getId()%>&idAchat=<%=achatEnCours.getId()%>"> Supprimer du panier</A></td>
 
 </tr><%}%>
-</TABLE>
-    <center><form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
+        </TABLE>
+    </center>
+        
+    <center>
+        <form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
       <button type="submit">Continue Shopping</button>   
-</form></center>
+    </form>
+    </center>
     <center> 
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
       <button type="submit">Changer de magasin</button>   
         </form></center>
-<center><form method="get" action="/SuperMercado-war/ClientServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
       <input type="hidden" name="action" value="validerPanier">
       <button type="submit"> Valider mon panier </button>   
-</form></center>
+    </form>
+</center>
       <p>      <%
 String attribut = (String) request.getAttribute("message");
 if(attribut!=null){

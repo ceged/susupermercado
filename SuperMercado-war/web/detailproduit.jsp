@@ -3,6 +3,7 @@
     Created on : 25 mars 2018, 17:16:13
     Author     : So'
 --%>
+<%@page import="entités.gestionArticle.ReferentielArticle"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -145,3 +146,15 @@
 							</div>						
 						</div>
 						<br/>
+                                               <section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12"> 
+                    
+                        <% for(ReferentielArticle a: ){ 
+                        <input type="radio" name="article" value=<%=.getCodeBarre()%> size="20"/>
+                         <label><%=.getLibelleArticle()%></label> <br />
+                         <%}%>  
+                    
+               </ul>

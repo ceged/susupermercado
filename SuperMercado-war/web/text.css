@@ -27,7 +27,7 @@ p
 }
 form {
  
- padding:10px;
+ padding:60px;
  
  }
 fieldset {
@@ -137,7 +137,7 @@ th{
 	text-align:left;
 	}
 li{
-	display:list-item;
+	display: inline-block;
 	}	
 		
 legend {
@@ -160,7 +160,7 @@ ul {
 
 form {
   margin: 0 auto;
-  width : 400px;
+  width : 900px;
 
   padding: 1em;
   border : 1px solid #CCC;
@@ -177,7 +177,10 @@ label span{
   text-align: right;
 }
 
-
+span{
+  margin: auto;
+  
+}
 
 textarea {
   vertical-align: top;

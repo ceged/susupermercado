@@ -28,7 +28,7 @@
 							<div class="intro">
 								<h1>Frais</h1>
 								<p><span>Fruit et légumes</span></p>
-								<p><span>Fabriqué en France</span></p>
+								<p><span>Produit en France</span></p>
 							</div>
 						</li>
 					</ul>
