@@ -32,6 +32,13 @@
         Client c = client;
         AchatEnLigne ach = achatEnCours;%>
         <h1>Bienvenue <%=c.getPrenom()%></h1> <br />
+        <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
         
     <center>
         <form method="get" action="/SuperMercado-war/ClientServlet">
@@ -105,13 +112,7 @@
             }
             }
         </script>
-            <p>      <%
-String attribut = (String) request.getAttribute("message");
-if(attribut!=null){
-    out.println( attribut );
-            }
-%> 
-      </p>
+            
     </body>
 </html>
 

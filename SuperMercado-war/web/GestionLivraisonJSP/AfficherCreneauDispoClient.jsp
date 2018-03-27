@@ -27,7 +27,11 @@
         <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
         <jsp:useBean id="achat" scope="session" class="Achat"></jsp:useBean>
 <title>Liste des créneaux dispos client</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar.jsp" %>
+     
 <body>
 <h1>Liste des créneaux client</h1>
 <p> <%
@@ -37,7 +41,8 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
-<form method="get" action="/SuperMercado-war/ClientServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/ClientServlet">
     <label for="dateChoisi">Choisir une date <span class="requis">*</span></label>
     <input type="date" name="date" value="" size="20" maxlength="20" />
     <input type="hidden" name="nomMagasin" value="<%=magasinChoisi.getNomMagasin() %>">
@@ -72,5 +77,8 @@ for(Creneau c : liste){ if(achat.getDateAchat().before(c.getDate())){ %>
 </tr><%}}%></TABLE>
 
 <hr>
-</body>
+  </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

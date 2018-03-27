@@ -22,7 +22,15 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
     <body>
-        <h1></h1>
+        <h1>Compte Client</h1>
+         <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
     <center>
         <form method="post" action="/SuperMercado-war/ClientServlet">
         <fieldset>
@@ -60,14 +68,7 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-   <p> <%
-        String attribut = (String) request.getAttribute("message");
-        if(attribut==null){
-            attribut="Aucune action effectuée";
-        }
-        else{
-        out.println( attribut );}
-        %> </p>
+  
    </center> 
     <%@ include file="/include/footer.jsp" %>
     </body>

@@ -30,6 +30,13 @@
     <body>
     <center>
         <h1>Mon Panier!</h1>
+        <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
         
         <TABLE border width=50%>
 <tr> 
@@ -54,25 +61,19 @@ for(LigneAchat c : listeLignesPanier){%>
       <button type="submit">Continue Shopping</button>   
     </form>
     </center>
-    <center> 
+    
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
       <button type="submit">Changer de magasin</button>   
-        </form></center>
-<center>
+        </form>
+    
+
     <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
       <input type="hidden" name="action" value="validerPanier">
       <button type="submit"> Valider mon panier </button>   
     </form>
-</center>
-      <p>      <%
-String attribut = (String) request.getAttribute("message");
-if(attribut!=null){
-    out.println( attribut );
-            }
-%> 
-      </p>
+      
     </center> 
     <%@ include file="/include/footer.jsp" %>
     </body>

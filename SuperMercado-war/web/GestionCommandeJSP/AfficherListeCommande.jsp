@@ -3,6 +3,14 @@
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
 --%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page import="entités.gestionCommande.Commande"%>
@@ -13,14 +21,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="Commande.css" type="text/css">
         <jsp:useBean id="liste" scope="session" class="List<Commande>"></jsp:useBean>
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
-<title>lListe des bons de commandes</title>
-<%@ include file="/include/css.jsp" %>    
-    </head>    
-    <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+<title>Liste des bons de commandes</title>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+     
 <body>
 <h1>Liste des bons de commande</h1>
 <p> <%
@@ -31,7 +39,8 @@ if(attribut!=null){
 %> </p>
 <A HREF="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=chefRayonConnecte.getId()%>">Créer un bon de commande</A><br />
 <A HREF="MenuChefdeRayon.jsp">Retour au menu</A><br />
-<form method="get" action="/SuperMercado-war/ChefRayonServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/ChefRayonServlet">
 <label for="statut">Trier par <span class="requis">*</span></label>
 <SELECT name="statut" size="1">
             <OPTION value="aucun">        
@@ -59,7 +68,8 @@ for(Commande c : liste){%>
 </tr><%}%></TABLE>
 
 <hr>
- <%@ include file="/include/footer.jsp" %>
+    </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>
 </html>

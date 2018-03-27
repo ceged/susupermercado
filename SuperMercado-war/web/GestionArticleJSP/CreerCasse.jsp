@@ -21,13 +21,18 @@
         <jsp:useBean id="agentRayonConnecte" scope="session" class="AgentRayon"></jsp:useBean>
         <link rel="stylesheet" href="text.css" type="text/css">
         <title>Saisir casse</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_dir.jsp" %>
+     
     <body>
         <h1>Formulaire de saisie casse</h1>
         <tr> <td Width=15%>Bienvenue <%=agentRayonConnecte.getPrenom()%></td>
 </tr>
         
-        <form method="get" action="/SuperMercado-war/AgentRayonServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/AgentRayonServlet">
         <fieldset>
         <label for="idLotArticle">Code barre du lot Article <span class="requis">*</span></label>
         <input type="number" name="idLotArticle" value="" size="20" maxlength="20" required/>
@@ -44,6 +49,9 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-
+  </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+

@@ -3,6 +3,14 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("chefRayonConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionArticle.ReferentielArticle"%>
 <a href="CreerLigneCommande.jsp"></a>
@@ -18,19 +26,20 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="Commande.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
+        <link rel="stylesheet" href="test.css" type="test/css">
         <title>JSP Page</title>
-    <%@ include file="/include/css.jsp" %>    
-    </head>    
-    <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+      <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+     
     <body>
     <% List<ReferentielArticle> liste= commande.getFournisseur().getListeReferentielArticles(); %>
          <h1>Formulaire de ligne commande</h1>
-        <center> 
-            <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+    <center>
+        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations ligne commande (majuscules et accents interdits)</legend>
         <label for="article">Article du fournisseur<span class="requis">*</span></label>
@@ -42,10 +51,10 @@
         </SELECT>
         <br />
         <label for="quantite"> Quantité <span class="requis">*</span></label>
-        <input type="number" name="quantite" value="" size="20" maxlength="20" />
+        <input type="number" name="quantite" value="" size="20" maxlength="20" required/>
         <br />
         <label for="prix"> Prix Unitaire <span class="requis">*</span></label>
-        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="commandeId" value="<%=commande.getId()%>">
         <input type="hidden" name="action" value="insererLigneCommande">
@@ -53,8 +62,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-        </center> 
-     <%@ include file="/include/footer.jsp" %>
+      </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>
 </html>
