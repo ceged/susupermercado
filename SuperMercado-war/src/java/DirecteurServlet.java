@@ -427,7 +427,7 @@ String nomPersonne= request.getParameter( "nom" );
     String Rayon= request.getParameter( "libelleRayon" );
     String newRayon= request.getParameter( "newLibelleRayon" );
     String message;
-    if (newRayon.trim().isEmpty()|| magasin.trim().isEmpty()){
+    if (newRayon.trim().isEmpty()||"".equals(newRayon.trim())||magasin.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionMagasinJSP/ModifierRayon.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de rayon.";
 } else
 {

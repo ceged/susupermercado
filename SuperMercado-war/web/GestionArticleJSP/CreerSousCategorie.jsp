@@ -38,7 +38,7 @@
         
         <legend>libellé sous - catégorie (majuscules et accents interdits)</legend>
         <label for="libelleSousCategorie">Libellé sous-catégorie <span class="requis">*</span></label>
-        <input type="text" name="libelleSousCategorie" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleSousCategorie" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="action" value="insererSousCategorie">
         </fieldset>

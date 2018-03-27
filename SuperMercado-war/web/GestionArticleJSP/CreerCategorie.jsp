@@ -23,7 +23,7 @@
         <fieldset>
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
         <label for="libelleCategorie">Libellé catégorie <span class="requis">*</span></label>
-        <input type="text" name="libelleCategorie" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleCategorie" value="" size="20" maxlength="20" required />
         <br />
         <input type="hidden" name="action" value="insererCategorie">
         </fieldset>
