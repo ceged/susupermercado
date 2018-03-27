@@ -15,9 +15,39 @@
         <jsp:useBean id="fournisseurConnecte" scope="session" class="Fournisseur"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <% Fournisseur f= fournisseurConnecte;{%>
+    
+    <div id="top-bar" class="container">
+			<div class="row">
+				
+				<div class="span8">
+					<div class="account pull-left">
+						<ul class="user-menu">					
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+                <div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">Consulter mes commandes</a></li>						
+								
+										
+						</ul>
+					</nav>
+				</div>
+			</section>
+
     <body>
-        <% Fournisseur f= fournisseurConnecte;{%>
+        
 <tr> <td Width=15%>Bienvenue <%=f.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Fournisseur !</h1>
