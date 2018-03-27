@@ -51,7 +51,7 @@ if(attribut!=null){
 							<div class="span12">
                <h4 class="title">
                     <span class="pull-left"><span class="text"><span class="line">  Article disponible pour le magasin<strong>  <%=m.getNomMagasin()%></strong></span></span></span>
-                    <span class="pull-right">
+                    <span class="pull-center">
 			<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
                     </span>
                 </h4>
@@ -62,14 +62,28 @@ if(attribut!=null){
                     <li class="span3">
 			<div class="row">
                             <span class="sale_tag"></span>
-                            <% for(ReferentielArticle ar: listeArticle){ %>
-				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/Boucherie/sauciss.jpe" alt="" /></a></p>
+                            
+                            <div class="container">
+                              <table>
+                            <% int i=0; for(ReferentielArticle ar: listeArticle){ 
+                                                               if(i==0){
+                                       %><tr><%
+                                   }
+                                   i++;%>
+                                       <center><td>
+				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/logo4.png" alt="" /></a></p>
 				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
                                 <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
-                                <p class="price"><%=ar.getPrixVenteMagasin()%></p>
+                                <p class="price"><%=ar.getPrixVenteMagasin()%>€</p>
                                 <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
-                                <%}%> 
-                                
+                             </td>
+                                       </center>
+                                <%if(i==4){
+                                       %></tr><%
+                                   }
+                                    }%> 
+                                </table>
+                        </div>
                         </div>
                     </li>
                     </ul>
