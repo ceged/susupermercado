@@ -42,6 +42,9 @@
 								
 										
 						</ul>
+                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=f.getId()%>">Modifier mon mot de passe</a></li>
+                                                        <li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
+                                                       
 					</nav>
 				</div>
 			</section>
@@ -51,10 +54,7 @@
 <tr> <td Width=15%>Bienvenue <%=f.getPrenom()%></td>
 </tr><%}%>
         <h1>Bienvenue sur le menu Fournisseur !</h1>
-        <A HREF="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">
-        Consulter mes commandes</A><br/><br/>
-        <A HREF="Accueil.jsp">
-        Sortir menu principal</A><br/><br/>
+       
         
         <p> <%
         String attribut = (String) request.getAttribute("message");
@@ -64,5 +64,8 @@
         else{
         out.println( attribut );}
         %> </p>
+    <%@ include file="/include/flexslider_fournisseur.jsp" %>
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

@@ -54,7 +54,8 @@
 									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">"> Consulter liste livraison de mon rayon</a></li>
 									<li><a href="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">Consulter liste commandes de mon rayon</a></li>
 								</ul>
-							</li>					
+							</li>	
+                                                        <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
 							<li><a href="MenuAgentRayon.jsp">Sortir menu principal</a></li>
 					</nav>
 				</div>
@@ -65,17 +66,6 @@
     <tr> <td Width=15%>Bienvenue <%=agentRayonConnecte.getPrenom()%></td>
 </tr>
         <h1>Menu Agent livraison</h1>
-        <A HREF="GestionArticleJSP/CreerCasse.jsp">
-        Saisir casse</A><br/><br/>
-        <A HREF="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>">
-        Consulter liste casse de mon rayon</A><br/><br/>
-        <A HREF="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">
-        Consulter liste commandes de mon rayon</A><br/><br/>
-        <A HREF="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">
-        Consulter liste livraison de mon rayon</A><br/><br/>
-        <A HREF="Accueil.jsp">
-        Sortir menu principal</A><br/><br/>
-        
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
@@ -84,6 +74,12 @@
         else{
         out.println( attribut );}
         %> </p>
+      
+       <%@ include file="/include/flexslider_agentrayon.jsp" %>
         
+       
+      
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

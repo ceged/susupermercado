@@ -216,10 +216,16 @@ public class ClientServlet extends HttpServlet {
             String idAchat= request.getParameter("idAchat");
             String message = sessionClient.ValidationAchat(idAchat);
             request.setAttribute( "message", message );
+            if("Panier Validé".equals(message)){
             Achat achat=sessionClient.RechercheAchatParId(idAchat);
             HttpSession sess=request.getSession(true);
             sess.setAttribute("achat", achat);
             jspChoix="/GestionVentesEnLigneJSP/ChoixModeLivraison.jsp";
+            }
+            else
+            {
+                jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
+            }
             
         }
         else if(act.equals("annulerInsertionLigne")){

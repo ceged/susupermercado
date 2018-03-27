@@ -262,9 +262,10 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
             message="caisse inconnu";
         }*/
         
-        Caisse caisseRecherche= this.RechercherCaisseParIdCaisse(caisse,magasin);
-        
+       Caisse caisseRecherche= this.RechercherCaisseParIdCaisse(caisse,magasin);
+       
        if (caisseRecherche!=null){
+        
         caisseFacade.SupprimerCaisse(caisseRecherche);
         message = "caisse supprimé avec succès";
         
@@ -272,16 +273,21 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
     return message;}
     @Override
     public String CreationAffectation(String idCaisseString, String idAgentCaisse, Date dateDebut, Date dateFin, String nomMagasin) {
-        
         String message;
-        
-        Long idCaisse = Long.parseLong(idCaisseString);
-        
-        Magasin magasin=magasinFacade.RechercherMagasinParNom(nomMagasin);
-        Caisse caisse = caisseFacade.RechercherCaisseParId(idCaisse, magasin);
-        AgentCaisse agentCaisse = agentCaisseFacade.RechercherAgentCaisse(idAgentCaisse, magasin);
-        affectationCaisseAgentFacade.CreerAffectation(agentCaisse, caisse, dateDebut, dateFin);
-        message = "affectation effectuée";
+         
+        if(dateDebut.before(dateFin)) 
+        {
+            Long idCaisse = Long.parseLong(idCaisseString);
+            Magasin magasin=magasinFacade.RechercherMagasinParNom(nomMagasin);
+            Caisse caisse = caisseFacade.RechercherCaisseParId(idCaisse, magasin);
+            AgentCaisse agentCaisse = agentCaisseFacade.RechercherAgentCaisse(idAgentCaisse, magasin);
+            affectationCaisseAgentFacade.CreerAffectation(agentCaisse, caisse, dateDebut, dateFin);
+            message = "affectation effectuée";        
+        } 
+        else 
+        { 
+            message = "date de début supérieure à la date de fin" ;  
+        }
         return message;
     }
 

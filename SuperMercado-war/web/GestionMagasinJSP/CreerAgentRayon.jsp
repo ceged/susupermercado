@@ -74,9 +74,9 @@
 <% List<Rayon> listeRayon2 =listeRayon;{%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
-         <h1>Formulaire de création Chef de Rayon</h1>
-        <center> 
-            <form method="get" action="/SuperMercado-war/DirecteurServlet">
+         <h1>Formulaire de création d'agent de Rayon</h1>
+         <center> 
+             <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Agent de rayon (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>

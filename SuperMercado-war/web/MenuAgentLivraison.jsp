@@ -60,16 +60,7 @@
     <tr> <td Width=15%>Bienvenue <%=agentLivraisonConnecte.getPrenom()%></td>
 </tr>
         <h1>Menu Agent livraison</h1>
-        <A HREF="AgentLivraisonServlet?action=passageInfosListeReceptionLivraison&agentLivraison=<%=agentLivraisonConnecte.getId()%>">
-        Consulter la liste de livraison</A><br/><br/>
-        <A HREF="AgentLivraisonServlet?action=passageInfosCreneauDispo&agentLivraison=<%=agentLivraisonConnecte.getId()%>">
-        Consulter la liste des créneaux dispos</A><br/><br/>
-        <A HREF="GestionLivraisonJSP/CreerCreneau.jsp">
-        Créer un créneau</A><br/><br/>
-        <A HREF="Accueil.jsp">
-        Sortir menu principal</A><br/><br/>
-        
-        <p> <%
+         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
             attribut="Aucune action effectuée";
@@ -77,6 +68,13 @@
         else{
         out.println( attribut );}
         %> </p>
+      
         
+      <%@ include file="/include/flexslider_livraison.jsp" %>
+        
+       
+      
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

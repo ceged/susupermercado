@@ -59,5 +59,7 @@ public interface SessionChefDeRayonLocal {
     List<Commande>RechercherListeCommandeParStatutParChefRayon(String statut, String idChefRayon);
     
     List<Commande>RecherListeCommandeParChefRayon(String idChefRayon);
+
+    List<ReferentielArticle> ConsulterListeArticleParFournisseur(String fournisseur);
     
 }

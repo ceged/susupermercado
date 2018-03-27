@@ -34,4 +34,6 @@ public interface CategorieFacadeLocal {
     
     Categorie RechercherCategorie(String libelleCategorieRecherche);
     
+    Categorie RechercherCategorieParId(Long idCategorieRecherche);
+    
 }

@@ -3,6 +3,15 @@
     Created on : 13 mars 2018, 13:25:44
     Author     : Soldat
 --%>
+<%@page import="entités.gestionMagasin.Magasin"%>
+<%@page import="java.util.List"%>
+<% 
+        
+    if (session.getAttribute("personneConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
+         <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
@@ -49,6 +59,12 @@
         <input type="text" name="codePostal" value="" size="20" maxlength="20" />
         <br />
         <label for="magasin">Magasin <span class="requis">*</span></label>
+        <SELECT name="magasin" size="1">
+            <%
+            for(Magasin m: listeMagasin){ %>
+            <OPTION><%=m.getNomMagasin()%>
+                <%}%>
+        </SELECT>
         <input type="text" name="magasin" value="" size="20" maxlength="20" />
         <br />
         <input type="hidden" name="action" value="insererDirecteur">

@@ -44,10 +44,19 @@ public class SessionPersonne implements SessionPersonneLocal {
 
     
     @Override
-    public void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne) {
+    public String ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne) {
+        String message;
         Long id=Long.parseLong(idPersonne);
         Personne personne = personneFacade.RechercherPersonneParId(id);
-        personneFacade.ModifierMdp(personne, ancienMdp, nouveauMdp);
+        
+        if(!ancienMdp.equals(personne.getMdp())){
+            message = "Mot de passe actuel incorrect";
+        }
+        else{
+            personneFacade.ModifierMdp(personne, ancienMdp, nouveauMdp);
+            message = "Mot de passe modifié avec succès";
+        }
+        return message;
     }
 
     @Override

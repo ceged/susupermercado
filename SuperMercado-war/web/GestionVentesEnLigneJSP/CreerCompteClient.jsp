@@ -1,10 +1,4 @@
 <%-- 
-    Document   : CreerCompteClient
-    Created on : 19 mars 2018, 16:15:44
-    Author     : Sophia
---%>
-
-<%-- 
     Document   : CreerDirecteur
     Created on : 13 mars 2018, 13:25:44
     Author     : Soldat
@@ -22,8 +16,8 @@
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
     <body>
-        <h1>Compte Client</h1>
-         <p> <%
+        <h1>Compte client</h1>
+        <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
             attribut="Aucune action effectuée";
@@ -31,8 +25,7 @@
         else{
         out.println( attribut );}
         %> </p>
-    <center>
-        <form method="post" action="/SuperMercado-war/ClientServlet">
+        <form method="get" action="/SuperMercado-war/ClientServlet">
         <fieldset>
         <legend>Informations Client (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
@@ -68,9 +61,11 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-  
-   </center> 
+   
+     </center> 
     <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>
 </html>
+
+

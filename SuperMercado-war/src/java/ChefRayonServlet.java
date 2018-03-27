@@ -186,13 +186,16 @@ public class ChefRayonServlet extends HttpServlet {
         }
         else if(act.equals("insererBonCommande"))
         {
+            String nomFournisseur = request.getParameter("fournisseur");
             doActioninsererBonCommande(request,response);
             jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
             Commande commande = sessionChefDeRayon.ChercherDernierCommande();
             List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(commande);
+            List<ReferentielArticle> listeArticle=sessionChefDeRayon.ConsulterListeArticleParFournisseur(nomFournisseur);
             HttpSession sess=request.getSession(true);
             sess.setAttribute("commande",commande);
             sess.setAttribute("listeLigneCommande",listeLigneCommande);
+            sess.setAttribute("listeArticle",listeArticle);
         }
         else if (act.equals("insererReferentielArticle")){
             doActionInserReferentielArticle(request,response);

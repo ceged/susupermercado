@@ -115,4 +115,14 @@ public class ReferentielArticleFacade extends AbstractFacade<ReferentielArticle>
         List<ReferentielArticle> result = req.getResultList();
         return result;
     }   
+
+    @Override
+    public List<ReferentielArticle> RechercherListeArticleParFournisseur(Fournisseur fournisseur) {
+        Long idFournisseur = fournisseur.getId();
+        Query req=getEntityManager().createQuery("select distinct m from ReferentielArticle m left join m.listeFournisseurs g where g.id = :idFournisseur");
+        req.setParameter("idFournisseur",idFournisseur);
+        List <ReferentielArticle>result = req.getResultList();
+        return result;
+    }
+    
 }

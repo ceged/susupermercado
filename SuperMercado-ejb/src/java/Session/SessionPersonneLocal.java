@@ -20,7 +20,7 @@ import javax.ejb.Local;
 @Local
 public interface SessionPersonneLocal {
 
-    void ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne);
+    String ModificationMdp(String ancienMdp, String nouveauMdp, String idPersonne);
 
     Personne RechercherPersonneParId(String idPersonne);
 
