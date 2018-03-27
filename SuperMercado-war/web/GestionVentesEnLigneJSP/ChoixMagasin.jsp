@@ -20,14 +20,14 @@
     <body>
          <% Client c = client;%>
         <h1>Choisissez un magasin</h1>
-        <form method="post" action="/SuperMercado-war/ClientServlet">
+        <form method="get" action="/SuperMercado-war/ClientServlet">
         <fieldset>
 
         
         <label for="magasin">Magasin : <span class="requis">*</span></label>
          <%
             for(Magasin m: listeMagasin){ %>
-            <input type="radio" name="magasin" value=<%=m.getNomMagasin()%> size="20"/><%=m.getNomMagasin()%>
+            <input type="radio" name="magasin" value="<%=m.getNomMagasin()%>" size="20"/><%=m.getNomMagasin()%>
                 <%}%>
         <br />
         <input type="hidden" name="idClient" value=<%=c.getId()%>>

@@ -3,6 +3,8 @@
     Created on : 13 mars 2018, 13:25:44
     Author     : Soldat
 --%>
+<%@page import="entités.gestionMagasin.Magasin"%>
+<%@page import="java.util.List"%>
 <% 
         
     if (session.getAttribute("personneConnecte") == null) {
@@ -17,6 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
+         <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
@@ -52,7 +55,12 @@
         <input type="number" name="codePostal" value="" size="5" maxlength="5" required/>
         <br />
         <label for="magasin">Magasin <span class="requis">*</span></label>
-        <input type="text" name="magasin" value="" size="20" maxlength="20" required/>
+        <SELECT name="magasin" size="1">
+            <%
+            for(Magasin m: listeMagasin){ %>
+            <OPTION><%=m.getNomMagasin()%>
+                <%}%>
+        </SELECT>
         <br />
         <input type="hidden" name="action" value="insererDirecteur">
         </fieldset>

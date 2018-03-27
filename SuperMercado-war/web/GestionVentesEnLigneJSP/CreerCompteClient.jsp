@@ -20,7 +20,7 @@
     </head>
     <body>
         <h1></h1>
-        <form method="post" action="/SuperMercado-war/ClientServlet">
+        <form method="get" action="/SuperMercado-war/ClientServlet">
         <fieldset>
         <legend>Informations Client (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>

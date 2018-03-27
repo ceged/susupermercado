@@ -23,6 +23,8 @@
         <h1>Bienvenue sur le menu Fournisseur !</h1>
         <A HREF="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">
         Consulter mes commandes</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=f.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
         

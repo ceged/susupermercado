@@ -199,11 +199,11 @@ public class SessionAdmin implements SessionAdminLocal {
     }
 
     @Override
-    public String CreerSousCategorie(String libelleSousCategorie, String libelleCategorie) {
+    public String CreerSousCategorie(String libelleSousCategorie, Long idCategorie) {
         String message = "Catégorie inconnu";
         Categorie c = null ;
         
-        c=categorieFacade.RechercherCategorie(libelleCategorie);
+        c=categorieFacade.RechercherCategorieParId(idCategorie);
         
         if (c!=null){
             sousCategorieFacade.CreerSousCategorie(libelleSousCategorie, c);
@@ -267,6 +267,11 @@ public class SessionAdmin implements SessionAdminLocal {
         List<ReferentielArticle> listeArticle = referentielArticleFacade.findAll();
         return listeArticle;
         
+    }
+
+    @Override
+    public List ConsultationMagasin() {
+        return magasinFacade.ConsulterListeMagasins();
     }
 
    

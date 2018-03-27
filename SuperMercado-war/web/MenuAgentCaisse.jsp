@@ -30,6 +30,8 @@
         Créer un achat</A><br/><br/>
         <A HREF="Accueil.jsp">
         Sortir menu principal</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentCaisse.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
        
         
         <p> <%
