@@ -41,11 +41,11 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
         <fieldset>
         
         <label for="dateDebut">Date de début d'affectation <span class="requis">*</span></label>
-        <input type="date" name="dateDebut" value="" size="20" maxlength="20" />
+        <input type="date" name="dateDebut" value="" size="20" maxlength="20" required/>
         <br />
         
         <label for="dateFin">Date de fin d'affectation <span class="requis">*</span></label>
-        <input type="date" name="dateFin" value="" size="20" maxlength="20" />
+        <input type="date" name="dateFin" value="" size="20" maxlength="20" required />
         <br />
 
         

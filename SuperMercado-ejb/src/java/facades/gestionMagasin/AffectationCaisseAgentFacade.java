@@ -74,7 +74,6 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
     }
         return result ;
     }
-     
 
     
 }

@@ -44,7 +44,7 @@ List<Rayon> listeRayon2 =listeRayonModifie;{%>
         </SELECT>
         <br />
         <label for="newLibelleRayon">Nouveau nom rayon <span class="requis">*</span></label>
-        <input type="text" name="newLibelleRayon" value="" size="20" maxlength="20" />
+        <input type="text" name="newLibelleRayon" value="" size="20" maxlength="20" required required/>
         <br />
         <input type="hidden" name="magasin" value="<%=d.getMagasin().getNomMagasin()%>" />
         <br />

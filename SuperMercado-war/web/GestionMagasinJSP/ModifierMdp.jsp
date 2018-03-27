@@ -29,10 +29,10 @@
 <fieldset>
 <legend>Informations</legend>
 <label for="ancienMdp">Ancien mot de passe<span class="requis">*</span></label>
-<input type="password" name="ancienMdp" value="" size="20" maxlength="20" />
+<input type="password" name="ancienMdp" value="" size="20" maxlength="20" required/>
 <br>
 <label for="nouveauMdp">Nouveau mot de passe<span class="requis">*</span></label>
-<input type="password" name="nouveauMdp" value="" size="20" maxlength="20" />
+<input type="password" name="nouveauMdp" value="" size="20" maxlength="20" required/>
 </fieldset>
     <input type="hidden" name="id" value="<%=p.getId()%>"/>
     <br />

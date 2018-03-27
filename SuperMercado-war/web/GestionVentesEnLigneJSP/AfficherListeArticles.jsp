@@ -51,7 +51,7 @@
         </form> 
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
-      <button type="submit">Changer de magasin</button> 
+      <button type="submit">Retourner au menu</button> 
         </form>
         <script>
             function getQuantite() {

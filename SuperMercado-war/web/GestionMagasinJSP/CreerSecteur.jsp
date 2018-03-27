@@ -31,7 +31,7 @@
         <fieldset>
         <legend>Informations Secteur (majuscules et accents interdits)</legend>
         <label for="libelleSecteur">Nom du Secteur <span class="requis">*</span></label>
-        <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="magasinSecteur" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />

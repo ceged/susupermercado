@@ -39,15 +39,15 @@
         <fieldset>
         <legend>Informations Produit (majuscules et accents interdits)</legend>
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
-        <input type="text" name="libelleArticle" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleArticle" value="" size="20" maxlength="20" required />
         <br />
         <input type="hidden" name="rayon" value="<%=c.getRayon().getId() %>" size="20" maxlength="20" />
         <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin().getNomMagasin() %> size="20" maxlength="20" />
         <label for="marque">Marque <span class="requis">*</span></label>
-        <input type="text" name="marque" value="" size="20" maxlength="20" />
+        <input type="text" name="marque" value="" size="20" maxlength="20" required />
         <br />
         <label for="prix">Prix de vente <span class="requis">*</span></label>
-        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" required/>
         <br />
         <label for="souscategorie">Sous catégorie <span class="requis">*</span></label>
         <SELECT name="souscategorie" size="1">
@@ -64,7 +64,7 @@
         <%
             int i=0;
             for(Fournisseur f: listeFournisseur){ i++;%>
-            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20"/><%=f.getNom()%>
+            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" required/><%=f.getNom()%>
                 <%}%>
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">

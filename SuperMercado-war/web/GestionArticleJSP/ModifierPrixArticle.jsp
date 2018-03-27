@@ -47,7 +47,7 @@
         </SELECT>
         <br />
         <label for="newprix">Nouveau prix <span class="requis">*</span></label>
-        <input type="number" step="0.01" name="newprix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="newprix" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="action" value="modifierPrixArticle">
         </fieldset>

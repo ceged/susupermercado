@@ -43,7 +43,7 @@
         </SELECT>
         <br />
         <label for="libelleRayon">Nom du Rayon<span class="requis">*</span></label>
-        <input type="text" name="libelleRayon" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleRayon" value="" size="20" maxlength="20" required/>
         <br />
 
         <input type="hidden" name="action" value="insererRayon">

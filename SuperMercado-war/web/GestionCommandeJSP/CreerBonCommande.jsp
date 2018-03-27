@@ -42,7 +42,7 @@
         </SELECT>
         <br />
         <label for="date"> Date <span class="requis">*</span></label>
-        <input type="date" name="date" value="" size="20" maxlength="20" />
+        <input type="date" name="date" value="" size="20" maxlength="20" required />
         <br />
         <input type="hidden" name="chefRayon" value="<%=chefRayonConnecte.getId()%>">
         <input type="hidden" name="action" value="insererBonCommande">

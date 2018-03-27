@@ -33,15 +33,15 @@
         <fieldset>
         
         <label for="dob">Date de début de la promotion <span class="requis">*</span></label>
-        <input type="date" name="dateDeb" value="" size="20" maxlength="20" />
+        <input type="date" name="dateDeb" value="" size="20" maxlength="20" required/>
         <br />    
         
         <label for="dob">Date de fin de la promotion <span class="requis">*</span></label>
-        <input type="date" name="dateFin" value="" size="20" maxlength="20" />
+        <input type="date" name="dateFin" value="" size="20" maxlength="20" required/>
         <br />  
         
         <label for="prixPromo">Prix de la promotion <span class="requis">*</span></label>
-        <input type="number" name="prixPromo" min="0" step="0.01" />
+        <input type="number" name="prixPromo" min="0" step="0.01" required/>
         <br />
             
         <label for="libelle"> Libellé Article <span class="requis">*</span></label>

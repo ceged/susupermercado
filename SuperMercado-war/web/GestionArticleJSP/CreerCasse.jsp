@@ -30,13 +30,13 @@
         <form method="get" action="/SuperMercado-war/AgentRayonServlet">
         <fieldset>
         <label for="idLotArticle">Code barre du lot Article <span class="requis">*</span></label>
-        <input type="number" name="idLotArticle" value="" size="20" maxlength="20" />
+        <input type="number" name="idLotArticle" value="" size="20" maxlength="20" required/>
         <br />
         <label for="quantite">Quantité casse <span class="requis">*</span></label>
-        <input type="number" name="quantite" value="" size="20" maxlength="20" />
+        <input type="number" name="quantite" value="" size="20" maxlength="20" required/>
         <br />
         <label for="motif">Motif de casse <span class="requis">*</span></label>
-        <input type="text" name="motif" value="" size="20" maxlength="20" />
+        <input type="text" name="motif" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="idAgent" value="<%=agentRayonConnecte.getId()%>">
         <input type="hidden" name="action" value="insererCasse">

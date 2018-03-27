@@ -31,7 +31,7 @@
                 <%}%>
         <br />
         <input type="hidden" name="idClient" value=<%=c.getId()%>>
-        <input type="hidden" name="action" value="transferArticlesParMagasin">
+        <input type="hidden" name="action" value="transferArticlesParMagasin" >
         </fieldset> 
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />

@@ -46,10 +46,10 @@
         </SELECT>
         <br />
         <label for="quantite"> Quantité <span class="requis">*</span></label>
-        <input type="number" name="quantite" value="" size="20" maxlength="20" />
+        <input type="number" name="quantite" value="" size="20" maxlength="20" required/>
         <br />
         <label for="prix"> Prix Unitaire <span class="requis">*</span></label>
-        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" />
+        <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="commandeId" value="<%=commande.getId()%>">
         <input type="hidden" name="action" value="insererLigneCommande">
