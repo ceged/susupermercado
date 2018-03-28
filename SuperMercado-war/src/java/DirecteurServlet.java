@@ -70,6 +70,19 @@ public class DirecteurServlet extends HttpServlet {
             doActionInsererAgentRayon(request,response);
             jspChoix="/MenuDirecteur.jsp";
         }
+         else if (act.equals("CreerSecteur")){
+             jspChoix="/GestionMagasinJSP/CreerSecteur.jsp";
+         }
+         else if (act.equals("CreerCaisse")){
+             jspChoix="/GestionMagasinJSP/CreerCaisse.jsp";
+         }
+         else if (act.equals("CreerAgentCaisse")){
+             jspChoix="/GestionMagasinJSP/CreerAgentCaisse.jsp";
+         }
+         else if (act.equals("CreerAgentLivraison")){
+             jspChoix="/GestionLivraisonJSP/CreerAgentLivraison.jsp";
+         }
+         
          else if(act.equals("InsererAgentLivraison")){
              doActionInsererAgentLivraison(request,response);
              jspChoix="/MenuDirecteur.jsp";

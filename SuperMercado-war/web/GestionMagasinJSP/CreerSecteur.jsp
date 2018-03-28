@@ -25,7 +25,7 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <% DirecteurMagasin a= directeurConnecte;%>
+    <% DirecteurMagasin p= directeurConnecte;%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -44,33 +44,39 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=a.getId()%>">Rayon</a>					
+							<li><a>Rayon</a>					
 								<ul>
-									<li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=a.getId()%>">Modifier un rayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=a.getId()%>">Creer un chefrayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=a.getId()%>">Créer un agent de rayon </a></li>
-									<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=a.getId()%>">Creer un rayon</a></li>
-                                                                        <li><a href="?action=TransfererListeRayon&directeur=<%=a.getId()%>">Supprimer un rayon</a></li>	
-                                                                       
+									<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">Creer un rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">Modifier un rayon</a></li>
+                                                                
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">Creer un chef rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>                                                                    
 								</ul>
 							</li>															
-							<li><a href="GestionMagasinJSP/CreerSecteur.jsp">Créer un secteur</a></li>			
-							<li><a href="GestionMagasinJSP/CreerCaisse.jsp">Caisse</a>
+							<li><a href="DirecteurServlet?action=CreerSecteur">Créer un secteur</a></li>	
+                                                        <li><a href="DirecteurServlet?action=CreerAgentLivraison">Créer un agent livraison</a></li>
+							<li><a>Caisse</a>
 								<ul>									
-									<li><a href="GestionMagasinJSP/CreerCaisse.jsp">Créer une Caisse</a></li>
-									<li><a href="DirecteurServlet?action=TransfererListeCaisse&directeur=<%=a.getId()%>"> Supprimer une caisse </a></li>
-                                                                        <li><a href="GestionMagasinJSP/CreerAgentCaisse.jsp"> Créer un agent caisse </a></li>
+									<li><a href="DirecteurServlet?action=CreerCaisse">Créer une Caisse</a></li>
+							
+                                                                        <li><a href="DirecteurServlet?action=CreerAgentCaisse"> Créer un agent caisse </a></li>
+                                                                        
+                                                                        <li><a href="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>"> Créer une affectation caisse </a></li>
 								</ul>
 							</li>							
-							
-							<li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
+							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
+							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                    						</ul>
+
 					</nav>
 				</div>
 			</section>
+                </div>
 
     <body>
 
-<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
+<tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 
         <h1>Formulaire de création de secteur</h1>
         <center> 
@@ -80,7 +86,7 @@
         <label for="libelleSecteur">Nom du Secteur <span class="requis">*</span></label>
         <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" required/>
         <br />
-        <input type="hidden" name="magasinSecteur" value="<%=a.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="magasinSecteur" value="<%=p.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="insererSecteur">
         </fieldset>

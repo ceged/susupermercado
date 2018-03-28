@@ -53,6 +53,7 @@
                                 <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
                             </ul>
                         </li>	
+                        <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">Modifier mot de passe</a></li>
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
                         <li><a href="Accueil.jsp">Se déconnecter</a></li>
                     </ul>
