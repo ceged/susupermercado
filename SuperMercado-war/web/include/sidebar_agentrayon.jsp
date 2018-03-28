@@ -22,23 +22,21 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+							<li><a href="GestionArticleJSP/CreerCasse.jsp">Casse</a>					
 								<ul>
-									<li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
-									<li><a href="Admin?action=TransfererListeMagasin">Modifier prix article</a></li>	
-                                                                        <li><a href="GestionMagasinJSP/CreerDirecteur.jsp">Supprimer article</a></li>	
-								</ul>
+									<li><a href="GestionArticleJSP/CreerCasse.jsp">Saisir Casse</a></li>
+									<li><a href="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste casse de mon rayon</a></li>	
+                                                                        </ul>
 							</li>															
 									
-							<li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
-                                                            <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Commande</a>
+							
+                                                            <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Rayon</a>
 								<ul>									
-									<li><a href="GestionArticleJSP/CreerCategorie.jsp"> Créer bon de commande</a></li>
-									<li><a href="Admin?action=TransfererListeCategorie">Afficher les bon de commandes </a></li>
+									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">"> Consulter liste livraison de mon rayon</a></li>
+									<li><a href="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">Consulter liste commandes de mon rayon</a></li>
 								</ul>
-							</li>							
-							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
-							<li><a href="Accueil.jsp">Sortir menu principal</a></li>
+							</li>					
+							<li><a href="MenuAgentRayon.jsp">Sortir menu principal</a></li>
 					</nav>
 				</div>
 			</section>

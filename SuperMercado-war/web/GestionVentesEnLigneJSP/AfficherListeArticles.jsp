@@ -31,7 +31,6 @@
         <% Magasin m= magasinChoisi;
         Client c = client;
         AchatEnLigne ach = achatEnCours;%>
-
         
         <p>      <%
 String attribut = (String) request.getAttribute("message");
@@ -45,30 +44,54 @@ if(attribut!=null){
 
 
                <h4 class="title">
-                      Article disponible pour le magasin <strong>  <%=m.getNomMagasin()%></strong>
+                    <span class="pull-left"><span class="text"><span class="line">  Article disponible pour le magasin<strong>  <%=m.getNomMagasin()%></strong></span></span></span>
+                    <span class="pull-center">
+			<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
                 </h4>
-			
-                          <div class="container">
+                        <div id="myCarousel" class="myCarousel carousel slide">
+                            <div class="carousel-inner">
+				<div class="active item">
+                                    <ul class="thumbnails">												
+                    <li class="span3">
+			<div class="row">
+                            <span class="sale_tag"></span>
+                            
+                            <div class="container">
                               <table>
-                               <% int i=0; for(ReferentielArticle ar: listeArticle){ 
-                                   if(i==0){
+                            <% int i=0; for(ReferentielArticle ar: listeArticle){ 
+                                                               if(i==0){
                                        %><tr><%
                                    }
-                                   i++;
-                               %>
-                               <td>
-                                <%=ar.getMarque()%><br/>
-                                <%=ar.getLibelleArticle()%><br/> 
-                                <%=ar.getPrixVenteMagasin()%><br/> 
-                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/><br/>
-                                </td>
+                                   i++;%>
+                                       <center><td>
+				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/logo4.png" alt="" /></a></p>
+				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
+                                <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
+                                <p class="price"><%=ar.getPrixVenteMagasin()%>€</p>
+                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
+                             </td>
+                                       </center>
                                 <%if(i==4){
                                        %></tr><%
                                    }
                                     }%> 
                                 </table>
-                        </div>	
-            
+                        </div>
+                        </div>
+                    </li>
+                    </ul>
+            </div>
+	</div>							
+    </div>
+    </div>						
+</div>
+<br/>
+</fieldset>
+                                </center>
+                                                                                         
+       <center>
+            <fieldset>
                     <input type="hidden" name="idClient" value=<%=c.getId()%>>
                     <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
                     <input type="hidden" id="idqte" name="quantite" value="">

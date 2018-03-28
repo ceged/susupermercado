@@ -259,4 +259,11 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
         liste=commandeFacade.RechercherListeBonCommmandeParChefRayon(c);
         return liste; 
     }
+
+    @Override
+    public List<ReferentielArticle> ConsulterListeArticleParFournisseur(String nomFournisseur) {
+        Fournisseur fournisseur = fournisseurFacade.RechercheFournisseurParNom(nomFournisseur);
+        return referentielArticleFacade.RechercherListeArticleParFournisseur(fournisseur);
+    }
+    
 }

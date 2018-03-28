@@ -175,19 +175,15 @@ public class Menu extends HttpServlet {
     String ancienMdp = request.getParameter("ancienMdp");
     String nouveauMdp = request.getParameter("nouveauMdp");
     String idPersonne = request.getParameter("id");
-    
     String message;
-    if(!(ancienMdp.trim().isEmpty() && nouveauMdp.trim().isEmpty()))
-    {
-        sessionPersonne.ModificationMdp(ancienMdp, nouveauMdp, idPersonne);
-        message = "Votre mot de passe a été modifié avec succès";
-        request.setAttribute("message", message);
+    
+    if(!(ancienMdp.trim().isEmpty() || nouveauMdp.trim().isEmpty())){
+        message=sessionPersonne.ModificationMdp(ancienMdp, nouveauMdp, idPersonne);
     } 
-    else
-    {
+    else{
         message = "Les champs ancien mot de passe et nouveau mot de passe sont obligatoires";
-        request.setAttribute("message", message);
     }
+     request.setAttribute("message", message);
    }
    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

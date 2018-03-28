@@ -38,13 +38,14 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="GestionMagasinJSP/CreerRayon.jsp">Rayon</a>					
+							<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">Rayon</a>					
 								<ul>
-									<li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">Modifier un rayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">Creer un chefrayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>
 									<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">Creer un rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">Modifier un rayon</a></li>
                                                                         <li><a href="DirecteurServlet?action=TransfererListeRayon&directeur=<%=p.getId()%>">Supprimer un rayon</a></li>	
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">Creer un chef rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>
+                                                                        
                                                                        
 								</ul>
 							</li>															
@@ -97,6 +98,7 @@
         else{
         out.println( attribut );}
         %> </p>
+        <%@ include file="/include/flexslider_dir.jsp" %>
      <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

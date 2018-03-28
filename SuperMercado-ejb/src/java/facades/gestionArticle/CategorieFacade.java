@@ -51,4 +51,17 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
         return categorieRecherche;
     }
     
+     @Override
+    public Categorie RechercherCategorieParId(Long idCategorieRecherche){
+        Categorie categorieRecherche = null;
+        Query req = getEntityManager().createQuery("Select categorieRecherche from Categorie as categorieRecherche where categorieRecherche.id=:idCategorieRecherche ");
+        req.setParameter("idCategorieRecherche", idCategorieRecherche);
+        List<Categorie>list=req.getResultList();
+            for(Categorie s:list)
+    {
+        categorieRecherche=s;
+    }
+        return categorieRecherche;
+    }
+    
 }

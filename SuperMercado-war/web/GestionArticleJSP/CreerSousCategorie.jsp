@@ -38,11 +38,11 @@
         <fieldset>
             
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
-        <label for="libelleCategorie">Catégorie <span class="requis">*</span></label>
-        <SELECT name="libelleCategorie" size="1">
+        <label for="idCategorie">Catégorie <span class="requis">*</span></label>
+        <SELECT name="idCategorie"size="1">
             <%
             for(Categorie s: listeCategorie){ %>
-            <OPTION><%=s.getLibelleCategorie()%>
+            <OPTION value="<%=s.getId()%>" ><%=s.getLibelleCategorie()%>
                 <%}%>
         </SELECT>
         
