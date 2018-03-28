@@ -31,7 +31,8 @@
         <% Magasin m= magasinChoisi;
         Client c = client;
         AchatEnLigne ach = achatEnCours;%>
-        <h1>Bienvenue <%=c.getPrenom()%></h1> <br />
+
+        
         <p>      <%
 String attribut = (String) request.getAttribute("message");
 if(attribut!=null){
@@ -39,67 +40,52 @@ if(attribut!=null){
             }
 %> 
       </p>
-        
-    <center>
+          <section>
         <form method="get" action="/SuperMercado-war/ClientServlet">
-            <fieldset>
-                 <br />
-   <section class="main-content">
-				<div class="row">
-					<div class="span12">													
-						<div class="row">
-							<div class="span12">
+
+
                <h4 class="title">
-                    <span class="pull-left"><span class="text"><span class="line">  Article disponible pour le magasin<strong>  <%=m.getNomMagasin()%></strong></span></span></span>
-                    <span class="pull-right">
-			<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-                    </span>
+                      Article disponible pour le magasin <strong>  <%=m.getNomMagasin()%></strong>
                 </h4>
-                        <div id="myCarousel" class="myCarousel carousel slide">
-                            <div class="carousel-inner">
-				<div class="active item">
-                                    <ul class="thumbnails">												
-                    <li class="span3">
-			<div class="row">
-                            <span class="sale_tag"></span>
-                            <% for(ReferentielArticle ar: listeArticle){ %>
-				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/Boucherie/sauciss.jpe" alt="" /></a></p>
-				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
-                                <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
-                                <p class="price"><%=ar.getPrixVenteMagasin()%></p>
-                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
-                                <%}%> 
-                                
-                        </div>
-                    </li>
-                    </ul>
-            </div>
-	</div>							
-    </div>
-    </div>						
-</div>
-<br/>
-</fieldset>
-                                </center>
-                                                                                         
-       <center>
-            <fieldset>
+			
+                          <div class="container">
+                              <table>
+                               <% int i=0; for(ReferentielArticle ar: listeArticle){ 
+                                   if(i==0){
+                                       %><tr><%
+                                   }
+                                   i++;
+                               %>
+                               <td>
+                                <%=ar.getMarque()%><br/>
+                                <%=ar.getLibelleArticle()%><br/> 
+                                <%=ar.getPrixVenteMagasin()%><br/> 
+                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/><br/>
+                                </td>
+                                <%if(i==4){
+                                       %></tr><%
+                                   }
+                                    }%> 
+                                </table>
+                        </div>	
+            
                     <input type="hidden" name="idClient" value=<%=c.getId()%>>
                     <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
                     <input type="hidden" id="idqte" name="quantite" value="">
                 <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
                 <input type="reset" value="Remettre à zéro" /> <br />
+                <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
             
-            <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
-            </fieldset>
+                    
         </form> 
-    </center>
-    <center>
+    
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
       <button type="submit">Changer de magasin</button> 
         </form>
+                    </section>
         </center>
+                   
         <script>
             function getQuantite() {
             var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
@@ -112,7 +98,7 @@ if(attribut!=null){
             }
             }
         </script>
-            
+        
     </body>
 </html>
 
