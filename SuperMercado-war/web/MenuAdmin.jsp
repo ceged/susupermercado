@@ -44,16 +44,16 @@
 					<a href="Accueil.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Magasin</a>					
+							<li><a >Magasin</a>					
 								<ul>
-									<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Creer un magasin</a></li>
+									<li><a href="Admin?action=CreerMagasin">Creer un magasin</a></li>
                                                                        
 								</ul>
 							</li>															
 							<li><a href="Admin?action=TransfererListeMagasinPourAjoutDirecteur">Créer un directeur</a></li>			
-							<li><a href="GestionArticleJSP/CreerCategorie.jsp">Catégorie</a>
+							<li><a >Catégorie</a>
 								<ul>									
-									<li><a href="GestionArticleJSP/CreerCategorie.jsp">Créer une Catégorie</a></li>
+									<li><a href="Admin?action=CreerCategorie"">Créer une Catégorie</a></li>
 									<li><a href="Admin?action=TransfererListeCategorie">Créer une sous-catégorie </a></li>
 								</ul>
 							</li>							

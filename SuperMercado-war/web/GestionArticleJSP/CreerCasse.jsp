@@ -44,23 +44,25 @@
 						<ul>
 							<li><a href="GestionArticleJSP/CreerCasse.jsp">Casse</a>					
 								<ul>
-									<li><a href="GestionArticleJSP/CreerCasse.jsp">Saisir Casse</a></li>
+									<li><a href="AgentRayonServlet?action=SaisirCasse">Saisir Casse</a></li>
 									<li><a href="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste casse de mon rayon</a></li>	
                                                                         </ul>
 							</li>															
 									
 							
-                                                            <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Rayon</a>
+                                                            <li><a>Rayon</a>
 								<ul>									
-									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>">"> Consulter liste livraison de mon rayon</a></li>
+									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste livraison de mon rayon</a></li>
 									<li><a href="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">Consulter liste commandes de mon rayon</a></li>
 								</ul>
 							</li>					
-							<li><a href="MenuAgentRayon.jsp">Sortir menu principal</a></li>
+							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
+							<li><a href="MenuAgentRayon.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>
-
      
     <body>
         <h1>Formulaire de saisie casse</h1>
