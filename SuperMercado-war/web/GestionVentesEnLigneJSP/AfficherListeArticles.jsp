@@ -23,7 +23,7 @@
         <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <jsp:useBean id="achatEnCours" scope="session" class="AchatEnLigne"></jsp:useBean>
         
-    <%@ include file="/include/css.jsp" %>    
+    <%@ include file="/include/css.jsp" %>      
     </head>    
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
@@ -58,25 +58,27 @@ if(attribut!=null){
                             <span class="sale_tag"></span>
                             
                             <div class="container">
+                                <center>
                               <table>
                             <% int i=0; for(ReferentielArticle ar: listeArticle){ 
                                                                if(i==0){
                                        %><tr><%
                                    }
                                    i++;%>
-                                       <center><td>
+                             <td>
 				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/logo4.png" alt="" /></a></p>
 				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
                                 <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
                                 <p class="price"><%=ar.getPrixVenteMagasin()%>€</p>
                                 <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
                              </td>
-                                       </center>
                                 <%if(i==4){
+                                    i=0;
                                        %></tr><%
                                    }
                                     }%> 
                                 </table>
+                            </center>
                         </div>
                         </div>
                     </li>

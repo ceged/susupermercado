@@ -119,11 +119,17 @@ public class SessionClient implements SessionClientLocal {
 
     @Override
     public LotArticle GetLotArticleFIFO(String idArticle, String quantite) {
-        
+        LotArticle lot;
         Long id = Long.valueOf(idArticle);
         int quantiteInt = Integer.valueOf(quantite);
         ReferentielArticle article = referentielArticleFacade.RechercheReferentielArticleParCodeBarre(id);
-        LotArticle lot = lotArticleFacade.RechercherLotArticleFIFO(article);
+        if(lotArticleFacade.RechercherLotArticle(article)!=null){
+            lot = lotArticleFacade.RechercherLotArticleFIFO(article);
+        }
+        else
+        {
+            lot =null;
+        }
         return lot;
     }
 
@@ -132,6 +138,8 @@ public class SessionClient implements SessionClientLocal {
         String message;
         int quantiteInt = Integer.parseInt(quantite); 
         LotArticle lotselectionne = this.GetLotArticleFIFO(article, quantite);
+        if(lotselectionne!=null)
+        {
         Long idAchatLong = Long.valueOf(idAchat);
         Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
         
@@ -159,6 +167,11 @@ public class SessionClient implements SessionClientLocal {
             {
                 ligneAchatFacade.AjouterQuantiteLigne(quantiteInt, ligneExistante);
                 message = "article ajouté à votre panier";}
+        }
+        }
+        else
+        {
+            message = "Désolé ! Rupture de Stock.";
         }
         return message;
     }

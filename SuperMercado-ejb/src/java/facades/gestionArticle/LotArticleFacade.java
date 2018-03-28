@@ -98,10 +98,24 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
         Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article ORDER BY la.dateCreation");
         req.setParameter("article", article);
         List maliste = req.getResultList();
-        la= (LotArticle) maliste.get(0);
+        try{
+        la= (LotArticle) maliste.get(0);}
+        catch(ArrayIndexOutOfBoundsException exception)
+        {return null;
+        }
+        
         return la;
     }
     
+    @Override
+    public List<LotArticle> RechercherLotArticle(ReferentielArticle article) {
+        LotArticle la;
+        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article");
+        req.setParameter("article", article);
+        List maliste = req.getResultList();
+        
+        return maliste;
+    }
     
     
     
