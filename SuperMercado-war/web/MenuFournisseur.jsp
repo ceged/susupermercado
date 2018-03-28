@@ -41,10 +41,11 @@
 							<li><a href="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">Consulter mes commandes</a></li>						
 								
 										
-						</ul>
+						
                                                          <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=f.getId()%>">Modifier mon mot de passe</a></li>
-                                                        <li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
-                                                       
+                                                        <li><a href="MenuDirecteur.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                       </ul>
 					</nav>
 				</div>
 			</section>

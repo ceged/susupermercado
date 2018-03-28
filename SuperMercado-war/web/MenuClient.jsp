@@ -15,7 +15,7 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <% Client c= client;{%>
+    <% Client c= client;%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -38,7 +38,8 @@
 							<li><a href="ClientServlet?action=transferListeMagasin">Vente en ligne</a></li>			
 							
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">Modifier mon mot de passe</a></li>
-                                                        <li><a href="MenuClient.jsp">Sortir menu principal</a></li>
+                                                        <li><a href="MenuClient.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
                                         </ul>
                                             </nav>
 				</div>
@@ -47,7 +48,7 @@
     <body>
          
 <tr> <td Width=15%>Bienvenue <%=c.getPrenom()%></td>
-    </tr><%}%>
+    </tr>
         <h1>Menu Client</h1>
         
         <%@ include file="/include/flexslider.jsp" %>

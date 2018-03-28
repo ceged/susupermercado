@@ -23,13 +23,61 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+
 <body>
-<% DirecteurMagasin a= directeurConnecte;
+<% DirecteurMagasin p= directeurConnecte;
 List<Caisse> listeCaisse2 =listeCaisse;
 List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
+<div id="top-bar" class="container">
+			<div class="row">
+				
+				<div class="span8">
+					<div class="account pull-left">
+						<ul class="user-menu">				
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+                <div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a>Rayon</a>					
+								<ul>
+									<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">Creer un rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">Modifier un rayon</a></li>
+                                                                
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">Creer un chef rayon</a></li>
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>                                                                    
+								</ul>
+							</li>															
+							<li><a href="DirecteurServlet?action=CreerSecteur">Créer un secteur</a></li>	
+                                                        <li><a href="DirecteurServlet?action=CreerAgentLivraison">Créer un agent livraison</a></li>
+							<li><a>Caisse</a>
+								<ul>									
+									<li><a href="DirecteurServlet?action=CreerCaisse">Créer une Caisse</a></li>
+							
+                                                                        <li><a href="DirecteurServlet?action=CreerAgentCaisse"> Créer un agent caisse </a></li>
+                                                                        
+                                                                        <li><a href="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>"> Créer une affectation caisse </a></li>
+								</ul>
+							</li>							
+							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
+							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                    						</ul>
+
+					</nav>
+				</div>
+			</section>
+                </div>
+
         
-<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
+<tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
          <h1>Formulaire d'affectation</h1>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -60,7 +108,7 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
               <%}%>
         </SELECT>
         <br />
-        <input type="hidden" name="magasin" value="<%=a.getMagasin().getNomMagasin()%>" />
+        <input type="hidden" name="magasin" value="<%=p.getMagasin().getNomMagasin()%>" />
         <br />
         <input type="hidden" name="action" value="insererAffectation">
         </fieldset>
