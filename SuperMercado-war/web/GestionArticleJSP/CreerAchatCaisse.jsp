@@ -27,7 +27,11 @@
         <jsp:useBean id="achatCaisse" scope="session" class="AchatCaisse"></jsp:useBean>
         
         <title>Menu Panier Achat Caisse</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_agentcaisse.jsp" %>
+     
 
         <body>
         <h1>Liste de vos achats caisse</h1>
@@ -40,7 +44,7 @@ if(attribut!=null){
 
 %> </p>
         
-        <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
+        <center><form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
             <label for="number"> Code barre lot article <span class="requis">*</span></label>
         <input type="number" name="idLotArticle" value="" size="20" maxlength="20" />
         <input type="hidden" name="idAchat" value="<%=achatCaisse.getId() %>">
@@ -48,6 +52,7 @@ if(attribut!=null){
         <input type="submit" value="Valider" />
         <br />
         </form>
+        </center> 
  <TABLE border width=50%>
 <tr> <TD>Designation article</TD>
 <TD>Quantité</TD>
@@ -72,7 +77,8 @@ for(LigneAchat l : liste){t=t+l.getLotArticle().getArticle().getPrixVenteMagasin
     
 </table>       
         
-    <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
+        <center>
+            <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
         <input type="hidden" name="idAchat" value="<%=achatCaisse.getId() %>">
         <input type="hidden" name="action" value="validerAchatCaisse">
         <input type="submit" value="Valider panier/Passer au paiement" />
@@ -80,5 +86,8 @@ for(LigneAchat l : liste){t=t+l.getLotArticle().getArticle().getPrixVenteMagasin
         </form>
     
     
+   </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

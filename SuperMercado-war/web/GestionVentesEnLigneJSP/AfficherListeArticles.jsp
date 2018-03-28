@@ -16,43 +16,104 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
+        
         <title>JSP Page</title>
         <jsp:useBean id="magasinChoisi" scope="session" class="Magasin"></jsp:useBean>
         <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <jsp:useBean id="achatEnCours" scope="session" class="AchatEnLigne"></jsp:useBean>
         
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <% Magasin m= magasinChoisi;
         Client c = client;
         AchatEnLigne ach = achatEnCours;%>
-        <h1></h1>
+        
+        <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
+        
+    <center>
         <form method="get" action="/SuperMercado-war/ClientServlet">
             <fieldset>
-                <td Width=15%>Bienvenue <%=c.getPrenom()%></td>   
-                <br />
-                <label for="nomMagasin">Articles disponibles pour le magasin <%=m.getNomMagasin()%> <span class="requis"></span></label>
-                <br />
-        
-                <% for(ReferentielArticle a: listeArticle){ %>
-                <input type="radio" name="article" value=<%=a.getCodeBarre()%> size="20"/>
-                <label><%=a.getLibelleArticle()%></label> <br />
-                <%}%>  
-                
                  <br />
+   <section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+               <h4 class="title">
+                    <span class="pull-left"><span class="text"><span class="line">  Article disponible pour le magasin<strong>  <%=m.getNomMagasin()%></strong></span></span></span>
+                    <span class="pull-center">
+			<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
+                </h4>
+                        <div id="myCarousel" class="myCarousel carousel slide">
+                            <div class="carousel-inner">
+				<div class="active item">
+                                    <ul class="thumbnails">												
+                    <li class="span3">
+			<div class="row">
+                            <span class="sale_tag"></span>
+                            
+                            <div class="container">
+                              <table>
+                            <% int i=0; for(ReferentielArticle ar: listeArticle){ 
+                                                               if(i==0){
+                                       %><tr><%
+                                   }
+                                   i++;%>
+                                       <center><td>
+				<p><a href="product_detail.html"><img src="<%= request.getContextPath() %>/template/images/logo4.png" alt="" /></a></p>
+				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
+                                <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
+                                <p class="price"><%=ar.getPrixVenteMagasin()%>€</p>
+                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
+                             </td>
+                                       </center>
+                                <%if(i==4){
+                                       %></tr><%
+                                   }
+                                    }%> 
+                                </table>
+                        </div>
+                        </div>
+                    </li>
+                    </ul>
+            </div>
+	</div>							
+    </div>
+    </div>						
+</div>
+<br/>
+</fieldset>
+                                </center>
+                                                                                         
+       <center>
+            <fieldset>
                     <input type="hidden" name="idClient" value=<%=c.getId()%>>
                     <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
                     <input type="hidden" id="idqte" name="quantite" value="">
                 <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
                 <input type="reset" value="Remettre à zéro" /> <br />
-            </fieldset>
+            
             <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
+            </fieldset>
         </form> 
+    </center>
+    <center>
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
-      <button type="submit">Retourner au menu</button> 
+      <button type="submit">Changer de magasin</button> 
         </form>
+        </center>
         <script>
             function getQuantite() {
             var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
@@ -65,13 +126,7 @@
             }
             }
         </script>
-            <p>      <%
-String attribut = (String) request.getAttribute("message");
-if(attribut!=null){
-    out.println( attribut );
-            }
-%> 
-      </p>
+            
     </body>
 </html>
 

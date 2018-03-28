@@ -11,9 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
         <title>Page de connexion</title>
+     <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
+     
     <body>
         <h1>Identifiants de connexion</h1>
+    <center> 
         <form method="get" action="Menu">
         <label for="loginUser">Login <span class="requis">*</span></label>
         <input type="text" name="loginUser" value="" size="20" maxlength="20" />
@@ -24,5 +29,9 @@
         <input type="hidden" name="action" value="connexionUser">
         <input type="submit" value="Valider" />
         </form>
+    </center>
+     <%@ include file="/include/footer.jsp" %>
+     
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

@@ -23,12 +23,17 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="listeCategorie" scope="session" class="List<Categorie>"></jsp:useBean>
         <title>JSP Page</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
+     
     <body>
  
         
             <h1>Créer une sous-catégorie</h1>
         
+    <center>
         <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
             
@@ -52,9 +57,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form> 
-                
-               
-                
-        
-    </body> 
+         </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

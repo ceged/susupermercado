@@ -21,10 +21,14 @@
         <link rel="stylesheet" href="test.css" type="text/css">
          <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
         <h1>Formulaire de création directeur</h1>
-        <form method="get" action="/SuperMercado-war/Admin">
+        <center> 
+           <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Directeur (majuscules et accents interdits)</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
@@ -66,6 +70,9 @@
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+</form>
+            </center> 
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

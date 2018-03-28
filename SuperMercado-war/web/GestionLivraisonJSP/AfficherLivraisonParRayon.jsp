@@ -28,7 +28,11 @@
         <jsp:useBean id="livraison" scope="session" class="Livraison"></jsp:useBean>
         <jsp:useBean id="liste" scope="session" class="List<LigneLivraison>"></jsp:useBean>
 <title>Commande</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_agentrayon.jsp" %>
+    
 <body>
 <h1>Liste des articles de la livraison</h1>
 <p> <%
@@ -56,5 +60,8 @@ for(LigneLivraison l : liste){%>
 </tr><%}}%>
 
 <hr>
-</body>
+ 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

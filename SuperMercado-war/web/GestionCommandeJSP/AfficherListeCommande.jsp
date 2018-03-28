@@ -24,7 +24,50 @@
         <jsp:useBean id="liste" scope="session" class="List<Commande>"></jsp:useBean>
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
 <title>Liste des bons de commandes</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <% ChefRayon c = chefRayonConnecte;
+                %>
+               
+    <%@ include file="/include/header.jsp" %>
+    <div id="top-bar" class="container">
+        <div class="row">
+
+            <div class="span8">
+                <div class="account pull-left">
+                    <ul class="user-menu">						
+                        <li><a href="Connexion.jsp">Portail de connexion</a></li>		
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">				
+                <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
+                        <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+                            <ul>
+                                <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">Modifier prix article</a></li>	
+                                <li><a href="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=c.getId()%>">Supprimer article</a></li>	
+                            </ul>
+                        </li>															
+
+                        <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
+                        <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">Commande</a>
+                            <ul>									
+                                <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>"> Créer bon de commande</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
+                            </ul>
+                        </li>	
+                        <li><a href="MenuChefdeRayon.jsp">Menu chef rayon</a></li>
+                </nav>
+            </div>
+        </section>
 <body>
 <h1>Liste des bons de commande</h1>
 <p> <%
@@ -35,7 +78,8 @@ if(attribut!=null){
 %> </p>
 <A HREF="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=chefRayonConnecte.getId()%>">Créer un bon de commande</A><br />
 <A HREF="MenuChefdeRayon.jsp">Retour au menu</A><br />
-<form method="get" action="/SuperMercado-war/ChefRayonServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/ChefRayonServlet">
 <label for="statut">Trier par <span class="requis">*</span></label>
 <SELECT name="statut" size="1">
             <OPTION value="aucun">        
@@ -54,14 +98,17 @@ if(attribut!=null){
 <TD>Voir le bon de commande</TD>
  </tr>
 <%
-for(Commande c : liste){%>
-<tr><td Width=15%><%=c.getFournisseur().getNom()%></td>
-<td Width=15%><%=c.getDateCommande()%></td>
-<td Width=15%><%=c.getStatutCommande()%></td>
-<td Width=30%><A href="ChefRayonServlet?action=afficherBonCommande&commandeId=<%=c.getId()%>"> Cliquez ici</A></td>
+for(Commande cm : liste){%>
+<tr><td Width=15%><%=cm.getFournisseur().getNom()%></td>
+<td Width=15%><%=cm.getDateCommande()%></td>
+<td Width=15%><%=cm.getStatutCommande()%></td>
+<td Width=30%><A href="ChefRayonServlet?action=afficherBonCommande&commandeId=<%=cm.getId()%>"> Cliquez ici</A></td>
 
 </tr><%}%></TABLE>
 
 <hr>
-</body>
+    </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

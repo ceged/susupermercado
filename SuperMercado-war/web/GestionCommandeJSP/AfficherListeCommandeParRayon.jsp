@@ -28,7 +28,11 @@
         <jsp:useBean id="liste" scope="session" class="List<Commande>"></jsp:useBean>
         <jsp:useBean id="agentRayonConnecte" scope="session" class=" AgentRayon"></jsp:useBean>
 <title>Liste de vos commandes</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_agentrayon.jsp" %>
+     
 <body>
 <h1>Liste de vos commandes</h1>
 <p> <%
@@ -54,5 +58,8 @@ for(Commande l : liste){%>
 </tr><%}%></TABLE>
 
 <hr>
-</body>
+  
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

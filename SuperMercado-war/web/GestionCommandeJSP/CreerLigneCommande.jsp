@@ -31,10 +31,15 @@
         <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="test/css">
         <title>JSP Page</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+     
     <body>
     <% List<ReferentielArticle> liste= commande.getFournisseur().getListeReferentielArticles(); %>
          <h1>Formulaire de ligne commande</h1>
+    <center>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations ligne commande (majuscules et accents interdits)</legend>
@@ -58,6 +63,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+      </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
-        

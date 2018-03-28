@@ -80,7 +80,7 @@ public class Menu extends HttpServlet {
             if (i==0){
                 String message="Identifiants incorrects";
                 request.setAttribute( "message", message );
-                jspChoix="/Accueil.jsp";
+                jspChoix="/Connexion.jsp";
             }
             if(i==1){
                 Personne personneConnecte =sessionAdmin.PersonneConnecte(login, mp);

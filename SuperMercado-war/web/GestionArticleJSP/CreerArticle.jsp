@@ -28,14 +28,58 @@
         <jsp:useBean id="listeSousCategorie" scope="session" class="List<SousCategorie>"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <title>JSP Page</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <% ChefRayon c = chefRayonConnecte;
+                {%>
+               
+    <%@ include file="/include/header.jsp" %>
+    <div id="top-bar" class="container">
+        <div class="row">
+
+            <div class="span8">
+                <div class="account pull-left">
+                    <ul class="user-menu">						
+                        <li><a href="Connexion.jsp">Portail de connexion</a></li>		
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">				
+                <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
+                        <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+                            <ul>
+                                <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">Modifier prix article</a></li>	
+                                <li><a href="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=c.getId()%>">Supprimer article</a></li>	
+                            </ul>
+                        </li>															
+
+                        <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
+                        <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">Commande</a>
+                            <ul>									
+                                <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>"> Créer bon de commande</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
+                            </ul>
+                        </li>	
+                        <li><a href="MenuChefdeRayon.jsp">Menu chef rayon</a></li>
+                </nav>
+            </div>
+        </section>
+     
     <body>
-        <% ChefRayon c= chefRayonConnecte;
     List<SousCategorie> listeSousCategorie2 =listeSousCategorie;{%>
 <tr> <td Width=15%>Bienvenue <%=c.getNom()%></td>
 </tr><%}%>
         <h1>Formulaire de création d'article</h1>
-        <form method="get" action="/SuperMercado-war/ChefRayonServlet">
+        <center>
+            <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations Produit (majuscules et accents interdits)</legend>
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
@@ -64,7 +108,7 @@
         <%
             int i=0;
             for(Fournisseur f: listeFournisseur){ i++;%>
-            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" required/><%=f.getNom()%>
+            <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" /><%=f.getNom()%>
                 <%}%>
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">
@@ -72,5 +116,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
+      </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

@@ -25,7 +25,11 @@
         <jsp:useBean id="listeLigneCommande" scope="session" class="List<LigneCommande>"></jsp:useBean>
         <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
 <title>Bon de commande en cours</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+     
 <body>
 <h1>Liste des articles ajoutés</h1>
 <p> <%
@@ -63,5 +67,8 @@ for(LigneCommande l : listeLigneCommande){t=t+l.getPrixAchatUnitaire()*l.getQuan
 </table>
 
 <hr>
-</body>
+  
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

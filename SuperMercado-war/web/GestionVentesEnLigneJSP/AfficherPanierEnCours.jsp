@@ -20,13 +20,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="text.css" type="text/css">
         <title>JSP Page</title>
         <jsp:useBean id="listeLignesPanier" scope="session" class="List<LigneAchat>"></jsp:useBean>
         <jsp:useBean id="achatEnCours" scope="session" class="AchatEnLigne"></jsp:useBean>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
+    <center>
         <h1>Mon Panier!</h1>
+        <p>      <%
+String attribut = (String) request.getAttribute("message");
+if(attribut!=null){
+    out.println( attribut );
+            }
+%> 
+      </p>
         
         <TABLE border width=50%>
 <tr> 
@@ -43,22 +53,29 @@ for(LigneAchat c : listeLignesPanier){%>
 <td Width=30%><A href="ClientServlet?action=SupprimerLigneAchat&ligneAchatId=<%=c.getId()%>&idAchat=<%=achatEnCours.getId()%>"> Supprimer du panier</A></td>
 
 </tr><%}%>
-</TABLE>
-<form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
+        </TABLE>
+    </center>
+        
+    <center>
+        <form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
       <button type="submit">Continue Shopping</button>   
-</form>
+    </form>
+    </center>
+    
+        <form method="get" action="/SuperMercado-war/ClientServlet">
+      <input type="hidden" name="action" value="transferListeMagasin">
+      <button type="submit">Changer de magasin</button>   
+        </form>
+    
 
-<form method="get" action="/SuperMercado-war/ClientServlet">
+    <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
       <input type="hidden" name="action" value="validerPanier">
       <button type="submit"> Valider mon panier </button>   
-</form>
-      <p>      <%
-String attribut = (String) request.getAttribute("message");
-if(attribut!=null){
-    out.println( attribut );
-            }
-%> 
-      </p>
+    </form>
+      
+    </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

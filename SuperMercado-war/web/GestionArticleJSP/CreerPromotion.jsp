@@ -24,11 +24,16 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="listeRefArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <title>JSP Page</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
+     
     <body>
         
        <h1>Créer une Promotion</h1>
         
+    <center>
         <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
         
@@ -60,5 +65,8 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form> 
+      </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

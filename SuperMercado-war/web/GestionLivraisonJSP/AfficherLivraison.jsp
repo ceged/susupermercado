@@ -27,7 +27,11 @@
         <jsp:useBean id="livraison" scope="session" class="Livraison"></jsp:useBean>
         <jsp:useBean id="liste" scope="session" class="List<LigneLivraison>"></jsp:useBean>
 <title>Commande</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+     <%@ include file="/include/sidebar_agentlivraison.jsp" %>
+     
 <body>
 <h1>Liste des articles</h1>
 <p> <%
@@ -85,7 +89,8 @@ for(LigneLivraison l : liste){%>
     <input type="submit" value="Valider" /></td><%}else{%><td Width=30%>Déjà valider</td>
     </tr></form><%}}%></TABLE>
     
-<form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
 <label for="date"> Date de livraison effective <span class="requis">*</span></label>
         <input type="date" name="date" value="" size="20" maxlength="20" />
         <br />
@@ -101,5 +106,8 @@ for(LigneLivraison l : liste){%>
     <input type="submit" value="Valider"/></td>
 </form>
 <hr>
-</body>
+  </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

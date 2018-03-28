@@ -27,7 +27,36 @@
         <jsp:useBean id="liste" scope="session" class="List<Livraison>"></jsp:useBean>
         <jsp:useBean id="fournisseurConnecte" scope="session" class="Fournisseur"></jsp:useBean>
 <title>lListe de vos commandes</title>
-</head>
+  <%@ include file="/include/css.jsp" %>
+    </head>
+     <%@ include file="/include/header.jsp" %>
+    <div id="top-bar" class="container">
+			<div class="row">
+				
+				<div class="span8">
+					<div class="account pull-left">
+						<ul class="user-menu">					
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+                <div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=fournisseurConnecte.getId()%>">Consulter mes commandes</a></li>						
+								
+										
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+     
 <body>
 <h1>Liste de vos commandes</h1>
 <p> <%
@@ -37,7 +66,8 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuFournisseur.jsp">Retour au menu</A><br />
-<form method="get" action="/SuperMercado-war/FournisseurServlet">
+<center>
+    <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Recherche entre 2 dates <span class="requis">*</span></label>
         <input type="date" name="date1" value="" size="20" maxlength="20" />
         <input type="date" name="date2" value="" size="20" maxlength="20" />
@@ -62,5 +92,8 @@ for(Livraison l : liste){%>
 </tr><%}%></TABLE>
 
 <hr>
-</body>
+  </center> 
+    <%@ include file="/include/footer.jsp" %>
+    </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

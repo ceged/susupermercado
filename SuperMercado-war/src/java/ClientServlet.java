@@ -140,10 +140,6 @@ public class ClientServlet extends HttpServlet {
         }
         else if(act.equals("insererLignePanier")){
             doActioninsererLignePanier(request,response);
-            /*String idAchat= request.getParameter("idAchat");
-            AchatEnLigne c=sessionClient.RechercheAchatParId(idAchat);
-            HttpSession sess=request.getSession(true);*/
-          //sess.setAttribute("listeLigneCommande",listeLigneCommande);
             jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
         }
         else if(act.equals("passageDateChoisiClient")){

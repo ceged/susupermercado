@@ -1,10 +1,4 @@
 <%-- 
-    Document   : CreerCompteClient
-    Created on : 19 mars 2018, 16:15:44
-    Author     : Sophia
---%>
-
-<%-- 
     Document   : CreerDirecteur
     Created on : 13 mars 2018, 13:25:44
     Author     : Soldat
@@ -17,9 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
         <title>JSP Page</title>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
-        <h1></h1>
+        <h1>Compte client</h1>
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <fieldset>
         <legend>Informations Client (majuscules et accents interdits)</legend>
@@ -56,13 +61,11 @@
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-   <p> <%
-        String attribut = (String) request.getAttribute("message");
-        if(attribut==null){
-            attribut="Aucune action effectuée";
-        }
-        else{
-        out.println( attribut );}
-        %> </p>
+   
+     </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+
+

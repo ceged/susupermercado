@@ -16,22 +16,28 @@
         <title>JSP Page</title>
         <jsp:useBean id="client" scope="session" class="Client"></jsp:useBean>
         <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
-    </head>
+     <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar.jsp" %>
     <body>
          <% Client c = client;%>
         <h1>Choisissez un magasin</h1>
-        <form method="get" action="/SuperMercado-war/ClientServlet">
+    <center>
+        <form method="post" action="/SuperMercado-war/ClientServlet">
         <fieldset>
 
         
-        <label for="magasin">Magasin : <span class="requis">*</span></label>
-         <%
+        <label for="magasin">Magasin disponible : <span class="requis">*</span></label>
+        <SELECT name="magasin" size="1">
+            <%
             for(Magasin m: listeMagasin){ %>
-            <input type="radio" name="magasin" value="<%=m.getNomMagasin()%>" size="20"/><%=m.getNomMagasin()%>
+            <OPTION><%=m.getNomMagasin()%>
                 <%}%>
-        <br />
+        </SELECT>
+        
         <input type="hidden" name="idClient" value=<%=c.getId()%>>
-        <input type="hidden" name="action" value="transferArticlesParMagasin" >
+        <input type="hidden" name="action" value="transferArticlesParMagasin">
         </fieldset> 
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
@@ -45,5 +51,9 @@ if(attribut!=null){
 %> 
       </p>
         
+    </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
+

@@ -3,13 +3,6 @@
     Created on : 13 mars 2018, 12:00:11
     Author     : Soldat
 --%>
-<% 
-        
-    if (session.getAttribute("personneConnecte") == null) {
-        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
-        rd.forward(request, response);
-        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
- } %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,9 +11,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
         <title>JSP Page</title>
-    </head>
+    <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/sidebar_admin.jsp" %>
     <body>
         <h1>Formulaire de création magasin</h1>
+        <center> 
         <form method="post" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Magasin (majuscules et accents interdits)</legend>
@@ -37,6 +34,9 @@
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+</form>
+            </center> 
+    <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>
