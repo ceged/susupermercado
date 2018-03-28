@@ -76,7 +76,7 @@
         else{
         out.println( attribut );}
         %> </p>
-       <%@ include file="/include/flexsider_admin.jsp" %>
+       <%@ include file="/include/flexslider.jsp" %>
         
       <%@ include file="/include/footer.jsp" %>
     </body>
