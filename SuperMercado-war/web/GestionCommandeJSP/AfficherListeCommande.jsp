@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : AfficherCommandeEnCours
     Created on : 16 mars 2018, 15:57:17
     Author     : Soldat
@@ -28,7 +28,7 @@
     </head>
      <%@ include file="/include/header.jsp" %>
      <% ChefRayon c = chefRayonConnecte;
-                {%>
+                {%></tr><%}%>
                
     <%@ include file="/include/header.jsp" %>
     <div id="top-bar" class="container">
@@ -98,11 +98,11 @@ if(attribut!=null){
 <TD>Voir le bon de commande</TD>
  </tr>
 <%
-for(Commande c : liste){%>
-<tr><td Width=15%><%=c.getFournisseur().getNom()%></td>
-<td Width=15%><%=c.getDateCommande()%></td>
-<td Width=15%><%=c.getStatutCommande()%></td>
-<td Width=30%><A href="ChefRayonServlet?action=afficherBonCommande&commandeId=<%=c.getId()%>"> Cliquez ici</A></td>
+for(Commande cm : liste){%>
+<tr><td Width=15%><%=cm.getFournisseur().getNom()%></td>
+<td Width=15%><%=cm.getDateCommande()%></td>
+<td Width=15%><%=cm.getStatutCommande()%></td>
+<td Width=30%><A href="ChefRayonServlet?action=afficherBonCommande&commandeId=<%=cm.getId()%>"> Cliquez ici</A></td>
 
 </tr><%}%></TABLE>
 

@@ -74,8 +74,7 @@
         </section>
      
     <body>
-    List<SousCategorie> listeSousCategorie2 =listeSousCategorie;{%>
-<tr> <td Width=15%>Bienvenue <%=c.getNom()%></td>
+   
 </tr><%}%>
         <h1>Formulaire de création d'article</h1>
         <center>

@@ -1,9 +1,4 @@
-<%-- 
-    Document   : AfficherCommandeEnCours
-    Created on : 16 mars 2018, 15:57:17
-    Author     : Soldat
---%>
-<%@page import="entités.gestionArticle.ReferentielArticle"%>
+
 <% 
         
     if (session.getAttribute("chefRayonConnecte") == null) {
@@ -12,7 +7,7 @@
         response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
  } %>
 
-
+<%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page import="entités.gestionCommande.Commande"%>
 <%@page import="entités.gestionCommande.LigneCommande"%>
 <%@page import="java.util.List"%>
@@ -20,16 +15,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
+         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
         <jsp:useBean id="listeLigneCommande" scope="session" class="List<LigneCommande>"></jsp:useBean>
-        <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
-<title>Bon de commande en cours</title>
-  <%@ include file="/include/css.jsp" %>
+        <link rel="stylesheet" href="test.css" type="test/css">
+        <title>Bon de commande en cours</title>
+      <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <%@ include file="/include/sidebar_chefrayon.jsp" %>
-     
+    <% ChefRayon c = chefRayonConnecte;%>
+
+<div id="top-bar" class="container">
+        <div class="row">
+
+            <div class="span8">
+                <div class="account pull-left">
+                    <ul class="user-menu">						
+                        <li><a href="Connexion.jsp">Portail de connexion</a></li>		
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">				
+                <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
+                        <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+                            <ul>
+                                <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">Modifier prix article</a></li>	
+                                <li><a href="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=c.getId()%>">Supprimer article</a></li>	
+                            </ul>
+                        </li>															
+
+                        <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
+                        <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">Commande</a>
+                            <ul>									
+                                <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>"> Créer bon de commande</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
+                            </ul>
+                        </li>	
+                        <li><a href="MenuChefdeRayon.jsp">Menu chef rayon</a></li>
+                </nav>
+            </div>
+        </section>
 <body>
 <h1>Liste des articles ajoutés</h1>
 <p> <%
@@ -56,8 +89,9 @@ for(LigneCommande l : listeLigneCommande){t=t+l.getPrixAchatUnitaire()*l.getQuan
 <td Width=15%><%=l.getPrixAchatUnitaire()%></td>
 <td Width=15%><%=l.getPrixAchatUnitaire()*l.getQuantiteLigne()%></td>
 <td Width=30%><A href="ChefRayonServlet?action=SupprimerLigneAchat&ligneId=<%=l.getId() %>&commandeId=<%=commande.getId()%>"> Cliquez ici</A></td>
+<%}%>
 
-</tr><%}%></TABLE>
+</tr></TABLE>
 <table border width="50%">
     <tr>
         <td>Coût total : </td>
@@ -67,7 +101,7 @@ for(LigneCommande l : listeLigneCommande){t=t+l.getPrixAchatUnitaire()*l.getQuan
 </table>
 
 <hr>
-  
+
     <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

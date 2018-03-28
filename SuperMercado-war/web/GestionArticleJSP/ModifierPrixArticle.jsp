@@ -29,7 +29,7 @@
     </head>
      <%@ include file="/include/header.jsp" %>
      <% ChefRayon c = chefRayonConnecte;
-                {%>
+              List<ReferentielArticle> liste=listeReferentielArticleModifier;{%>  
                
     <%@ include file="/include/header.jsp" %>
     <div id="top-bar" class="container">
@@ -71,8 +71,7 @@
         </section>
      
     <body>
-        List<ReferentielArticle> liste=listeReferentielArticleModifier;{%>
-<tr> <td Width=15%>Bienvenue <%=c.getNom()%></td>
+        
 </tr><%}%>
         <h1>Formulaire de création d'article</h1>
         <center>
