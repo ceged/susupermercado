@@ -3,7 +3,8 @@
     Created on : 27 mars 2018, 14:31:49
     Author     : tangu_000
 --%>
-
+<%@page import="entités.gestionMagasin.AgentCaisse"%>
+<jsp:useBean id="agentCaisse" scope="session" class="AgentCaisse"></jsp:useBean>
 <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -19,14 +20,18 @@
                 <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<a href="Accueil.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="EmployeCaisseServlet?action=insererAchat">Achat</a>					
 								<ul>
 									<li><a href="EmployeCaisseServlet?action=insererAchat">Créer un achat</a></li>
 									
-						</ul>
+                                                                </ul>
+                                                        <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentCaisse.getId()%>">Modifier mot de passe</a></li>
+                                                        <li><a href="MenuAgentCaisse.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>

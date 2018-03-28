@@ -68,6 +68,10 @@ public class AgentRayonServlet extends HttpServlet {
             DoActionInsererCasse(request,response);
             jspChoix="/MenuAgentRayon.jsp";
         }
+        else if(act.equals("SaisirCasse")){
+            jspChoix="/GestionArticleJSP/CreerCasse.jsp";
+        }
+        
         else if (act.equals("passageListeCasseRayon")){
             String idAgent=request.getParameter("idAgent");
             List<Casse> liste=sessionAgentRayon.ChercherListeCasseParRayon(idAgent);

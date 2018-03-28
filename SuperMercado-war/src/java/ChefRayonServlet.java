@@ -80,6 +80,9 @@ public class ChefRayonServlet extends HttpServlet {
             }
             
         }
+        else if(act.equals("CreerFournisseur")){
+            jspChoix="/GestionCommandeJSP/CreerFournisseur.jsp";
+        }
         else if (act.equals("passageInfospourModifierPrix"))
         {
             String chefRayonCherche= request.getParameter( "chefRayon" );

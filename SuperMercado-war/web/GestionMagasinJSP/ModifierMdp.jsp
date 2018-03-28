@@ -24,10 +24,10 @@
     <%@ include file="/include/header.jsp" %>
 <body>
 <%Personne p = personneConnecte;{%>
-<tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
+<center>
         <h1>Formulaire de changement de mot de passe</h1>
 <%}%>
-<center>
+
     
 <form method="get" action="/SuperMercado-war/Menu">
 <fieldset>

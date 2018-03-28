@@ -79,6 +79,10 @@ public class AgentLivraisonServlet extends HttpServlet {
             sess.setAttribute("liste",liste);
             jspChoix="/GestionLivraisonJSP/AfficherLivraison.jsp"; 
         }
+        else if(act.equals("CreerCreneau")){
+            jspChoix="/GestionLivraisonJSP/CreerCreneau.jsp";
+        }
+        
         else if(act.equals("ValiderLigneLivraison")){
             DoActionValiderLigneLivraison(request,response);
             String livraisonId=request.getParameter("livraisonId");

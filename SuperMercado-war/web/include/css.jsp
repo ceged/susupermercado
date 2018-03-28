@@ -14,6 +14,8 @@
 		<link href="<%= request.getContextPath() %>/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
 		<link href="<%= request.getContextPath() %>/template/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 		
+                <link href="<%= request.getContextPath()%>/template/css/bootstrappage-grid.css" rel="stylesheet"/>
+                <link href="<%= request.getContextPath()%>/template/css/bootstrappage-grid.min.css" rel="stylesheet"/>
 		<link href="<%= request.getContextPath()%>/template/css/bootstrappage.css" rel="stylesheet"/>
 		
 		<!-- global styles -->
