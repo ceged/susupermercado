@@ -104,10 +104,6 @@ if(attribut!=null){
                     
         </form> 
     
-        <form method="get" action="/SuperMercado-war/ClientServlet">
-      <input type="hidden" name="action" value="transferListeMagasin">
-      <button type="submit">Changer de magasin</button> 
-        </form>
                     </section>
         </center>
                    
