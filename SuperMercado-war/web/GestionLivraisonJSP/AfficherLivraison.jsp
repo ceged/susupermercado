@@ -23,6 +23,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="agentLivraisonConnecte" scope="session" class="AgentLivraison"></jsp:useBean>
         <jsp:useBean id="livraison" scope="session" class="Livraison"></jsp:useBean>
         <jsp:useBean id="liste" scope="session" class="List<LigneLivraison>"></jsp:useBean>
@@ -33,6 +34,7 @@
      <%@ include file="/include/sidebar_agentlivraison.jsp" %>
      
 <body>
+<center>
 <h1>Liste des articles</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -42,27 +44,28 @@ if(attribut!=null){
 
 %> </p>
 <A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
-<TABLE border width=50%>
-<tr> <TD>Designation article</TD>
-<TD>Quantité Fournisseur</TD>
-<TD>Quantité Livrée</TD>
-<TD>Quantité Receptionnée</TD>
-<TD>Statut</TD>
-<TD>Garantie(mois)</TD>
-<TD>Couleur</TD>
-<TD>Taille</TD>
-<TD>Date péremption</TD>
-<TD>Valider la ligne</TD>
+<center>
+<TABLE border>
+<tr> <TD Width=5%>Designation article</TD>
+<TD Width=5%>Quantité Fournisseur</TD>
+<TD Width=5%>Quantité Livrée</TD>
+<TD Width=5%>Quantité Receptionnée</TD>
+<TD Width=5%>Statut</TD>
+<TD Width=5%>Garantie(mois)</TD>
+<TD Width=5%>Couleur</TD>
+<TD Width=5%> Taille</TD>
+<TD Width=5%>Date péremption</TD>
+<TD Width=5%>Valider la ligne</TD>
  </tr>
 <%
 for(LigneLivraison l : liste){%>
-<form method="get" action="/SuperMercado-war/AgentLivraisonServlet"><tr><td Width=15%><%=l.getLigneCommande().getArticle().getLibelleArticle() %></td>
-<td Width=15%><%=l.getQuantiteFournisseur()%></td>
-<td Width=15%><input type="number" name="quantiteLivrer" value="" size="20" maxlength="20" /></td>
-<td Width=15%><input type="number" name="quantiteReceptionner" value="" size="20" maxlength="20" /></td>
-<td Width=15%><%=l.getMentionStatut()%></td>
-<td Width=15%><input type="number" name="garantie" value="" size="20" maxlength="20" /></td>
-<td Width=15%><SELECT name="couleur" size="1">
+<form method="get" action="/SuperMercado-war/AgentLivraisonServlet"><tr><td ><%=l.getLigneCommande().getArticle().getLibelleArticle() %></td>
+<td ><%=l.getQuantiteFournisseur()%></td>
+<td ><input type="number" name="quantiteLivrer" value="" style="width: 40px;" /></td>
+<td ><input type="number" name="quantiteReceptionner" value="" style="width: 40px;" /></td>
+<td ><%=l.getMentionStatut()%></td>
+<td ><input type="number" name="garantie" value="" style="width: 40px;" /></td>
+<td ><SELECT name="couleur" style="width: 80px;">
         <OPTION>
         <OPTION>Bleu
         <OPTION>Rose
@@ -71,7 +74,7 @@ for(LigneLivraison l : liste){%>
         <OPTION>Blanc
         <OPTION>Noir
         </SELECT></td>
-<td Width=15%><SELECT name="taille" size="1">
+<td ><SELECT name="taille" style="width: 80px;">
         <OPTION>
         <OPTION>XS
         <OPTION>S
@@ -80,16 +83,15 @@ for(LigneLivraison l : liste){%>
         <OPTION>XL
         <OPTION>XXL
         </SELECT></td>
-<td Width=15%><input type="date" name="datePeremption" value="" size="20" maxlength="20" /></td>
-<% Mention e=Mention.validation ; if(l.getMentionStatut().equals(e)){%> <td Width=30%>
+<td ><input type="date" name="datePeremption" value="" style="width: 80px;"/></td>
+<% Mention e=Mention.validation ; if(l.getMentionStatut().equals(e)){%> <td>
     <input type="hidden" name="ligneId" value=<%=l.getId()%>>
     <input type="hidden" name="agentLivraisonId" value=<%= agentLivraisonConnecte.getId() %>>
     <input type="hidden" name="livraisonId" value=<%=livraison.getId() %>>
     <input type="hidden" name="action" value="ValiderLigneLivraison">
-    <input type="submit" value="Valider" /></td><%}else{%><td Width=30%>Déjà valider</td>
-    </tr></form><%}}%></TABLE>
-    
-<center>
+    <input type="submit" value="Valider" /></td><%}else{%><td>Déjà valider</td>
+    </tr></form><%}}%></TABLE> </center>  
+
     <form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
 <label for="date"> Date de livraison effective <span class="requis">*</span></label>
         <input type="date" name="date" value="" size="20" maxlength="20" />

@@ -15,6 +15,14 @@
     <body>
         <%@ include file="/include/header.jsp" %>
         <%@ include file="/include/sidebar.jsp" %>
+        <p> <%
+        String attribut = (String) request.getAttribute("message");
+        if(attribut==null){
+            attribut="Aucune action effectuée";
+        }
+        else{
+        out.println( attribut );}
+        %> </p>
         <%@ include file="/include/flexslider.jsp" %>
 		<section class="main-content">
 				<div class="row">
@@ -323,14 +331,7 @@
 			</section>
                     
 
-        <p> <%
-        String attribut = (String) request.getAttribute("message");
-        if(attribut==null){
-            attribut="Aucune action effectuée";
-        }
-        else{
-        out.println( attribut );}
-        %> </p>
+        
         <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

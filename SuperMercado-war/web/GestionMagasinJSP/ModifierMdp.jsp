@@ -19,12 +19,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>    
         <title>JSP Page</title>
-    </head>
+ <%@ include file="/include/css.jsp" %>    
+    </head>    
+    <%@ include file="/include/header.jsp" %>
 <body>
 <%Personne p = personneConnecte;{%>
-<tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
+<center>
         <h1>Formulaire de changement de mot de passe</h1>
 <%}%>
+
+    
 <form method="get" action="/SuperMercado-war/Menu">
 <fieldset>
 <legend>Informations</legend>
@@ -40,5 +44,8 @@
     <br />
     <input type="submit" value="Valider" />
 </form>
+    </center>
+     <%@ include file="/include/footer.jsp" %>
     </body>
+     <%@ include file="/include/js.jsp" %>
 </html>

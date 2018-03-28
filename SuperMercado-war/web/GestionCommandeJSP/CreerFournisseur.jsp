@@ -3,6 +3,7 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+
 <% 
         
     if (session.getAttribute("chefRayonConnecte") == null) {
@@ -11,9 +12,10 @@
         response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
  } %>
 
-
+<%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page import="entités.gestionMagasin.Rayon"%>
 <%@page import="java.util.List"%>
+<jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,8 +28,8 @@
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <% ChefRayon c = chefRayonConnecte;
-                {%>
+     <% ChefRayon c =chefRayonConnecte;
+                {%></tr><%}%>
                
     <%@ include file="/include/header.jsp" %>
     <div id="top-bar" class="container">
@@ -48,7 +50,7 @@
                 <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
                 <nav id="menu" class="pull-right">
                     <ul>
-                        <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+                        <li><a>Article</a>					
                             <ul>
                                 <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
                                 <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">Modifier prix article</a></li>	
@@ -56,14 +58,16 @@
                             </ul>
                         </li>															
 
-                        <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
-                        <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">Commande</a>
+                        <li><a href="ChefRayonServlet?action=CreerFournisseur">Créer un fournisseur</a></li>
+                        <li><a>Commande</a>
                             <ul>									
                                 <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>"> Créer bon de commande</a></li>
                                 <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
                             </ul>
                         </li>	
-                        <li><a href="MenuChefdeRayon.jsp">Menu chef rayon</a></li>
+                        <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
+                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                    </ul>
                 </nav>
             </div>
         </section>

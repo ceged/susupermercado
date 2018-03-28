@@ -39,16 +39,10 @@ if(attribut!=null){
             }
 %> 
       </p>
-        
-    <center>
+          <section>
         <form method="get" action="/SuperMercado-war/ClientServlet">
-            <fieldset>
-                 <br />
-   <section class="main-content">
-				<div class="row">
-					<div class="span12">													
-						<div class="row">
-							<div class="span12">
+
+
                <h4 class="title">
                     <span class="pull-left"><span class="text"><span class="line">  Article disponible pour le magasin<strong>  <%=m.getNomMagasin()%></strong></span></span></span>
                     <span class="pull-center">
@@ -103,17 +97,18 @@ if(attribut!=null){
                     <input type="hidden" id="idqte" name="quantite" value="">
                 <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
                 <input type="reset" value="Remettre à zéro" /> <br />
+                <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
             
-            <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
-            </fieldset>
+                    
         </form> 
-    </center>
-    <center>
+    
         <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="action" value="transferListeMagasin">
       <button type="submit">Changer de magasin</button> 
         </form>
+                    </section>
         </center>
+                   
         <script>
             function getQuantite() {
             var qte = prompt("Quelle quantité souhaitez vous achetez?", "");
@@ -126,7 +121,7 @@ if(attribut!=null){
             }
             }
         </script>
-            
+        
     </body>
 </html>
 

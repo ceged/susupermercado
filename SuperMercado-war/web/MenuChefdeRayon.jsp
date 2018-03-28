@@ -38,7 +38,7 @@
                 <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
                 <nav id="menu" class="pull-right">
                     <ul>
-                        <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Article</a>					
+                        <li><a>Article</a>					
                             <ul>
                                 <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
                                 <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=c.getId()%>">Modifier prix article</a></li>	
@@ -46,14 +46,16 @@
                             </ul>
                         </li>															
 
-                        <li><a href="GestionCommandeJSP/CreerFournisseur.jsp">Créer un fournisseur</a></li>
-                        <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>">Commande</a>
+                        <li><a href="ChefRayonServlet?action=CreerFournisseur">Créer un fournisseur</a></li>
+                        <li><a>Commande</a>
                             <ul>									
                                 <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=c.getId()%>"> Créer bon de commande</a></li>
                                 <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=c.getId()%>">Afficher les bon de commandes </a></li>
                             </ul>
                         </li>	
-                        <li><a href="MenuChefdeRayon.jsp">Menu chef rayon</a></li>
+                        <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
+                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                    </ul>
                 </nav>
             </div>
         </section>

@@ -63,7 +63,13 @@ public class Admin extends HttpServlet {
             doActionInsererDirecteur(request,response);
             jspChoix="/MenuAdmin.jsp";
         }  
-       
+        else if (act.equals("CreerMagasin")){
+            jspChoix="/GestionMagasinJSP/CreerMagasin.jsp";
+        }
+        else if (act.equals("CreerCategorie")){
+            jspChoix="/GestionArticleJSP/CreerCategorie.jsp";
+        }
+        
         else if (act.equals("insererCategorie"))
         {
             doActionInsererCategorie(request,response);

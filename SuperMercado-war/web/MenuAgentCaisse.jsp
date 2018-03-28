@@ -39,7 +39,7 @@
                 <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<a href="Accueil.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="EmployeCaisseServlet?action=insererAchat">Achat</a>					
@@ -49,7 +49,9 @@
 						</ul>
                                                         
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentCaisse.getId()%>">Modifier mot de passe</a></li>
-                                                        <li><a href="MenuAgentCaisse.jsp">Retour Menu Agent caisse</a></li>
+                                                        <li><a href="MenuAgentCaisse.jsp">Retour Menu Principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
                                         </nav>
 				</div>
 			</section>

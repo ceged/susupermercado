@@ -20,7 +20,7 @@
     <%@ include file="/include/header.jsp" %>
     <% Fournisseur f= fournisseurConnecte;{%>
     
-    <div id="top-bar" class="container">
+   <div id="top-bar" class="container">
 			<div class="row">
 				
 				<div class="span8">
@@ -35,7 +35,7 @@
                 <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<a href="Connexion.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=f.getId()%>">Consulter mes commandes</a></li>						

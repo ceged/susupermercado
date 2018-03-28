@@ -41,26 +41,27 @@
                 <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<a href="Accueil.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Magasin</a>					
+							<li><a >Magasin</a>					
 								<ul>
-									<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Creer un magasin</a></li>
-									<li><a href="Admin?action=TransfererListeMagasin">Supprimer un magasin</a></li>	
+									<li><a href="Admin?action=CreerMagasin">Creer un magasin</a></li>
                                                                        
 								</ul>
 							</li>															
 							<li><a href="Admin?action=TransfererListeMagasinPourAjoutDirecteur">Créer un directeur</a></li>			
-							<li><a href="GestionArticleJSP/CreerCategorie.jsp">Catégorie</a>
+							<li><a >Catégorie</a>
 								<ul>									
-									<li><a href="GestionArticleJSP/CreerCategorie.jsp">Créer une Catégorie</a></li>
+									<li><a href="Admin?action=CreerCategorie"">Créer une Catégorie</a></li>
 									<li><a href="Admin?action=TransfererListeCategorie">Créer une sous-catégorie </a></li>
 								</ul>
 							</li>							
 							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">Modifier mon mot de passe</a></li>
-							<li><a href="MenuAdmin.jsp">Sortir menu principal</a></li>
+							<li><a href="MenuAdmin.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>
