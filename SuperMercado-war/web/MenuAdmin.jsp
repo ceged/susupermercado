@@ -61,6 +61,7 @@
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">Modifier mon mot de passe</a></li>
 							<li><a href="MenuAdmin.jsp">Retour menu principal</a></li>
                                                         <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>
