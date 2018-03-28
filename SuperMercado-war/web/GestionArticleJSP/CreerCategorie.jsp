@@ -22,7 +22,7 @@
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <%@ include file="/include/sidebar.jsp" %>
+     <%@ include file="/include/sidebar_admin.jsp" %>
      
     <body>
         <h1>Créer une catégorie</h1>

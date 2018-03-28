@@ -41,13 +41,12 @@
                 <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<a href="Accueil.jsp" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Magasin</a>					
 								<ul>
 									<li><a href="GestionMagasinJSP/CreerMagasin.jsp">Creer un magasin</a></li>
-									<li><a href="Admin?action=TransfererListeMagasin">Supprimer un magasin</a></li>	
                                                                        
 								</ul>
 							</li>															
@@ -60,7 +59,8 @@
 							</li>							
 							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">Modifier mon mot de passe</a></li>
-							<li><a href="MenuAdmin.jsp">Sortir menu principal</a></li>
+							<li><a href="MenuAdmin.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
 					</nav>
 				</div>
 			</section>

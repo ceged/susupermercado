@@ -54,6 +54,8 @@
 							<li><a href="AgentLivraisonServlet?action=passageInfosListeReceptionLivraison&agentLivraison=<%=agentLivraisonConnecte.getId()%>">Consulter la liste de livraison</a></li>			
 							
 							<li><a href="MenuAgentLivraison.jsp">Sortir menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>

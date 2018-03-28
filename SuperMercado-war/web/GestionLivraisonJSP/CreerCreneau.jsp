@@ -41,7 +41,7 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="AgentLivraisonServlet?action=passageInfosCreneauDispo&agentLivraison=<%=agentLivraisonConnecte.getId()%>">Créneau</a>					
+							<li>Créneau					
 								<ul>
 									<li><a href="AgentLivraisonServlet?action=passageInfosCreneauDispo&agentLivraison=<%=agentLivraisonConnecte.getId()%>">Consulter la liste des créneaux dispos</a></li>
 									<li><a href="GestionLivraisonJSP/CreerCreneau.jsp">Créer créneau</a></li>	
@@ -51,6 +51,8 @@
 							<li><a href="AgentLivraisonServlet?action=passageInfosListeReceptionLivraison&agentLivraison=<%=agentLivraisonConnecte.getId()%>">Consulter la liste de livraison</a></li>			
 							
 							<li><a href="MenuAgentLivraison.jsp">Sortir menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>
