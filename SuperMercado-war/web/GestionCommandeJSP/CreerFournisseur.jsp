@@ -3,6 +3,7 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+
 <% 
         
     if (session.getAttribute("chefRayonConnecte") == null) {
@@ -11,9 +12,10 @@
         response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
  } %>
 
-
+<%@page import="entités.gestionMagasin.ChefRayon"%>
 <%@page import="entités.gestionMagasin.Rayon"%>
 <%@page import="java.util.List"%>
+<jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,8 +28,8 @@
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <% ChefRayon c = chefRayonConnecte;
-                {%>
+     <% ChefRayon c =chefRayonConnecte;
+                {%></tr><%}%>
                
     <%@ include file="/include/header.jsp" %>
     <div id="top-bar" class="container">
