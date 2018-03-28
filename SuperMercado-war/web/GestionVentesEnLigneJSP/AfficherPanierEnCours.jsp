@@ -26,7 +26,32 @@
      <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+    <div id="top-bar" class="container">
+			<div class="row">
+				
+				<div class="span8">
+					<div class="account pull-left">
+						<ul class="user-menu">				
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+                <div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+																						
+							
+                                                        <li><a href="MenuClient.jsp">Retour menu principal</a></li>
+                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                        </ul>
+                                            </nav>
+				</div>
+			</section>
     <body>
     <center>
         <h1>Mon Panier!</h1>
@@ -60,7 +85,7 @@ for(LigneAchat c : listeLignesPanier){%>
         <form method="get" action="GestionVentesEnLigneJSP\AfficherListeArticles.jsp">
       <button type="submit">Continue Shopping</button>   
     </form>
-    </center>
+    
 
     <form method="get" action="/SuperMercado-war/ClientServlet">
       <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>

@@ -26,7 +26,7 @@
      <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+
     <body>
        <center> <h1>Choix mode de livraison</h1>
     

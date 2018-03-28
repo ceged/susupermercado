@@ -23,7 +23,7 @@
      <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-    <%@ include file="/include/sidebar.jsp" %>
+
     <body>
         <h1>Choisir date de retrait</h1>
     <center>

@@ -30,7 +30,7 @@
   <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <%@ include file="/include/sidebar.jsp" %>
+
      
 <body>
 <h1>Liste des créneaux client</h1>
@@ -40,7 +40,7 @@ if(attribut!=null){
     out.println( attribut );
             }
 %> </p>
-<A HREF="MenuAgentLivraison.jsp">Retour au menu</A><br />
+
 <center>
     <form method="get" action="/SuperMercado-war/ClientServlet">
     <label for="dateChoisi">Choisir une date <span class="requis">*</span></label>
