@@ -65,8 +65,6 @@
             <OPTION><%=m.getNomMagasin()%>
                 <%}%>
         </SELECT>
-        <input type="text" name="magasin" value="" size="20" maxlength="20" />
-        <br />
         <input type="hidden" name="action" value="insererDirecteur">
         </fieldset>
         <input type="submit" value="Valider" />

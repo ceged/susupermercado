@@ -26,7 +26,10 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-     <% DirecteurMagasin a= directeurConnecte;{%>
+     <% DirecteurMagasin a= directeurConnecte;
+     %>
+     <% List<Rayon> listeRayon2 =listeRayon;{%>
+</tr><%%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
