@@ -24,7 +24,7 @@
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-    <div id="top-bar" class="container">
+        <div id="top-bar" class="container">
 			<div class="row">
 				
 				<div class="span8">
@@ -42,7 +42,7 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="GestionArticleJSP/CreerCasse.jsp">Casse</a>					
+							<li><a>Casse</a>					
 								<ul>
 									<li><a href="AgentRayonServlet?action=SaisirCasse">Saisir Casse</a></li>
 									<li><a href="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste casse de mon rayon</a></li>	
@@ -50,13 +50,13 @@
 							</li>															
 									
 							
-                                                            <li><a>Rayon</a>
+                                                        <li><a>Rayon</a>
 								<ul>									
 									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste livraison de mon rayon</a></li>
 									<li><a href="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">Consulter liste commandes de mon rayon</a></li>
 								</ul>
-							</li>					
-							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
+							</li>	
+                                                        <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
 							<li><a href="MenuAgentRayon.jsp">Retour menu principal</a></li>
                                                         <li><a href="Accueil.jsp">Se déconnecter</a></li>
                                                 </ul>

@@ -41,7 +41,7 @@
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="GestionArticleJSP/CreerCasse.jsp">Casse</a>					
+							<li><a>Casse</a>					
 								<ul>
 									<li><a href="AgentRayonServlet?action=SaisirCasse">Saisir Casse</a></li>
 									<li><a href="AgentRayonServlet?action=passageListeCasseRayon&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste casse de mon rayon</a></li>	
