@@ -32,9 +32,9 @@
     </head>
      <%@ include file="/include/header.jsp" %>
      <% ChefRayon c = chefRayonConnecte;
-                {%>
+     List<SousCategorie> listeSousCategorie2 =listeSousCategorie;{%>
                
-    <%@ include file="/include/header.jsp" %>
+               
     <div id="top-bar" class="container">
         <div class="row">
 
