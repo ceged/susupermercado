@@ -12,14 +12,14 @@
 							<img src="<%= request.getContextPath() %>/template/images/admin.jpe" alt="" />
                                                         <div class="intro">
 								<h1>Admininistrateur</h1>
-								<p><span>Nationnal</span></p>
+								<p><span>National</span></p>
 							</div>
 						</li>
 					<li>
 							<img src="<%= request.getContextPath() %>/template/images/admin2.jpg" alt="" />
                                                         <div class="intro">
 								<h1>Maintenant</h1>
-								<p><span>Ca file droit</span></p>
+								<p><span>On file droit</span></p>
 							</div>
 						</li>
 					

@@ -67,7 +67,7 @@
         <center> 
         <form method="post" action="/SuperMercado-war/Admin">
         <fieldset>
-        <legend>Informations Magasin (majuscules et accents interdits)</legend>
+        <legend>Informations Magasin</legend>
         <label for="libelleMagasin">Libéllé Magasin <span class="requis">*</span></label>
         <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" required/>
         <br />

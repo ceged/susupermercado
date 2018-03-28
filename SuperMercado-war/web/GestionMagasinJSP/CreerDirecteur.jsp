@@ -71,7 +71,7 @@
         <center> 
            <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
-        <legend>Informations Directeur (majuscules et accents interdits)</legend>
+        <legend>Informations Directeur</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" required/>
         <br />

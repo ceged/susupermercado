@@ -39,13 +39,14 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
     }
     
     @Override
-    public void CreerBonCommande(ChefRayon chefRayon, Date dateCommande, Fournisseur fournisseur){
+    public Commande CreerBonCommande(ChefRayon chefRayon, Date dateCommande, Fournisseur fournisseur){
         Commande c = new Commande();
         c.setChefRayon(chefRayon);
         c.setDateCommande(dateCommande);
         c.setFournisseur(fournisseur);
         c.setStatutCommande("encours");
         em.persist(c);
+        return c;
     }
     
     @Override//encours;valider;livrer;reclamer;
@@ -70,7 +71,7 @@ public class CommandeFacade extends AbstractFacade<Commande> implements Commande
     @Override
     public Commande RechercherDernierCommandeCree(){
         Commande commandeCherche = new Commande();
-        Query req = getEntityManager().createQuery("Select c from Commande as c ORDER BY c.id DESC");
+        Query req = getEntityManager().createQuery("Select c from Commande as c ORDER BY c.dateCommande DESC");
         
         Collection<Commande>col=req.getResultList();
         int i=0;{

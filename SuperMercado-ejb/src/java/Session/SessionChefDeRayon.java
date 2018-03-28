@@ -192,13 +192,12 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     }
     
     @Override
-    public String CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur){
-        String message;
+    public Commande CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur){
+        
         ChefRayon c=chefRayonFacade.RechercherChefRayonParId(idChefRayon);
         Fournisseur f=fournisseurFacade.RechercheFournisseurParNom(fournisseur);
-        commandeFacade.CreerBonCommande(c, dateCommande, f);
-        message="Bon de commande créé";
-        return message;
+        return commandeFacade.CreerBonCommande(c, dateCommande, f);
+        
         
     }
     

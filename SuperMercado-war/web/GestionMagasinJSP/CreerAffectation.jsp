@@ -80,6 +80,7 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
          <h1>Formulaire d'affectation</h1>
+         <center>
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         
@@ -115,7 +116,7 @@ List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-
+        </center>
      <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>
