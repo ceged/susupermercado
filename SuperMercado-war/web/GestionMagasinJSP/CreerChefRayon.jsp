@@ -70,11 +70,10 @@
 			</section>
 
     <body>
-
-<% 
-List<Rayon> listeRayon2 =listeRayon;{%>
+<% DirecteurMagasin a= directeurConnecte;
+List<Rayon> listeRayon2 =listeRayon;%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
-</tr><%}%>
+</tr><%%>
          <h1>Formulaire de création Chef de Rayon</h1>
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
