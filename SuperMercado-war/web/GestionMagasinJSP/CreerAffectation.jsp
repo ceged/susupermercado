@@ -4,6 +4,7 @@
     Author     : Sophia
 --%>
 
+<%@page import="entités.gestionMagasin.AgentCaisse"%>
 <%@page import="entités.gestionMagasin.Caisse"%>
 <%@page import="entités.gestionMagasin.Rayon"%>
 <%@page import="java.util.List"%>
@@ -15,66 +16,58 @@
  <head>
         <meta http-equiv="Content-Type" content="test/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
-        <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
-        <jsp:useBean id="listeCaisse" scope="session" class="List<Caisse>"></jsp:useBean>
+<jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
+<jsp:useBean id="listeCaisse" scope="session" class="List<Caisse>"></jsp:useBean>
+<jsp:useBean id="listeAgentCaisse" scope="session" class="List<AgentCaisse>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
     <%@ include file="/include/sidebar.jsp" %>
-    <body>
+<body>
 <% DirecteurMagasin a= directeurConnecte;
-List<Caisse> listeCaisse2 =listeCaisse;{%>
+List<Caisse> listeCaisse2 =listeCaisse;
+List<AgentCaisse>listeAgentCaisse2 =listeAgentCaisse;{%>
+        
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
 </tr><%}%>
-         <h1>Formulaire de création Chef de Rayon</h1>
-        <center> 
-            <form method="get" action="/SuperMercado-war/DirecteurServlet">
+         <h1>Formulaire d'affectation</h1>
+        <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations  (majuscules et accents interdits)</legend>
-        <label for="nom">Nom <span class="requis">*</span></label>
-        <input type="text" name="nom" value="" size="20" maxlength="20" />
+        
+        <label for="dateDebut">Date de début d'affectation <span class="requis">*</span></label>
+        <input type="date" name="dateDebut" value="" size="20" maxlength="20" required/>
         <br />
-        <label for="prenom"> Prénom <span class="requis">*</span></label>
-        <input type="text" name="prenom" value="" size="20" maxlength="20" />
+        
+        <label for="dateFin">Date de fin d'affectation <span class="requis">*</span></label>
+        <input type="date" name="dateFin" value="" size="20" maxlength="20" required />
         <br />
-        <label for="login">Login <span class="requis">*</span></label>
-        <input type="text" name="login" value="" size="20" maxlength="20" />
-        <br />
-        <label for="mdp">Mot de passe <span class="requis">*</span></label>
-        <input type="text" name="mdp" value="" size="20" maxlength="20" />
-        <br />
-        <label for="sexe">Sexe <span class="requis">*</span></label>
-        <SELECT name="sexe" size="1">
-        <OPTION>Masculin
-        <OPTION>Féminin
-        </SELECT>
-        <br />
-        <label for="dob">Date de naissance <span class="requis">*</span></label>
-        <input type="date" name="dob" value="" size="20" maxlength="20" />
-        <br />
-        <label for="adresse">Adresse <span class="requis">*</span></label>
-        <input type="text" name="adresse" value="" size="20" maxlength="20" />
-        <br />
-        <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" />
-        <br />
-        <label for="numeroCaisse">Rayon<span class="requis">*</span></label>
-        <SELECT name="libelleRayon" size="1">
+
+        
+        <label for="id">Caisse : <span class="requis">*</span></label>
+        <SELECT name="idCaisse" size="1">
             <%
             for(Caisse c: listeCaisse2){ %>
             <OPTION><%=c.getId().toString()%>
               <%}%>
         </SELECT>
+        
+        <label for="nomAgentCaisse">Agent de caisse à affecter<span class="requis">*</span></label>
+        <SELECT name="nomAgentCaisse" size="1">
+            <%
+            for(AgentCaisse ac: listeAgentCaisse2){ %>
+            <OPTION value="<%=ac.getId().toString()%>"><%=ac.getNom() %>
+              <%}%>
+        </SELECT>
         <br />
         <input type="hidden" name="magasin" value="<%=a.getMagasin().getNomMagasin()%>" />
         <br />
-        <input type="hidden" name="action" value="insererAgentCaisse">
+        <input type="hidden" name="action" value="insererAffectation">
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
-        </center>
+
      <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

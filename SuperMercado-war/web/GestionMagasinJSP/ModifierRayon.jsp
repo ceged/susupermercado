@@ -23,11 +23,13 @@
         <link rel="stylesheet" href="test.css" type="text/css">
          <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayonModifie" scope="session" class="List<Rayon>"></jsp:useBean>
+        
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
+    <% DirecteurMagasin a= directeurConnecte;%>
     <%@ include file="/include/header.jsp" %>
-     <% DirecteurMagasin a= directeurConnecte;{%>
+     
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -70,12 +72,12 @@
 				</div>
 			</section>
 
-    <body>
+    
 
         <% DirecteurMagasin d= directeurConnecte;
-List<Rayon> listeRayon2 =listeRayonModifie;{%>
+List<Rayon> listeRayon2 =listeRayonModifie;%>
 <tr> <td Width=15%>Bienvenue <%=d.getNom()%></td>
-</tr><%}%>
+
         <h1>Formulaire de modification rayon</h1>
        <center> 
            <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -91,7 +93,7 @@ List<Rayon> listeRayon2 =listeRayonModifie;{%>
         </SELECT>
         <br />
         <label for="newLibelleRayon">Nouveau nom rayon <span class="requis">*</span></label>
-        <input type="text" name="newLibelleRayon" value="" size="20" maxlength="20" />
+        <input type="text" name="newLibelleRayon" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="magasin" value="<%=d.getMagasin().getNomMagasin()%>" />
         <br />
@@ -99,7 +101,7 @@ List<Rayon> listeRayon2 =listeRayonModifie;{%>
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-           </form>
+</form>
        </center> 
       <%@ include file="/include/footer.jsp" %>
     </body>

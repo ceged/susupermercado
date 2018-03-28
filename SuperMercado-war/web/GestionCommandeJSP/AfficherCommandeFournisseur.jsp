@@ -98,7 +98,7 @@ for(LigneLivraison l : liste){
 <center>
     <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Date de livraison prévue <span class="requis">*</span></label>
-        <input type="date" name="date" value="" size="20" maxlength="20" />
+        <input type="date" name="date" value="" size="20" maxlength="20" required/>
         <input type="hidden" name="action" value="ValiderLivraison">
         <input type="hidden" name="statut" value="attentereception">
         <input type="hidden" name="livraisonId" value=<%=livraison.getId() %>>

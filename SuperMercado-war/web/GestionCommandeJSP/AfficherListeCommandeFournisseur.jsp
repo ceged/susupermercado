@@ -30,7 +30,32 @@
   <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <%@ include file="/include/sidebar_fournisseur.jsp" %>
+    <div id="top-bar" class="container">
+			<div class="row">
+				
+				<div class="span8">
+					<div class="account pull-left">
+						<ul class="user-menu">					
+							<li><a href="Connexion.jsp">Portail de connexion</a></li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+                <div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="FournisseurServlet?action=passageInfosListeCommande&fournisseur=<%=fournisseurConnecte.getId()%>">Consulter mes commandes</a></li>						
+								
+										
+						</ul>
+					</nav>
+				</div>
+			</section>
+
      
 <body>
 <h1>Liste de vos commandes</h1>

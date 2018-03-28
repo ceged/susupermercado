@@ -24,12 +24,11 @@
         <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
         <title>JSP Page</title>
     <%@ include file="/include/css.jsp" %>    
-    </head>    
+ </head>    
     <%@ include file="/include/header.jsp" %>
      <% DirecteurMagasin a= directeurConnecte;
-     %>
-     <% List<Rayon> listeRayon2 =listeRayon;{%>
-</tr><%%>
+      List<Rayon> listeRayon2 =listeRayon;%>
+
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -41,8 +40,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-                <div id="wrapper" class="container">
+    </div>
+    <div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
 					<a href="index.html" class="pull-left"><img src="<%= request.getContextPath() %>/template/images/logo5.png" class="site_logo" alt=""></a>
@@ -68,16 +67,16 @@
 							</li>							
 							
 							<li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
+                                                </ul>
 					</nav>
 				</div>
 			</section>
+    </div>                                                       
 
-    <body>
-<% DirecteurMagasin a= directeurConnecte;
-List<Rayon> listeRayon2 =listeRayon;%>
-<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
-</tr><%%>
+
+                                                                        <body>
          <h1>Formulaire de création Chef de Rayon</h1>
+                                                                        
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
@@ -91,6 +90,7 @@ List<Rayon> listeRayon2 =listeRayon;%>
         <label for="login">Login <span class="requis">*</span></label>
         <input type="text" name="login" value="" size="20" maxlength="20" />
         <br />
+        
         <label for="mdp">Mot de passe <span class="requis">*</span></label>
         <input type="text" name="mdp" value="" size="20" maxlength="20" />
         <br />
@@ -109,11 +109,11 @@ List<Rayon> listeRayon2 =listeRayon;%>
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
         <input type="text" name="codePostal" value="" size="20" maxlength="20" />
         <br />
-        <label for="libelleRayon">Rayon<span class="requis">*</span></label>
-        <SELECT name="libelleRayon" size="1">
+        <label for="idRayon">Rayon<span class="requis">*</span></label>
+        <SELECT name="idRayon" size="1">
             <%
             for(Rayon r: listeRayon2){ %>
-            <OPTION><%=r.getLibelleRayon()%>
+            <OPTION value="<%=r.getId()%>"> <%=r.getLibelleRayon()%>
                 <%}%>    
         </SELECT>
         <br />
@@ -125,7 +125,7 @@ List<Rayon> listeRayon2 =listeRayon;%>
         <input type="reset" value="Remettre à zéro" /> <br />
         </form>
         </center> 
+                                                                        </body>
      <%@ include file="/include/footer.jsp" %>
-    </body>
      <%@ include file="/include/js.jsp" %>
 </html>

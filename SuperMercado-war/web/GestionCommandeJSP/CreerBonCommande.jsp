@@ -31,7 +31,7 @@
     </head>
      <%@ include file="/include/header.jsp" %>
      <% ChefRayon c = chefRayonConnecte;
-                {%></tr><%}%>
+                %>
                
         <div id="top-bar" class="container">
         <div class="row">

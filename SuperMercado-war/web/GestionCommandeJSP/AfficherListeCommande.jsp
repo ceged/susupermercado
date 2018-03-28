@@ -28,7 +28,7 @@
     </head>
      <%@ include file="/include/header.jsp" %>
      <% ChefRayon c = chefRayonConnecte;
-                {%></tr><%}%>
+                %>
                
     <%@ include file="/include/header.jsp" %>
         <div id="top-bar" class="container">

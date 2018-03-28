@@ -19,7 +19,7 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-     <% DirecteurMagasin p= directeurConnecte;{%>
+     <% DirecteurMagasin p= directeurConnecte;%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -42,30 +42,31 @@
 								<ul>
 									<li><a href="DirecteurServlet?action=transferListeSecteur&directeur=<%=p.getId()%>">Creer un rayon</a></li>
                                                                         <li><a href="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">Modifier un rayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=TransfererListeRayon&directeur=<%=p.getId()%>">Supprimer un rayon</a></li>	
+                                                                
                                                                         <li><a href="DirecteurServlet?action=transferListeRayon&directeur=<%=p.getId()%>">Creer un chef rayon</a></li>
-                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>
-                                                                        
-                                                                       
+                                                                        <li><a href="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">Créer un agent de rayon </a></li>                                                                    
 								</ul>
 							</li>															
 							<li><a href="GestionMagasinJSP/CreerSecteur.jsp">Créer un secteur</a></li>			
 							<li><a href="GestionMagasinJSP/CreerCaisse.jsp">Caisse</a>
 								<ul>									
 									<li><a href="GestionMagasinJSP/CreerCaisse.jsp">Créer une Caisse</a></li>
-									<li><a href="DirecteurServlet?action=TransfererListeCaisse&directeur=<%=p.getId()%>"> Supprimer une caisse </a></li>
+							
                                                                         <li><a href="GestionMagasinJSP/CreerAgentCaisse.jsp"> Créer un agent caisse </a></li>
 								</ul>
 							</li>							
 							
 							<li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
+                                                    						</ul>
+
 					</nav>
 				</div>
 			</section>
+                </div>
     <body>
    
 <tr> <td Width=15%>Bienvenue <%=p.getPrenom()%></td>
-</tr><%}%>
+</tr><%%>
         <h1>Bienvenue sur le menu Directeur !</h1>
         <A HREF="GestionMagasinJSP/CreerSecteur.jsp">
         Créer un secteur</A><br/><br/>
@@ -75,20 +76,23 @@
         Créer un rayon</A><br/><br/>
         <A HREF="DirecteurServlet?action=passageInfospourModifierRayon&directeur=<%=p.getId()%>">
         Modifier un rayon</A><br/><br/>
-        <A HREF="DirecteurServlet?action=TransfererListeRayon&directeur=<%=p.getId()%>">
-        Supprimer un rayon</A><br/><br/>
-
+            
         <A HREF="GestionMagasinJSP/CreerCaisse.jsp">
         Créer une caisse</A><br/><br/>
-        <A HREF="DirecteurServlet?action=TransfererListeCaisse&directeur=<%=p.getId()%>">
-        Supprimer une caisse</A><br/><br/>
+
         <A HREF="GestionMagasinJSP/CreerAgentCaisse.jsp">
         Créer un AgentCaisse</A><br/><br/>
         <A HREF="DirecteurServlet?action=transferListeRayon2&directeur=<%=p.getId()%>">
         Créer un AgentRayon</A><br/><br/>
-        
+        <A HREF="GestionLivraisonJSP/CreerAgentLivraison.jsp">
+        Créer un agent de livraison</A><br/><br/>
+        <A HREF="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">
+        Modifier mon mot de passe</A><br/><br/>
+        <A HREF="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>">
+        Affecter un agent à une caisse</A><br/><br/>
         <A HREF="MenuDirecteur.jsp">
         Sortir menu principal</A><br/><br/>
+        
         
         <p> <%
         String attribut = (String) request.getAttribute("message");

@@ -27,7 +27,7 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-     <% DirecteurMagasin a= directeurConnecte;{%>
+     <% DirecteurMagasin a= directeurConnecte;%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -74,9 +74,9 @@
 
     <body>
 <% 
-    List<Secteur> listeSecteur2 =listeSecteur;{%>
+    List<Secteur> listeSecteur2 =listeSecteur;%>
 <tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
-</tr><%}%>
+
         <h1>Formulaire de création de rayon</h1>
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
@@ -91,14 +91,14 @@
         </SELECT>
         <br />
         <label for="libelleRayon">Nom du Rayon<span class="requis">*</span></label>
-        <input type="text" name="libelleRayon" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleRayon" value="" size="20" maxlength="20" required/>
         <br />
 
         <input type="hidden" name="action" value="insererRayon">
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+</form>
         </center> 
      <%@ include file="/include/footer.jsp" %>
     </body>

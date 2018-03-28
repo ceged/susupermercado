@@ -65,23 +65,23 @@
     <body>
         <h1>Formulaire de création magasin</h1>
         <center> 
-            <form method="get" action="/SuperMercado-war/Admin">
+        <form method="post" action="/SuperMercado-war/Admin">
         <fieldset>
         <legend>Informations Magasin (majuscules et accents interdits)</legend>
         <label for="libelleMagasin">Libéllé Magasin <span class="requis">*</span></label>
-        <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" />
+        <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" required/>
         <br />
         <label for="adresse"> Adresse <span class="requis">*</span></label>
-        <input type="text" name="adresse" value="" size="20" maxlength="20" />
+        <input type="text" name="adresse" value="" size="20" maxlength="20" required/>
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" />
+        <input type="text" name="codePostal" value="" size="20" maxlength="20" required/>
         <br />
         <input type="hidden" name="action" value="insererMagasin">
         </fieldset>
         <input type="submit" value="Valider" />
         <input type="reset" value="Remettre à zéro" /> <br />
-        </form>
+</form>
             </center> 
     <%@ include file="/include/footer.jsp" %>
     </body>
