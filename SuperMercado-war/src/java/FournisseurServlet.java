@@ -51,7 +51,7 @@ public class FournisseurServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String jspChoix ="/MenuFournisseur.jsp";
         String act=request.getParameter("action");
-        if ((act == null)||(act.equals("null")))
+        if((act == null)||(act.equals("null")))
             {
             jspChoix="/MenuFournisseur.jsp";
             }
