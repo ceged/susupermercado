@@ -26,7 +26,10 @@
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
-     <% DirecteurMagasin a= directeurConnecte;{%>
+     <% DirecteurMagasin a= directeurConnecte;
+     {%>
+     <% List<Rayon> listeRayon2 =listeRayon;{%>
+</tr><%}%>
     <div id="top-bar" class="container">
 			<div class="row">
 				
@@ -71,10 +74,9 @@
 
     <body>
 
-<% 
-List<Rayon> listeRayon2 =listeRayon;{%>
-<tr> <td Width=15%>Bienvenue <%=a.getNom()%></td>
-</tr><%}%>
+
+
+
          <h1>Formulaire de création Chef de Rayon</h1>
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
