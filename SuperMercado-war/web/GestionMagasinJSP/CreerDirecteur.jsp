@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="test.css" type="text/css">
          <jsp:useBean id="listeMagasin" scope="session" class="List<Magasin>"></jsp:useBean>
          <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Creation directeur</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -71,39 +71,39 @@
         <center> 
             <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
-        <legend>Informations Directeur (majuscules et accents interdits)</legend>
+        <legend>Informations Directeur</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
-        <input type="text" name="nom" value="" size="20" maxlength="20" />
+        <input type="text" name="nom" value="" size="20" maxlength="20" required=""/>
         <br />
         <label for="prenom"> Prénom <span class="requis">*</span></label>
-        <input type="text" name="prenom" value="" size="20" maxlength="20" />
+        <input type="text" name="prenom" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="login">Login <span class="requis">*</span></label>
-        <input type="text" name="login" value="" size="20" maxlength="20" />
+        <input type="text" name="login" value="" size="20" maxlength="20" required=""/>
         <br />
         <label for="mdp">Mot de passe <span class="requis">*</span></label>
-        <input type="text" name="mdp" value="" size="20" maxlength="20" />
+        <input type="text" name="mdp" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="sexe">Sexe <span class="requis">*</span></label>
-        <SELECT name="sexe" size="1">
-        <OPTION>Masculin
-        <OPTION>Féminin
+        <SELECT name="sexe" size="1" required="">
+        <OPTION value="masculin">Masculin
+        <OPTION value="feminin">Féminin
         </SELECT>
         <br />
         <label for="dob">Date de naissance <span class="requis">*</span></label>
-        <input type="date" name="dob" value="" size="20" maxlength="20" />
+        <input type="date" name="dob" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="adresse">Adresse <span class="requis">*</span></label>
-        <input type="text" name="adresse" value="" size="20" maxlength="20" />
+        <input type="text" name="adresse" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" />
+        <input type="number" name="codePostal" value="" size="20" max="99999" maxlength="20" required=""/>
         <br />
         <label for="magasin">Magasin <span class="requis">*</span></label>
-        <SELECT name="magasin" size="1">
+        <SELECT name="magasin" size="1" required="">
             <%
             for(Magasin m: listeMagasin){ %>
-            <OPTION><%=m.getNomMagasin()%>
+            <OPTION value="<%=m.getId()%>"><%=m.getNomMagasin()%>
                 <%}%>
         </SELECT>
         <input type="hidden" name="action" value="insererDirecteur">

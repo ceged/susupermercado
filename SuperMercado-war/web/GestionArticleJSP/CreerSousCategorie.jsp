@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
         <jsp:useBean id="listeCategorie" scope="session" class="List<Categorie>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Création sous-catégorie</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -79,7 +79,7 @@
             
         <legend>libellé Catégorie (majuscules et accents interdits)</legend>
         <label for="idCategorie">Catégorie <span class="requis">*</span></label>
-        <SELECT name="idCategorie"size="1">
+        <SELECT name="idCategorie"size="1" required="">
             <%
             for(Categorie s: listeCategorie){ %>
             <OPTION value="<%=s.getId()%>" ><%=s.getLibelleCategorie()%>

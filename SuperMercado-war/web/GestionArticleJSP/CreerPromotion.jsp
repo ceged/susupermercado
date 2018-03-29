@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
         <jsp:useBean id="listeRefArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Création promotion</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -90,10 +90,10 @@
         <br />
             
         <label for="libelle"> Libellé Article <span class="requis">*</span></label>
-        <SELECT name="libelle" size="1">
+        <SELECT name="libelle" size="1" required="">
             <%
             for(ReferentielArticle a: listeRefArticle){ %>
-            <OPTION><%=a.getLibelleArticle()%>
+            <OPTION value="<%=a.getCodeBarre() %>"><%=a.getLibelleArticle()%>
                 <%}%>
         </SELECT>
         
