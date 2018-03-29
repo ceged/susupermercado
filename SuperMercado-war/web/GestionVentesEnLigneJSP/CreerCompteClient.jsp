@@ -27,9 +27,10 @@
         else{
         out.println( attribut );}
         %> </p>
+        <center> 
         <form method="get" action="/SuperMercado-war/ClientServlet">
         <fieldset>
-        <legend>Informations Client (majuscules et accents interdits)</legend>
+        <legend>Informations Client</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" required/>
         <br />

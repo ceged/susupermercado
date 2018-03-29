@@ -75,7 +75,7 @@
         <input type="text" name="adresse" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="number" name="codePostal" value="" size="20" maxlength="20" required=""/>
+        <input type="number" name="codePostal" value="" max="99999" size="20" maxlength="20" required=""/>
         <br />
         <input type="hidden" name="action" value="insererMagasin">
         </fieldset>
