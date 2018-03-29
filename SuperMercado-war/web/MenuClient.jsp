@@ -3,6 +3,14 @@
     Created on : 19 mars 2018, 16:18:05
     Author     : Sophia
 --%>
+<% 
+        
+    if (session.getAttribute("client") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
+
 
 <%@page import="entités.gestionVenteEnLigne.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
