@@ -58,7 +58,8 @@
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
         <input type="number" name="codePostal" value="" max="99999" required/>
         <br />
-
+                <input type="checkbox" name="optinRGPD" required=""/> J'ai pris conscience que mes données personnelles seront stockées par la société Supermercado.<br /> A tout moment je peux supprimer ces données via le menu accueil de mon compte. 
+                <br/>
         <input type="hidden" name="action" value="insererClient">
         </fieldset>
         <input type="submit" value="Valider" />

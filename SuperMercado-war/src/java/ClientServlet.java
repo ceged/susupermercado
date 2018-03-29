@@ -88,6 +88,10 @@ public class ClientServlet extends HttpServlet {
             sess.setAttribute("listeMagasin",listeMagasin);
             jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
         }
+        else if (act.equals("CreerCompteClient")){
+            
+            jspChoix="/GestionVentesEnLigneJSP/CreerCompteClient.jsp";
+        }
         else if (act.equals("transferArticlesParMagasin")) /// 
         {
             //création de session

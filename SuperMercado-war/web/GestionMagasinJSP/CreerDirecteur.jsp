@@ -106,6 +106,7 @@
             <OPTION value="<%=m.getId()%>"><%=m.getNomMagasin()%>
                 <%}%>
         </SELECT>
+        <br />
         <input type="hidden" name="action" value="insererDirecteur">
         </fieldset>
         <input type="submit" value="Valider" />
