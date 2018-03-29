@@ -58,11 +58,12 @@ if(attribut!=null){
 <TD Width=5%>Valider la ligne</TD>
  </tr>
 <%
-for(LigneLivraison l : liste){%>
+for(LigneLivraison l : liste){if(l.getMentionStatut()!=Mention.nonlivrer) {
+%>
 <form method="get" action="/SuperMercado-war/AgentLivraisonServlet"><tr><td ><%=l.getLigneCommande().getArticle().getLibelleArticle() %></td>
 <td ><%=l.getQuantiteFournisseur()%></td>
-<td ><input type="number" name="quantiteLivrer" value="" style="width: 40px;" /></td>
-<td ><input type="number" name="quantiteReceptionner" value="" style="width: 40px;" /></td>
+<td ><input type="number" name="quantiteLivrer" value="" style="width: 40px;" required=""/></td>
+<td ><input type="number" name="quantiteReceptionner" value="" style="width: 40px;" required=""/></td>
 <td ><%=l.getMentionStatut()%></td>
 <td ><input type="number" name="garantie" value="" style="width: 40px;" /></td>
 <td ><SELECT name="couleur" style="width: 80px;">
@@ -90,14 +91,14 @@ for(LigneLivraison l : liste){%>
     <input type="hidden" name="livraisonId" value=<%=livraison.getId() %>>
     <input type="hidden" name="action" value="ValiderLigneLivraison">
     <input type="submit" value="Valider" /></td><%}else{%><td>Déjà valider</td>
-    </tr></form><%}}%></TABLE> </center>  
+    </tr></form><%}}}%></TABLE> </center>  
 
     <form method="get" action="/SuperMercado-war/AgentLivraisonServlet">
 <label for="date"> Date de livraison effective <span class="requis">*</span></label>
-        <input type="date" name="date" value="" size="20" maxlength="20" />
+<input type="date" name="date" value="" size="20" maxlength="20"/>
         <br />
 <label for="statut">Statut de la livraison <span class="requis">*</span></label>
-        <SELECT name="statut" size="1">
+<SELECT name="statut" size="1" >
         <OPTION value="receptionner">Réceptionner
         <OPTION value="probleme">Problème livraison
         </SELECT>

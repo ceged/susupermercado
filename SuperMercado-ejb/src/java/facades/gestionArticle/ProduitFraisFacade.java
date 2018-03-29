@@ -40,6 +40,7 @@ public class ProduitFraisFacade extends AbstractFacade<ProduitFrais> implements 
         pf.setQuantiteLot(qteProduitFrais);
         pf.setArticle(refLotArticle);
         pf.setDatePeremption(datePeremption);
+        pf.setLigneLivraison(l);
         Date date = new Date();
         pf.setDateCreation(date);
         

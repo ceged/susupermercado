@@ -39,6 +39,7 @@ public class VetementFacade extends AbstractFacade<Vetement> implements Vetement
         
         v.setQuantiteLot(qteLotArticle);
         v.setArticle(refLotArticle);
+        v.setLigneLivraison(l);
         v.setTaille(taille);
         v.setCouleur(couleur);
         Date date = new Date();
