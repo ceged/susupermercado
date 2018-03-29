@@ -89,7 +89,8 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(rayonRecherche==null){
             message="rayon inconnu";
         }
-        SousCategorie sousCategorieRecherche= sousCategorieFacade.RechercherSousCategorie(libelleSousCategorieRecherche);
+        Long idSousCat=Long.parseLong(libelleSousCategorieRecherche);
+        SousCategorie sousCategorieRecherche= sousCategorieFacade.find(idSousCat);
         if(sousCategorieRecherche==null){
             message="Sous catégorie inconnu";
         }
@@ -112,17 +113,9 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     }
     
     @Override
-    public String ModifierPrixReferentielArticle(String libelleArticle, String rayon,String magasin, float newPrix){
+    public String ModifierPrixReferentielArticle(String libelleArticle, float newPrix){
         Long idArti=Long.parseLong(libelleArticle);
         String message ="Prix modifié";
-        Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(magasin);
-        if(magasinRecherche==null){
-            message="magasin inconnu";
-        }
-        Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-        if(rayonRecherche==null){
-            message="rayon inconnu";
-        }
         ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idArti);
         if(referentielArticle==null){
             message="article inconnu";
@@ -139,16 +132,9 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     }
     
     @Override
-    public String SupprimerReferentielArticle(Long idArticle, String rayon,String magasin){
+    public String SupprimerReferentielArticle(Long idArticle){
         String message ="Article supprimé";
-        Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(magasin);
-        if(magasinRecherche==null){
-            message="magasin inconnu";
-        }
-        Rayon rayonRecherche=rayonFacade.RechercherRayonParNom(rayon, magasinRecherche);
-        if(rayonRecherche==null){
-            message="rayon inconnu";
-        }
+        
         ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idArticle);
         if(referentielArticle==null){
             message="article inconnu";
@@ -193,9 +179,10 @@ public List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chef
     }
     
     @Override
-    public Commande CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur){
+    public Commande CreerBonCommande(String idChefRayon, String fournisseur){
         
         ChefRayon c=chefRayonFacade.RechercherChefRayonParId(idChefRayon);
+        Date dateCommande = new Date();
         Fournisseur f=fournisseurFacade.RechercheFournisseurParNom(fournisseur);
         return commandeFacade.CreerBonCommande(c, dateCommande, f);
         

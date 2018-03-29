@@ -28,11 +28,11 @@ public interface SessionChefDeRayonLocal {
     
     List<Fournisseur> ListerFournisseur();
     
-    String ModifierPrixReferentielArticle(String libelleArticle, String rayon,String magasin, float newPrix);
+    String ModifierPrixReferentielArticle(String libelleArticle, float newPrix);
     
     ChefRayon ChercherChefRayonParId(String id);
     
-    String SupprimerReferentielArticle(Long idArticle, String rayon,String magasin);
+    String SupprimerReferentielArticle(Long idArticle);
     
     List<ReferentielArticle> ConsulterListeArticleParChefRayon(ChefRayon chefRayon);
     
@@ -40,7 +40,7 @@ public interface SessionChefDeRayonLocal {
     
     Fournisseur ChercherFournisseurParId(Long idFournisseur);
     
-    Commande CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur);
+    Commande CreerBonCommande(String idChefRayon, String fournisseur);
     
     Commande ChercherDernierCommande();
     

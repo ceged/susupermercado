@@ -305,16 +305,14 @@ request.setAttribute( "message", message );
     protected void doActionModifierPrixArticle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String libelleArticleCree= request.getParameter( "libelleArticle" );
-    String magasinCree= request.getParameter( "magasin" );
-    String rayonCree= request.getParameter( "rayon" );
     String newPrix= request.getParameter( "newprix" );
     String message;
-    if ( libelleArticleCree.trim().isEmpty()&&magasinCree.trim().isEmpty()&&newPrix.trim().isEmpty()){
+    if ( libelleArticleCree.trim().isEmpty()||newPrix.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionArticle/ModifierPrixArticle.jsp\">Cliquez ici</a> pour accéder au formulaire de modification de prix.";
 } else
 {
     Float prixVente=Float.parseFloat(newPrix);
-    message=sessionChefDeRayon.ModifierPrixReferentielArticle(libelleArticleCree, rayonCree, magasinCree, prixVente);
+    message=sessionChefDeRayon.ModifierPrixReferentielArticle(libelleArticleCree, prixVente);
 }
    
 request.setAttribute( "message", message );
@@ -323,16 +321,14 @@ request.setAttribute( "message", message );
     protected Commande doActioninsererBonCommande(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String fournisseur= request.getParameter( "fournisseur" );
-    String date= request.getParameter( "date" );
     String idChef= request.getParameter( "chefRayon" );
     String message;
     Commande c=null;
-    if ( fournisseur.trim().isEmpty()&&date.trim().isEmpty()&&idChef.trim().isEmpty()){
+    if ( fournisseur.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommandeJSP/CreerBonCommande.jsp\">Cliquez ici</a> pour accéder au formulaire de création bon de commande.";
 } else
 {
-    Date date2=Date.valueOf(date);
-    c=sessionChefDeRayon.CreerBonCommande(idChef, date2, fournisseur);
+    c=sessionChefDeRayon.CreerBonCommande(idChef, fournisseur);
 }
    return c;
 
@@ -348,7 +344,7 @@ request.setAttribute( "message", message );
 } else
 {
     Long ArticleId=Long.parseLong(idArticle);
-    message=sessionChefDeRayon.SupprimerReferentielArticle(ArticleId, rayonCree, magasinCree);
+    message=sessionChefDeRayon.SupprimerReferentielArticle(ArticleId);
 }
    
 request.setAttribute( "message", message );

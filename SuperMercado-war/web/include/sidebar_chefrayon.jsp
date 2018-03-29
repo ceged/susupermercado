@@ -39,7 +39,7 @@
 								</ul>
 							</li>							
 							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
-							<li><a href="Accueil.jsp">Sortir menu principal</a></li>
+							<li><a href="Menu?action=sedeconnecter">Sortir menu principal</a></li>
 					</nav>
 				</div>
 			</section>

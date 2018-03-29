@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeReferentielArticleModifier" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Modification prix</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -66,7 +66,7 @@
                             </ul>
                         </li>	
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>
@@ -84,7 +84,7 @@
         <input type="hidden" name="rayon" value=<%=c.getRayon().getLibelleRayon() %> size="20" maxlength="20" />
         <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin().getNomMagasin() %> size="20" maxlength="20" />
         <label for="libelleArticle">Article <span class="requis">*</span></label>
-        <SELECT name="libelleArticle" size="1">
+        <SELECT name="libelleArticle" size="1" required="">
             <%
             for(ReferentielArticle r: liste){ %>
             <OPTION value="<%=r.getCodeBarre()%>"><%=r.getLibelleArticle()%>

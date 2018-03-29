@@ -3,6 +3,7 @@
     Created on : 14 mars 2018, 11:59:16
     Author     : Sophia
 --%>
+
 <% 
         
     if (session.getAttribute("chefRayonConnecte") == null) {
@@ -26,7 +27,7 @@
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="test/css">
-        <title>JSP Page</title>
+        <title>Création commande</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -67,7 +68,7 @@
                             </ul>
                         </li>	
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>
@@ -77,7 +78,7 @@
         <center>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations bon de commande (majuscules et accents interdits)</legend>
+        <legend>Informations bon de commande</legend>
         <label for="fournisseur">Fournisseur <span class="requis">*</span></label>
         <SELECT name="fournisseur" size="1">
             <%
@@ -85,9 +86,6 @@
             <OPTION> <%=f.getNom()%>
                 <%}%>
         </SELECT>
-        <br />
-        <label for="date"> Date <span class="requis">*</span></label>
-        <input type="date" name="date" value="" size="20" maxlength="20" required />
         <br />
         <input type="hidden" name="chefRayon" value="<%=chefRayonConnecte.getId()%>">
         <input type="hidden" name="action" value="insererBonCommande">

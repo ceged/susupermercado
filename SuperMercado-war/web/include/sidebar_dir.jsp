@@ -35,7 +35,7 @@
 							</li>															
 							<li><a href="GestionMagasinJSP/CreerSecteur.jsp">Créer un secteur</a></li>			
 							
-							<li><a href="MenuDirecteur.jsp">Sortir menu principal</a></li>
+							<li><a href="Menu?action=sedeconnecter">Sortir menu principal</a></li>
 					</nav>
 				</div>
 			</section>

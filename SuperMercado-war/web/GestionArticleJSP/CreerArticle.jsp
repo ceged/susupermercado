@@ -27,7 +27,7 @@
         <jsp:useBean id="chefRayonConnecte" scope="session" class="ChefRayon"></jsp:useBean>
         <jsp:useBean id="listeSousCategorie" scope="session" class="List<SousCategorie>"></jsp:useBean>
         <jsp:useBean id="listeFournisseur" scope="session" class="List<Fournisseur>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>Création Article</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -69,7 +69,7 @@
                             </ul>
                         </li>	
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>
@@ -82,7 +82,7 @@
         <center>
             <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations Produit (majuscules et accents interdits)</legend>
+        <legend>Informations Produit</legend>
         <label for="libelleArticle">Libéllé article <span class="requis">*</span></label>
         <input type="text" name="libelleArticle" value="" size="20" maxlength="20" required />
         <br />
@@ -95,14 +95,14 @@
         <input type="number" step="0.01" name="prix" value="" size="20" maxlength="20" required/>
         <br />
         <label for="souscategorie">Sous catégorie <span class="requis">*</span></label>
-        <SELECT name="souscategorie" size="1">
+        <SELECT name="souscategorie" size="1" required="">
             <%
             for(SousCategorie s: listeSousCategorie2){ %>
-            <OPTION><%=s.getLibelleSousCategorie()%>
+            <OPTION value="<%=s.getId()%>"><%=s.getLibelleSousCategorie()%>
                 <%}%>
         </SELECT>
         <br />
-        <A HREF="GestionCommandeJSP/CreerFournisseur.jsp">
+        <A HREF="ChefRayonServlet?=CreerFournisseur">
         Créer un fournisseur</A><br/><br/>
         <br />
         <label for="listeFournisseur">Liste de fournisseur<span class="requis">*</span></label><br />
@@ -111,6 +111,7 @@
             for(Fournisseur f: listeFournisseur){ i++;%>
             <input type="checkbox" name=<%=i%> value=<%=f.getId()%> size="20" /><%=f.getNom()%>
                 <%}%>
+        <br />
         <br />
         <input type="hidden" name="action" value="insererReferentielArticle">
         </fieldset>

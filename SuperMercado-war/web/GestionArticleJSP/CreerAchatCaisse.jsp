@@ -61,7 +61,7 @@
                                                                 </ul>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentCaisse.getId()%>">Modifier mot de passe</a></li>
                                                         <li><a href="MenuAgentCaisse.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                 </ul>
 					</nav>
 				</div>

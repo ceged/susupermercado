@@ -30,21 +30,59 @@
         <jsp:useBean id="commande" scope="session" class="Commande"></jsp:useBean>
         <jsp:useBean id="listeArticle" scope="session" class="List<ReferentielArticle>"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="test/css">
-        <title>JSP Page</title>
+        <title>Création Ligne Commande</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
-     <%@ include file="/include/sidebar_chefrayon.jsp" %>
+        <div id="top-bar" class="container">
+        <div class="row">
+
+            <div class="span8">
+                <div class="account pull-left">
+                    <ul class="user-menu">						
+                        <li><a href="Connexion.jsp">Portail de connexion</a></li>		
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">				
+                <a href="index.html" class="pull-left"><img src="<%= request.getContextPath()%>/template/images/logo5.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
+                        <li><a>Article</a>					
+                            <ul>
+                                <li><a href="ChefRayonServlet?action=passageListeSousCategorie">Créer un article</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfospourModifierPrix&chefRayon=<%=chefRayonConnecte.getId()%>">Modifier prix article</a></li>	
+                                <li><a href="ChefRayonServlet?action=passageInfospourSupprimerArticle&chefRayon=<%=chefRayonConnecte.getId()%>">Supprimer article</a></li>	
+                            </ul>
+                        </li>															
+
+                        <li><a href="ChefRayonServlet?action=CreerFournisseur">Créer un fournisseur</a></li>
+                        <li><a>Commande</a>
+                            <ul>									
+                                <li><a href="ChefRayonServlet?action=passageInfosCreerBonCommande&chefRayon=<%=chefRayonConnecte.getId()%>"> Créer bon de commande</a></li>
+                                <li><a href="ChefRayonServlet?action=passageInfosListeBonCommande&chefRayon=<%=chefRayonConnecte.getId()%>">Afficher les bon de commandes </a></li>
+                            </ul>
+                        </li>	
+                        <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
      
     <body>
-    <% List<ReferentielArticle> liste= commande.getFournisseur().getListeReferentielArticles(); %>
+
          <h1>Formulaire de ligne commande</h1>
     <center>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations ligne commande (majuscules et accents interdits)</legend>
+        <legend>Informations ligne commande</legend>
         <label for="article">Article du fournisseur<span class="requis">*</span></label>
-        <SELECT name="article" size="1">
+        <SELECT name="article" size="1" required="">
             <%
             for(ReferentielArticle r: listeArticle){ %>
             <OPTION value="<%=r.getCodeBarre()%>"> <%=r.getLibelleArticle()%>

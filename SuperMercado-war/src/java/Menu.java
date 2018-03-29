@@ -133,7 +133,11 @@ public class Menu extends HttpServlet {
                 jspChoix="/MenuAgentRayon.jsp";
             }
           }
-        
+        else if (act.equals("sedeconnecter")){
+            HttpSession session = request.getSession(true);
+            session.invalidate();
+            jspChoix="/Accueil.jsp";
+        }
         else if (act.equals("CasterEnPersonne"))
         {
             String personneCherche= request.getParameter( "idPersonneSession");
