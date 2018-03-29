@@ -178,7 +178,8 @@ public class SessionAdmin implements SessionAdminLocal {
         }
         else{
         message ="Magasin inconnu";
-        Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(magasin);
+        Long idMag=Long.parseLong(magasin);
+        Magasin magasinRecherche = magasinFacade.find(idMag);
         if(magasinRecherche!=null){
             directeurMagasinFacade.CreerDirecteurMagasin(nom, prenom, login, mdp, sexe, dob, adresse, codePostal, magasinRecherche);
             message="Directeur créé";
@@ -243,7 +244,8 @@ public class SessionAdmin implements SessionAdminLocal {
     @Override
     public String CreerPromotion(Date dateDeb,Date dateFin,float prixPromo, String libelle) {
         String message = "Réferentiel Article inconnu";
-        ReferentielArticle ref = referentielArticleFacade.RechercheReferentielArticleParLibelle(libelle);
+        Long idArt=Long.parseLong(libelle);
+        ReferentielArticle ref = referentielArticleFacade.find(idArt);
         
         if (ref != null) 
         { if(dateDeb.before(dateFin)) {

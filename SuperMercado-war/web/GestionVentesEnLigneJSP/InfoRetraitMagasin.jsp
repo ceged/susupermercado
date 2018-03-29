@@ -3,6 +3,8 @@
     Created on : 23 mars 2018, 18:51:53
     Author     : Soldat
 --%>
+
+
 <%@page import="entités.gestionMagasin.Magasin"%>
 <%@page import="entités.gestionArticle.Achat"%>
 <% 

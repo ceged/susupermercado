@@ -3,7 +3,13 @@
     Created on : 16 mars 2018, 14:35:05
     Author     : tangu_000
 --%>
-
+<% 
+        
+    if (session.getAttribute("directeurConnecte") == null) {
+        RequestDispatcher rd = request.getRequestDispatcher("Accueil.jsp");
+        rd.forward(request, response);
+        response.sendRedirect( request.getContextPath() + "/Accueil.jsp");
+ } %>
 
 <%@page import="entités.gestionMagasin.DirecteurMagasin"%>
 <%@page import="entités.gestionMagasin.Personne"%>
@@ -57,7 +63,8 @@
                                                                         
                                                                         <li><a href="DirecteurServlet?action=transferListeCaisseEtAgentCaisse&directeur=<%=p.getId()%>"> Créer une affectation caisse </a></li>
 								</ul>
-							</li>							
+							</li>
+                                                        <li><A HREF="http://127.0.0.1/ui/lnk/?_=eJxNkEELgzAMhf9LzoJsR28OBx4GG3otjCphFaotaVQ68b8vHUN2yvteeEnIBmsIUGywDLgiJcUDW4QCIgbIYMRp7rQ0YHKC7Jz9w8Ca53CQQeSA9uCenLXHqLdz4w%2F2PQPtfcI5yNoM1i6lzqJe5EWSlJOQoV7IJDlx9OkwxtFbzSgWPTQbsVSu8ga9Iw4qrwckTb2JKq%2FKtr7cy6Z6tuXt2kpikTBHKJhm%2FN4g6fSC%2FQNJFlSp&user=admin&pass=rD0BR%2FxTH4m4bXUdDMDd4A%3D%3D" target="_blank">Consulter les ventes</a></li>
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
 							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
                                                         <li><a href="Accueil.jsp">Se déconnecter</a></li>

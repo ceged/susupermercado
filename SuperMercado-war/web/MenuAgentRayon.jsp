@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="agentRayonConnecte" scope="session" class="AgentRayon"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu Agent livraison</title>
+        <title>Menu Agent Rayon</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -54,7 +54,8 @@
 									<li><a href="AgentRayonServlet?action=passageListelivraison&idAgent=<%=agentRayonConnecte.getId()%>"> Consulter liste livraison de mon rayon</a></li>
 									<li><a href="AgentRayonServlet?action=passageListecommande&idAgent=<%=agentRayonConnecte.getId()%>">Consulter liste commandes de mon rayon</a></li>
 								</ul>
-							</li>	
+							</li>
+                                                        <li><A HREF="http://127.0.0.1/ui/lnk/?_=eJxNkEELgzAMhf9LzoJsR28OBx4GG3otjCphFaotaVQ68b8vHUN2yvteeEnIBmsIUGywDLgiJcUDW4QCIgbIYMRp7rQ0YHKC7Jz9w8Ca53CQQeSA9uCenLXHqLdz4w%2F2PQPtfcI5yNoM1i6lzqJe5EWSlJOQoV7IJDlx9OkwxtFbzSgWPTQbsVSu8ga9Iw4qrwckTb2JKq%2FKtr7cy6Z6tuXt2kpikTBHKJhm%2FN4g6fSC%2FQNJFlSp&user=admin&pass=rD0BR%2FxTH4m4bXUdDMDd4A%3D%3D" target="_blank">Consulter les ventes</a></li>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
 							<li><a href="MenuAgentRayon.jsp">Retour menu principal</a></li>
                                                         <li><a href="Accueil.jsp">Se déconnecter</a></li>
@@ -67,7 +68,7 @@
     <body>
     <tr> <td Width=15%>Bienvenue <%=agentRayonConnecte.getPrenom()%></td>
 </tr>
-        <h1>Menu Agent livraison</h1>
+        <h1>Menu Agent Rayon</h1>
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){

@@ -190,9 +190,9 @@ public class ChefRayonServlet extends HttpServlet {
         else if(act.equals("insererBonCommande"))
         {
             String nomFournisseur = request.getParameter("fournisseur");
-            doActioninsererBonCommande(request,response);
+            Commande commande=doActioninsererBonCommande(request,response);
             jspChoix="/GestionCommandeJSP/AfficherCommandeEnCours.jsp";
-            Commande commande = sessionChefDeRayon.ChercherDernierCommande();
+            
             List<LigneCommande> listeLigneCommande=sessionChefDeRayon.RechercherListLigneCommandeParCommande(commande);
             List<ReferentielArticle> listeArticle=sessionChefDeRayon.ConsulterListeArticleParFournisseur(nomFournisseur);
             HttpSession sess=request.getSession(true);
@@ -320,21 +320,22 @@ request.setAttribute( "message", message );
 request.setAttribute( "message", message );
 }   
     
-    protected void doActioninsererBonCommande(HttpServletRequest request, HttpServletResponse response)
+    protected Commande doActioninsererBonCommande(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     String fournisseur= request.getParameter( "fournisseur" );
     String date= request.getParameter( "date" );
     String idChef= request.getParameter( "chefRayon" );
     String message;
+    Commande c=null;
     if ( fournisseur.trim().isEmpty()&&date.trim().isEmpty()&&idChef.trim().isEmpty()){
     message = "Erreur ‐ Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"GestionCommandeJSP/CreerBonCommande.jsp\">Cliquez ici</a> pour accéder au formulaire de création bon de commande.";
 } else
 {
     Date date2=Date.valueOf(date);
-    message = sessionChefDeRayon.CreerBonCommande(idChef, date2, fournisseur);
+    c=sessionChefDeRayon.CreerBonCommande(idChef, date2, fournisseur);
 }
-   
-request.setAttribute( "message", message );
+   return c;
+
 }   
     protected void doActionSupprimerArticle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

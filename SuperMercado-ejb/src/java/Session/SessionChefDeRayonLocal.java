@@ -40,7 +40,7 @@ public interface SessionChefDeRayonLocal {
     
     Fournisseur ChercherFournisseurParId(Long idFournisseur);
     
-    String CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur);
+    Commande CreerBonCommande(String idChefRayon, Date dateCommande, String fournisseur);
     
     Commande ChercherDernierCommande();
     

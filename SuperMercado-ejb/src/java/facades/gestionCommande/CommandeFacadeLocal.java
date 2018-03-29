@@ -34,7 +34,7 @@ public interface CommandeFacadeLocal {
 
     int count();
     
-    void CreerBonCommande(ChefRayon chefRayon, Date dateCommande, Fournisseur fournisseur);
+    Commande CreerBonCommande(ChefRayon chefRayon, Date dateCommande, Fournisseur fournisseur);
     
     Commande RechercherCommandeParId(Long idCommande);
     
