@@ -18,7 +18,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="personneConnecte" scope="session" class="Personne"></jsp:useBean>
         <link rel="stylesheet" href="test.css" type="text/css">
-        <title>JSP Page</title>
+        <title> Creation magasin</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -69,13 +69,13 @@
         <fieldset>
         <legend>Informations Magasin</legend>
         <label for="libelleMagasin">Libéllé Magasin <span class="requis">*</span></label>
-        <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" required/>
+        <input type="text" name="libelleMagasin" value="" size="20" maxlength="20" required=""/>
         <br />
         <label for="adresse"> Adresse <span class="requis">*</span></label>
-        <input type="text" name="adresse" value="" size="20" maxlength="20" required/>
+        <input type="text" name="adresse" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="text" name="codePostal" value="" size="20" maxlength="20" required/>
+        <input type="number" name="codePostal" value="" size="20" maxlength="20" required=""/>
         <br />
         <input type="hidden" name="action" value="insererMagasin">
         </fieldset>
