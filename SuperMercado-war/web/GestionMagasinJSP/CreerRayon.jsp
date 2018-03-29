@@ -78,33 +78,32 @@
 
    
 
-    <body>
+     <body><center>
 <% 
     List<Secteur> listeSecteur2 =listeSecteur;%>
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
-
         <h1>Formulaire de création de rayon</h1>
-        <center> 
+        
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
-        <fieldset>
-        <legend>Informations Rayon (majuscules et accents interdits)</legend>
-        <label for="libellesecteur">Secteur <span class="requis">*</span></label>
-        <SELECT name="libellesecteur" size="1">
-            <%
-            for(Secteur s: listeSecteur2){ %>
-            <OPTION><%=s.getLibelleSecteur()%>
-                <%}%>
-        </SELECT>
-        <br />
-        <label for="libelleRayon">Nom du Rayon<span class="requis">*</span></label>
-        <input type="text" name="libelleRayon" value="" size="20" maxlength="20" required/>
-        <br />
+                <fieldset>
+                    <legend>Informations Rayon (majuscules et accents interdits)</legend>
+                    <label for="libellesecteur">Secteur <span class="requis">*</span></label>
+                    <SELECT name="libellesecteur" size="1">
+                        <%
+                        for(Secteur s: listeSecteur2){ %>
+                        <OPTION><%=s.getLibelleSecteur()%>
+                        <%}%>
+                    </SELECT>
+                    <br />
+                    <label for="libelleRayon">Nom du Rayon<span class="requis">*</span></label>
+                    <input type="text" name="libelleRayon" value="" size="20" maxlength="20" required/>
+                    <br />
 
-        <input type="hidden" name="action" value="insererRayon">
-        </fieldset>
-        <input type="submit" value="Valider" />
-        <input type="reset" value="Remettre à zéro" /> <br />
-</form>
+                    <input type="hidden" name="action" value="insererRayon">
+                </fieldset>
+                <input type="submit" value="Valider" />
+                <input type="reset" value="Remettre à zéro" /> <br />
+            </form>
         </center> 
      <%@ include file="/include/footer.jsp" %>
     </body>

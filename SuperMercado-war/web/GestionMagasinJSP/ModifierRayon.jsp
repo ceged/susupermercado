@@ -79,13 +79,13 @@
                 </div>
 
     
-
+ <center>
         <% DirecteurMagasin d= directeurConnecte;
 List<Rayon> listeRayon2 =listeRayonModifie;%>
 <tr> <td Width=15%>Bienvenue <%=d.getNom()%></td>
 
         <h1>Formulaire de modification rayon</h1>
-       <center> 
+    
            <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Rayon a modifier (majuscules et accents interdits)</legend>

@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="test.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>New Caisse</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -75,12 +75,12 @@
                 </div>
 
     <body>
-
+ <center> 
  
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr>
         <h1>Formulaire de création de caisse</h1>
-       <center> 
+      
           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Caisse (majuscules et accents interdits)</legend>

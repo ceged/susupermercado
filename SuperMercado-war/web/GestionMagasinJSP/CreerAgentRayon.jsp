@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="test.css" type="text/css">
         <jsp:useBean id="directeurConnecte" scope="session" class="DirecteurMagasin"></jsp:useBean>
         <jsp:useBean id="listeRayon" scope="session" class="List<Rayon>"></jsp:useBean>
-        <title>JSP Page</title>
+        <title>New Agent Rayon</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -76,15 +76,15 @@
                 </div>
 
     <body>
-
+    <center>
 <% List<Rayon> listeRayon2 =listeRayon;{%>
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
-         <h1>Formulaire de création d'agent de Rayon</h1>
-         <center> 
+         <h1>Création d'agent de Rayon</h1>
+         
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations Agent de rayon</legend>
+        <legend>Informations de votre nouvel agent de rayon</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" required />
         <br />

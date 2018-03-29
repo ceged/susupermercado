@@ -79,12 +79,13 @@
 
 
                                                                         <body>
-         <h1>Formulaire de création Chef de Rayon</h1>
+                                                                        <center>
+         <h1>Création Chef de Rayon</h1>
                                                                         
         <center> 
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations ChefMagasin (majuscules et accents interdits)</legend>
+        <legend>Informations de votre nouveau chef de magasin : </legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" />
         <br />
