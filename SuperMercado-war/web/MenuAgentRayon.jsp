@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="text.css" type="text/css">
         <jsp:useBean id="agentRayonConnecte" scope="session" class="AgentRayon"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu Agent livraison</title>
+        <title>Menu Agent Rayon</title>
     <%@ include file="/include/css.jsp" %>    
     </head>    
     <%@ include file="/include/header.jsp" %>
@@ -68,7 +68,7 @@
     <body>
     <tr> <td Width=15%>Bienvenue <%=agentRayonConnecte.getPrenom()%></td>
 </tr>
-        <h1>Menu Agent livraison</h1>
+        <h1>Menu Agent Rayon</h1>
         <p> <%
         String attribut = (String) request.getAttribute("message");
         if(attribut==null){
