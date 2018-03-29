@@ -113,6 +113,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
     
     @Override
     public String ModifierPrixReferentielArticle(String libelleArticle, String rayon,String magasin, float newPrix){
+        Long idArti=Long.parseLong(libelleArticle);
         String message ="Prix modifié";
         Magasin magasinRecherche=magasinFacade.RechercherMagasinParNom(magasin);
         if(magasinRecherche==null){
@@ -122,7 +123,7 @@ public class SessionChefDeRayon implements SessionChefDeRayonLocal {
         if(rayonRecherche==null){
             message="rayon inconnu";
         }
-        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParLibelleParRayon(rayonRecherche, libelleArticle);
+        ReferentielArticle referentielArticle=referentielArticleFacade.RechercheReferentielArticleParCodeBarre(idArti);
         if(referentielArticle==null){
             message="article inconnu";
         }
