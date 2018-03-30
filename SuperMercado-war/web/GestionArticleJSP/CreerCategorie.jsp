@@ -71,7 +71,7 @@
     <center> 
         <form method="get" action="/SuperMercado-war/Admin" acceptCharset="utf-8">
         <fieldset>
-        <legend>libellé Catégorie (majuscules et accents interdits)</legend>
+        <legend>Nom de la Catégorie</legend>
         <label for="libelleCategorie">Libellé catégorie <span class="requis">*</span></label>
         <input type="text" name="libelleCategorie" value="" size="20" maxlength="20" required />
         <br />

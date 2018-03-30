@@ -122,8 +122,8 @@ public class SessionDirecteurMagasin implements SessionDirecteurMagasinLocal {
 @Override
 public String CreerRayon (String secteur, String libelleRayon){
      String message = "secteur inconnu";
-     
-     Secteur secteurCherche = secteurFacade.RechercherSecteurParLibelle(secteur);
+     Long idSecteur=Long.parseLong(secteur);
+     Secteur secteurCherche = secteurFacade.find(idSecteur);
      if (secteurCherche != null ){
    
     rayonFacade.CreerRayon(secteurCherche, libelleRayon);

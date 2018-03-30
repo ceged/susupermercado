@@ -77,7 +77,7 @@
         <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
             
-        <legend>libellé Catégorie (majuscules et accents interdits)</legend>
+        <legend>Désignation Catégorie</legend>
         <label for="idCategorie">Catégorie <span class="requis">*</span></label>
         <SELECT name="idCategorie"size="1" required="">
             <%
@@ -87,7 +87,7 @@
         </SELECT>
         
         
-        <legend>libellé sous - catégorie (majuscules et accents interdits)</legend>
+        <legend>Désignation sous - catégorie</legend>
         <label for="libelleSousCategorie">Libellé sous-catégorie <span class="requis">*</span></label>
         <input type="text" name="libelleSousCategorie" value="" size="20" maxlength="20" required/>
         <br />

@@ -76,14 +76,14 @@
 
     <body>
 
- 
+  <center> 
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr>
         <h1>Formulaire de création de caisse</h1>
-       <center> 
+      
           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations Caisse (majuscules et accents interdits)</legend>
+        <legend>Informations Caisse</legend>
         <label for="id">Numéro de la caisse <span class="requis">*</span></label>
         <input type="text" name="id" value="" size="20" maxlength="20" required/>
         <br />

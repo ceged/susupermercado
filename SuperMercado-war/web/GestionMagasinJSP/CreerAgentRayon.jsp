@@ -78,10 +78,11 @@
     <body>
 
 <% List<Rayon> listeRayon2 =listeRayon;{%>
+<center> 
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
          <h1>Formulaire de création d'agent de Rayon</h1>
-         <center> 
+         
         <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
         <legend>Informations Agent de rayon</legend>
