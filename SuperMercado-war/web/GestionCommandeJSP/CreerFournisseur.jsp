@@ -24,7 +24,7 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="text.css" type="text/css">
-        <title>JSP Page</title>
+        <title>Création Fournisseur</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -66,7 +66,7 @@
                             </ul>
                         </li>	
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>
@@ -77,7 +77,7 @@
     <center>
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations Fournisseur (majuscules et accents interdits)</legend>
+        <legend>Informations Fournisseur</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" required/>
         <br />
@@ -91,7 +91,7 @@
         <input type="text" name="mdp" value="" size="20" maxlength="20" required />
         <br />
         <label for="sexe">Sexe <span class="requis">*</span></label>
-        <SELECT name="sexe" size="1">
+        <SELECT name="sexe" size="1" required="">
         <OPTION value="masculin">Masculin
         <OPTION value="feminin">Féminin
         </SELECT>
@@ -103,7 +103,7 @@
         <input type="text" name="adresse" value="" size="20" maxlength="20" required />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="number" name="codePostal" value="" size="5" maxlength="5" required/>
+        <input type="number" name="codePostal" value="" max="99999" size="5" maxlength="5" required/>
         <br />
         <input type="hidden" name="action" value="insererFournisseur">
         </fieldset>

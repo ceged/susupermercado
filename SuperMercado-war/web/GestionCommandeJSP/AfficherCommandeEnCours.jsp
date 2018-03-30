@@ -60,12 +60,13 @@
                             </ul>
                         </li>	
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>
         </section>
 <body>
+<center>
 <h1>Liste des articles ajoutés</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -103,6 +104,7 @@ for(LigneCommande l : listeLigneCommande){t=t+l.getPrixAchatUnitaire()*l.getQuan
 </table>
 
 <hr>
+</center>
 
     <%@ include file="/include/footer.jsp" %>
     </body>

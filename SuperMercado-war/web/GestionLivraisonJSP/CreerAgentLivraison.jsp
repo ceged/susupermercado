@@ -66,7 +66,7 @@
 							</li>							
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
 							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                     						</ul>
 
 					</nav>
@@ -79,9 +79,10 @@
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
          <h1>Formulaire de création Agent de livraison</h1>
+
              <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations  (majuscules et accents interdits)</legend>
+        <legend>Informations</legend>
         <label for="nom">Nom <span class="requis">*</span></label>
         <input type="text" name="nom" value="" size="20" maxlength="20" required/>
         <br />

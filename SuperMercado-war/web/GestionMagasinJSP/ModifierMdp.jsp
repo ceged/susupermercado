@@ -42,6 +42,7 @@
     <br />
     <input type="hidden" name="action" value="modifierMdp"/>
     <br />
+    <a href="Admin?action=Accueil"><input type="button" value="Annuler"></a>
     <input type="submit" value="Valider" />
 </form>
     </center>

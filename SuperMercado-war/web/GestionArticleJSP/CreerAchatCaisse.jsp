@@ -61,7 +61,7 @@
                                                                 </ul>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentCaisse.getId()%>">Modifier mot de passe</a></li>
                                                         <li><a href="MenuAgentCaisse.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                 </ul>
 					</nav>
 				</div>
@@ -88,6 +88,7 @@ if(attribut!=null){
         <br />
         </form>
         </center> 
+        <center>
  <TABLE border width=50%>
 <tr> <TD>Designation article</TD>
 <TD>Quantité</TD>
@@ -112,7 +113,7 @@ for(LigneAchat l : liste){t=t+l.getLotArticle().getArticle().getPrixVenteMagasin
     
 </table>       
         
-        <center>
+        
             <form method="get" action="/SuperMercado-war/EmployeCaisseServlet">
         <input type="hidden" name="idAchat" value="<%=achatCaisse.getId() %>">
         <input type="hidden" name="action" value="validerAchatCaisse">

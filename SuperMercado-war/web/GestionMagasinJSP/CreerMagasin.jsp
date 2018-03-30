@@ -49,14 +49,14 @@
 							<li><a href="Admin?action=TransfererListeMagasinPourAjoutDirecteur">Créer un directeur</a></li>			
 							<li><a >Catégorie</a>
 								<ul>									
-									<li><a href="Admin?action=CreerCategorie"">Créer une Catégorie</a></li>
+									<li><a href="Admin?action=CreerCategorie">Créer une Catégorie</a></li>
 									<li><a href="Admin?action=TransfererListeCategorie">Créer une sous-catégorie </a></li>
 								</ul>
 							</li>							
 							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">Modifier mon mot de passe</a></li>
 							<li><a href="MenuAdmin.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                 </ul>
 					</nav>
 				</div>
@@ -75,7 +75,7 @@
         <input type="text" name="adresse" value="" size="20" maxlength="20" required="" />
         <br />
         <label for="codePostal">Code Postal <span class="requis">*</span></label>
-        <input type="number" name="codePostal" value="" size="20" maxlength="20" required=""/>
+        <input type="number" name="codePostal" value="" max="99999" size="20" maxlength="20" required=""/>
         <br />
         <input type="hidden" name="action" value="insererMagasin">
         </fieldset>

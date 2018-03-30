@@ -184,7 +184,7 @@ public class AgentLivraisonServlet extends HttpServlet {
     sessionFournisseur.ModifierStatutLigneLivraison(l, statut);
     sessionAgentLivraison.ModifierQuantiteLigneLivraison(ligneLivraisonId, qtReceptionner, qtLivrer);
     if(datePeremption.equalsIgnoreCase("")){
-        if(taille.equalsIgnoreCase("")){
+        if(taille.equalsIgnoreCase("")||couleur.equalsIgnoreCase("")){
             if(garantie.equalsIgnoreCase("")){
                  sessionAgentLivraison.CreerLotArticle(l.getLigneCommande().getArticle().getCodeBarre(),qtReceptionner,l);
                  message="Lot article créé";
@@ -245,8 +245,8 @@ request.setAttribute( "message", message );
     LocalTime dFin= LocalTime.parse(heureFin);
     Time Fin=Time.valueOf(dFin);
     Time Debut=Time.valueOf(dDebut);
-    sessionAgentLivraison.CreerCreneau(Debut, Fin,d, agentId);
-    message="Créneau créé";
+    message=sessionAgentLivraison.CreerCreneau(Debut, Fin,d, agentId);
+    
 }             
 request.setAttribute( "message", message );
 }

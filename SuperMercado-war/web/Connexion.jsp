@@ -29,7 +29,7 @@
         <input type="hidden" name="action" value="connexionUser">
         <input type="submit" value="Valider" />
         </form>
-        <a href="GestionVentesEnLigneJSP/CreerCompteClient.jsp">Créer un compte client</a>
+        <a href="ClientServlet?action=CreerCompteClient">Créer un compte client</a>
     </center>
      <%@ include file="/include/footer.jsp" %>
      

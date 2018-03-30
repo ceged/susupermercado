@@ -57,7 +57,7 @@
 						
                                                          <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=f.getId()%>">Modifier mon mot de passe</a></li>
                                                         <li><a href="MenuFournisseur.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                        </ul>
 					</nav>
 				</div>
@@ -65,6 +65,7 @@
 
 
 <body>
+    <center>
 <h1>Liste des articles</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -100,7 +101,7 @@ for(LigneLivraison l : liste){
     </tr>
     
 </table>
-<center>
+
     <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Date de livraison prévue <span class="requis">*</span></label>
         <input type="date" name="date" value="" size="20" maxlength="20" required/>

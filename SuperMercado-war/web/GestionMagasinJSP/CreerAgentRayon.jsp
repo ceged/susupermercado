@@ -67,7 +67,7 @@
 							</li>							
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
 							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                     						</ul>
 
 					</nav>
@@ -78,6 +78,7 @@
     <body>
     <center>
 <% List<Rayon> listeRayon2 =listeRayon;{%>
+<center> 
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 </tr><%}%>
          <h1>Création d'agent de Rayon</h1>

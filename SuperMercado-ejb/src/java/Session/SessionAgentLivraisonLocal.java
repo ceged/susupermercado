@@ -38,7 +38,7 @@ public interface SessionAgentLivraisonLocal {
     
     void CreerLotArticleElectromenager(int qteLotArticle, Long idRefArticle,int garantie, LigneLivraison l);
     
-      void CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent);
+      String CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent);
     
     void ModifierCreneau(String idCreneau);
     

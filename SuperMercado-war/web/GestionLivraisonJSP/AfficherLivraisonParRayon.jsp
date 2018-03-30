@@ -65,13 +65,14 @@
 							</li>	
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=agentRayonConnecte.getId()%>"> Modifier mon mot de passe</a></li>
 							<li><a href="MenuAgentRayon.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                 </ul>
 					</nav>
 				</div>
 			</section>
     
 <body>
+<center>
 <h1>Liste des articles de la livraison</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -98,7 +99,7 @@ for(LigneLivraison l : liste){%>
 </tr><%}}%>
 </table>
 <hr>
- 
+ </center>
     <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

@@ -64,7 +64,7 @@
                         <li><A HREF="http://127.0.0.1/ui/lnk/?_=eJxNkEELgzAMhf9LzoJsR28OBx4GG3otjCphFaotaVQ68b8vHUN2yvteeEnIBmsIUGywDLgiJcUDW4QCIgbIYMRp7rQ0YHKC7Jz9w8Ca53CQQeSA9uCenLXHqLdz4w%2F2PQPtfcI5yNoM1i6lzqJe5EWSlJOQoV7IJDlx9OkwxtFbzSgWPTQbsVSu8ga9Iw4qrwckTb2JKq%2FKtr7cy6Z6tuXt2kpikTBHKJhm%2FN4g6fSC%2FQNJFlSp&user=admin&pass=rD0BR%2FxTH4m4bXUdDMDd4A%3D%3D" target="_blank">Consulter les ventes</a></li>
                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">Modifier mot de passe</a></li>
                         <li><a href="MenuChefdeRayon.jsp">Retour Menu principal</a></li>
-                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                     </ul>
                 </nav>
             </div>

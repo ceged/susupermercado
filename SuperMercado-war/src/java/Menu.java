@@ -61,7 +61,7 @@ public class Menu extends HttpServlet {
             throws ServletException, IOException {
         //sessionAdmin.CreerPersonneAdmin();
         response.setContentType("text/html;charset=UTF-8");
-
+        
         
         String jspChoix ="/Accueil.jsp";
         String act=request.getParameter("action");
@@ -133,7 +133,11 @@ public class Menu extends HttpServlet {
                 jspChoix="/MenuAgentRayon.jsp";
             }
           }
-        
+        else if (act.equals("sedeconnecter")){
+            HttpSession session = request.getSession(true);
+            session.invalidate();
+            jspChoix="/Accueil.jsp";
+        }
         else if (act.equals("CasterEnPersonne"))
         {
             String personneCherche= request.getParameter( "idPersonneSession");

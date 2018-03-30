@@ -62,7 +62,7 @@
 							<li><a href="Admin?action=TransfererListeRefArticle">Créer une Promotion </a></li>
                                                         <li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=personneConnecte.getId()%>">Modifier mon mot de passe</a></li>
 							<li><a href="MenuAdmin.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                 </ul>
 					</nav>
 				</div>
@@ -77,7 +77,7 @@
         <form method="get" action="/SuperMercado-war/Admin">
         <fieldset>
             
-        <legend>libellé Catégorie (majuscules et accents interdits)</legend>
+        <legend>Désignation Catégorie</legend>
         <label for="idCategorie">Catégorie <span class="requis">*</span></label>
         <SELECT name="idCategorie"size="1" required="">
             <%
@@ -87,7 +87,7 @@
         </SELECT>
         
         
-        <legend>libellé sous - catégorie (majuscules et accents interdits)</legend>
+        <legend>Désignation sous - catégorie</legend>
         <label for="libelleSousCategorie">Libellé sous-catégorie <span class="requis">*</span></label>
         <input type="text" name="libelleSousCategorie" value="" size="20" maxlength="20" required/>
         <br />

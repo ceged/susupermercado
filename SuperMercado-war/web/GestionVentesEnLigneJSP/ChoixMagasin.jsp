@@ -47,7 +47,7 @@
 																						
 							
                                                         <li><a href="MenuClient.jsp">Retour menu principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                         </ul>
                                             </nav>
 				</div>

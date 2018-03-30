@@ -66,7 +66,7 @@
 							</li>							
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=p.getId()%>">Modifier mot de passe</a></li>
 							<li><a href="MenuDirecteur.jsp">Retour Menu Principal</a></li>
-                                                        <li><a href="Accueil.jsp">Se déconnecter</a></li>
+                                                        <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                                     						</ul>
 
 					</nav>
@@ -83,7 +83,7 @@
       
           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations Caisse (majuscules et accents interdits)</legend>
+        <legend>Informations Caisse</legend>
         <label for="id">Numéro de la caisse <span class="requis">*</span></label>
         <input type="text" name="id" value="" size="20" maxlength="20" required/>
         <br />
