@@ -74,8 +74,9 @@
             </div>
         </section>
     <body>
-         <h1>Formulaire de bon de commande</h1>
         <center>
+         <h1>Formulaire de bon de commande</h1>
+        
         <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
         <legend>Informations bon de commande</legend>

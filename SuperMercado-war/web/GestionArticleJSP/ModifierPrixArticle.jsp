@@ -79,7 +79,7 @@
         <center>
             <form method="get" action="/SuperMercado-war/ChefRayonServlet">
         <fieldset>
-        <legend>Informations Article (majuscules et accents interdits)</legend>
+        <legend>Informations Article</legend>
         <br />
         <input type="hidden" name="rayon" value=<%=c.getRayon().getLibelleRayon() %> size="20" maxlength="20" />
         <input type="hidden" name="magasin" value=<%=c.getRayon().getSecteur().getMagasin().getNomMagasin() %> size="20" maxlength="20" />

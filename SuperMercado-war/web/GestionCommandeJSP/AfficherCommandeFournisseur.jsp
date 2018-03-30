@@ -65,6 +65,7 @@
 
 
 <body>
+    <center>
 <h1>Liste des articles</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -100,7 +101,7 @@ for(LigneLivraison l : liste){
     </tr>
     
 </table>
-<center>
+
     <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Date de livraison prévue <span class="requis">*</span></label>
         <input type="date" name="date" value="" size="20" maxlength="20" required/>

@@ -66,6 +66,7 @@
             </div>
         </section>
 <body>
+<center>
 <h1>Liste des articles ajoutés</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -103,6 +104,7 @@ for(LigneCommande l : listeLigneCommande){t=t+l.getPrixAchatUnitaire()*l.getQuan
 </table>
 
 <hr>
+</center>
 
     <%@ include file="/include/footer.jsp" %>
     </body>
