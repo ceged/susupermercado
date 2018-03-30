@@ -101,7 +101,7 @@ if(attribut!=null){
 				<a href="product_detail.html" class="title"><%=ar.getMarque()%></a><br/>
                                 <a href="products.html" class="category"><%=ar.getLibelleArticle()%></a>
                                 <p class="price"><%=ar.getPrixVenteMagasin()%>€</p>
-                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20"/>
+                                <input type="radio" name="article" value=<%=ar.getCodeBarre()%> size="20" required/>
                              </td>
                                 <%if(i==4){
                                     i=0;
@@ -126,15 +126,20 @@ if(attribut!=null){
        <center>
             <fieldset>
                     <input type="hidden" name="idClient" value=<%=c.getId()%>>
-                    <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
+                    <input type="hidden" name="idAchat" value=<%=achatEnCours.getId()%>>
                     <input type="hidden" id="idqte" name="quantite" value="">
                 <button onclick="getQuantite()" id="action" name="action" value=""> Ajouter au panier</button>
                 <input type="reset" value="Remettre à zéro" /> <br />
-                <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
+               
             
                     
         </form> 
-    
+                     <form method="get" action="/SuperMercado-war/ClientServlet">
+                     <input type="hidden" name="idClient" value=<%=c.getId()%>>
+                    <input type="hidden" name="idAchat" value=<%=ach.getId()%>>
+                    <input type="hidden" id="idqte" name="quantite" value="">
+     <button name="action2" value="consulterVotrePanier"> consulter votre panier </button>
+                    </form>
                     </section>
         </center>
                    

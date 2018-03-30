@@ -75,14 +75,13 @@
                 </div>
 
     <body>
-
+ <center> 
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
 
-        <h1>Formulaire de création de secteur</h1>
-        <center> 
+       
           <form method="get" action="/SuperMercado-war/DirecteurServlet">
         <fieldset>
-        <legend>Informations Secteur (majuscules et accents interdits)</legend>
+        <legend>Informations de votre nouveau Secteur</legend>
         <label for="libelleSecteur">Nom du Secteur <span class="requis">*</span></label>
         <input type="text" name="libelleSecteur" value="" size="20" maxlength="20" required/>
         <br />

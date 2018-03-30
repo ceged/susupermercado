@@ -82,11 +82,11 @@
 <% 
     List<Secteur> listeSecteur2 =listeSecteur;%>
 <tr> <td Width=15%>Bienvenue <%=p.getNom()%></td>
-        <h1>Formulaire de création de rayon</h1>
+
         
             <form method="get" action="/SuperMercado-war/DirecteurServlet">
                 <fieldset>
-                    <legend>Informations Rayon (majuscules et accents interdits)</legend>
+                    <legend>Informations de votre nouveau rayon</legend>
                     <label for="libellesecteur">Secteur <span class="requis">*</span></label>
                     <SELECT name="libellesecteur" size="1">
                         <%

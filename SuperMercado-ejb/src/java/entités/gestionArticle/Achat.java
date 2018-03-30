@@ -8,6 +8,7 @@ package entités.gestionArticle;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Achat implements Serializable {
 
-    @OneToMany(mappedBy = "achat")
+    @OneToMany(mappedBy = "achat", cascade = {CascadeType.ALL})
     private List<LigneAchat> listeLigneAchats;
 
     private static final long serialVersionUID = 1L;

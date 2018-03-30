@@ -42,5 +42,7 @@ public interface LigneAchatFacadeLocal {
     LigneAchat RechercherLigneParLotDansUnAchat(Achat achat, LotArticle lot);
 
     void AjouterQuantiteLigne(int quantiteAjoute, LigneAchat ligne);
+
+    List<LigneAchat> RechercherLigneAchatsParPanier(Achat achat);
     
 }

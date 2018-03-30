@@ -191,7 +191,7 @@ public class SessionClient implements SessionClientLocal {
     public List<LigneAchat> GetLignesPanier(String idAchat) {
         Long idAchatLong = Long.valueOf(idAchat);
         Achat achat = achatFacade.RechercheAchatParId(idAchatLong);
-        return achatFacade.getListeLigneAchat(achat);
+        return ligneAchatFacade.RechercherLigneAchatsParPanier(achat);
     }
 
     @Override
@@ -239,10 +239,9 @@ public class SessionClient implements SessionClientLocal {
 
     @Override
     public void ViderPanier(List<LigneAchat> liste) {
-        for(LigneAchat ligne : liste)
-        {
-                ligneAchatFacade.SupprimerLigneAchat(ligne);
-        }
+        liste.forEach((ligne) -> {
+            ligneAchatFacade.SupprimerLigneAchat(ligne);
+        });
     }
     
     @Override
@@ -270,6 +269,10 @@ public class SessionClient implements SessionClientLocal {
         livraisonDomicileFacade.CreerLivraisonDomicile(a, adresse, codePostal, ville, creneau);
         creneauFacade.ModifierCreneau(creneau);
     }
+
+    @Override
+    public void SupprimerAchatEnLigne(AchatEnLigne achat) {
+        achatEnLigneFacade.SupprimerAchat(achat);
+    }
     
-}
-    
+}  

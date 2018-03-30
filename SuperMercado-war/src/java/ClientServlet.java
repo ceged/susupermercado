@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -90,11 +91,12 @@ public class ClientServlet extends HttpServlet {
         }
         else if (act.equals("transferArticlesParMagasin")) /// 
         {
-            //création de session
+            //recup de session
             HttpSession sess=request.getSession(true);
             //recuperation de paramètres 
             String idClientString = request.getParameter("idClient");
             String nomMagasin = request.getParameter("magasin");
+            
             //Recuperation du client connecté 
             Personne p = sessionPersonne.RechercherPersonneParId(idClientString);
             Client c = (Client) p;
@@ -102,37 +104,50 @@ public class ClientServlet extends HttpServlet {
             Magasin magasinChoisi = sessionPersonne.RechercherMagasinParNom(nomMagasin);
             //Recuperation de la liste d'article du magasin choisi 
             List<ReferentielArticle> listeArticle = sessionPersonne.ConsultationArticlesParMagasin(nomMagasin);
-            //Creation de l'achat 
+           
+            
             //verification si achat en cours , si non il cree, si oui il ouvre l'achat en cours
             AchatEnLigne achatclientencours = sessionClient.RechercherAchatEnCours(idClientString); //Achat existant créé avant
             AchatEnLigne achatEnCours; //nouveau achat 
             if(achatclientencours==null) // si pas d'achat en cours pour le client
             {           
             achatEnCours = sessionClient.CreationAchatEnLigne(idClientString); //creer un achat
+            sess.setAttribute("achatEnCours", achatEnCours);
             }
             else //si achat en cours existe 
             {
                 List <LigneAchat> la = achatclientencours.getListeLigneAchats();
                 if(la.isEmpty())
                 {
-                achatEnCours = achatclientencours; //passer en attribut l'achat trouvé
+                //achatEnCours = achatclientencours; //passer en attribut l'achat trouvé
+                sess.setAttribute("achatEnCours", achatclientencours);
                 }
                 else
                 {
                     Magasin magasinPanierTrouve =  la.get(0).getLotArticle().getArticle().getRayon().getSecteur().getMagasin();
-                    if(magasinPanierTrouve==magasinChoisi)
+                    if(Objects.equals(magasinPanierTrouve.getId(), magasinChoisi.getId()))
                     {
-                        achatEnCours = achatclientencours;
+                        //achatEnCours = achatclientencours;
+                        sess.setAttribute("achatEnCours", achatclientencours);
                     }
                     else 
-                    {
+                        
+                    {   /*
                         sessionClient.ViderPanier(la);
                         achatEnCours=achatclientencours;
+                        */
+                        sessionClient.SupprimerAchatEnLigne(achatclientencours);
+                        //supprime achat trouve
+                        //créer en un
+                        achatEnCours = sessionClient.CreationAchatEnLigne(idClientString);
+                        sess.setAttribute("achatEnCours", achatEnCours);
+                        //pass le nouveau
+                        
                     }
                 }
             }
             sess.setAttribute("client", c);
-            sess.setAttribute("achatEnCours", achatEnCours);
+            //sess.setAttribute("achatEnCours", achatEnCours);
             sess.setAttribute("listeArticle",listeArticle);
             sess.setAttribute("magasinChoisi",magasinChoisi);
             
@@ -233,9 +248,19 @@ public class ClientServlet extends HttpServlet {
             
             HttpSession sess=request.getSession(true);
             String idAchatEnCours = request.getParameter("idAchat");
-            List<LigneAchat> listeLignesPanier = sessionClient.GetLignesPanier(idAchatEnCours);
-            sess.setAttribute("listeLignesPanier", listeLignesPanier);
-            jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
+            AchatEnLigne achatEnSession = (AchatEnLigne)sess.getAttribute("achatEnCours");
+            List<LigneAchat> listeLignesPanier = sessionClient.GetLignesPanier(achatEnSession.getId().toString());
+            if(listeLignesPanier.isEmpty())
+            {
+                String message = "Panier vide, ajouter des articles avant de consulter  votre panier";
+                request.setAttribute("message", message);
+                jspChoix="/GestionVentesEnLigneJSP/AfficherListeArticles.jsp";
+            }
+            else
+            {
+                sess.setAttribute("listeLignesPanier", listeLignesPanier);
+                jspChoix="/GestionVentesEnLigneJSP/AfficherPanierEnCours.jsp";
+            }
             
         }
         else 

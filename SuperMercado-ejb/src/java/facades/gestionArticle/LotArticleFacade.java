@@ -95,7 +95,8 @@ public class LotArticleFacade extends AbstractFacade<LotArticle> implements LotA
     @Override
     public LotArticle RechercherLotArticleFIFO(ReferentielArticle article) {
         LotArticle la;
-        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.article=:article ORDER BY la.dateCreation");
+        Query req= getEntityManager().createQuery("SELECT la FROM LotArticle AS la WHERE la.quantiteLot>:qtezero AND la.article=:article ORDER BY la.dateCreation");
+        req.setParameter("qtezero", 0);
         req.setParameter("article", article);
         List maliste = req.getResultList();
         try{

@@ -82,6 +82,16 @@ public class LigneAchatFacade extends AbstractFacade<LigneAchat> implements Lign
         ligne.setQuantiteAchetee(quantiteAjoute+ligne.getQuantiteAchetee());
         em.merge(ligne);
     }
+
+    @Override
+    public List<LigneAchat> RechercherLigneAchatsParPanier(Achat achat) {
+        Achat a;
+        Query req= getEntityManager().createQuery("SELECT ligne FROM LigneAchat as ligne where ligne.achat=:achat");
+        req.setParameter("achat", achat);
+        List maliste = req.getResultList();
+        
+        return maliste;
+    }
     
     
    

@@ -68,6 +68,10 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
         em.merge(a);
     }
     
-    
+    @Override
+    public void SupprimerAchat(AchatEnLigne achatasupprimer) {
+        achatasupprimer= em.merge(achatasupprimer);
+        em.remove(achatasupprimer);
+    }
     
 }

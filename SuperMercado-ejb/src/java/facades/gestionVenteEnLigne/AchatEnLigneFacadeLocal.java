@@ -38,4 +38,6 @@ public interface AchatEnLigneFacadeLocal {
     
     void AjouterModeLivraison(AchatEnLigne a,ModeLivraison modeLivraison);
     
+    public void SupprimerAchat(AchatEnLigne achatasupprimer);
+    
 }

@@ -52,4 +52,7 @@ public interface SessionClientLocal {
     void CreerLivraisonDomicile(String idAchatLigne, String adresse, String codePostal, String ville, String  creneauId);
     
     void CreerRetraitMagasin(String idAchatLigne, Date dateRecup, String magasinId);
+
+    void SupprimerAchatEnLigne(AchatEnLigne achat);
+
 }
