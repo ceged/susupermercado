@@ -67,6 +67,7 @@
 
      
 <body>
+<center>
 <h1>Liste des casses du rayon <%=agentRayonConnecte.getRayon().getLibelleRayon() %> </h1>
 
 <TABLE border width=50%>
@@ -84,8 +85,7 @@ for(Casse c : liste){%>
 
 </tr><%}%></TABLE>
 <hr>
-
-<A HREF="MenuAgentRayon.jsp">Retour au menu</A><br />
+</center>
     <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>

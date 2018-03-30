@@ -117,9 +117,17 @@ public class SessionAgentLivraison implements SessionAgentLivraisonLocal {
     }
     
     @Override
-    public void CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent){
+    public String CreerCreneau(Time heureDebut, Time heureFin, Date date, String idAgent){
+        String message=null;
         AgentLivraison a=agentLivraisonFacade.RechercherAgentLivraison(idAgent);
-        creneauFacade.CreerCreneau(heureDebut, heureFin, date, a.getMagasin());
+        if(heureFin.before(heureDebut)){
+            message="Heure de fin inférieur à heure de début";
+        }
+        else{
+            creneauFacade.CreerCreneau(heureDebut, heureFin, date, a.getMagasin());
+            message="Créneau créé";
+        }
+        return message;
     }
     
     @Override

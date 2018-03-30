@@ -72,6 +72,7 @@
 			</section>
      
 <body>
+<center>
 <h1>Liste de vos commandes</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -96,6 +97,7 @@ for(Commande l : liste){%>
 </tr><%}%></TABLE>
 
 <hr>
+</center>
   
     <%@ include file="/include/footer.jsp" %>
     </body>

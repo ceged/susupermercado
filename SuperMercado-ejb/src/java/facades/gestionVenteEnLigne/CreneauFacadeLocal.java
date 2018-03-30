@@ -47,4 +47,6 @@ public interface CreneauFacadeLocal {
     
     List<Creneau> ChercherCreneauDispoParMagasinParDate(Magasin magasin,Date date);
     
+    List<Creneau> ChercherCreneauParMagasin(Magasin magasin);
+    
 }

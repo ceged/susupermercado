@@ -245,8 +245,8 @@ request.setAttribute( "message", message );
     LocalTime dFin= LocalTime.parse(heureFin);
     Time Fin=Time.valueOf(dFin);
     Time Debut=Time.valueOf(dDebut);
-    sessionAgentLivraison.CreerCreneau(Debut, Fin,d, agentId);
-    message="Créneau créé";
+    message=sessionAgentLivraison.CreerCreneau(Debut, Fin,d, agentId);
+    
 }             
 request.setAttribute( "message", message );
 }

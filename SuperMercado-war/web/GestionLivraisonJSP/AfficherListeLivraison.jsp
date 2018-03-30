@@ -65,6 +65,7 @@
 
      
 <body>
+    <center>
 <h1>Liste de vos livraisons</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -87,7 +88,7 @@ for(Livraison l : liste){%>
 <td Width=30%><A href="AgentLivraisonServlet?action=afficherLivraisonAgent&livraisonId=<%=l.getId()%>"> Cliquez ici</A></td>
 
 </tr><%}%></TABLE>
-
+</center>
 <hr>
   
     <%@ include file="/include/footer.jsp" %>

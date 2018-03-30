@@ -91,6 +91,18 @@ public class CreneauFacade extends AbstractFacade<Creneau> implements CreneauFac
     }
     
     @Override
+    public List<Creneau> ChercherCreneauParMagasin(Magasin magasin){
+        List<Creneau> result=new ArrayList<Creneau>();
+        Query req=getEntityManager().createQuery("SELECT c from Creneau AS c WHERE c.magasin=:magasin");
+        req.setParameter("magasin",magasin);
+        List<Creneau> liste=req.getResultList();
+        for (Creneau c:liste){
+            result.add(c);
+        }
+        return result;
+    }
+    
+    @Override
     public List<Creneau> ChercherCreneauDispoParMagasin(Magasin magasin){
         Boolean dispo=TRUE;
         List<Creneau> result=new ArrayList<Creneau>();

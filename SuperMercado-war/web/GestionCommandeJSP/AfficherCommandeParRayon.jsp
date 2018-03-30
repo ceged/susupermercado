@@ -74,6 +74,7 @@
 
      
 <body>
+<center>
 <h1>Liste des articles</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -108,6 +109,7 @@ for(LigneCommande l : liste){
     
 </table>
 <hr>
+</center>
     <%@ include file="/include/footer.jsp" %>
     </body>
      <%@ include file="/include/js.jsp" %>
