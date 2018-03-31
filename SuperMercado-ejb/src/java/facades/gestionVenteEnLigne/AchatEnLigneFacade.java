@@ -70,7 +70,7 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
     
     @Override
     public void SupprimerAchat(AchatEnLigne achatasupprimer) {
-        achatasupprimer= em.merge(achatasupprimer);
+        achatasupprimer= em.merge(achatasupprimer);   
         em.remove(achatasupprimer);
     }
     

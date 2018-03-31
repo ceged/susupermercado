@@ -39,5 +39,7 @@ public interface AffectationCaisseAgentFacadeLocal {
     
     AffectationCaisseAgent RechercherAffectionParDateAgent(Date d, AgentCaisse agent);
 
+    Boolean AffectationSeChevauche(Date debut1, Date fin1, AgentCaisse agent);
+
     
 }

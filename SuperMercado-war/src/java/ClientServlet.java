@@ -86,6 +86,7 @@ public class ClientServlet extends HttpServlet {
         {
             HttpSession sess=request.getSession(true);
             List<Magasin> listeMagasin = sessionPersonne.ConsultationMagasins();
+            
             sess.setAttribute("listeMagasin",listeMagasin);
             jspChoix="/GestionVentesEnLigneJSP/ChoixMagasin.jsp";
         }
@@ -97,6 +98,7 @@ public class ClientServlet extends HttpServlet {
         {
             //recup de session
             HttpSession sess=request.getSession(true);
+            sess.removeAttribute("achatEnCours");
             //recuperation de paramètres 
             String idClientString = request.getParameter("idClient");
             String nomMagasin = request.getParameter("magasin");

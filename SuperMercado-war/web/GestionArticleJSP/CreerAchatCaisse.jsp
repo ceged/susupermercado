@@ -26,7 +26,7 @@
         <jsp:useBean id="liste" scope="session" class="List<LigneAchat>"></jsp:useBean>
         <jsp:useBean id="achatCaisse" scope="session" class="AchatCaisse"></jsp:useBean>
         
-        <title>Menu Panier Achat Caisse</title>
+        <title>Achat en caisse</title>
       <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -69,7 +69,8 @@
      
 
         <body>
-        <h1>Liste de vos achats caisse</h1>
+            <center>
+        <h1>Scanner produit caisse</h1>
         
         <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -88,7 +89,7 @@ if(attribut!=null){
         <br />
         </form>
         </center> 
-        <center>
+        
  <TABLE border width=50%>
 <tr> <TD>Designation article</TD>
 <TD>Quantité</TD>

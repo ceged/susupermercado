@@ -58,7 +58,7 @@
 			</section>
 
     <body>
-
+    <center>
 <tr> <td Width=15%>Bienvenue <%=agentCaisse.getPrenom()%></td>
 </tr>
         <h1>Bienvenue sur le menu Caisse !</h1>
@@ -77,6 +77,7 @@
        
       
      <%@ include file="/include/footer.jsp" %>
+    </center>
     </body>
      <%@ include file="/include/js.jsp" %>
 </html>

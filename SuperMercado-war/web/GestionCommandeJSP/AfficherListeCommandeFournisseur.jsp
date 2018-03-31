@@ -26,7 +26,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="liste" scope="session" class="List<Livraison>"></jsp:useBean>
         <jsp:useBean id="fournisseurConnecte" scope="session" class="Fournisseur"></jsp:useBean>
-<title>lListe de vos commandes</title>
+<title>Vos commandes</title>
   <%@ include file="/include/css.jsp" %>
     </head>
      <%@ include file="/include/header.jsp" %>
@@ -63,6 +63,7 @@
 
      
 <body>
+    <center>
 <h1>Liste de vos commandes</h1>
 <p> <%
 String attribut = (String) request.getAttribute("message");
@@ -71,7 +72,7 @@ if(attribut!=null){
             }
 %> </p>
 <A HREF="MenuFournisseur.jsp">Retour au menu</A><br />
-<center>
+
     <form method="get" action="/SuperMercado-war/FournisseurServlet">
         <label for="date"> Recherche entre 2 dates <span class="requis">*</span></label>
         <input type="date" name="date1" value="" size="20" maxlength="20" />

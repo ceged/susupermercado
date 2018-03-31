@@ -239,7 +239,7 @@ public class SessionClient implements SessionClientLocal {
 
     @Override
     public void ViderPanier(List<LigneAchat> liste) {
-        liste.forEach((ligne) -> {
+        liste.forEach((LigneAchat ligne) -> {
             ligneAchatFacade.SupprimerLigneAchat(ligne);
         });
     }

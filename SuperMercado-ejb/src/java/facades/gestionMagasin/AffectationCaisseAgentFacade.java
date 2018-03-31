@@ -75,5 +75,22 @@ public class AffectationCaisseAgentFacade extends AbstractFacade<AffectationCais
         return result ;
     }
 
+    @Override
+    public Boolean AffectationSeChevauche(Date debut1, Date fin1, AgentCaisse agent) {
+        AffectationCaisseAgent result = null;
+        Query req=getEntityManager().createQuery("SELECT a from AffectationCaisseAgent AS a WHERE a.agentCaisse=:agent AND a.dateDebut<=:datefin AND a.dateFin>=:datedebut");       
+        req.setParameter("datedebut",debut1);
+        req.setParameter("datefin",fin1);
+        req.setParameter("agent",agent);
+        
+        List<AffectationCaisseAgent>l=req.getResultList();
+        for(AffectationCaisseAgent a:l){
+            result = a;
+    }
+        return result != null;
+        
+
+    }
+
     
 }

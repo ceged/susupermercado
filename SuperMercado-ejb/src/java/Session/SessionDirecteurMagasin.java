@@ -160,8 +160,16 @@ public String CreerRayon (String secteur, String libelleRayon){
         String message = "magasin inconnu";
         Magasin magasinRecherche = magasinFacade.RechercherMagasinParNom(nomMagasin);
         if (magasinRecherche != null ){
-        caisseFacade.CreerCaisse(id, magasinRecherche);
-        message = "Caisse Créée";
+            Caisse c = caisseFacade.RechercherCaisseParId(id, magasinRecherche);
+            if(null!=c)
+            {
+                message = "Caisse exite déjà, choisissez un autre identifiant";
+            }
+            else
+            {
+                caisseFacade.CreerCaisse(id, magasinRecherche);
+                message = "Caisse Créée";
+            }
     }
         return message ;
     }
@@ -281,8 +289,16 @@ public DirecteurMagasin ChercherDirecteurParId(String id){
             Magasin magasin=magasinFacade.RechercherMagasinParNom(nomMagasin);
             Caisse caisse = caisseFacade.RechercherCaisseParId(idCaisse, magasin);
             AgentCaisse agentCaisse = agentCaisseFacade.RechercherAgentCaisse(idAgentCaisse, magasin);
+            Boolean seChevauche= affectationCaisseAgentFacade.AffectationSeChevauche(dateDebut, dateFin, agentCaisse);
+            if(seChevauche==false)
+            {
             affectationCaisseAgentFacade.CreerAffectation(agentCaisse, caisse, dateDebut, dateFin);
-            message = "affectation effectuée";        
+            message = "affectation effectuée";
+            }
+            else
+            {
+                message = "l'agent de caisse est déjà affecté pour la periode selectionnée";
+            }
         } 
         else 
         { 
