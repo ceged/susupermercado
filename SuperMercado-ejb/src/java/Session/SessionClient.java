@@ -274,5 +274,18 @@ public class SessionClient implements SessionClientLocal {
     public void SupprimerAchatEnLigne(AchatEnLigne achat) {
         achatEnLigneFacade.SupprimerAchat(achat);
     }
+
+    @Override
+    public String SupprimerClient(Client client) {
+        try{
+        achatEnLigneFacade.RechercherAchatsEnLigneClient(client);
+        clientFacade.SupprimerCompteClient(client);
+        return "Votre compte a bien été supprimé";}
+        catch(Exception e )
+        {
+            return"erreur lors de la suppression du client dans la base";
+        }
+    }
+    
     
 }  

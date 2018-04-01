@@ -47,6 +47,10 @@
 							
 							<li><a href="Menu?action=CasterEnPersonne&idPersonneSession=<%=c.getId()%>">Modifier mon mot de passe</a></li>
                                                         <li><a href="MenuClient.jsp">Retour menu principal</a></li>
+                                                        <li><a href="ClientServlet?action=SupprimerCompteClient"
+                                                               onclick="return confirm('êtes vous sûr de vouloir supprimer votre compte ? Cette action est irréversible')">
+                                                                Supprimer mon compte</a></li>
+
                                                         <li><a href="Menu?action=sedeconnecter">Se déconnecter</a></li>
                                         </ul>
                                             </nav>
@@ -70,7 +74,7 @@
         else{
         out.println( attribut );}
         %> </p>
-    <%@ include file="/include/footer.jsp" %>
+    <%@ include file="/include/footer.jsp" %>      
     </body>
      <%@ include file="/include/js.jsp" %>
 </html>

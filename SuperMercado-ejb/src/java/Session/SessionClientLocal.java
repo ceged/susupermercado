@@ -55,4 +55,6 @@ public interface SessionClientLocal {
 
     void SupprimerAchatEnLigne(AchatEnLigne achat);
 
+    String SupprimerClient(Client client);
+
 }

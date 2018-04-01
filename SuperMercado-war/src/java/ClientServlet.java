@@ -94,6 +94,10 @@ public class ClientServlet extends HttpServlet {
             
             jspChoix="/GestionVentesEnLigneJSP/CreerCompteClient.jsp";
         }
+        else if (act.equals("SupprimerCompteClient")){
+            doActionsupprimerCompte(request,response);
+            jspChoix="/Accueil.jsp";
+        }
         else if (act.equals("transferArticlesParMagasin")) /// 
         {
             //recup de session
@@ -444,6 +448,25 @@ protected void doActioninsererSupprimerLigneAchat(HttpServletRequest request, Ht
     
     sessionClient.SuppressionLigneAchat(idLigne);
     message="Article Supprimé";
+}
+   
+request.setAttribute( "message", message );
+}
+
+protected void doActionsupprimerCompte(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+    HttpSession sess=request.getSession(true);
+    Client clientasupp = (Client) sess.getAttribute("client");
+    String message;
+    
+    if ( clientasupp == null){
+    message = "Erreur client à supprimer non trouvé " + "<br /> <a href=\"GestionVentesEnLigneJSP/MenuClient.jsp\">Cliquez ici</a>";
+} else
+{
+    
+    message = sessionClient.SupprimerClient(clientasupp);
+    
 }
    
 request.setAttribute( "message", message );

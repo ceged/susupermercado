@@ -61,6 +61,17 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         }
         return client;
     }
+
+    @Override
+    public void SupprimerCompteClient(Client client) {
+   
+        
+        
+        
+        
+        client = em.merge(client);
+        em.remove(client);
+    }
     
     
 }

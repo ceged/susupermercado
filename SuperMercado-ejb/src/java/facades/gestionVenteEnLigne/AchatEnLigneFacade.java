@@ -73,5 +73,24 @@ public class AchatEnLigneFacade extends AbstractFacade<AchatEnLigne> implements 
         achatasupprimer= em.merge(achatasupprimer);   
         em.remove(achatasupprimer);
     }
+
+    
+    
+    //cette méthode enlève les référence au client 
+    @Override
+    public void RechercherAchatsEnLigneClient(Client client) {
+
+        Query req = getEntityManager().createQuery("Select a from AchatEnLigne as a where a.client=:client");
+        req.setParameter("client", client);
+
+        List<AchatEnLigne>listeAchat=req.getResultList();
+        
+        listeAchat.forEach((ac) -> {
+            ac.setClient(null);
+        });
+ 
+    }
+    
+    
     
 }
